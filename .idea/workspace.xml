@@ -9,7 +9,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="13178677-1dff-4855-a748-b263d6799d61" name="Changes" comment="Add custom widget" />
+    <list default="true" id="13178677-1dff-4855-a748-b263d6799d61" name="Changes" comment="Add routes.dart" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -158,7 +158,23 @@
       <option name="project" value="LOCAL" />
       <updated>1745772818312</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Add view model">
+      <option name="closed" value="true" />
+      <created>1745773017615</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1745773017615</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Add routes.dart">
+      <option name="closed" value="true" />
+      <created>1745773128315</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1745773128315</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -183,6 +199,8 @@
     <MESSAGE value="Add implementation repository" />
     <MESSAGE value="Add finance_entity.dart" />
     <MESSAGE value="Add custom widget" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add custom widget" />
+    <MESSAGE value="Add view model" />
+    <MESSAGE value="Add routes.dart" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add routes.dart" />
   </component>
 </project>
