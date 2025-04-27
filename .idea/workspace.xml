@@ -9,9 +9,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="13178677-1dff-4855-a748-b263d6799d61" name="Changes" comment="Add source.dart">
-      <change afterPath="$PROJECT_DIR$/lib/data/repositories/finance_repository_imp.dart" afterDir="false" />
-    </list>
+    <list default="true" id="13178677-1dff-4855-a748-b263d6799d61" name="Changes" comment="Add finance_entity.dart" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -128,7 +126,31 @@
       <option name="project" value="LOCAL" />
       <updated>1745772029803</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Add interface repository">
+      <option name="closed" value="true" />
+      <created>1745772323846</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1745772323846</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Add implementation repository">
+      <option name="closed" value="true" />
+      <created>1745772356304</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1745772356304</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Add finance_entity.dart">
+      <option name="closed" value="true" />
+      <created>1745772578457</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1745772578457</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -149,6 +171,9 @@
     <MESSAGE value="Add utils.dart" />
     <MESSAGE value="Add model" />
     <MESSAGE value="Add source.dart" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add source.dart" />
+    <MESSAGE value="Add interface repository" />
+    <MESSAGE value="Add implementation repository" />
+    <MESSAGE value="Add finance_entity.dart" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add finance_entity.dart" />
   </component>
 </project>
