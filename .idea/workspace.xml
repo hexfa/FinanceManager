@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list name="Changes" comment="" default="true" id="13178677-1dff-4855-a748-b263d6799d61">
-      <change afterDir="false" afterPath="$PROJECT_DIR$/lib/home.dart" />
-      <change afterDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" beforePath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change afterDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" beforePath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change afterDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" beforePath="$PROJECT_DIR$/lib/main.dart" />
-    </list>
+    <list default="true" id="13178677-1dff-4855-a748-b263d6799d61" name="Changes" comment="Add HomeScreen" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -63,15 +58,24 @@
       <method v="2" />
     </configuration>
   </component>
-  <component name="SpellCheckerSettings" CustomDictionaries="0" DefaultDictionary="application-level" Folders="0" RuntimeDictionaries="0" UseSingleDictionary="true" transferred="true" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist name="Changes" comment="" id="13178677-1dff-4855-a748-b263d6799d61" />
+      <changelist id="13178677-1dff-4855-a748-b263d6799d61" name="Changes" comment="" />
       <created>1745763636699</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1745763636699</updated>
     </task>
+    <task id="LOCAL-00001" summary="Add HomeScreen">
+      <option name="closed" value="true" />
+      <created>1745767771917</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1745767771917</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -84,5 +88,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Add HomeScreen" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add HomeScreen" />
   </component>
 </project>

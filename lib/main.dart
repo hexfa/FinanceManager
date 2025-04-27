@@ -1,4 +1,4 @@
-import 'package:finance_manager/home.dart';
+import 'package:finance_manager/presentation/view/screens/home.dart';
 import 'package:flutter/material.dart';
 
 void main() {
