@@ -6,7 +6,16 @@ class HomeScreen extends BaseStatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: _homeAbbBar());
+    String balance = '\$5,000';
+    return Scaffold(
+      backgroundColor: theme(context).colorScheme.surface,
+      appBar: _homeAbbBar(),
+      body: Center(
+        child: Column(
+          children: [Text(balance, style: theme(context).textTheme.titleLarge)],
+        ),
+      ),
+    );
   }
 }
 
