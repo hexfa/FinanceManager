@@ -31,22 +31,27 @@ PreferredSizeWidget _homeAbbBar(ThemeData theme) {
     centerTitle: false,
     title: Row(
       children: [
-        Icon(Icons.currency_exchange),
+        Icon(Icons.currency_exchange, color: theme.colorScheme.onSurface),
         SizedBox(width: 8),
-        Text('Balance'),
+        Text(
+          'Balance',
+          style: theme.textTheme.titleLarge?.copyWith(
+            color: theme.colorScheme.onSurface,
+          ),
+        ),
       ],
     ),
     actions: [
       PopupMenuButton<String>(
         onSelected: (String value) {},
-        icon: Icon(Icons.more_vert),
+        icon: Icon(Icons.more_vert, color: theme.colorScheme.onSurface),
         itemBuilder: (BuildContext context) {
           return {'Setting'}.map((String choice) {
             return PopupMenuItem<String>(
               value: choice,
               child: Row(
                 children: [
-                  Icon(Icons.settings),
+                  Icon(Icons.settings, color: theme.colorScheme.onSurface),
                   SizedBox(width: 8),
                   Text(choice),
                 ],
