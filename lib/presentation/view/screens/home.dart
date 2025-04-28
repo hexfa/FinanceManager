@@ -1,6 +1,7 @@
 import 'package:finance_manager/presentation/base/base_stateless_widget.dart';
 import 'package:finance_manager/presentation/view/screens/income_expense_summury.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomeScreen extends BaseStatelessWidget {
   const HomeScreen({super.key});
@@ -12,7 +13,7 @@ class HomeScreen extends BaseStatelessWidget {
     String expense = '\$343,0';
     return Scaffold(
       backgroundColor: theme(context).colorScheme.surface,
-      appBar: _homeAbbBar(theme(context)),
+      appBar: _homeAbbBar(theme(context), localization(context)),
       body: Center(
         child: Column(
           children: [
@@ -25,7 +26,10 @@ class HomeScreen extends BaseStatelessWidget {
   }
 }
 
-PreferredSizeWidget _homeAbbBar(ThemeData theme) {
+PreferredSizeWidget _homeAbbBar(
+  ThemeData theme,
+  AppLocalizations localization,
+) {
   return AppBar(
     backgroundColor: theme.colorScheme.surface,
     centerTitle: false,
@@ -34,7 +38,7 @@ PreferredSizeWidget _homeAbbBar(ThemeData theme) {
         Icon(Icons.currency_exchange, color: theme.colorScheme.onSurface),
         SizedBox(width: 8),
         Text(
-          'Balance',
+          localization.balance,
           style: theme.textTheme.titleLarge?.copyWith(
             color: theme.colorScheme.onSurface,
           ),
@@ -46,7 +50,7 @@ PreferredSizeWidget _homeAbbBar(ThemeData theme) {
         onSelected: (String value) {},
         icon: Icon(Icons.more_vert, color: theme.colorScheme.onSurface),
         itemBuilder: (BuildContext context) {
-          return {'Setting'}.map((String choice) {
+          return {localization.setting}.map((String choice) {
             return PopupMenuItem<String>(
               value: choice,
               child: Row(

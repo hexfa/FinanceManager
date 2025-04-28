@@ -1,3 +1,6 @@
 {
-  "helloWorld": "Hello World!",
+  "balance": "Balance",
+  "setting": "Setting",
+  "income": "Income",
+  "expense": "Expense"
 }

@@ -2,10 +2,10 @@ import 'package:finance_manager/presentation/base/base_stateless_widget.dart';
 import 'package:flutter/material.dart';
 
 class IncomeExpenseSummary extends BaseStatelessWidget {
-  String income;
-  String expense;
+  final String income;
+  final String expense;
 
-  IncomeExpenseSummary({
+  const IncomeExpenseSummary({
     super.key,
     required this.income,
     required this.expense,
@@ -26,7 +26,7 @@ class IncomeExpenseSummary extends BaseStatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             _buildIncomeExpenseTile(
-              title: 'Income',
+              title: localization(context).income,
               subtitle: income,
               icon: Icons.arrow_upward,
               theme: theme(context),
@@ -38,7 +38,7 @@ class IncomeExpenseSummary extends BaseStatelessWidget {
               margin: const EdgeInsets.symmetric(horizontal: 16),
             ),
             _buildIncomeExpenseTile(
-              title: 'Expense',
+              title: localization(context).expense,
               subtitle: expense,
               icon: Icons.arrow_downward,
               theme: theme(context),

@@ -1,3 +1,6 @@
 {
-  "helloWorld": "سلام"
+   "balance": "موجودی",
+   "setting": "تنظیمات",
+   "income": "درآمد",
+   "expense": "هزینه"
 }
