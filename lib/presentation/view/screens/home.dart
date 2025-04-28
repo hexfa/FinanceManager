@@ -12,6 +12,7 @@ class HomeScreen extends BaseStatelessWidget {
 
 PreferredSizeWidget _homeAbbBar() {
   return AppBar(
+    centerTitle: false,
     title: Row(
       children: [
         Icon(Icons.currency_exchange),
@@ -19,6 +20,25 @@ PreferredSizeWidget _homeAbbBar() {
         Text('Balance'),
       ],
     ),
-    centerTitle: false,
+    actions: [
+      PopupMenuButton<String>(
+        onSelected: (String value) {},
+        icon: Icon(Icons.more_vert),
+        itemBuilder: (BuildContext context) {
+          return {'Setting'}.map((String choice) {
+            return PopupMenuItem<String>(
+              value: choice,
+              child: Row(
+                children: [
+                  Icon(Icons.settings),
+                  SizedBox(width: 8),
+                  Text(choice),
+                ],
+              ),
+            );
+          }).toList();
+        },
+      ),
+    ],
   );
 }
