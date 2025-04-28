@@ -12,7 +12,7 @@ class HomeScreen extends BaseStatelessWidget {
     String expense = '\$343,0';
     return Scaffold(
       backgroundColor: theme(context).colorScheme.surface,
-      appBar: _homeAbbBar(),
+      appBar: _homeAbbBar(theme(context)),
       body: Center(
         child: Column(
           children: [
@@ -25,8 +25,9 @@ class HomeScreen extends BaseStatelessWidget {
   }
 }
 
-PreferredSizeWidget _homeAbbBar() {
+PreferredSizeWidget _homeAbbBar(ThemeData theme) {
   return AppBar(
+    backgroundColor: theme.colorScheme.surface,
     centerTitle: false,
     title: Row(
       children: [
