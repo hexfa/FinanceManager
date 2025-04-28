@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 
 // import 'package:flutter_svg/flutter_svg.dart';
-// import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 /// BaseStatelessWidget provides common utilities and methods for stateless widgets
 abstract class BaseStatelessWidget extends StatelessWidget {
@@ -16,8 +16,8 @@ abstract class BaseStatelessWidget extends StatelessWidget {
   MediaQueryData mediaQuery(BuildContext context) => MediaQuery.of(context);
 
   // Localization for accessing localized strings
-  // AppLocalizations localization(BuildContext context) =>
-  //     AppLocalizations.of(context)!;
+  AppLocalizations localization(BuildContext context) =>
+      AppLocalizations.of(context)!;
 
   // Access to Navigator for pushing and popping pages
   NavigatorState navigator(BuildContext context) => Navigator.of(context);
