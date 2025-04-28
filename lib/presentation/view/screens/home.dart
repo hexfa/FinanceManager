@@ -1,4 +1,5 @@
 import 'package:finance_manager/presentation/base/base_stateless_widget.dart';
+import 'package:finance_manager/presentation/view/screens/income_expense_summury.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends BaseStatelessWidget {
@@ -16,22 +17,7 @@ class HomeScreen extends BaseStatelessWidget {
         child: Column(
           children: [
             Text(balance, style: theme(context).textTheme.titleLarge),
-            Row(
-              children: [
-                _buildIncomeExpenseTile(
-                  title: 'Income',
-                  subtitle: income,
-                  icon: Icons.arrow_upward,
-                  theme: theme(context),
-                ),
-                _buildIncomeExpenseTile(
-                  title: 'Expense',
-                  subtitle: expense,
-                  icon: Icons.arrow_downward,
-                  theme: theme(context),
-                ),
-              ],
-            ),
+            IncomeExpenseSummary(income: income, expense: expense),
           ],
         ),
       ),
@@ -69,20 +55,5 @@ PreferredSizeWidget _homeAbbBar() {
         },
       ),
     ],
-  );
-}
-
-Widget _buildIncomeExpenseTile({
-  required String title,
-  required String subtitle,
-  required IconData icon,
-  required ThemeData theme,
-}) {
-  return Expanded(
-    child: ListTile(
-      leading: Icon(icon, color: theme.colorScheme.secondary),
-      title: Text(title, style: theme.textTheme.titleSmall),
-      subtitle: Text(subtitle, style: theme.textTheme.titleMedium),
-    ),
   );
 }
