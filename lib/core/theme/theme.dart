@@ -14,6 +14,10 @@ final ThemeData lightTheme = ThemeData(
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
     backgroundColor: primaryColor,
   ),
+  popupMenuTheme: PopupMenuThemeData(
+    color: card,
+    textStyle: GoogleFonts.roboto(color: onCard),
+  ),
   colorScheme: ColorScheme.fromSwatch().copyWith(
     primary: primaryColor,
     onPrimary: onPrimaryColor,
@@ -47,6 +51,10 @@ final ThemeData darkTheme = ThemeData(
   floatingActionButtonTheme: FloatingActionButtonThemeData(
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
     backgroundColor: darkPrimaryColor,
+  ),
+  popupMenuTheme: PopupMenuThemeData(
+    color: darkCard,
+    textStyle: GoogleFonts.roboto(color: darkOnCard),
   ),
   colorScheme: ColorScheme.fromSwatch().copyWith(
     primary: darkPrimaryColor,
