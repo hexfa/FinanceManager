@@ -18,7 +18,7 @@ const Color onError = Colors.white;
 
 /// Dark Theme Colors
 const Color darkBackgroundColor = Color(0xFF2f2f2f);
-const Color darkPrimaryColor = Color(0xff566baf); // Dark blue
+const Color darkPrimaryColor = Color(0xff4b60a4); // Dark blue
 const Color darkOnPrimaryColor = Colors.white;
 const Color darkCard = Colors.black12;
 const Color darkOnCard = Colors.white70;
