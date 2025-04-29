@@ -1,5 +1,6 @@
 import 'package:finance_manager/presentation/base/base_stateless_widget.dart';
-import 'package:finance_manager/presentation/view/screens/income_expense_summury.dart';
+import 'package:finance_manager/presentation/view/screens/home/custom_pie_chart.dart';
+import 'package:finance_manager/presentation/view/screens/home/income_expense_summury.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -19,6 +20,7 @@ class HomeScreen extends BaseStatelessWidget {
           children: [
             Text(balance, style: theme(context).textTheme.titleLarge),
             IncomeExpenseSummary(income: income, expense: expense),
+            CustomPieChart(),
           ],
         ),
       ),
