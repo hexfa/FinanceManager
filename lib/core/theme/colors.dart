@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 const Color primaryColor = Colors.blue;
 const Color onPrimaryColor = Color(0xFFFFFFFF);
 const Color card = Color(0xFFFFFFFF);
-const Color onCard = Colors.black87;
+const Color onCard = Colors.black;
 const Color backgroundColor = Colors.white;
 const Color onBackground = Colors.black;
 const Color secondaryColor = Color(0xFF388E3C); // Green color
