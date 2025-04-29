@@ -27,5 +27,5 @@ const Color darkSecondaryColor = Color(0xFF4CAF50); // Dark Green
 const Color darkOnSecondaryColor = Colors.white;
 const Color darkTertiary = Colors.grey;
 final Color darkTertiaryContainer = Colors.grey[800]!;
-const Color darkError = Color(0xffff6767);
+const Color darkError = Color(0xffea5a5a);
 const Color darkOnError = Colors.black;
