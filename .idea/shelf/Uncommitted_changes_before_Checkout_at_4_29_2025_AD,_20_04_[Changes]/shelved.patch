@@ -1,0 +1,56 @@
+Index: lib/presentation/view/screens/home.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import 'package:flutter/material.dart';\n\nclass HomeScreen extends StatelessWidget {\n  const HomeScreen({super.key});\n\n  @override\n  Widget build(BuildContext context) {\n    return Text('Home');\n  }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/lib/presentation/view/screens/home.dart b/lib/presentation/view/screens/home.dart
+--- a/lib/presentation/view/screens/home.dart	(revision a4a41007bfa8621efd55bfd66db623be61174a5f)
++++ b/lib/presentation/view/screens/home.dart	(date 1745946147419)
+@@ -8,3 +8,45 @@
+     return Text('Home');
+   }
+ }
++
++PreferredSizeWidget _homeAbbBar(
++  ThemeData theme,
++  AppLocalizations localization,
++) {
++  return AppBar(
++    backgroundColor: theme.colorScheme.surface,
++    centerTitle: false,
++    title: Row(
++      children: [
++        Icon(Icons.currency_exchange, color: theme.colorScheme.onSurface),
++        SizedBox(width: 8),
++        Text(
++          localization.balance,
++          style: theme.textTheme.titleLarge?.copyWith(
++            color: theme.colorScheme.onSurface,
++          ),
++        ),
++      ],
++    ),
++    actions: [
++      PopupMenuButton<String>(
++        onSelected: (String value) {},
++        icon: Icon(Icons.more_vert, color: theme.colorScheme.onSurface),
++        itemBuilder: (BuildContext context) {
++          return {localization.setting}.map((String choice) {
++            return PopupMenuItem<String>(
++              value: choice,
++              child: Row(
++                children: [
++                  Icon(Icons.settings, color: theme.colorScheme.onSurface),
++                  SizedBox(width: 8),
++                  Text(choice),
++                ],
++              ),
++            );
++          }).toList();
++        },
++      ),
++    ],
++  );
++}
