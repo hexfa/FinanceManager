@@ -13,7 +13,7 @@ const Color tertiary = Colors.grey;
 final Color tertiaryContainer = Colors.grey[200]!;
 final Color secondaryContainerColor = Colors.green[50]!;
 const Color onSecondaryContainerColor = Colors.green;
-const Color error = Color(0xffff6767);
+const Color error = Color(0xffea5a5a);
 const Color onError = Colors.white;
 
 /// Dark Theme Colors
