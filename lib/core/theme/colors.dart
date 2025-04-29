@@ -12,7 +12,7 @@ const Color onSecondaryColor = Color(0xFFFFFFFF);
 const Color tertiary = Colors.grey;
 final Color tertiaryContainer = Colors.grey[200]!;
 final Color secondaryContainerColor = Colors.green[50]!;
-const Color onSecondaryContainerColor = Colors.green;
+const Color onSecondaryContainerColor = Color(0xFF07A222);
 const Color error = Color(0xffea5a5a);
 const Color onError = Colors.white;
 
