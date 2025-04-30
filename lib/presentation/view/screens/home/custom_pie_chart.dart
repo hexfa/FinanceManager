@@ -1,8 +1,9 @@
 import 'package:finance_manager/data/models/PieData.dart';
+import 'package:finance_manager/presentation/base/base_stateless_widget.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
-class CustomPieChart extends StatelessWidget {
+class CustomPieChart extends BaseStatelessWidget {
   final List<PieData> data = [
     PieData(title: 'کار', percentage: 5, color: Colors.blue),
     PieData(title: 'تفریح', percentage: 7, color: Colors.green),
@@ -23,14 +24,12 @@ class CustomPieChart extends StatelessWidget {
           sections:
               data
                   .map(
-                    (d) => PieChartSectionData(
-                      color: d.color,
-                      value: d.percentage,
-                      title: '${d.title}\n${d.percentage}%',
-                      titleStyle: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
+                    (data) => PieChartSectionData(
+                      color: data.color,
+                      value: data.percentage,
+                      title: '${data.title}\n${data.percentage}%',
+                      titleStyle: theme(context).textTheme.labelSmall?.copyWith(
+                        color: theme(context).colorScheme.surface,
                       ),
                     ),
                   )
