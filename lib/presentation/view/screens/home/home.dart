@@ -1,5 +1,6 @@
 import 'package:finance_manager/data/models/PieData.dart';
 import 'package:finance_manager/presentation/base/base_stateless_widget.dart';
+import 'package:finance_manager/presentation/view/screens/home/PieDataList.dart';
 import 'package:finance_manager/presentation/view/screens/home/custom_pie_chart.dart';
 import 'package:finance_manager/presentation/view/screens/home/income_expense_summury.dart';
 import 'package:flutter/material.dart';
@@ -25,13 +26,16 @@ class HomeScreen extends BaseStatelessWidget {
     return Scaffold(
       backgroundColor: theme(context).colorScheme.surface,
       appBar: _homeAbbBar(theme(context), localization(context)),
-      body: Center(
-        child: Column(
-          children: [
-            Text(balance, style: theme(context).textTheme.titleLarge),
-            IncomeExpenseSummary(income: income, expense: expense),
-            CustomPieChart(data: data),
-          ],
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            children: [
+              Text(balance, style: theme(context).textTheme.titleLarge),
+              IncomeExpenseSummary(income: income, expense: expense),
+              CustomPieChart(data: data),
+              PieDataList(),
+            ],
+          ),
         ),
       ),
     );
