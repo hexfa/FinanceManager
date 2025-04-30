@@ -69,12 +69,12 @@ final ThemeData darkTheme = ThemeData(
     onError: darkOnError,
     brightness: Brightness.dark,
   ),
-  // textTheme: TextTheme(
-  //   bodyLarge: GoogleFonts.roboto(color: darkOnBackground),
-  //   bodyMedium: GoogleFonts.roboto(color: darkOnBackground),
-  //   bodySmall: GoogleFonts.roboto(color: darkOnBackground),
-  //   titleLarge: GoogleFonts.roboto(color: darkOnBackground),
-  //   titleMedium: GoogleFonts.roboto(color: darkOnBackground),
-  //   titleSmall: GoogleFonts.roboto(color: darkOnBackground),
-  // ),
+  textTheme: TextTheme(
+    bodyLarge: GoogleFonts.roboto(color: darkOnBackground),
+    bodyMedium: GoogleFonts.roboto(color: darkOnBackground),
+    bodySmall: GoogleFonts.roboto(color: darkOnBackground),
+    titleLarge: GoogleFonts.roboto(color: darkOnBackground),
+    titleMedium: GoogleFonts.roboto(color: darkOnBackground),
+    titleSmall: GoogleFonts.roboto(color: darkOnBackground),
+  ),
 );
