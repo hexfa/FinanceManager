@@ -4,16 +4,9 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 class CustomPieChart extends BaseStatelessWidget {
-  final List<PieData> data = [
-    PieData(title: 'کار', percentage: 5, color: Colors.blue),
-    PieData(title: 'تفریح', percentage: 7, color: Colors.green),
-    PieData(title: 'ورزش', percentage: 20, color: Colors.orange),
-    PieData(title: 'دیگر', percentage: 17, color: Colors.grey),
-    PieData(title: 'مطالعه', percentage: 30, color: Colors.purple),
-    PieData(title: 'خواب', percentage: 21, color: Colors.red),
-  ];
+  final List<PieData> data ;
 
-  CustomPieChart({super.key});
+  const CustomPieChart({super.key, required this.data});
 
   @override
   Widget build(BuildContext context) {

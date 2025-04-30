@@ -1,3 +1,4 @@
+import 'package:finance_manager/data/models/PieData.dart';
 import 'package:finance_manager/presentation/base/base_stateless_widget.dart';
 import 'package:finance_manager/presentation/view/screens/home/custom_pie_chart.dart';
 import 'package:finance_manager/presentation/view/screens/home/income_expense_summury.dart';
@@ -9,6 +10,15 @@ class HomeScreen extends BaseStatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<PieData> data = [
+      PieData(title: 'کار', percentage: 5, color: Colors.blue),
+      PieData(title: 'تفریح', percentage: 7, color: Colors.green),
+      PieData(title: 'ورزش', percentage: 20, color: Colors.orange),
+      PieData(title: 'دیگر', percentage: 17, color: Colors.grey),
+      PieData(title: 'مطالعه', percentage: 30, color: Colors.purple),
+      PieData(title: 'خواب', percentage: 21, color: Colors.red),
+    ];
+
     String balance = '\$2,455';
     String income = '\$1,500';
     String expense = '\$343,0';
@@ -20,7 +30,7 @@ class HomeScreen extends BaseStatelessWidget {
           children: [
             Text(balance, style: theme(context).textTheme.titleLarge),
             IncomeExpenseSummary(income: income, expense: expense),
-            CustomPieChart(),
+            CustomPieChart(data: data),
           ],
         ),
       ),
