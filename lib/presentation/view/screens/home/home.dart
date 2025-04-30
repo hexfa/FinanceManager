@@ -33,7 +33,7 @@ class HomeScreen extends BaseStatelessWidget {
               Text(balance, style: theme(context).textTheme.titleLarge),
               IncomeExpenseSummary(income: income, expense: expense),
               CustomPieChart(data: data),
-              PieDataList(),
+              PieDataList(data: data),
             ],
           ),
         ),
