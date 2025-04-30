@@ -1,4 +1,4 @@
-import 'package:finance_manager/presentation/base/base_stateless_widget.dart';
+import 'package:finance_manager/presentation/view/base/base_stateless_widget.dart';
 import 'package:flutter/material.dart';
 
 class IncomeExpenseSummary extends BaseStatelessWidget {
