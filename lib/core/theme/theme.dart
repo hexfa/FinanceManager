@@ -31,14 +31,14 @@ final ThemeData lightTheme = ThemeData(
     onError: onError,
     brightness: Brightness.light,
   ),
-  // textTheme: TextTheme(
-  //   bodyLarge: GoogleFonts.roboto(color: onBackground),
-  //   bodyMedium: GoogleFonts.roboto(color: onBackground),
-  //   bodySmall: GoogleFonts.roboto(color: onBackground),
-  //   titleLarge: GoogleFonts.roboto(color: onBackground),
-  //   titleMedium: GoogleFonts.roboto(color: onBackground),
-  //   titleSmall: GoogleFonts.roboto(color: onBackground),
-  // ),
+  textTheme: TextTheme(
+    bodyLarge: GoogleFonts.roboto(color: onBackground),
+    bodyMedium: GoogleFonts.roboto(color: onBackground),
+    bodySmall: GoogleFonts.roboto(color: onBackground),
+    titleLarge: GoogleFonts.roboto(color: onBackground),
+    titleMedium: GoogleFonts.roboto(color: onBackground),
+    titleSmall: GoogleFonts.roboto(color: onBackground),
+  ),
 );
 
 final ThemeData darkTheme = ThemeData(
