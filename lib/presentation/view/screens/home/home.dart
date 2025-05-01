@@ -40,6 +40,7 @@ class HomeScreen extends BaseStatelessWidget {
                     IncomeExpenseSummary(income: income, expense: expense),
                     CustomPieChart(data: data),
                     Card(
+                      color: theme(context).colorScheme.surfaceContainer,
                       margin: const EdgeInsets.all(16),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
@@ -47,8 +48,8 @@ class HomeScreen extends BaseStatelessWidget {
                       elevation: 2,
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
-                          vertical: 12,
-                          horizontal: 16,
+                          vertical: 8,
+                          horizontal: 8,
                         ),
                         child: TransactionTile(data: tranactions),
                       ),
