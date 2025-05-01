@@ -17,11 +17,10 @@ class TransactionTile extends BaseStatelessWidget {
       physics: NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
         final transaction = data[index];
+        final isIncome = transaction.type == TransactionType.income;
         return ListTile(
           leading:
-              transaction.type == TransactionType.income
-                  ? Icon(Icons.add_a_photo_outlined)
-                  : Icon(Icons.add),
+              isIncome ? Icon(Icons.add_a_photo_outlined) : Icon(Icons.add),
           title: Text(
             transaction.title,
             style: theme(
@@ -34,7 +33,18 @@ class TransactionTile extends BaseStatelessWidget {
               color: theme(context).colorScheme.tertiary,
             ),
           ),
-          trailing: Text(transaction.amount.toString()),
+          trailing: Text(
+            isIncome
+                ? '+\$${transaction.amount.toString()}'
+                : '-\$${transaction.amount.toString()}',
+            style: theme(context).textTheme.labelLarge?.copyWith(
+              color:
+                  isIncome
+                      ? theme(context).colorScheme.secondary
+                      : theme(context).colorScheme.error,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         );
       },
     );
