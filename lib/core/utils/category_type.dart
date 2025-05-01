@@ -1,1 +1,1 @@
-enum CategoryType { business, food, education, other }
+enum CategoryType { business, food, education, sport, other }

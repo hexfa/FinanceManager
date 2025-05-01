@@ -1,3 +1,4 @@
+import 'package:finance_manager/core/utils/category_type.dart';
 import 'package:finance_manager/core/utils/transaction_type.dart';
 import 'package:finance_manager/data/models/PieData.dart';
 import 'package:finance_manager/data/models/transaction.dart';
@@ -25,31 +26,31 @@ class HomeBloc extends BaseBloc<HomeEvent, HomeState> {
       title: 'Work',
       amount: 22.0,
       type: TransactionType.income,
-      category: '',
+      category: CategoryType.business,
     ),
     Transaction(
       title: 'Sport',
       amount: 42.0,
       type: TransactionType.expense,
-      category: '',
+      category: CategoryType.sport,
     ),
     Transaction(
       title: 'Education',
       amount: 50.0,
       type: TransactionType.income,
-      category: '',
+      category: CategoryType.education,
     ),
     Transaction(
       title: 'Other',
       amount: 60.0,
       type: TransactionType.expense,
-      category: '',
+      category: CategoryType.other,
     ),
     Transaction(
-      title: 'Sleep',
+      title: 'Work',
       amount: 100.0,
       type: TransactionType.income,
-      category: '',
+      category: CategoryType.business,
     ),
   ];
 
