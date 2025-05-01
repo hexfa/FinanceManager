@@ -15,6 +15,7 @@ final Color secondaryContainerColor = Colors.green[50]!;
 const Color onSecondaryContainerColor = Color(0xFF07A222);
 const Color error = Color(0xffea5a5a);
 const Color onError = Colors.white;
+const Color cardOnSurface = Colors.white12;
 
 /// Dark Theme Colors
 const Color darkBackgroundColor = Color(0xFF2f2f2f);
