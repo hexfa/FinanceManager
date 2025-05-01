@@ -51,7 +51,40 @@ class HomeScreen extends BaseStatelessWidget {
                           vertical: 8,
                           horizontal: 8,
                         ),
-                        child: TransactionTile(data: tranactions),
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'Transactions',
+                                    style: theme(
+                                      context,
+                                    ).textTheme.titleMedium?.copyWith(
+                                      fontWeight: FontWeight.bold,
+                                      color:
+                                          theme(context).colorScheme.onSurface,
+                                    ),
+                                  ),
+                                  Text(
+                                    'See all',
+                                    style: theme(
+                                      context,
+                                    ).textTheme.titleSmall?.copyWith(
+                                      fontWeight: FontWeight.bold,
+                                      color:
+                                          theme(context).colorScheme.surfaceDim,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            TransactionTile(data: tranactions),
+                          ],
+                        ),
                       ),
                     ),
                     // PieDataList(data: data),
