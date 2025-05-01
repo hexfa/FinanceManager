@@ -9,12 +9,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomeScreen extends BaseStatelessWidget {
-  HomeScreen({super.key});
-
-  List<PieData> data = [];
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    List<PieData> data = [];
+
     String balance = '\$2,455';
     String income = '\$1,500';
     String expense = '\$343,0';
