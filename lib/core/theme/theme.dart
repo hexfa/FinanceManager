@@ -30,6 +30,7 @@ final ThemeData lightTheme = ThemeData(
     error: error,
     onError: onError,
     brightness: Brightness.light,
+    tertiary: tertiary,
   ),
   textTheme: TextTheme(
     bodyLarge: GoogleFonts.roboto(color: onBackground),
@@ -68,6 +69,7 @@ final ThemeData darkTheme = ThemeData(
     error: darkError,
     onError: darkOnError,
     brightness: Brightness.dark,
+    tertiary: darkTertiary,
   ),
   textTheme: TextTheme(
     bodyLarge: GoogleFonts.roboto(color: darkOnBackground),

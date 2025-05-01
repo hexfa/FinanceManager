@@ -22,8 +22,18 @@ class TransactionTile extends BaseStatelessWidget {
               transaction.type == TransactionType.income
                   ? Icon(Icons.add_a_photo_outlined)
                   : Icon(Icons.add),
-          title: Text(transaction.title),
-          subtitle: Text(ConvertDate.formatDate(transaction.date)),
+          title: Text(
+            transaction.title,
+            style: theme(
+              context,
+            ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.bold),
+          ),
+          subtitle: Text(
+            ConvertDate.formatDate(transaction.date),
+            style: theme(context).textTheme.labelMedium?.copyWith(
+              color: theme(context).colorScheme.tertiary,
+            ),
+          ),
           trailing: Text(transaction.amount.toString()),
         );
       },
