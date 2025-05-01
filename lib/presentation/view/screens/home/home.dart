@@ -1,4 +1,5 @@
 import 'package:finance_manager/data/models/PieData.dart';
+import 'package:finance_manager/data/models/transaction.dart';
 import 'package:finance_manager/presentation/bloc/home/home_bloc.dart';
 import 'package:finance_manager/presentation/view/base/base_stateless_widget.dart';
 import 'package:finance_manager/presentation/view/screens/home/pie_data_list.dart';
@@ -14,15 +15,19 @@ class HomeScreen extends BaseStatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<PieData> data = [];
-
+    List<Transaction> tranactions = [];
     String balance = '\$2,455';
     String income = '\$1,500';
     String expense = '\$343,0';
+
     return BlocProvider(
       create: (_) => HomeBloc()..add(InitialList()),
       child: BlocBuilder<HomeBloc, HomeState>(
         builder: (context, state) {
-          if (state is InitialData) data = state.dataList;
+          if (state is InitialData) {
+            data = state.dataList;
+            tranactions = state.transactionList;
+          }
 
           return Scaffold(
             backgroundColor: theme(context).colorScheme.surface,
@@ -45,7 +50,7 @@ class HomeScreen extends BaseStatelessWidget {
                           vertical: 12,
                           horizontal: 16,
                         ),
-                        child: PieDataList(data: data),
+                        child: PieDataList(data: tranactions),
                       ),
                     ),
                     // PieDataList(data: data),

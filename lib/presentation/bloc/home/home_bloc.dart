@@ -1,4 +1,6 @@
+import 'package:finance_manager/core/utils/transaction_type.dart';
 import 'package:finance_manager/data/models/PieData.dart';
+import 'package:finance_manager/data/models/transaction.dart';
 import 'package:finance_manager/presentation/bloc/base/base_bloc.dart';
 import 'package:finance_manager/presentation/bloc/base/base_bloc_state.dart';
 import 'package:finance_manager/presentation/bloc/base/base_event.dart';
@@ -18,11 +20,44 @@ class HomeBloc extends BaseBloc<HomeEvent, HomeState> {
     PieData(title: 'خواب', percentage: 21, color: Colors.red),
   ];
 
+  List<Transaction> transactions = [
+    Transaction(
+      title: 'Work',
+      amount: 22.0,
+      type: TransactionType.income,
+      category: '',
+    ),
+    Transaction(
+      title: 'Sport',
+      amount: 42.0,
+      type: TransactionType.expense,
+      category: '',
+    ),
+    Transaction(
+      title: 'Education',
+      amount: 50.0,
+      type: TransactionType.income,
+      category: '',
+    ),
+    Transaction(
+      title: 'Other',
+      amount: 60.0,
+      type: TransactionType.expense,
+      category: '',
+    ),
+    Transaction(
+      title: 'Sleep',
+      amount: 100.0,
+      type: TransactionType.income,
+      category: '',
+    ),
+  ];
+
   HomeBloc() : super(HomeInitial()) {
     on<InitialList>(_onInitialList);
   }
 
   void _onInitialList(InitialList event, emit) {
-    emit(InitialData(data));
+    emit(InitialData(data, transactions));
   }
 }
