@@ -30,3 +30,4 @@ const Color darkTertiary = Colors.grey;
 final Color darkTertiaryContainer = Colors.grey[800]!;
 const Color darkError = Color(0xffea5a5a);
 const Color darkOnError = Colors.black;
+const Color darkCardOnSurface = Colors.black45;
