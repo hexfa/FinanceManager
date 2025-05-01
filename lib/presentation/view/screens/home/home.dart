@@ -2,7 +2,7 @@ import 'package:finance_manager/data/models/PieData.dart';
 import 'package:finance_manager/data/models/transaction.dart';
 import 'package:finance_manager/presentation/bloc/home/home_bloc.dart';
 import 'package:finance_manager/presentation/view/base/base_stateless_widget.dart';
-import 'package:finance_manager/presentation/view/screens/home/pie_data_list.dart';
+import 'package:finance_manager/presentation/view/screens/home/transaction_tile.dart';
 import 'package:finance_manager/presentation/view/screens/home/custom_pie_chart.dart';
 import 'package:finance_manager/presentation/view/screens/home/income_expense_summury.dart';
 import 'package:flutter/material.dart';
@@ -50,7 +50,7 @@ class HomeScreen extends BaseStatelessWidget {
                           vertical: 12,
                           horizontal: 16,
                         ),
-                        child: PieDataList(data: tranactions),
+                        child: TransactionTile(data: tranactions),
                       ),
                     ),
                     // PieDataList(data: data),
