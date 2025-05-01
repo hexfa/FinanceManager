@@ -31,6 +31,7 @@ final ThemeData lightTheme = ThemeData(
     onError: onError,
     brightness: Brightness.light,
     tertiary: tertiary,
+    surfaceContainer: cardOnSurface,
   ),
   textTheme: TextTheme(
     bodyLarge: GoogleFonts.roboto(color: onBackground),
