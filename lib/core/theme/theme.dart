@@ -71,6 +71,7 @@ final ThemeData darkTheme = ThemeData(
     onError: darkOnError,
     brightness: Brightness.dark,
     tertiary: darkTertiary,
+    surfaceContainer: darkCardOnSurface
   ),
   textTheme: TextTheme(
     bodyLarge: GoogleFonts.roboto(color: darkOnBackground),
