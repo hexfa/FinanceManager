@@ -60,7 +60,7 @@ class HomeScreen extends BaseStatelessWidget {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    'Transactions',
+                                    localization(context).transactions,
                                     style: theme(
                                       context,
                                     ).textTheme.titleMedium?.copyWith(
@@ -70,7 +70,7 @@ class HomeScreen extends BaseStatelessWidget {
                                     ),
                                   ),
                                   Text(
-                                    'See all',
+                                    localization(context).seeAll,
                                     style: theme(
                                       context,
                                     ).textTheme.titleSmall?.copyWith(

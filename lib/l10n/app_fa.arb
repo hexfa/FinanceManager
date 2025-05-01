@@ -2,5 +2,7 @@
    "balance": "موجودی",
    "setting": "تنظیمات",
    "income": "درآمد",
-   "expense": "هزینه"
+   "expense": "هزینه",
+   "transactions": "تراکنش ها",
+   "seeAll": "مشاهده همه"
 }

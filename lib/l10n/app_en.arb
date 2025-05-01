@@ -2,5 +2,7 @@
   "balance": "Balance",
   "setting": "Setting",
   "income": "Income",
-  "expense": "Expense"
+  "expense": "Expense",
+  "transactions": "Transactions",
+  "seeAll": "See all"
 }
