@@ -1,3 +1,4 @@
+import 'package:finance_manager/core/utils/convert_date.dart';
 import 'package:finance_manager/core/utils/transaction_type.dart';
 import 'package:finance_manager/data/models/transaction.dart';
 import 'package:finance_manager/presentation/view/base/base_stateless_widget.dart';
@@ -22,7 +23,7 @@ class TransactionTile extends BaseStatelessWidget {
                   ? Icon(Icons.add_a_photo_outlined)
                   : Icon(Icons.add),
           title: Text(transaction.title),
-          subtitle: Text(transaction.date.toString()),
+          subtitle: Text(ConvertDate.formatDate(transaction.date)),
           trailing: Text(transaction.amount.toString()),
         );
       },
