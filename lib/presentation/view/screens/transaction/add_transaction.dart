@@ -1,5 +1,6 @@
 import 'package:finance_manager/presentation/view/base/base_state.dart';
 import 'package:finance_manager/presentation/view/widgets/appbar/custom_app_bar.dart';
+import 'package:finance_manager/presentation/view/widgets/dropdown/custom_drop_down.dart';
 import 'package:finance_manager/presentation/view/widgets/textfield/custom_text_field.dart';
 import 'package:flutter/material.dart';
 
@@ -50,6 +51,14 @@ class _AddTransactionState extends BaseState<AddTransaction> {
               controller: _amountController,
               onChanged: (text) {
                 showSnackBar(text);
+              },
+            ),
+            const SizedBox(height: 16),
+            CustomDropdown(
+              label: 'Category',
+              items: ['Work', 'Sport', 'Education', 'Other'],
+              onChanged: (value) {
+                setState(() {});
               },
             ),
           ],
