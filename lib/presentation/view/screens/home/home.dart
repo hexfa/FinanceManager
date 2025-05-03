@@ -5,6 +5,7 @@ import 'package:finance_manager/presentation/view/base/base_stateless_widget.dar
 import 'package:finance_manager/presentation/view/screens/home/transaction_tile.dart';
 import 'package:finance_manager/presentation/view/screens/home/custom_pie_chart.dart';
 import 'package:finance_manager/presentation/view/screens/home/income_expense_summury.dart';
+import 'package:finance_manager/presentation/view/screens/transaction/add_transaction.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -91,6 +92,16 @@ class HomeScreen extends BaseStatelessWidget {
                   ],
                 ),
               ),
+            ),
+            floatingActionButton: FloatingActionButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const AddTransaction(),
+                  ),
+                );
+              },
             ),
           );
         },
