@@ -12,16 +12,19 @@ class AddTransaction extends StatefulWidget {
 
 class _AddTransactionState extends BaseState<AddTransaction> {
   late TextEditingController _titleController;
+  late TextEditingController _amountController;
 
   @override
   void initState() {
     super.initState();
     _titleController = TextEditingController();
+    _amountController = TextEditingController();
   }
 
   @override
   void dispose() {
     _titleController.dispose();
+    _amountController.dispose();
     super.dispose();
   }
 
@@ -36,6 +39,15 @@ class _AddTransactionState extends BaseState<AddTransaction> {
             CustomTextField(
               label: 'Title',
               controller: _titleController,
+              onChanged: (text) {
+                showSnackBar(text);
+              },
+            ),
+            const SizedBox(height: 16),
+            CustomTextField(
+              isCurrency: true,
+              label: 'Amount',
+              controller: _amountController,
               onChanged: (text) {
                 showSnackBar(text);
               },
