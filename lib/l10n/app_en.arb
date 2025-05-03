@@ -4,5 +4,10 @@
   "income": "Income",
   "expense": "Expense",
   "transactions": "Transactions",
-  "seeAll": "See all"
+  "seeAll": "See all",
+  "addTransaction": "Add Transaction",
+  "title": "Title",
+  "amount": "Amount",
+  "category": "Category",
+  "ok": "OK"
 }

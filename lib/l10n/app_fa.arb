@@ -4,5 +4,10 @@
    "income": "درآمد",
    "expense": "هزینه",
    "transactions": "تراکنش ها",
-   "seeAll": "مشاهده همه"
+   "seeAll": "مشاهده همه",
+   "addTransaction": "افزودن تراکنش",
+   "title": "عنوان",
+   "amount": "مقدار",
+   "category": "دسته بندی",
+   "ok": "تایید"
 }

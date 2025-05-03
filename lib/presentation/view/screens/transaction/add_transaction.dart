@@ -37,13 +37,13 @@ class _AddTransactionState extends BaseState<AddTransaction> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: 'AddTransaction'),
+      appBar: CustomAppBar(title: localization.addTransaction),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
         child: Column(
           children: [
             CustomTextField(
-              label: 'Title',
+              label: localization.title,
               controller: _titleController,
               onChanged: (text) {
                 showSnackBar(text);
@@ -52,7 +52,7 @@ class _AddTransactionState extends BaseState<AddTransaction> {
             const SizedBox(height: 16),
             CustomTextField(
               isCurrency: true,
-              label: 'Amount',
+              label: localization.amount,
               controller: _amountController,
               onChanged: (text) {
                 showSnackBar(text);
@@ -60,7 +60,7 @@ class _AddTransactionState extends BaseState<AddTransaction> {
             ),
             const SizedBox(height: 16),
             CustomDropdown(
-              label: 'Category',
+              label: localization.category,
               items: ['Work', 'Sport', 'Education', 'Other'],
               onChanged: (value) {
                 setState(() {});
@@ -82,7 +82,7 @@ class _AddTransactionState extends BaseState<AddTransaction> {
               },
             ),
             const SizedBox(height: 16),
-            CustomButton(text: 'Submit', onPressed: () {}),
+            CustomButton(text: localization.ok, onPressed: () {}),
           ],
         ),
       ),
