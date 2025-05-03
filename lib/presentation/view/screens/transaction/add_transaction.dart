@@ -1,5 +1,7 @@
+import 'package:finance_manager/core/utils/transaction_type.dart';
 import 'package:finance_manager/presentation/view/base/base_state.dart';
 import 'package:finance_manager/presentation/view/widgets/appbar/custom_app_bar.dart';
+import 'package:finance_manager/presentation/view/widgets/choice_chip/custom_type_selector.dart';
 import 'package:finance_manager/presentation/view/widgets/datetime/custom_date_picker.dart';
 import 'package:finance_manager/presentation/view/widgets/dropdown/custom_drop_down.dart';
 import 'package:finance_manager/presentation/view/widgets/textfield/custom_text_field.dart';
@@ -15,6 +17,7 @@ class AddTransaction extends StatefulWidget {
 class _AddTransactionState extends BaseState<AddTransaction> {
   late TextEditingController _titleController;
   late TextEditingController _amountController;
+  TransactionType? selectedType;
 
   @override
   void initState() {
@@ -66,6 +69,15 @@ class _AddTransactionState extends BaseState<AddTransaction> {
             DateTimePickerContainer(
               onDateTimeSelected: (selectedDateTime) {
                 print("Selected: $selectedDateTime");
+              },
+            ),
+            const SizedBox(height: 16),
+            CustomTypeSelector(
+              selectedType: selectedType,
+              onChanged: (value) {
+                setState(() {
+                  selectedType = value;
+                });
               },
             ),
           ],
