@@ -1,4 +1,4 @@
-import 'package:finance_manager/core/utils/convert_date.dart';
+import 'package:finance_manager/core/utils/convert_string.dart';
 import 'package:finance_manager/core/utils/transaction_type.dart';
 import 'package:finance_manager/data/models/transaction.dart';
 import 'package:finance_manager/presentation/view/base/base_stateless_widget.dart';
@@ -28,7 +28,7 @@ class TransactionTile extends BaseStatelessWidget {
             ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.bold),
           ),
           subtitle: Text(
-            ConvertDate.formatDate(transaction.date),
+            ConvertString.formatDate(transaction.date),
             style: theme(context).textTheme.labelMedium?.copyWith(
               color: theme(context).colorScheme.tertiary,
             ),

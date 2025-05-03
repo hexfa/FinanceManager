@@ -1,5 +1,6 @@
 import 'package:finance_manager/presentation/view/base/base_state.dart';
 import 'package:finance_manager/presentation/view/widgets/appbar/custom_app_bar.dart';
+import 'package:finance_manager/presentation/view/widgets/datetime/custom_date_picker.dart';
 import 'package:finance_manager/presentation/view/widgets/dropdown/custom_drop_down.dart';
 import 'package:finance_manager/presentation/view/widgets/textfield/custom_text_field.dart';
 import 'package:flutter/material.dart';
@@ -59,6 +60,12 @@ class _AddTransactionState extends BaseState<AddTransaction> {
               items: ['Work', 'Sport', 'Education', 'Other'],
               onChanged: (value) {
                 setState(() {});
+              },
+            ),
+            const SizedBox(height: 16),
+            DateTimePickerContainer(
+              onDateTimeSelected: (selectedDateTime) {
+                print("Selected: $selectedDateTime");
               },
             ),
           ],
