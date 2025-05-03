@@ -1,6 +1,7 @@
 import 'package:finance_manager/core/utils/transaction_type.dart';
 import 'package:finance_manager/presentation/view/base/base_state.dart';
 import 'package:finance_manager/presentation/view/widgets/appbar/custom_app_bar.dart';
+import 'package:finance_manager/presentation/view/widgets/button/custom_button.dart';
 import 'package:finance_manager/presentation/view/widgets/choice_chip/custom_type_selector.dart';
 import 'package:finance_manager/presentation/view/widgets/datetime/custom_date_picker.dart';
 import 'package:finance_manager/presentation/view/widgets/dropdown/custom_drop_down.dart';
@@ -80,6 +81,8 @@ class _AddTransactionState extends BaseState<AddTransaction> {
                 });
               },
             ),
+            const SizedBox(height: 16),
+            CustomButton(text: 'Submit', onPressed: () {}),
           ],
         ),
       ),
