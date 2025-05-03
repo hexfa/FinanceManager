@@ -32,7 +32,7 @@ class HomeScreen extends BaseStatelessWidget {
 
           return Scaffold(
             backgroundColor: theme(context).colorScheme.surface,
-            appBar: _homeAbbBar(theme(context), localization(context)),
+            appBar: _homeAbbBar(context, theme(context), localization(context)),
             body: SingleChildScrollView(
               child: Center(
                 child: Column(
@@ -93,16 +93,6 @@ class HomeScreen extends BaseStatelessWidget {
                 ),
               ),
             ),
-            floatingActionButton: FloatingActionButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const AddTransaction(),
-                  ),
-                );
-              },
-            ),
           );
         },
       ),
@@ -111,6 +101,7 @@ class HomeScreen extends BaseStatelessWidget {
 }
 
 PreferredSizeWidget _homeAbbBar(
+  BuildContext context,
   ThemeData theme,
   AppLocalizations localization,
 ) {
@@ -130,6 +121,15 @@ PreferredSizeWidget _homeAbbBar(
       ],
     ),
     actions: [
+      IconButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const AddTransaction()),
+          );
+        },
+        icon: Icon(Icons.add, color: theme.colorScheme.onSurface),
+      ),
       PopupMenuButton<String>(
         onSelected: (String value) {},
         icon: Icon(Icons.more_vert, color: theme.colorScheme.onSurface),
