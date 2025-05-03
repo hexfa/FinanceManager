@@ -1,15 +1,48 @@
-import 'package:finance_manager/presentation/view/base/base_stateless_widget.dart';
+import 'package:finance_manager/presentation/view/base/base_state.dart';
 import 'package:finance_manager/presentation/view/widgets/appbar/custom_app_bar.dart';
+import 'package:finance_manager/presentation/view/widgets/textfield/custom_text_field.dart';
 import 'package:flutter/material.dart';
 
-class AddTransaction extends BaseStatelessWidget {
+class AddTransaction extends StatefulWidget {
   const AddTransaction({super.key});
+
+  @override
+  State<AddTransaction> createState() => _AddTransactionState();
+}
+
+class _AddTransactionState extends BaseState<AddTransaction> {
+  late TextEditingController _titleController;
+
+  @override
+  void initState() {
+    super.initState();
+    _titleController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _titleController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(title: 'AddTransaction'),
-      body: Container(),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+        child: Column(
+          children: [
+            CustomTextField(
+              label: 'Title',
+              controller: _titleController,
+              onChanged: (text) {
+                showSnackBar(text);
+              },
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
