@@ -31,6 +31,10 @@ class _AddTransactionState extends BaseState<AddTransaction> {
     _titleController.addListener(() {
       getBloc<TransactionCubit>().updateTitle(_titleController.text);
     });
+
+    _amountController.addListener(() {
+      getBloc<TransactionCubit>().updateAmount(_amountController.text);
+    });
   }
 
   @override
@@ -50,18 +54,17 @@ class _AddTransactionState extends BaseState<AddTransaction> {
           padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
           child: Column(
             children: [
+              // title
               CustomTextField(
                 label: localization.title,
                 controller: _titleController,
               ),
               const SizedBox(height: 16),
+              // amount
               CustomTextField(
                 isCurrency: true,
                 label: localization.amount,
                 controller: _amountController,
-                onChanged: (text) {
-                  showSnackBar(text);
-                },
               ),
               const SizedBox(height: 16),
               CustomDropdown(
