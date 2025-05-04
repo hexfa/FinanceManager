@@ -71,7 +71,7 @@ class _AddTransactionState extends BaseState<AddTransaction> {
                 label: localization.category,
                 items: ['Work', 'Sport', 'Education', 'Other'],
                 onChanged: (value) {
-                  setState(() {});
+                  getBloc<TransactionCubit>().updateCategory(value ?? '');
                 },
               ),
               const SizedBox(height: 16),

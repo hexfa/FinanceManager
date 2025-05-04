@@ -6,12 +6,12 @@ class TransactionCubit extends BaseCubit<TransactionState> {
   TransactionCubit() : super(const TransactionState());
 
   void updateTitle(String title) => safeEmit(state.copyWith(title: title));
+
   void updateAmount(String amount) => safeEmit(state.copyWith(amount: amount));
 
-  // void updateCategory(String category) {
-  //   safeEmit(state.copyWith(category: category));
-  // }
-  //
+  void updateCategory(String category) =>
+      safeEmit(state.copyWith(category: category));
+
   // void updateDate(DateTime date) {
   //   safeEmit(state.copyWith(date: date));
   // }
