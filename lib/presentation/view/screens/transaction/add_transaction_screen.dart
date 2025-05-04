@@ -1,4 +1,5 @@
 import 'package:finance_manager/core/utils/transaction_type.dart';
+import 'package:finance_manager/data/repositories/transaction_repository_imp.dart';
 import 'package:finance_manager/presentation/bloc/transaction/transaction_cubit.dart';
 import 'package:finance_manager/presentation/bloc/transaction/transaction_state.dart';
 import 'package:finance_manager/presentation/view/base/base_state.dart';
@@ -48,7 +49,7 @@ class _AddTransactionState extends BaseState<AddTransaction> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => TransactionCubit(),
+      create: (_) => TransactionCubit(TransactionRepositoryImpl()),
       child: Scaffold(
         appBar: CustomAppBar(title: localization.addTransaction),
         body: Padding(

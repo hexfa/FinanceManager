@@ -27,30 +27,35 @@ class HomeBloc extends BaseBloc<HomeEvent, HomeState> {
       amount: 22.0,
       type: TransactionType.income,
       category: CategoryType.business,
+      date: DateTime.now(),
     ),
     Transaction(
       title: 'Sport',
       amount: 42.0,
       type: TransactionType.expense,
       category: CategoryType.sport,
+      date: DateTime.now(),
     ),
     Transaction(
       title: 'Education',
       amount: 50.0,
       type: TransactionType.income,
       category: CategoryType.education,
+      date: DateTime.now(),
     ),
     Transaction(
       title: 'Other',
       amount: 60.0,
       type: TransactionType.expense,
       category: CategoryType.other,
+      date: DateTime.now(),
     ),
     Transaction(
       title: 'Work',
       amount: 100.0,
       type: TransactionType.income,
       category: CategoryType.business,
+      date: DateTime.now(),
     ),
   ];
 

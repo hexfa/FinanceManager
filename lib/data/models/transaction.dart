@@ -8,12 +8,13 @@ class Transaction {
   final double amount;
   final TransactionType type;
   final CategoryType category;
-  final DateTime date = DateTime.now();
+  final DateTime date;
 
   Transaction({
     required this.title,
     required this.amount,
     required this.type,
     required this.category,
+    required this.date,
   });
 }

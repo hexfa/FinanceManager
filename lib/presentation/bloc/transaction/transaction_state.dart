@@ -6,14 +6,14 @@ class TransactionState extends BaseBlocState {
   final String amount;
   final String category;
   final DateTime? date;
-  final TransactionType? type;
+  final TransactionType type;
 
   const TransactionState({
     this.title = '',
     this.amount = '',
     this.category = '',
     this.date,
-    this.type,
+    this.type = TransactionType.income,
   });
 
   TransactionState copyWith({

@@ -1,9 +1,12 @@
 import 'package:finance_manager/core/utils/transaction_type.dart';
+import 'package:finance_manager/domain/repositories/transaction_repository.dart';
 import 'package:finance_manager/presentation/bloc/base/base_cubit.dart';
 import 'transaction_state.dart';
 
 class TransactionCubit extends BaseCubit<TransactionState> {
-  TransactionCubit() : super(const TransactionState());
+  final TransactionRepository repository;
+
+  TransactionCubit(this.repository) : super(const TransactionState());
 
   void updateTitle(String title) => safeEmit(state.copyWith(title: title));
 
@@ -16,7 +19,13 @@ class TransactionCubit extends BaseCubit<TransactionState> {
 
   void updateType(TransactionType type) => safeEmit(state.copyWith(type: type));
 
-  void createTransaction() {
-    print('Creating transaction: $state');
+  Future<void> createTransaction() async {
+    await repository.createTransaction(
+      title: state.title,
+      amount: state.amount,
+      category: state.category,
+      date: state.date ?? DateTime.now(),
+      type: state.type,
+    );
   }
 }
