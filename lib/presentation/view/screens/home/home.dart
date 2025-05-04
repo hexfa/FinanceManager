@@ -39,7 +39,7 @@ class HomeScreen extends BaseStatelessWidget {
                   children: [
                     Text(balance, style: theme(context).textTheme.titleLarge),
                     IncomeExpenseSummary(income: income, expense: expense),
-                    CustomPieChart(data: data),
+                    // CustomPieChart(data: data),
                     Card(
                       color: theme(context).colorScheme.surfaceContainer,
                       margin: const EdgeInsets.all(16),
