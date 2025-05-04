@@ -93,7 +93,12 @@ class _AddTransactionState extends BaseState<AddTransaction> {
                 },
               ),
               const SizedBox(height: 16),
-              CustomButton(text: localization.ok, onPressed: () {}),
+              CustomButton(
+                text: localization.ok,
+                onPressed: () {
+                  getBloc<TransactionCubit>().createTransaction();
+                },
+              ),
             ],
           ),
         ),
