@@ -1,5 +1,6 @@
 import 'package:finance_manager/core/utils/transaction_type.dart';
 import 'package:finance_manager/presentation/bloc/transaction/transaction_cubit.dart';
+import 'package:finance_manager/presentation/bloc/transaction/transaction_state.dart';
 import 'package:finance_manager/presentation/view/base/base_state.dart';
 import 'package:finance_manager/presentation/view/widgets/appbar/custom_app_bar.dart';
 import 'package:finance_manager/presentation/view/widgets/button/custom_button.dart';
@@ -81,12 +82,14 @@ class _AddTransactionState extends BaseState<AddTransaction> {
                 },
               ),
               const SizedBox(height: 16),
-              CustomTypeSelector(
-                selectedType: selectedType,
-                onChanged: (value) {
-                  setState(() {
-                    selectedType = value;
-                  });
+              BlocBuilder<TransactionCubit, TransactionState>(
+                builder: (context, state) {
+                  return CustomTypeSelector(
+                    selectedType: state.type,
+                    onChanged: (type) {
+                      getBloc<TransactionCubit>().updateType(type);
+                    },
+                  );
                 },
               ),
               const SizedBox(height: 16),
