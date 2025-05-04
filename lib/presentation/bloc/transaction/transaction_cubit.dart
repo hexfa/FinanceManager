@@ -12,15 +12,5 @@ class TransactionCubit extends BaseCubit<TransactionState> {
   void updateCategory(String category) =>
       safeEmit(state.copyWith(category: category));
 
-  // void updateDate(DateTime date) {
-  //   safeEmit(state.copyWith(date: date));
-  // }
-  //
-  // void updateType(TransactionType type) {
-  //   safeEmit(state.copyWith(type: type));
-  // }
-  //
-  // void createTransaction() {
-  //   print('Creating transaction: $state');
-  // }
+  void updateDate(DateTime date) => safeEmit(state.copyWith(date: date));
 }

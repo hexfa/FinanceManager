@@ -77,7 +77,7 @@ class _AddTransactionState extends BaseState<AddTransaction> {
               const SizedBox(height: 16),
               DateTimePickerContainer(
                 onDateTimeSelected: (selectedDateTime) {
-                  print("Selected: $selectedDateTime");
+                  getBloc<TransactionCubit>().updateDate(selectedDateTime);
                 },
               ),
               const SizedBox(height: 16),
