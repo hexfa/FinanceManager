@@ -1,11 +1,5 @@
-import 'package:finance_manager/core/utils/transaction_type.dart';
+import 'package:finance_manager/data/models/transaction.dart';
 
 abstract class TransactionRepository {
-  Future<void> createTransaction({
-    required String title,
-    required String amount,
-    required String category,
-    required DateTime date,
-    required TransactionType type,
-  });
+  Future<void> createTransaction({required Transaction transaction});
 }
