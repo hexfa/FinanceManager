@@ -1,4 +1,6 @@
+import 'package:finance_manager/core/utils/category_type.dart';
 import 'package:finance_manager/core/utils/transaction_type.dart';
+import 'package:finance_manager/data/models/transaction.dart';
 import 'package:finance_manager/domain/repositories/transaction_repository.dart';
 import 'package:finance_manager/presentation/bloc/base/base_cubit.dart';
 import 'transaction_state.dart';
@@ -21,11 +23,13 @@ class TransactionCubit extends BaseCubit<TransactionState> {
 
   Future<void> createTransaction() async {
     await repository.createTransaction(
-      title: state.title,
-      amount: state.amount,
-      category: state.category,
-      date: state.date ?? DateTime.now(),
-      type: state.type,
+      transaction: Transaction(
+        title: state.title,
+        amount: 0.0 /*state.amount*/,
+        category: CategoryType.other /*state.category*/,
+        date: state.date ?? DateTime.now(),
+        type: state.type,
+      ),
     );
   }
 }
