@@ -1,4 +1,5 @@
 import 'package:finance_manager/core/utils/category_type.dart';
+import 'package:finance_manager/core/utils/convert_string.dart';
 import 'package:finance_manager/core/utils/transaction_type.dart';
 import 'package:finance_manager/data/models/transaction.dart';
 import 'package:finance_manager/domain/repositories/transaction_repository.dart';
@@ -25,7 +26,7 @@ class TransactionCubit extends BaseCubit<TransactionState> {
     await repository.createTransaction(
       transaction: Transaction(
         title: state.title,
-        amount: 0.0 /*state.amount*/,
+        amount: ConvertString.toDouble(state.amount),
         category: state.category.toCategoryType(),
         date: state.date ?? DateTime.now(),
         type: state.type,

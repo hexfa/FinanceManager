@@ -11,4 +11,8 @@ class ConvertString {
     final formatter = NumberFormat('#,###');
     return formatter.format(number);
   }
+
+  static double toDouble(String value) {
+    return double.tryParse(value.replaceAll(',', '')) ?? 0.0;
+  }
 }
