@@ -26,7 +26,7 @@ class TransactionCubit extends BaseCubit<TransactionState> {
       transaction: Transaction(
         title: state.title,
         amount: 0.0 /*state.amount*/,
-        category: CategoryType.other /*state.category*/,
+        category: state.category.toCategoryType(),
         date: state.date ?? DateTime.now(),
         type: state.type,
       ),
