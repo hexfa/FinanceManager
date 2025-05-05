@@ -5,7 +5,7 @@ import 'package:finance_manager/core/utils/transaction_type.dart';
 // part 'transaction_db_model.g.dart';
 
 @HiveType(typeId: 0)
-class TransactionDbModel extends HiveObject {
+class TransactionEntity extends HiveObject {
   @HiveField(0)
   late String id;
 
