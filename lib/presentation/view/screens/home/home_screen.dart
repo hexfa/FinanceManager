@@ -23,7 +23,7 @@ class HomeScreen extends BaseStatelessWidget {
     String expense = '\$343,0';
 
     return BlocProvider(
-      create: (_) => HomeBloc()..add(InitialList()),
+      create: (_) => HomeBloc(TransactionRepositoryImpl())..add(InitialList()),
       child: BlocBuilder<HomeBloc, HomeState>(
         builder: (context, state) {
           if (state is InitialData) {
