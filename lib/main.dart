@@ -5,20 +5,16 @@ import 'package:finance_manager/presentation/view/screens/home/home_screen.dart'
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:hive/hive.dart';
-import 'package:path_provider/path_provider.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'core/theme/theme.dart';
 import 'domain/entities/adapters/transaction_type_adapter.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final appDocumentDir = await getApplicationDocumentsDirectory();
-  Hive.init(appDocumentDir.path);
-
+  await Hive.initFlutter();
   Hive.registerAdapter(TransactionTypeAdapter());
   Hive.registerAdapter(CategoryTypeAdapter());
   Hive.registerAdapter(TransactionAdapter());
-
   await Hive.openBox<TransactionEntity>('transactions');
 
   runApp(const MyApp());
