@@ -14,6 +14,7 @@ extension TransactionMapper on Transaction {
 
   static Transaction fromDb(TransactionEntity dbModel) {
     return Transaction(
+      id: dbModel.id,
       title: dbModel.title,
       amount: dbModel.amount,
       type: dbModel.type,

@@ -4,6 +4,7 @@ import 'package:finance_manager/core/utils/transaction_type.dart';
 import 'package:finance_manager/data/models/transaction.dart';
 import 'package:finance_manager/domain/repositories/transaction_repository.dart';
 import 'package:finance_manager/presentation/bloc/base/base_cubit.dart';
+import 'package:uuid/uuid.dart';
 import 'transaction_state.dart';
 
 class TransactionCubit extends BaseCubit<TransactionState> {
@@ -23,8 +24,10 @@ class TransactionCubit extends BaseCubit<TransactionState> {
   void updateType(TransactionType type) => safeEmit(state.copyWith(type: type));
 
   Future<void> createTransaction() async {
+    print('-----------------cubit');
     await repository.createTransaction(
       transaction: Transaction(
+        id: Uuid().v4(),
         title: state.title,
         amount: ConvertString.toDouble(state.amount),
         category: state.category.toCategoryType(),

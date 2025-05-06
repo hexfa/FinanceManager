@@ -10,6 +10,7 @@ class TransactionAdapter extends TypeAdapter<Transaction> {
   @override
   Transaction read(BinaryReader reader) {
     return Transaction(
+      id: reader.readString(),
       title: reader.readString(),
       amount: reader.readDouble(),
       type: reader.read() as TransactionType,
