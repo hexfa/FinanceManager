@@ -1,4 +1,3 @@
-import 'package:finance_manager/data/models/PieData.dart';
 import 'package:finance_manager/data/models/transaction.dart';
 import 'package:finance_manager/data/repositories/transaction_repository_imp.dart';
 import 'package:finance_manager/presentation/bloc/home/home_cubit.dart';
@@ -17,7 +16,7 @@ class HomeScreen extends BaseStatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<PieData> data = [];
+    // List<PieData> data = [];
     List<Transaction> tranactions = [];
     String balance = '\$2,455';
     String income = '\$1,500';
@@ -28,7 +27,7 @@ class HomeScreen extends BaseStatelessWidget {
       child: BlocBuilder<HomeCubit, HomeState>(
         builder: (context, state) {
           if (state is InitialData) {
-            data = state.dataList;
+            // data = state.dataList;
             tranactions = state.transactionList;
           }
 
