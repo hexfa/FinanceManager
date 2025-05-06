@@ -1,4 +1,6 @@
-part of 'home_bloc.dart';
+import 'package:finance_manager/data/models/PieData.dart';
+import 'package:finance_manager/data/models/transaction.dart';
+import 'package:finance_manager/presentation/bloc/base/base_bloc_state.dart';
 
 abstract class HomeState extends BaseBlocState {}
 
