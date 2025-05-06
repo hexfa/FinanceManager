@@ -1,7 +1,8 @@
 import 'package:finance_manager/data/models/PieData.dart';
 import 'package:finance_manager/data/models/transaction.dart';
 import 'package:finance_manager/data/repositories/transaction_repository_imp.dart';
-import 'package:finance_manager/presentation/bloc/home/home_bloc.dart';
+import 'package:finance_manager/presentation/bloc/home/home_cubit.dart';
+import 'package:finance_manager/presentation/bloc/home/home_state.dart';
 import 'package:finance_manager/presentation/bloc/transaction/transaction_cubit.dart';
 import 'package:finance_manager/presentation/view/base/base_stateless_widget.dart';
 import 'package:finance_manager/presentation/view/screens/home/transaction_tile.dart';
@@ -23,8 +24,8 @@ class HomeScreen extends BaseStatelessWidget {
     String expense = '\$343,0';
 
     return BlocProvider(
-      create: (_) => HomeBloc(TransactionRepositoryImpl())..add(InitialList()),
-      child: BlocBuilder<HomeBloc, HomeState>(
+      create: (_) => HomeCubit(TransactionRepositoryImpl())..loadInitialData(),
+      child: BlocBuilder<HomeCubit, HomeState>(
         builder: (context, state) {
           if (state is InitialData) {
             data = state.dataList;
