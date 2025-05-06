@@ -48,60 +48,57 @@ class _AddTransactionState extends BaseState<AddTransaction> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => TransactionCubit(TransactionRepositoryImpl()),
-      child: Scaffold(
-        appBar: CustomAppBar(title: localization.addTransaction),
-        body: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-          child: Column(
-            children: [
-              // title
-              CustomTextField(
-                label: localization.title,
-                controller: _titleController,
-              ),
-              const SizedBox(height: 16),
-              // amount
-              CustomTextField(
-                isCurrency: true,
-                label: localization.amount,
-                controller: _amountController,
-              ),
-              const SizedBox(height: 16),
-              CustomDropdown(
-                label: localization.category,
-                items: ['Work', 'Sport', 'Education', 'Other'],
-                onChanged: (value) {
-                  getBloc<TransactionCubit>().updateCategory(value ?? '');
-                },
-              ),
-              const SizedBox(height: 16),
-              DateTimePickerContainer(
-                onDateTimeSelected: (selectedDateTime) {
-                  getBloc<TransactionCubit>().updateDate(selectedDateTime);
-                },
-              ),
-              const SizedBox(height: 16),
-              BlocBuilder<TransactionCubit, TransactionState>(
-                builder: (context, state) {
-                  return CustomTypeSelector(
-                    selectedType: state.type,
-                    onChanged: (type) {
-                      getBloc<TransactionCubit>().updateType(type);
-                    },
-                  );
-                },
-              ),
-              const SizedBox(height: 16),
-              CustomButton(
-                text: localization.ok,
-                onPressed: () {
-                  getBloc<TransactionCubit>().createTransaction();
-                },
-              ),
-            ],
-          ),
+    return Scaffold(
+      appBar: CustomAppBar(title: localization.addTransaction),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+        child: Column(
+          children: [
+            // title
+            CustomTextField(
+              label: localization.title,
+              controller: _titleController,
+            ),
+            const SizedBox(height: 16),
+            // amount
+            CustomTextField(
+              isCurrency: true,
+              label: localization.amount,
+              controller: _amountController,
+            ),
+            const SizedBox(height: 16),
+            CustomDropdown(
+              label: localization.category,
+              items: ['Work', 'Sport', 'Education', 'Other'],
+              onChanged: (value) {
+                getBloc<TransactionCubit>().updateCategory(value ?? '');
+              },
+            ),
+            const SizedBox(height: 16),
+            DateTimePickerContainer(
+              onDateTimeSelected: (selectedDateTime) {
+                getBloc<TransactionCubit>().updateDate(selectedDateTime);
+              },
+            ),
+            const SizedBox(height: 16),
+            BlocBuilder<TransactionCubit, TransactionState>(
+              builder: (context, state) {
+                return CustomTypeSelector(
+                  selectedType: state.type,
+                  onChanged: (type) {
+                    getBloc<TransactionCubit>().updateType(type);
+                  },
+                );
+              },
+            ),
+            const SizedBox(height: 16),
+            CustomButton(
+              text: localization.ok,
+              onPressed: () {
+                getBloc<TransactionCubit>().createTransaction();
+              },
+            ),
+          ],
         ),
       ),
     );

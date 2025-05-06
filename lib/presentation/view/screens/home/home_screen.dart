@@ -1,6 +1,8 @@
 import 'package:finance_manager/data/models/PieData.dart';
 import 'package:finance_manager/data/models/transaction.dart';
+import 'package:finance_manager/data/repositories/transaction_repository_imp.dart';
 import 'package:finance_manager/presentation/bloc/home/home_bloc.dart';
+import 'package:finance_manager/presentation/bloc/transaction/transaction_cubit.dart';
 import 'package:finance_manager/presentation/view/base/base_stateless_widget.dart';
 import 'package:finance_manager/presentation/view/screens/home/transaction_tile.dart';
 import 'package:finance_manager/presentation/view/screens/home/income_expense_summury.dart';
@@ -124,7 +126,14 @@ PreferredSizeWidget _homeAbbBar(
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const AddTransaction()),
+            MaterialPageRoute(
+              builder:
+                  (_) => BlocProvider(
+                    create:
+                        (_) => TransactionCubit(TransactionRepositoryImpl()),
+                    child: const AddTransaction(),
+                  ),
+            ),
           );
         },
         icon: Icon(Icons.add, color: theme.colorScheme.onSurface),
