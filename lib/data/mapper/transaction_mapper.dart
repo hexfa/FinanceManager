@@ -3,13 +3,14 @@ import 'package:finance_manager/domain/entities/transaction_entity.dart';
 
 extension TransactionMapper on Transaction {
   TransactionEntity toDb() {
-    return TransactionEntity()
-      ..id = id
-      ..title = title
-      ..amount = amount
-      ..type = type
-      ..category = category
-      ..date = date;
+    return TransactionEntity(
+      id: id,
+      title: title,
+      amount: amount,
+      type: type,
+      category: category,
+      date: date,
+    );
   }
 
   static Transaction fromDb(TransactionEntity dbModel) {
