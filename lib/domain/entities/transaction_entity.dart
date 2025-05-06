@@ -23,4 +23,13 @@ class TransactionEntity extends HiveObject {
 
   @HiveField(5)
   late DateTime date;
+
+  TransactionEntity({
+    required this.id,
+    required this.title,
+    required this.amount,
+    required this.type,
+    required this.category,
+    required this.date,
+  });
 }
