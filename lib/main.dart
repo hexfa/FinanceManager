@@ -9,6 +9,8 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'core/theme/theme.dart';
 import 'domain/entities/adapters/transaction_type_adapter.dart';
 
+final RouteObserver<ModalRoute<void>> routeObserver = RouteObserver<ModalRoute<void>>();
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
@@ -37,6 +39,7 @@ class MyApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: const [Locale('en'), Locale('fa')],
+      navigatorObservers: [routeObserver],
       home: HomeScreen(),
     );
   }

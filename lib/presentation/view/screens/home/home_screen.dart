@@ -1,9 +1,10 @@
 import 'package:finance_manager/data/models/transaction.dart';
 import 'package:finance_manager/data/repositories/transaction_repository_imp.dart';
+import 'package:finance_manager/main.dart';
 import 'package:finance_manager/presentation/bloc/home/home_cubit.dart';
 import 'package:finance_manager/presentation/bloc/home/home_state.dart';
 import 'package:finance_manager/presentation/bloc/transaction/transaction_cubit.dart';
-import 'package:finance_manager/presentation/view/base/base_stateless_widget.dart';
+import 'package:finance_manager/presentation/view/base/base_state.dart';
 import 'package:finance_manager/presentation/view/screens/home/transaction_tile.dart';
 import 'package:finance_manager/presentation/view/screens/home/income_expense_summury.dart';
 import 'package:finance_manager/presentation/view/screens/transaction/add_transaction_screen.dart';
@@ -11,8 +12,36 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class HomeScreen extends BaseStatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeState();
+}
+
+class _HomeState extends BaseState<HomeScreen> with RouteAware {
+  late HomeCubit homeBloc;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    homeBloc = HomeCubit(TransactionRepositoryImpl());
+    homeBloc.loadInitialData();
+
+    routeObserver.subscribe(this, ModalRoute.of(context)!);
+  }
+
+  @override
+  void dispose() {
+    routeObserver.unsubscribe(this);
+    homeBloc.close();
+    super.dispose();
+  }
+
+  @override
+  void didPopNext() {
+    homeBloc.loadInitialData();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,17 +61,17 @@ class HomeScreen extends BaseStatelessWidget {
           }
 
           return Scaffold(
-            backgroundColor: theme(context).colorScheme.surface,
-            appBar: _homeAbbBar(context, theme(context), localization(context)),
+            backgroundColor: theme.colorScheme.surface,
+            appBar: _homeAbbBar(context, theme, localization),
             body: SingleChildScrollView(
               child: Center(
                 child: Column(
                   children: [
-                    Text(balance, style: theme(context).textTheme.titleLarge),
+                    Text(balance, style: theme.textTheme.titleLarge),
                     IncomeExpenseSummary(income: income, expense: expense),
                     // CustomPieChart(data: data),
                     Card(
-                      color: theme(context).colorScheme.surfaceContainer,
+                      color: theme.colorScheme.surfaceContainer,
                       margin: const EdgeInsets.all(16),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
@@ -62,23 +91,18 @@ class HomeScreen extends BaseStatelessWidget {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    localization(context).transactions,
-                                    style: theme(
-                                      context,
-                                    ).textTheme.titleMedium?.copyWith(
-                                      fontWeight: FontWeight.bold,
-                                      color:
-                                          theme(context).colorScheme.onSurface,
-                                    ),
+                                    localization.transactions,
+                                    style: theme.textTheme.titleMedium
+                                        ?.copyWith(
+                                          fontWeight: FontWeight.bold,
+                                          color: theme.colorScheme.onSurface,
+                                        ),
                                   ),
                                   Text(
-                                    localization(context).seeAll,
-                                    style: theme(
-                                      context,
-                                    ).textTheme.titleSmall?.copyWith(
+                                    localization.seeAll,
+                                    style: theme.textTheme.titleSmall?.copyWith(
                                       fontWeight: FontWeight.bold,
-                                      color:
-                                          theme(context).colorScheme.surfaceDim,
+                                      color: theme.colorScheme.surfaceDim,
                                     ),
                                   ),
                                 ],
