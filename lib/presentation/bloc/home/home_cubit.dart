@@ -5,7 +5,7 @@ import 'package:finance_manager/presentation/bloc/home/home_state.dart';
 import 'package:flutter/material.dart';
 
 class HomeCubit extends BaseCubit<HomeState> {
-  final TransactionRepository repository;
+  final TransactionRepository transactionRepository;
   List<PieData> data = [
     PieData(title: 'کار', percentage: 5, color: Colors.blue),
     PieData(title: 'تفریح', percentage: 7, color: Colors.green),
@@ -15,10 +15,10 @@ class HomeCubit extends BaseCubit<HomeState> {
     PieData(title: 'خواب', percentage: 21, color: Colors.red),
   ];
 
-  HomeCubit(this.repository) : super(HomeInitial());
+  HomeCubit({required this.transactionRepository}) : super(HomeInitial());
 
   Future<void> loadInitialData() async {
-    final transactions = await repository.getAllTransactions();
+    final transactions = await transactionRepository.getAllTransactions();
     emit(InitialData(data, transactions));
   }
 }
