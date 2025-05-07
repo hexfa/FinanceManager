@@ -1,3 +1,4 @@
+import 'package:finance_manager/core/di/di.dart';
 import 'package:finance_manager/data/models/transaction.dart';
 import 'package:finance_manager/data/repositories/transaction_repository_imp.dart';
 import 'package:finance_manager/main.dart';
@@ -25,7 +26,7 @@ class _HomeState extends BaseState<HomeScreen> with RouteAware {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    homeBloc = HomeCubit(TransactionRepositoryImpl());
+    homeBloc = getIt<HomeCubit>();
     homeBloc.loadInitialData();
 
     routeObserver.subscribe(this, ModalRoute.of(context)!);
@@ -51,76 +52,73 @@ class _HomeState extends BaseState<HomeScreen> with RouteAware {
     String income = '\$1,500';
     String expense = '\$343,0';
 
-    return BlocProvider(
-      create: (_) => HomeCubit(TransactionRepositoryImpl())..loadInitialData(),
-      child: BlocBuilder<HomeCubit, HomeState>(
-        builder: (context, state) {
-          if (state is InitialData) {
-            // data = state.dataList;
-            tranactions = state.transactionList;
-          }
+    return BlocBuilder<HomeCubit, HomeState>(
+      builder: (context, state) {
+        if (state is InitialData) {
+          // data = state.dataList;
+          tranactions = state.transactionList;
+        }
 
-          return Scaffold(
-            backgroundColor: theme.colorScheme.surface,
-            appBar: _homeAbbBar(context, theme, localization),
-            body: SingleChildScrollView(
-              child: Center(
-                child: Column(
-                  children: [
-                    Text(balance, style: theme.textTheme.titleLarge),
-                    IncomeExpenseSummary(income: income, expense: expense),
-                    // CustomPieChart(data: data),
-                    Card(
-                      color: theme.colorScheme.surfaceContainer,
-                      margin: const EdgeInsets.all(16),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
+        return Scaffold(
+          backgroundColor: theme.colorScheme.surface,
+          appBar: _homeAbbBar(context, theme, localization),
+          body: SingleChildScrollView(
+            child: Center(
+              child: Column(
+                children: [
+                  Text(balance, style: theme.textTheme.titleLarge),
+                  IncomeExpenseSummary(income: income, expense: expense),
+                  // CustomPieChart(data: data),
+                  Card(
+                    color: theme.colorScheme.surfaceContainer,
+                    margin: const EdgeInsets.all(16),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    elevation: 2,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 8,
+                        horizontal: 8,
                       ),
-                      elevation: 2,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 8,
-                          horizontal: 8,
-                        ),
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    localization.transactions,
-                                    style: theme.textTheme.titleMedium
-                                        ?.copyWith(
-                                          fontWeight: FontWeight.bold,
-                                          color: theme.colorScheme.onSurface,
-                                        ),
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8),
+                            child: Row(
+                              mainAxisAlignment:
+                                  MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  localization.transactions,
+                                  style: theme.textTheme.titleMedium
+                                      ?.copyWith(
+                                        fontWeight: FontWeight.bold,
+                                        color: theme.colorScheme.onSurface,
+                                      ),
+                                ),
+                                Text(
+                                  localization.seeAll,
+                                  style: theme.textTheme.titleSmall?.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                    color: theme.colorScheme.surfaceDim,
                                   ),
-                                  Text(
-                                    localization.seeAll,
-                                    style: theme.textTheme.titleSmall?.copyWith(
-                                      fontWeight: FontWeight.bold,
-                                      color: theme.colorScheme.surfaceDim,
-                                    ),
-                                  ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
-                            TransactionTile(data: tranactions),
-                          ],
-                        ),
+                          ),
+                          TransactionTile(data: tranactions),
+                        ],
                       ),
                     ),
-                    // PieDataList(data: data),
-                  ],
-                ),
+                  ),
+                  // PieDataList(data: data),
+                ],
               ),
             ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }
