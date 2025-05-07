@@ -23,7 +23,7 @@ void main() async {
   await Hive.openBox<TransactionEntity>('transactions');
 
   //init di
-  configureDependencies();
+  setup();
 
   runApp(const MyApp());
 }
