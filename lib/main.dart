@@ -1,3 +1,4 @@
+import 'package:finance_manager/core/di/di.dart';
 import 'package:finance_manager/domain/entities/adapters/category_type_adapter.dart';
 import 'package:finance_manager/domain/entities/adapters/transaction_adapter.dart';
 import 'package:finance_manager/domain/entities/transaction_entity.dart';
@@ -9,15 +10,20 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'core/theme/theme.dart';
 import 'domain/entities/adapters/transaction_type_adapter.dart';
 
-final RouteObserver<ModalRoute<void>> routeObserver = RouteObserver<ModalRoute<void>>();
+final RouteObserver<ModalRoute<void>> routeObserver =
+    RouteObserver<ModalRoute<void>>();
 
 void main() async {
+  //init db
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   Hive.registerAdapter(TransactionTypeAdapter());
   Hive.registerAdapter(CategoryTypeAdapter());
   Hive.registerAdapter(TransactionAdapter());
   await Hive.openBox<TransactionEntity>('transactions');
+
+  //init di
+  configureDependencies();
 
   runApp(const MyApp());
 }
