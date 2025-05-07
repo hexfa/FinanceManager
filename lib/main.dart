@@ -2,8 +2,10 @@ import 'package:finance_manager/core/di/di.dart';
 import 'package:finance_manager/domain/entities/adapters/category_type_adapter.dart';
 import 'package:finance_manager/domain/entities/adapters/transaction_adapter.dart';
 import 'package:finance_manager/domain/entities/transaction_entity.dart';
+import 'package:finance_manager/presentation/bloc/home/home_cubit.dart';
 import 'package:finance_manager/presentation/view/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -46,7 +48,10 @@ class MyApp extends StatelessWidget {
       ],
       supportedLocales: const [Locale('en'), Locale('fa')],
       navigatorObservers: [routeObserver],
-      home: HomeScreen(),
+      home: BlocProvider(
+        create: (_) => getIt<HomeCubit>()..loadInitialData(),
+        child: HomeScreen(),
+      ),
     );
   }
 }
