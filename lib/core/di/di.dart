@@ -1,8 +1,15 @@
+import 'package:finance_manager/data/repositories/transaction_repository_imp.dart';
+import 'package:finance_manager/domain/repositories/transaction_repository.dart';
 import 'package:get_it/get_it.dart';
-import 'package:injectable/injectable.dart';
-import 'di.config.dart';
 
 final getIt = GetIt.instance;
 
-@injectableInit
-void configureDependencies() => getIt.init();
+Future<void> setup() async {
+  _registerRepositories();
+}
+
+void _registerRepositories() {
+  getIt.registerLazySingleton<TransactionRepository>(
+    () => TransactionRepositoryImpl(),
+  );
+}
