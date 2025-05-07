@@ -1,6 +1,5 @@
 import 'package:finance_manager/core/di/di.dart';
 import 'package:finance_manager/data/models/transaction.dart';
-import 'package:finance_manager/data/repositories/transaction_repository_imp.dart';
 import 'package:finance_manager/main.dart';
 import 'package:finance_manager/presentation/bloc/home/home_cubit.dart';
 import 'package:finance_manager/presentation/bloc/home/home_state.dart';
@@ -86,16 +85,14 @@ class _HomeState extends BaseState<HomeScreen> with RouteAware {
                           Padding(
                             padding: const EdgeInsets.all(8),
                             child: Row(
-                              mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
                                   localization.transactions,
-                                  style: theme.textTheme.titleMedium
-                                      ?.copyWith(
-                                        fontWeight: FontWeight.bold,
-                                        color: theme.colorScheme.onSurface,
-                                      ),
+                                  style: theme.textTheme.titleMedium?.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                    color: theme.colorScheme.onSurface,
+                                  ),
                                 ),
                                 Text(
                                   localization.seeAll,
@@ -151,8 +148,7 @@ PreferredSizeWidget _homeAbbBar(
             MaterialPageRoute(
               builder:
                   (_) => BlocProvider(
-                    create:
-                        (_) => TransactionCubit(TransactionRepositoryImpl()),
+                    create: (_) => getIt<TransactionCubit>(),
                     child: const AddTransaction(),
                   ),
             ),
