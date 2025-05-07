@@ -96,6 +96,7 @@ class _AddTransactionState extends BaseState<AddTransaction> {
               text: localization.ok,
               onPressed: () {
                 getBloc<TransactionCubit>().createTransaction();
+                navigator.pop(context);
               },
             ),
           ],
