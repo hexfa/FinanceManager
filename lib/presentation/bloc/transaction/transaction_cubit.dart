@@ -8,9 +8,9 @@ import 'package:uuid/uuid.dart';
 import 'transaction_state.dart';
 
 class TransactionCubit extends BaseCubit<TransactionState> {
-  final TransactionRepository repository;
+  final TransactionRepository transactionRepository;
 
-  TransactionCubit(this.repository) : super(const TransactionState());
+  TransactionCubit({required this.transactionRepository}) : super(const TransactionState());
 
   void updateTitle(String title) => safeEmit(state.copyWith(title: title));
 
@@ -25,7 +25,7 @@ class TransactionCubit extends BaseCubit<TransactionState> {
 
   Future<void> createTransaction() async {
     print('-----------------cubit');
-    await repository.createTransaction(
+    await transactionRepository.createTransaction(
       transaction: Transaction(
         id: Uuid().v4(),
         title: state.title,
