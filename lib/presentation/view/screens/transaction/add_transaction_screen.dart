@@ -95,7 +95,8 @@ class _AddTransactionState extends BaseState<AddTransaction> {
               builder: (context, state) {
                 final isFormValid =
                     state.title.isNotEmpty &&
-                    state.amount.isNotEmpty;
+                    state.amount.isNotEmpty &&
+                    state.category.isNotEmpty;
 
                 return CustomButton(
                   text: localization.ok,
