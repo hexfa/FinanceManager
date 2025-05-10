@@ -13,15 +13,22 @@ class AppRouter {
     routes: [
       GoRoute(
         path: RoutePath.homeRoute,
-        builder:
-            (context, state) => BlocProvider(
-              create: (_) => getIt<HomeCubit>()..loadInitialData(),
-              child: const HomeScreen(),
+        pageBuilder:
+            (context, state) => _buildTransitionPage(
+              key: state.pageKey,
+              child: BlocProvider(
+                create: (_) => getIt<HomeCubit>()..loadInitialData(),
+                child: const HomeScreen(),
+              ),
             ),
       ),
       GoRoute(
         path: RoutePath.addTransactionRoute,
-        builder: (context, state) => const AddTransactionScreen(),
+        pageBuilder:
+            (context, state) => _buildTransitionPage(
+              key: state.pageKey,
+              child: const AddTransactionScreen(),
+            ),
       ),
     ],
     errorBuilder:
