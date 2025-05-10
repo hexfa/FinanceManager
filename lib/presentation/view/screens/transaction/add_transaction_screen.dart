@@ -11,14 +11,14 @@ import 'package:finance_manager/presentation/view/widgets/textfield/custom_text_
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class AddTransaction extends StatefulWidget {
-  const AddTransaction({super.key});
+class AddTransactionScreen extends StatefulWidget {
+  const AddTransactionScreen({super.key});
 
   @override
-  State<AddTransaction> createState() => _AddTransactionState();
+  State<AddTransactionScreen> createState() => _AddTransactionScreenState();
 }
 
-class _AddTransactionState extends BaseState<AddTransaction> {
+class _AddTransactionScreenState extends BaseState<AddTransactionScreen> {
   late TextEditingController _titleController;
   late TextEditingController _amountController;
   TransactionType? selectedType;
