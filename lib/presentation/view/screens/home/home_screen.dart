@@ -1,16 +1,15 @@
-import 'package:finance_manager/core/di/di.dart';
 import 'package:finance_manager/data/models/transaction.dart';
 import 'package:finance_manager/main.dart';
 import 'package:finance_manager/presentation/bloc/home/home_cubit.dart';
 import 'package:finance_manager/presentation/bloc/home/home_state.dart';
-import 'package:finance_manager/presentation/bloc/transaction/transaction_cubit.dart';
+import 'package:finance_manager/presentation/navigation/route_path.dart';
 import 'package:finance_manager/presentation/view/base/base_state.dart';
 import 'package:finance_manager/presentation/view/screens/home/transaction_tile.dart';
 import 'package:finance_manager/presentation/view/screens/home/income_expense_summury.dart';
-import 'package:finance_manager/presentation/view/screens/transaction/add_transaction_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:go_router/go_router.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -60,7 +59,7 @@ class _HomeState extends BaseState<HomeScreen> with RouteAware {
 
         return Scaffold(
           backgroundColor: theme.colorScheme.surface,
-          appBar: _homeAbbBar(context, theme, localization),
+          appBar: _homeAbbBar(context, theme, localization, router),
           body: SingleChildScrollView(
             child: Center(
               child: Column(
@@ -124,6 +123,7 @@ PreferredSizeWidget _homeAbbBar(
   BuildContext context,
   ThemeData theme,
   AppLocalizations localization,
+  GoRouter router,
 ) {
   return AppBar(
     backgroundColor: theme.colorScheme.surface,
@@ -143,16 +143,7 @@ PreferredSizeWidget _homeAbbBar(
     actions: [
       IconButton(
         onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder:
-                  (_) => BlocProvider(
-                    create: (_) => getIt<TransactionCubit>(),
-                    child: const AddTransaction(),
-                  ),
-            ),
-          );
+          router.push(RoutePath.addTransactionRoute);
         },
         icon: Icon(Icons.add, color: theme.colorScheme.onSurface),
       ),

@@ -3,18 +3,19 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:go_router/go_router.dart';
 
 /// BaseState is a reusable class that provides common functionality
 /// for other widgets in the app by extending StatefulWidget.
 abstract class BaseState<T extends StatefulWidget> extends State<T> {
   // Theme Data for accessing the current theme
-  // late GoRouter router;
+  late GoRouter router;
 
   // Method to initialize app-wide dependencies (like network requests, etc.)
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    // router = GoRouter.of(context);
+    router = GoRouter.of(context);
   }
 
   ThemeData get theme => Theme.of(context);
@@ -79,6 +80,10 @@ abstract class BaseState<T extends StatefulWidget> extends State<T> {
 
   TBloc getBloc<TBloc extends StateStreamableSource<Object?>>() {
     return BlocProvider.of<TBloc>(context);
+  }
+
+  void goTo(String viewPath) {
+    router.push(viewPath);
   }
 
   @override
