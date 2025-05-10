@@ -2,11 +2,9 @@ import 'package:finance_manager/core/di/di.dart';
 import 'package:finance_manager/domain/entities/adapters/category_type_adapter.dart';
 import 'package:finance_manager/domain/entities/adapters/transaction_adapter.dart';
 import 'package:finance_manager/domain/entities/transaction_entity.dart';
-import 'package:finance_manager/presentation/bloc/home/home_cubit.dart';
+import 'package:finance_manager/presentation/navigation/app_router.dart';
 import 'package:finance_manager/presentation/view/base/base_stateless_widget.dart';
-import 'package:finance_manager/presentation/view/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -36,7 +34,9 @@ class MyApp extends BaseStatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    final appRouter = AppRouter();
+
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       theme: lightTheme,
       darkTheme: darkTheme,
@@ -48,11 +48,7 @@ class MyApp extends BaseStatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: const [Locale('en'), Locale('fa')],
-      navigatorObservers: [routeObserver],
-      home: BlocProvider(
-        create: (_) => getIt<HomeCubit>()..loadInitialData(),
-        child: HomeScreen(),
-      ),
+      routerConfig: appRouter.router,
     );
   }
 }
