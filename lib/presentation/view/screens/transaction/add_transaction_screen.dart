@@ -93,7 +93,9 @@ class _AddTransactionState extends BaseState<AddTransaction> {
             const SizedBox(height: 16),
             BlocBuilder<TransactionCubit, TransactionState>(
               builder: (context, state) {
-                final isFormValid = state.title.isNotEmpty;
+                final isFormValid =
+                    state.title.isNotEmpty &&
+                    state.amount.isNotEmpty;
 
                 return CustomButton(
                   text: localization.ok,
