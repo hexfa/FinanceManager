@@ -3,6 +3,7 @@ import 'package:finance_manager/domain/entities/adapters/category_type_adapter.d
 import 'package:finance_manager/domain/entities/adapters/transaction_adapter.dart';
 import 'package:finance_manager/domain/entities/transaction_entity.dart';
 import 'package:finance_manager/presentation/bloc/home/home_cubit.dart';
+import 'package:finance_manager/presentation/view/base/base_stateless_widget.dart';
 import 'package:finance_manager/presentation/view/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,7 +31,7 @@ void main() async {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends BaseStatelessWidget {
   const MyApp({super.key});
 
   @override
