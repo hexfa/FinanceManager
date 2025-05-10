@@ -9,10 +9,10 @@ import 'package:go_router/go_router.dart';
 
 class AppRouter {
   late final GoRouter router = GoRouter(
-    initialLocation: AppRoutePath.homeRoute,
+    initialLocation: RoutePath.homeRoute,
     routes: [
       GoRoute(
-        path: AppRoutePath.homeRoute,
+        path: RoutePath.homeRoute,
         builder:
             (context, state) => BlocProvider(
               create: (_) => getIt<HomeCubit>()..loadInitialData(),
@@ -20,7 +20,7 @@ class AppRouter {
             ),
       ),
       GoRoute(
-        path: AppRoutePath.addTransactionRoute,
+        path: RoutePath.addTransactionRoute,
         builder: (context, state) => const AddTransaction(),
       ),
     ],
