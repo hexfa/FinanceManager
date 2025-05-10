@@ -21,11 +21,33 @@ class AppRouter {
       ),
       GoRoute(
         path: RoutePath.addTransactionRoute,
-        builder: (context, state) => const AddTransaction(),
+        builder: (context, state) => const AddTransactionScreen(),
       ),
     ],
     errorBuilder:
         (context, state) =>
             const Scaffold(body: Center(child: Text('404 - Page not found'))),
   );
+
+  CustomTransitionPage _buildTransitionPage({
+    required LocalKey key,
+    required Widget child,
+    bool isBack = false,
+  }) {
+    return CustomTransitionPage(
+      key: key,
+      child: child,
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        const begin = Offset(1.0, 0.0);
+        const end = Offset.zero;
+        const curve = Curves.ease;
+
+        var tween = Tween(
+          begin: begin,
+          end: end,
+        ).chain(CurveTween(curve: curve));
+        return SlideTransition(position: animation.drive(tween), child: child);
+      },
+    );
+  }
 }
