@@ -1,7 +1,10 @@
+import 'package:finance_manager/core/di/di.dart';
+import 'package:finance_manager/presentation/bloc/home/home_cubit.dart';
 import 'package:finance_manager/presentation/navigation/route_path.dart';
 import 'package:finance_manager/presentation/view/screens/home/home_screen.dart';
 import 'package:finance_manager/presentation/view/screens/transaction/add_transaction_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class AppRouter {
@@ -10,7 +13,11 @@ class AppRouter {
     routes: [
       GoRoute(
         path: AppRoutePath.homeRoute,
-        builder: (context, state) => const HomeScreen(),
+        builder:
+            (context, state) => BlocProvider(
+              create: (_) => getIt<HomeCubit>()..loadInitialData(),
+              child: const HomeScreen(),
+            ),
       ),
       GoRoute(
         path: AppRoutePath.addTransactionRoute,
