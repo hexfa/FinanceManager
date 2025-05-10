@@ -1,5 +1,4 @@
 import 'package:finance_manager/core/utils/transaction_type.dart';
-import 'package:finance_manager/data/repositories/transaction_repository_imp.dart';
 import 'package:finance_manager/presentation/bloc/transaction/transaction_cubit.dart';
 import 'package:finance_manager/presentation/bloc/transaction/transaction_state.dart';
 import 'package:finance_manager/presentation/view/base/base_state.dart';
@@ -92,11 +91,20 @@ class _AddTransactionState extends BaseState<AddTransaction> {
               },
             ),
             const SizedBox(height: 16),
-            CustomButton(
-              text: localization.ok,
-              onPressed: () {
-                getBloc<TransactionCubit>().createTransaction();
-                navigator.pop(context);
+            BlocBuilder<TransactionCubit, TransactionState>(
+              builder: (context, state) {
+                final isFormValid = state.title.isNotEmpty;
+
+                return CustomButton(
+                  text: localization.ok,
+                  onPressed:
+                      isFormValid
+                          ? () {
+                            getBloc<TransactionCubit>().createTransaction();
+                            navigator.pop(context);
+                          }
+                          : null,
+                );
               },
             ),
           ],
