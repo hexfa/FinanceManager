@@ -12,14 +12,14 @@ class AddTransactionScreen extends BaseTransactionScreen {
   String get actionButtonText => 'Save';
 
   @override
-  VoidCallback get onActionPressed => () {
-    // context.read<TransactionCubit>().createTransaction();
-    // Navigator.of(context).pop();
-  };
-
-  @override
   State<StatefulWidget> createState() => _AddTransactionScreenState();
 }
 
 class _AddTransactionScreenState
-    extends BaseTransactionScreenState<AddTransactionScreen> {}
+    extends BaseTransactionScreenState<AddTransactionScreen> {
+  @override
+  VoidCallback get onActionPressed => () {
+    getBloc<TransactionCubit>().createTransaction();
+    Navigator.of(context).pop();
+  };
+}
