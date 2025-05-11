@@ -16,14 +16,14 @@ abstract class BaseTransactionScreen extends StatefulWidget {
   String get appBarTitle;
 
   String get actionButtonText;
-
-  VoidCallback get onActionPressed;
 }
 
 abstract class BaseTransactionScreenState<T extends BaseTransactionScreen>
     extends BaseState<T> {
   late TextEditingController titleController;
   late TextEditingController amountController;
+
+  VoidCallback get onActionPressed;
 
   @override
   void initState() {
@@ -96,7 +96,7 @@ abstract class BaseTransactionScreenState<T extends BaseTransactionScreen>
 
                 return CustomButton(
                   text: widget.actionButtonText,
-                  onPressed: isFormValid ? widget.onActionPressed : null,
+                  onPressed: isFormValid ? onActionPressed : null,
                 );
               },
             ),
