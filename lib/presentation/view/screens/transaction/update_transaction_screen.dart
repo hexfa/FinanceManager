@@ -15,12 +15,6 @@ class UpdateTransactionScreen extends BaseTransactionScreen {
   String get actionButtonText => 'Update';
 
   @override
-  VoidCallback get onActionPressed => () {
-    // context.read<TransactionCubit>().updateTransaction(transaction.id);
-    // Navigator.of(context).pop();
-  };
-
-  @override
   State<StatefulWidget> createState() => _UpdateTransactionScreenState();
 }
 
@@ -30,15 +24,21 @@ class _UpdateTransactionScreenState
   void initState() {
     super.initState();
 
-    final txn = widget.transaction;
-    titleController.text = txn.title;
-    amountController.text = txn.amount.toString();
+    final updateTransaction = widget.transaction;
+    titleController.text = updateTransaction.title;
+    amountController.text = updateTransaction.amount.toString();
 
     getBloc<TransactionCubit>()
-      ..updateTitle(txn.title)
-      ..updateAmount(txn.amount.toString())
-      ..updateCategory(txn.category.name)
-      ..updateDate(txn.date)
-      ..updateType(txn.type);
+      ..updateTitle(updateTransaction.title)
+      ..updateAmount(updateTransaction.amount.toString())
+      ..updateCategory(updateTransaction.category.name)
+      ..updateDate(updateTransaction.date)
+      ..updateType(updateTransaction.type);
   }
+
+  @override
+  VoidCallback get onActionPressed => () {
+    getBloc<TransactionCubit>().updateTransaction(widget.transaction.id ?? 0);
+    navigator.pop();
+  };
 }
