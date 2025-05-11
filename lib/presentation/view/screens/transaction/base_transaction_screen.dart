@@ -20,7 +20,8 @@ abstract class BaseTransactionScreen extends StatefulWidget {
   VoidCallback get onActionPressed;
 }
 
-abstract class BaseTransactionScreenState<T extends BaseTransactionScreen> extends BaseState<T> {
+abstract class BaseTransactionScreenState<T extends BaseTransactionScreen>
+    extends BaseState<T> {
   late TextEditingController titleController;
   late TextEditingController amountController;
 
