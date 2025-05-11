@@ -4,7 +4,7 @@ import 'package:finance_manager/domain/entities/transaction_entity.dart';
 extension TransactionMapper on Transaction {
   TransactionEntity toDb() {
     return TransactionEntity(
-      id: id,
+      id: id ?? 0,
       title: title,
       amount: amount,
       type: type,
