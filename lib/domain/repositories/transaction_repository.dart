@@ -4,4 +4,9 @@ abstract class TransactionRepository {
   Future<void> createTransaction({required Transaction transaction});
 
   Future<List<Transaction>> getAllTransactions();
+
+  Future<void> updateTransaction({
+    required int id,
+    required Transaction transaction,
+  });
 }
