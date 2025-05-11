@@ -1,3 +1,4 @@
+import 'package:finance_manager/presentation/view/base/base_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:finance_manager/presentation/bloc/transaction/transaction_cubit.dart';
@@ -19,8 +20,7 @@ abstract class BaseTransactionScreen extends StatefulWidget {
   VoidCallback get onActionPressed;
 }
 
-abstract class BaseTransactionScreenState<T extends BaseTransactionScreen>
-    extends State<T> {
+abstract class BaseTransactionScreenState<T extends BaseTransactionScreen> extends BaseState<T> {
   late TextEditingController titleController;
   late TextEditingController amountController;
 
