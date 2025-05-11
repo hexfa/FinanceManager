@@ -4,13 +4,13 @@ import 'package:finance_manager/core/utils/transaction_type.dart';
 import 'package:finance_manager/data/models/transaction.dart';
 import 'package:finance_manager/domain/repositories/transaction_repository.dart';
 import 'package:finance_manager/presentation/bloc/base/base_cubit.dart';
-import 'package:uuid/uuid.dart';
 import 'transaction_state.dart';
 
 class TransactionCubit extends BaseCubit<TransactionState> {
   final TransactionRepository transactionRepository;
 
-  TransactionCubit({required this.transactionRepository}) : super(const TransactionState());
+  TransactionCubit({required this.transactionRepository})
+    : super(const TransactionState());
 
   void updateTitle(String title) => safeEmit(state.copyWith(title: title));
 
@@ -27,13 +27,27 @@ class TransactionCubit extends BaseCubit<TransactionState> {
     print('-----------------cubit');
     await transactionRepository.createTransaction(
       transaction: Transaction(
-        id: Uuid().v4(),
         title: state.title,
         amount: ConvertString.toDouble(state.amount),
         category: state.category.toCategoryType(),
         date: state.date ?? DateTime.now(),
         type: state.type,
       ),
+    );
+  }
+
+  Future<void> updateTransaction(int id) async {
+    final updatedTransaction = Transaction(
+      title: state.title,
+      amount: ConvertString.toDouble(state.amount),
+      category: state.category.toCategoryType(),
+      date: state.date ?? DateTime.now(),
+      type: state.type,
+    );
+
+    await transactionRepository.updateTransaction(
+      id: id,
+      transaction: updatedTransaction,
     );
   }
 }
