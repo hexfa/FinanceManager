@@ -1,9 +1,8 @@
 import 'package:finance_manager/core/utils/category_type.dart';
 import 'package:finance_manager/core/utils/transaction_type.dart';
-import 'package:uuid/uuid.dart';
 
 class Transaction {
-  String id = Uuid().v4();
+  final int? id;
   final String title;
   final double amount;
   final TransactionType type;
@@ -11,7 +10,7 @@ class Transaction {
   final DateTime date;
 
   Transaction({
-    required this.id,
+    this.id,
     required this.title,
     required this.amount,
     required this.type,
