@@ -17,7 +17,15 @@ class TransactionRepositoryImpl implements TransactionRepository {
 
   @override
   Future<void> createTransaction({required Transaction transaction}) async {
-    // print('-------------------repo');
-    _db.add(transaction.toDb());
+    await _db.add(transaction.toDb());
+  }
+
+  @override
+  Future<void> updateTransaction({
+    required int id,
+    required Transaction transaction,
+  }) async {
+    final box = Hive.box<TransactionEntity>('transactions');
+    await box.put(id, transaction.toDb());
   }
 }
