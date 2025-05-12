@@ -1,6 +1,7 @@
 import 'package:finance_manager/core/utils/convert_string.dart';
 import 'package:finance_manager/core/utils/transaction_type.dart';
 import 'package:finance_manager/data/models/transaction.dart';
+import 'package:finance_manager/presentation/navigation/route_path.dart';
 import 'package:finance_manager/presentation/view/base/base_stateless_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -19,6 +20,9 @@ class TransactionTile extends BaseStatelessWidget {
         final transaction = data[index];
         final isIncome = transaction.type == TransactionType.income;
         return ListTile(
+          onTap: () {
+            goTo(context, RoutePath.transactionDetailRoute, extra: transaction);
+          },
           leading:
               isIncome ? Icon(Icons.add_a_photo_outlined) : Icon(Icons.add),
           title: Text(
