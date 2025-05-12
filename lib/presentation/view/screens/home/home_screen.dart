@@ -143,7 +143,7 @@ PreferredSizeWidget _homeAbbBar(
     actions: [
       IconButton(
         onPressed: () {
-          router.push(RoutePath.addTransactionRoute);
+          router.push(RoutePath.createTransactionRoute);
         },
         icon: Icon(Icons.add, color: theme.colorScheme.onSurface),
       ),
