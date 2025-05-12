@@ -1,3 +1,4 @@
+import 'package:finance_manager/data/models/app_bar_menu.dart';
 import 'package:finance_manager/data/models/transaction.dart';
 import 'package:finance_manager/main.dart';
 import 'package:finance_manager/presentation/bloc/home/home_cubit.dart';
@@ -6,6 +7,7 @@ import 'package:finance_manager/presentation/navigation/route_path.dart';
 import 'package:finance_manager/presentation/view/base/base_state.dart';
 import 'package:finance_manager/presentation/view/screens/home/transaction_tile.dart';
 import 'package:finance_manager/presentation/view/screens/home/income_expense_summury.dart';
+import 'package:finance_manager/presentation/view/widgets/appbar/custom_app_bar_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -147,23 +149,14 @@ PreferredSizeWidget _homeAbbBar(
         },
         icon: Icon(Icons.add, color: theme.colorScheme.onSurface),
       ),
-      PopupMenuButton<String>(
-        onSelected: (String value) {},
-        icon: Icon(Icons.more_vert, color: theme.colorScheme.onSurface),
-        itemBuilder: (BuildContext context) {
-          return {localization.setting}.map((String choice) {
-            return PopupMenuItem<String>(
-              value: choice,
-              child: Row(
-                children: [
-                  Icon(Icons.settings, color: theme.colorScheme.onSurface),
-                  SizedBox(width: 8),
-                  Text(choice),
-                ],
-              ),
-            );
-          }).toList();
-        },
+      CustomAppBarMenu(
+        menuItem: [
+          AppBarMenu(
+            title: localization.setting,
+            icon: Icons.settings,
+            onTap: () {},
+          ),
+        ],
       ),
     ],
   );
