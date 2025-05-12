@@ -1,5 +1,8 @@
+import 'package:finance_manager/data/models/app_bar_menu.dart';
 import 'package:finance_manager/data/models/transaction.dart';
 import 'package:finance_manager/presentation/view/base/base_stateless_widget.dart';
+import 'package:finance_manager/presentation/view/widgets/appbar/custom_app_bar.dart';
+import 'package:finance_manager/presentation/view/widgets/appbar/custom_app_bar_menu.dart';
 import 'package:flutter/material.dart';
 
 class DetailTransactionScreen extends BaseStatelessWidget {
@@ -9,6 +12,11 @@ class DetailTransactionScreen extends BaseStatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text(transaction.title));
+    return Scaffold(
+      appBar: CustomAppBar(
+        title: 'Detail Transaction',
+        actions: [CustomAppBarMenu(menuItem: [])],
+      ),
+    );
   }
 }
