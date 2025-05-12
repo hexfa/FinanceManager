@@ -15,7 +15,13 @@ class DetailTransactionScreen extends BaseStatelessWidget {
     return Scaffold(
       appBar: CustomAppBar(
         title: 'Detail Transaction',
-        actions: [CustomAppBarMenu(menuItem: [])],
+        actions: [
+          CustomAppBarMenu(
+            menuItem: [
+              AppBarMenu(title: 'Update', icon: Icons.edit, onTap: () {}),
+            ],
+          ),
+        ],
       ),
     );
   }
