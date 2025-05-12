@@ -19,6 +19,11 @@ class DetailTransactionScreen extends BaseStatelessWidget {
           CustomAppBarMenu(
             menuItem: [
               AppBarMenu(title: 'Update', icon: Icons.edit, onTap: () {}),
+              AppBarMenu(
+                title: 'Delete',
+                icon: Icons.delete_outline,
+                onTap: () {},
+              ),
             ],
           ),
         ],
