@@ -1,5 +1,6 @@
 import 'package:finance_manager/data/models/app_bar_menu.dart';
 import 'package:finance_manager/data/models/transaction.dart';
+import 'package:finance_manager/presentation/navigation/route_path.dart';
 import 'package:finance_manager/presentation/view/base/base_stateless_widget.dart';
 import 'package:finance_manager/presentation/view/widgets/appbar/custom_app_bar.dart';
 import 'package:finance_manager/presentation/view/widgets/appbar/custom_app_bar_menu.dart';
@@ -18,7 +19,17 @@ class DetailTransactionScreen extends BaseStatelessWidget {
         actions: [
           CustomAppBarMenu(
             menuItem: [
-              AppBarMenu(title: 'Update', icon: Icons.edit, onTap: () {}),
+              AppBarMenu(
+                title: 'Update',
+                icon: Icons.edit,
+                onTap: () {
+                  goTo(
+                    context,
+                    RoutePath.createTransactionRoute,
+                    extra: transaction,
+                  );
+                },
+              ),
               AppBarMenu(
                 title: 'Delete',
                 icon: Icons.delete_outline,
