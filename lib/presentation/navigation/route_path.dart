@@ -1,4 +1,4 @@
 class RoutePath {
   static const String homeRoute = '/home';
-  static const String addTransactionRoute = '/addTransaction';
+  static const String createTransactionRoute = '/createTransaction';
 }

@@ -2,8 +2,8 @@ import 'package:finance_manager/presentation/bloc/transaction/transaction_cubit.
 import 'package:finance_manager/presentation/view/screens/transaction/base/base_create_update_transaction.dart';
 import 'package:flutter/material.dart';
 
-class AddTransactionScreen extends BaseTransactionScreen {
-  const AddTransactionScreen({super.key});
+class CreateTransactionScreen extends BaseTransactionScreen {
+  const CreateTransactionScreen({super.key});
 
   @override
   String get appBarTitle => 'Add Transaction';
@@ -16,7 +16,7 @@ class AddTransactionScreen extends BaseTransactionScreen {
 }
 
 class _AddTransactionScreenState
-    extends BaseTransactionScreenState<AddTransactionScreen> {
+    extends BaseTransactionScreenState<CreateTransactionScreen> {
   @override
   VoidCallback get onActionPressed => () {
     getBloc<TransactionCubit>().createTransaction();
