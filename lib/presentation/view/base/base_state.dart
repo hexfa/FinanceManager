@@ -82,8 +82,8 @@ abstract class BaseState<T extends StatefulWidget> extends State<T> {
     return BlocProvider.of<TBloc>(context);
   }
 
-  void goTo(String viewPath) {
-    router.push(viewPath);
+  void goTo(String viewPath, {Object? extra}) {
+    router.push(viewPath, extra: extra);
   }
 
   @override

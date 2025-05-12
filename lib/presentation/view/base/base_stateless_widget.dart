@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 // import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:go_router/go_router.dart';
 
 /// BaseStatelessWidget provides common utilities and methods for stateless widgets
 abstract class BaseStatelessWidget extends StatelessWidget {
@@ -75,6 +76,10 @@ abstract class BaseStatelessWidget extends StatelessWidget {
   // Get bloc object
   // TBloc getBloc<TBloc extends Bloc>(BuildContext context) =>
   //     BlocProvider.of<TBloc>(context);
+
+  void goTo(BuildContext context, String viewPath, {Object? extra}) {
+    GoRouter.of(context).push(viewPath, extra: extra);
+  }
 
   @override
   Widget build(BuildContext context);
