@@ -15,12 +15,12 @@ class DetailTransactionScreen extends BaseStatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        title: 'Detail Transaction',
+        title: localization(context).detailTransaction,
         actions: [
           CustomAppBarMenu(
             menuItem: [
               AppBarMenu(
-                title: 'Update',
+                title: localization(context).update,
                 icon: Icons.edit,
                 onTap: () {
                   goTo(
@@ -31,7 +31,7 @@ class DetailTransactionScreen extends BaseStatelessWidget {
                 },
               ),
               AppBarMenu(
-                title: 'Delete',
+                title: localization(context).delete,
                 icon: Icons.delete_outline,
                 onTap: () {},
               ),
