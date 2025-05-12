@@ -6,6 +6,7 @@ import 'package:finance_manager/presentation/navigation/route_path.dart';
 import 'package:finance_manager/presentation/view/screens/home/home_screen.dart';
 import 'package:finance_manager/presentation/view/screens/transaction/create/create_transaction_screen.dart';
 import 'package:finance_manager/presentation/view/screens/transaction/detail/detail_transaction_screen.dart';
+import 'package:finance_manager/presentation/view/screens/transaction/update/update_transaction_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -42,6 +43,16 @@ class AppRouter {
             (context, state) => _buildTransitionPage(
               key: state.pageKey,
               child: DetailTransactionScreen(
+                transaction: state.extra as Transaction,
+              ),
+            ),
+      ),
+      GoRoute(
+        path: RoutePath.updateTransactionRoute,
+        pageBuilder:
+            (context, state) => _buildTransitionPage(
+              key: state.pageKey,
+              child: UpdateTransactionScreen(
                 transaction: state.extra as Transaction,
               ),
             ),
