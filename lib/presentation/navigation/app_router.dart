@@ -1,4 +1,5 @@
 import 'package:finance_manager/core/di/di.dart';
+import 'package:finance_manager/data/models/transaction.dart';
 import 'package:finance_manager/presentation/bloc/home/home_cubit.dart';
 import 'package:finance_manager/presentation/bloc/transaction/transaction_cubit.dart';
 import 'package:finance_manager/presentation/navigation/route_path.dart';
@@ -32,6 +33,16 @@ class AppRouter {
               child: BlocProvider(
                 create: (_) => getIt<TransactionCubit>(),
                 child: const CreateTransactionScreen(),
+              ),
+            ),
+      ),
+      GoRoute(
+        path: RoutePath.transactionDetailRoute,
+        pageBuilder:
+            (context, state) => _buildTransitionPage(
+              key: state.pageKey,
+              child: DetailTransactionScreen(
+                transaction: state.extra as Transaction,
               ),
             ),
       ),
