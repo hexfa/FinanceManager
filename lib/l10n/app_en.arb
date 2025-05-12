@@ -9,5 +9,8 @@
   "title": "Title",
   "amount": "Amount",
   "category": "Category",
-  "ok": "OK"
+  "ok": "OK",
+  "detailTransaction": "Detail Transaction",
+  "update": "Update",
+  "delete": "Delete"
 }
