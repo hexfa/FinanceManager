@@ -35,7 +35,9 @@ class DetailTransactionScreen extends BaseStatelessWidget {
             SizedBox(height: 16),
             Text('Date'),
             SizedBox(height: 4),
-            Text(ConvertString.formatDate(transaction.date))
+            Text(ConvertString.formatDate(transaction.date)),
+            SizedBox(height: 16),
+            Text(transaction.type.name)
           ],
         ),
       ),
