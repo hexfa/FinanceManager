@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 // import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -74,8 +75,9 @@ abstract class BaseStatelessWidget extends StatelessWidget {
   //     );
 
   // Get bloc object
-  // TBloc getBloc<TBloc extends Bloc>(BuildContext context) =>
-  //     BlocProvider.of<TBloc>(context);
+  TBloc getBloc<TBloc extends StateStreamableSource<Object?>>(BuildContext context) {
+    return BlocProvider.of<TBloc>(context);
+  }
 
   void goTo(BuildContext context, String viewPath, {Object? extra}) {
     GoRouter.of(context).push(viewPath, extra: extra);
