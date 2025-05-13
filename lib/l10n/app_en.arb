@@ -12,5 +12,8 @@
   "ok": "OK",
   "detailTransaction": "Detail Transaction",
   "update": "Update",
-  "delete": "Delete"
+  "delete": "Delete",
+  "deleteTransaction": "Delete Transaction",
+  "areYouSureYouWantToDeleteThisTransaction": "Are you sure you want to delete this transaction?",
+  "cancel": "Cancel"
 }

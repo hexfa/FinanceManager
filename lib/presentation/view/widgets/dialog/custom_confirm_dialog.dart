@@ -25,14 +25,14 @@ class CustomConfirmDialog extends BaseStatelessWidget {
       actions: [
         TextButton(
           onPressed: () => navigator(context).pop(),
-          child: Text(cancelText ?? 'Cancel'),
+          child: Text(cancelText ?? localization(context).cancel),
         ),
-        ElevatedButton(
+        TextButton(
           onPressed: () {
             navigator(context).pop();
             onConfirm();
           },
-          child: Text(confirmText ?? 'OK'),
+          child: Text(confirmText ?? localization(context).ok),
         ),
       ],
     );

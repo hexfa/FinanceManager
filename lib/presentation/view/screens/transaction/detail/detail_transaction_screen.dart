@@ -71,11 +71,12 @@ class DetailTransactionScreen extends BaseStatelessWidget {
                   context: context,
                   builder: (context) {
                     return CustomConfirmDialog(
-                      title: 'Delete Transaction',
+                      title: localization(context).deleteTransaction,
                       content:
-                          'Are you sure you want to delete this transaction?',
-                      confirmText: 'Delete',
-                      cancelText: 'Cancel',
+                          localization(
+                            context,
+                          ).areYouSureYouWantToDeleteThisTransaction,
+                      confirmText: localization(context).delete,
                       onConfirm: () async {
                         await cubit.deleteTransaction(transaction.id ?? 0);
                         Navigator.of(context).pop();
