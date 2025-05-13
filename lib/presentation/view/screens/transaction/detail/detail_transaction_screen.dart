@@ -15,6 +15,17 @@ class DetailTransactionScreen extends BaseStatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _appBar(context),
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('Title'),
+            SizedBox(height: 4),
+            Text(transaction.title),
+          ],
+        ),
+      ),
     );
   }
 
