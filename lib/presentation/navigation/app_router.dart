@@ -42,8 +42,11 @@ class AppRouter {
         pageBuilder:
             (context, state) => _buildTransitionPage(
               key: state.pageKey,
-              child: DetailTransactionScreen(
-                transaction: state.extra as Transaction,
+              child: BlocProvider(
+                create: (_) => getIt<TransactionCubit>(),
+                child: DetailTransactionScreen(
+                  transaction: state.extra as Transaction,
+                ),
               ),
             ),
       ),
