@@ -1,3 +1,4 @@
+import 'package:finance_manager/core/utils/convert_string.dart';
 import 'package:finance_manager/data/models/app_bar_menu.dart';
 import 'package:finance_manager/data/models/transaction.dart';
 import 'package:finance_manager/presentation/navigation/route_path.dart';
@@ -23,6 +24,10 @@ class DetailTransactionScreen extends BaseStatelessWidget {
             Text('Title'),
             SizedBox(height: 4),
             Text(transaction.title),
+            SizedBox(height: 16),
+            Text('Amount'),
+            SizedBox(height: 4),
+            Text(ConvertString.formatCurrencyFromDouble(transaction.amount)),
           ],
         ),
       ),
