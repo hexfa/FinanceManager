@@ -28,4 +28,9 @@ class TransactionRepositoryImpl implements TransactionRepository {
     final box = Hive.box<TransactionEntity>('transactions');
     await box.put(id, transaction.toDb());
   }
+
+  @override
+  Future<void> deleteTransaction(int id) async {
+    await _db.delete(id);
+  }
 }
