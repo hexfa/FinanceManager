@@ -9,4 +9,6 @@ abstract class TransactionRepository {
     required int id,
     required Transaction transaction,
   });
+
+  Future<void> deleteTransaction(int id);
 }
