@@ -14,31 +14,35 @@ class DetailTransactionScreen extends BaseStatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(
-        title: localization(context).detailTransaction,
-        actions: [
-          CustomAppBarMenu(
-            menuItem: [
-              AppBarMenu(
-                title: localization(context).update,
-                icon: Icons.edit,
-                onTap: () {
-                  goTo(
-                    context,
-                    RoutePath.createTransactionRoute,
-                    extra: transaction,
-                  );
-                },
-              ),
-              AppBarMenu(
-                title: localization(context).delete,
-                icon: Icons.delete_outline,
-                onTap: () {},
-              ),
-            ],
-          ),
-        ],
-      ),
+      appBar: _appBar(context),
+    );
+  }
+
+  CustomAppBar _appBar(BuildContext context) {
+    return CustomAppBar(
+      title: localization(context).detailTransaction,
+      actions: [
+        CustomAppBarMenu(
+          menuItem: [
+            AppBarMenu(
+              title: localization(context).update,
+              icon: Icons.edit,
+              onTap: () {
+                goTo(
+                  context,
+                  RoutePath.createTransactionRoute,
+                  extra: transaction,
+                );
+              },
+            ),
+            AppBarMenu(
+              title: localization(context).delete,
+              icon: Icons.delete_outline,
+              onTap: () {},
+            ),
+          ],
+        ),
+      ],
     );
   }
 }
