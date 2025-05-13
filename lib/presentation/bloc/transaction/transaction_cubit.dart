@@ -50,4 +50,8 @@ class TransactionCubit extends BaseCubit<TransactionState> {
       transaction: updatedTransaction,
     );
   }
+
+  Future<void> deleteTransaction(int id) async {
+    await transactionRepository.deleteTransaction(id);
+  }
 }
