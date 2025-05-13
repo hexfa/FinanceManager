@@ -47,7 +47,7 @@ class CustomTextField extends BaseStatelessWidget {
 
   void _handleCurrency(String text) {
     final rawText = text.replaceAll(',', '');
-    final formattedText = ConvertString.formatCurrency(rawText);
+    final formattedText = ConvertString.formatCurrencyFromString(rawText);
 
     final oldSelection = controller!.selection;
     final newSelectionIndex =
