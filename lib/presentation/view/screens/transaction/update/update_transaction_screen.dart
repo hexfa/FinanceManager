@@ -24,7 +24,6 @@ class _UpdateTransactionScreenState
   void initState() {
     super.initState();
 
-    // print('--------------------thiss${widget.transaction}');
     final updateTransaction = widget.transaction;
     titleController.text = updateTransaction.title;
     amountController.text = updateTransaction.amount.toString();

@@ -58,7 +58,7 @@ class DetailTransactionScreen extends BaseStatelessWidget {
               onTap: () {
                 goTo(
                   context,
-                  RoutePath.createTransactionRoute,
+                  RoutePath.updateTransactionRoute,
                   extra: transaction,
                 );
               },

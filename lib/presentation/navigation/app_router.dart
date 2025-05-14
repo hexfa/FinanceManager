@@ -52,13 +52,17 @@ class AppRouter {
       ),
       GoRoute(
         path: RoutePath.updateTransactionRoute,
-        pageBuilder:
-            (context, state) => _buildTransitionPage(
-              key: state.pageKey,
+        pageBuilder: (context, state) {
+          return _buildTransitionPage(
+            key: state.pageKey,
+            child: BlocProvider(
+              create: (_) => getIt<TransactionCubit>(),
               child: UpdateTransactionScreen(
                 transaction: state.extra as Transaction,
               ),
             ),
+          );
+        },
       ),
     ],
     errorBuilder:
