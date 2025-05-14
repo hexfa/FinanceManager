@@ -21,7 +21,11 @@ class TransactionTile extends BaseStatelessWidget {
         final isIncome = transaction.type == TransactionType.income;
         return ListTile(
           onTap: () {
-            goTo(context, RoutePath.transactionDetailRoute, extra: transaction);
+            goTo(
+              context,
+              RoutePath.transactionDetailRoute,
+              extra: transaction.id,
+            );
           },
           leading:
               isIncome ? Icon(Icons.add_a_photo_outlined) : Icon(Icons.add),
