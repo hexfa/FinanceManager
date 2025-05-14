@@ -9,7 +9,7 @@ class CreateTransactionScreen extends BaseTransactionScreen {
   String get appBarTitle => 'Add Transaction';
 
   @override
-  String get actionButtonText => 'Save';
+  String get actionButtonText => 'Create';
 
   @override
   State<StatefulWidget> createState() => _AddTransactionScreenState();
@@ -20,6 +20,6 @@ class _AddTransactionScreenState
   @override
   VoidCallback get onActionPressed => () {
     getBloc<TransactionCubit>().createTransaction();
-    Navigator.of(context).pop();
+    navigator.pop();
   };
 }
