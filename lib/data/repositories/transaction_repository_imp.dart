@@ -27,4 +27,13 @@ class TransactionRepositoryImpl implements TransactionRepository {
   Future<void> deleteTransaction(int id) async {
     await _db.delete(id);
   }
+
+  @override
+  Future<Transaction?> getTransactionById(int id) async {
+    final entity = _db.get(id);
+    if (entity != null) {
+      return entity.toModel();
+    }
+    return null;
+  }
 }

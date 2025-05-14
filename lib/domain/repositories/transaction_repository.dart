@@ -5,9 +5,9 @@ abstract class TransactionRepository {
 
   Future<List<Transaction>> getAllTransactions();
 
-  Future<void> updateTransaction({
-    required Transaction transaction,
-  });
+  Future<void> updateTransaction({required Transaction transaction});
 
   Future<void> deleteTransaction(int id);
+
+  Future<Transaction?> getTransactionById(int id);
 }
