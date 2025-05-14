@@ -23,7 +23,6 @@ class _UpdateTransactionScreenState
   @override
   void initState() {
     super.initState();
-
     final updateTransaction = widget.transaction;
     titleController.text = updateTransaction.title;
     amountController.text = updateTransaction.amount.toString();
@@ -38,7 +37,7 @@ class _UpdateTransactionScreenState
 
   @override
   VoidCallback get onActionPressed => () {
-    getBloc<TransactionCubit>().updateTransaction(widget.transaction.id ?? 0);
+    getBloc<TransactionCubit>().updateTransaction(widget.transaction.id ?? -1);
     navigator.pop();
   };
 }

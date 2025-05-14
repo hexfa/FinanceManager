@@ -24,7 +24,6 @@ class TransactionCubit extends BaseCubit<TransactionState> {
   void updateType(TransactionType type) => safeEmit(state.copyWith(type: type));
 
   Future<void> createTransaction() async {
-    print('-----------------cubit');
     await transactionRepository.createTransaction(
       transaction: Transaction(
         title: state.title,
@@ -36,8 +35,9 @@ class TransactionCubit extends BaseCubit<TransactionState> {
     );
   }
 
-  Future<void> updateTransaction(int id) async {
+  Future<void> updateTransaction(int transactionId) async {
     final updatedTransaction = Transaction(
+      id: transactionId,
       title: state.title,
       amount: ConvertString.toDouble(state.amount),
       category: state.category.toCategoryType(),
@@ -46,7 +46,6 @@ class TransactionCubit extends BaseCubit<TransactionState> {
     );
 
     await transactionRepository.updateTransaction(
-      id: id,
       transaction: updatedTransaction,
     );
   }
