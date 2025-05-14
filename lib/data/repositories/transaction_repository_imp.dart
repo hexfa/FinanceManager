@@ -1,4 +1,3 @@
-import 'package:finance_manager/core/extension/entity_extension.dart';
 import 'package:finance_manager/data/mapper/transaction_mapper.dart';
 import 'package:finance_manager/data/models/transaction.dart';
 import 'package:finance_manager/domain/entities/transaction_entity.dart';
@@ -11,22 +10,17 @@ class TransactionRepositoryImpl implements TransactionRepository {
   @override
   Future<List<Transaction>> getAllTransactions() async {
     final transactions = _db.values.toList();
-    print('------------------- getAllTransactions ${transactions.length}');
     return transactions.map((entity) => entity.toModel()).toList();
   }
 
   @override
   Future<void> createTransaction({required Transaction transaction}) async {
-    await _db.add(transaction.toDb());
+    await _db.add(transaction.toEntity());
   }
 
   @override
-  Future<void> updateTransaction({
-    required int id,
-    required Transaction transaction,
-  }) async {
-    final box = Hive.box<TransactionEntity>('transactions');
-    await box.put(id, transaction.toDb());
+  Future<void> updateTransaction({required Transaction transaction}) async {
+    await _db.put(transaction.id, transaction.toEntity());
   }
 
   @override
