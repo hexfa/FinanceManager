@@ -18,5 +18,11 @@ void main() {
       expect(ConvertString.formatCurrencyFromString('abc'), '0');
       expect(ConvertString.formatCurrencyFromString('1,234'), '1,234'); // already formatted
     });
+
+    test('formatCurrencyFromDouble formats double values with commas', () {
+      expect(ConvertString.formatCurrencyFromDouble(1000), '1,000');
+      expect(ConvertString.formatCurrencyFromDouble(1234567.89), '1,234,568'); // rounded
+      expect(ConvertString.formatCurrencyFromDouble(0), '0');
+    });
   });
 }
