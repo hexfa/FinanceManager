@@ -40,11 +40,6 @@ class _HomeState extends BaseState<HomeScreen> with RouteAware {
   }
 
   @override
-  void didPopNext() {
-    homeBloc.loadInitialData();
-  }
-
-  @override
   Widget build(BuildContext context) {
     // List<PieData> data = [];
     List<Transaction> tranactions = [];
