@@ -1,3 +1,4 @@
+import 'package:finance_manager/core/constants/currency.dart';
 import 'package:finance_manager/core/di/di.dart';
 import 'package:finance_manager/presentation/bloc/setting/setting_cubit.dart';
 import 'package:finance_manager/presentation/bloc/setting/setting_state.dart';
@@ -25,7 +26,7 @@ class SettingScreen extends BaseStatelessWidget {
                 children: [
                   CustomDropdown(
                     label: 'Currency',
-                    items: ['USD', 'EUR', 'IRR'],
+                    items: worldCurrencies,
                     onChanged: (value) {
                       if (value != null) {
                         getBloc<SettingCubit>(context).changeCurrency(value);
