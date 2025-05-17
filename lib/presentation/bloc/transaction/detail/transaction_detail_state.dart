@@ -7,6 +7,10 @@ class TransactionDetailState extends BaseBlocState {
   const TransactionDetailState({this.transaction});
 
   TransactionDetailState copyWith({Transaction? transaction}) {
-    return TransactionDetailState(transaction: transaction ?? this.transaction);
+    Transaction? temp =  transaction ?? this.transaction;
+    return TransactionDetailState(transaction: temp);
   }
+
+  @override
+  List<Object?> get props => [transaction];
 }

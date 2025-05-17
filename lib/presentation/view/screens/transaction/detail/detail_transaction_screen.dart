@@ -1,6 +1,7 @@
 import 'package:finance_manager/core/utils/convert_string.dart';
 import 'package:finance_manager/data/models/app_bar_menu.dart';
 import 'package:finance_manager/data/models/transaction.dart';
+import 'package:finance_manager/main.dart';
 import 'package:finance_manager/presentation/bloc/transaction/detail/transaction_detail_cubit.dart';
 import 'package:finance_manager/presentation/bloc/transaction/detail/transaction_detail_state.dart';
 import 'package:finance_manager/presentation/navigation/route_path.dart';
@@ -21,13 +22,21 @@ class DetailTransactionScreen extends StatefulWidget {
       _DetailTransactionScreenState();
 }
 
-class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen> {
+class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen> with RouteAware {
   Transaction? transaction;
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     getBloc<TransactionDetailCubit>().getTransactionById(widget.transactionId);
+
+    routeObserver.subscribe(this, ModalRoute.of(context)!);
+  }
+
+  @override
+  void dispose() {
+    routeObserver.unsubscribe(this);
+    super.dispose();
   }
 
   @override
