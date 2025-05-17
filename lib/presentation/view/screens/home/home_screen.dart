@@ -154,7 +154,9 @@ PreferredSizeWidget _homeAbbBar(
           AppBarMenu(
             title: localization.setting,
             icon: Icons.settings,
-            onTap: () {},
+            onTap: () {
+              router.push(RoutePath.settingRoute);
+            },
           ),
         ],
       ),
