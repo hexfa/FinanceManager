@@ -5,6 +5,7 @@ import 'package:finance_manager/presentation/bloc/transaction/detail/transaction
 import 'package:finance_manager/presentation/bloc/transaction/transaction_cubit.dart';
 import 'package:finance_manager/presentation/navigation/route_path.dart';
 import 'package:finance_manager/presentation/view/screens/home/home_screen.dart';
+import 'package:finance_manager/presentation/view/screens/setting/setting_screen.dart';
 import 'package:finance_manager/presentation/view/screens/transaction/create/create_transaction_screen.dart';
 import 'package:finance_manager/presentation/view/screens/transaction/detail/detail_transaction_screen.dart';
 import 'package:finance_manager/presentation/view/screens/transaction/update/update_transaction_screen.dart';
@@ -65,6 +66,15 @@ class AppRouter {
                 transaction: state.extra as Transaction,
               ),
             ),
+          );
+        },
+      ),
+      GoRoute(
+        path: RoutePath.settingRoute,
+        pageBuilder: (context, state) {
+          return _buildTransitionPage(
+            key: state.pageKey,
+            child: SettingScreen(),
           );
         },
       ),
