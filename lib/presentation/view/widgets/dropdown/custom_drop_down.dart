@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class CustomDropdown extends BaseStatelessWidget {
   final List<String> items;
-  final String? selectedValue;
+  final String? value;
   final String? label;
   final ValueChanged<String?> onChanged;
 
@@ -12,14 +12,14 @@ class CustomDropdown extends BaseStatelessWidget {
     super.key,
     required this.items,
     required this.onChanged,
-    this.selectedValue,
+    this.value,
     this.label,
   });
 
   @override
   Widget build(BuildContext context) {
     return DropdownButtonFormField<String>(
-      value: selectedValue,
+      value: value,
       items:
           items
               .map((item) => DropdownMenuItem(value: item, child: Text(item)))

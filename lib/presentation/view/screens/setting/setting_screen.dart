@@ -1,5 +1,4 @@
 import 'package:finance_manager/core/constants/currency.dart';
-import 'package:finance_manager/core/di/di.dart';
 import 'package:finance_manager/presentation/bloc/setting/setting_cubit.dart';
 import 'package:finance_manager/presentation/bloc/setting/setting_state.dart';
 import 'package:finance_manager/presentation/view/base/base_stateless_widget.dart';
@@ -14,38 +13,36 @@ class SettingScreen extends BaseStatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => getIt<SettingCubit>(),
-      child: Scaffold(
-        appBar: CustomAppBar(title: 'Settings'),
-        body: BlocBuilder<SettingCubit, SettingState>(
-          builder: (context, state) {
-            return Padding(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                children: [
-                  CustomDropdown(
-                    label: 'Currency',
-                    items: worldCurrencies,
-                    onChanged: (value) {
-                      if (value != null) {
-                        getBloc<SettingCubit>(context).changeCurrency(value);
-                      }
-                    },
-                  ),
-                  SizedBox(height: 16),
-                  CustomSwitch(
-                    label: 'Dark Theme',
-                    value: state.isDarkTheme,
-                    onChanged: (value) {
-                      getBloc<SettingCubit>(context).toggleDarkTheme(value);
-                    },
-                  ),
-                ],
-              ),
-            );
-          },
-        ),
+    return Scaffold(
+      appBar: CustomAppBar(title: localization(context).settings),
+      body: BlocBuilder<SettingCubit, SettingState>(
+        builder: (context, state) {
+          return Padding(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              children: [
+                CustomDropdown(
+                  label: localization(context).currency,
+                  value: state.currency,
+                  items: worldCurrencies,
+                  onChanged: (value) {
+                    if (value != null) {
+                      getBloc<SettingCubit>(context).changeCurrency(value);
+                    }
+                  },
+                ),
+                SizedBox(height: 16),
+                CustomSwitch(
+                  label: localization(context).darkTheme,
+                  value: state.isDarkTheme,
+                  onChanged: (value) {
+                    getBloc<SettingCubit>(context).toggleDarkTheme(value);
+                  },
+                ),
+              ],
+            ),
+          );
+        },
       ),
     );
   }

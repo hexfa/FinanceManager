@@ -1,25 +1,39 @@
+import 'package:finance_manager/data/datasource/sharepref_data_source.dart';
+import 'package:finance_manager/data/repositories/setting_repository_imp.dart';
 import 'package:finance_manager/data/repositories/transaction_repository_imp.dart';
+import 'package:finance_manager/domain/repositories/setting_repository.dart';
 import 'package:finance_manager/domain/repositories/transaction_repository.dart';
 import 'package:finance_manager/presentation/bloc/home/home_cubit.dart';
 import 'package:finance_manager/presentation/bloc/setting/setting_cubit.dart';
 import 'package:finance_manager/presentation/bloc/transaction/detail/transaction_detail_cubit.dart';
 import 'package:finance_manager/presentation/bloc/transaction/transaction_cubit.dart';
 import 'package:get_it/get_it.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 final getIt = GetIt.instance;
 
 Future<void> setup() async {
+  await _registerDataSource();
   _registerRepositories();
   _registerBlocs();
+}
+
+Future<void> _registerDataSource() async {
+  getIt.registerSingleton<ShareprefDataSource>(
+    ShareprefDataSource(await SharedPreferences.getInstance()),
+  );
 }
 
 void _registerRepositories() {
   getIt.registerLazySingleton<TransactionRepository>(
     () => TransactionRepositoryImpl(),
   );
+  getIt.registerSingleton<SettingRepository>(
+    SettingRepositoryImpl(getIt<ShareprefDataSource>()),
+  );
 }
 
-void _registerBlocs() {
+Future<void> _registerBlocs() async {
   getIt.registerFactory<HomeCubit>(
     () => HomeCubit(transactionRepository: getIt<TransactionRepository>()),
   );
@@ -32,5 +46,7 @@ void _registerBlocs() {
       transactionRepository: getIt<TransactionRepository>(),
     ),
   );
-  getIt.registerFactory<SettingCubit>(() => SettingCubit());
+  getIt.registerFactory<SettingCubit>(
+    () => SettingCubit(getIt<SettingRepository>()),
+  );
 }
