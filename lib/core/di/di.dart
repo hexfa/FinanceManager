@@ -28,6 +28,9 @@ void _registerRepositories() {
   getIt.registerLazySingleton<TransactionRepository>(
     () => TransactionRepositoryImpl(),
   );
+  getIt.registerSingleton<SettingRepository>(
+    SettingRepositoryImpl(getIt<ShareprefDataSource>()),
+  );
 }
 
 void _registerBlocs() {
