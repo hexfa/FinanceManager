@@ -14,7 +14,7 @@ class SettingScreen extends BaseStatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: 'Settings'),
+      appBar: CustomAppBar(title: localization(context).settings),
       body: BlocBuilder<SettingCubit, SettingState>(
         builder: (context, state) {
           return Padding(
@@ -22,7 +22,7 @@ class SettingScreen extends BaseStatelessWidget {
             child: Column(
               children: [
                 CustomDropdown(
-                  label: 'Currency',
+                  label: localization(context).currency,
                   value: state.currency,
                   items: worldCurrencies,
                   onChanged: (value) {
@@ -33,7 +33,7 @@ class SettingScreen extends BaseStatelessWidget {
                 ),
                 SizedBox(height: 16),
                 CustomSwitch(
-                  label: 'Dark Theme',
+                  label: localization(context).darkTheme,
                   value: state.isDarkTheme,
                   onChanged: (value) {
                     getBloc<SettingCubit>(context).toggleDarkTheme(value);
