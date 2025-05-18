@@ -15,5 +15,8 @@
   "delete": "Delete",
   "deleteTransaction": "Delete Transaction",
   "areYouSureYouWantToDeleteThisTransaction": "Are you sure you want to delete this transaction?",
-  "cancel": "Cancel"
+  "cancel": "Cancel",
+  "settings": "Settings",
+  "currency": "Currency",
+  "darkTheme": "Dark Theme"
 }
