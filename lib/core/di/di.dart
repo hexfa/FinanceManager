@@ -13,7 +13,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 final getIt = GetIt.instance;
 
 Future<void> setup() async {
- await _registerDataSource();
+  await _registerDataSource();
   _registerRepositories();
   _registerBlocs();
 }
@@ -33,7 +33,7 @@ void _registerRepositories() {
   );
 }
 
-void _registerBlocs() {
+Future<void> _registerBlocs() async {
   getIt.registerFactory<HomeCubit>(
     () => HomeCubit(transactionRepository: getIt<TransactionRepository>()),
   );
@@ -46,5 +46,7 @@ void _registerBlocs() {
       transactionRepository: getIt<TransactionRepository>(),
     ),
   );
-  getIt.registerFactory<SettingCubit>(() => SettingCubit());
+  getIt.registerFactory<SettingCubit>(
+    () => SettingCubit(getIt<SettingRepository>()),
+  );
 }
