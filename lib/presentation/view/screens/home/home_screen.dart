@@ -44,7 +44,7 @@ class _HomeState extends BaseState<HomeScreen> with RouteAware {
   Widget build(BuildContext context) {
     // List<PieData> data = [];
     List<Transaction> tranactions = [];
-    String balance = '\$2,455';
+    double balance = 0;
     double income = 0;
     double expense = 0;
 
@@ -55,6 +55,7 @@ class _HomeState extends BaseState<HomeScreen> with RouteAware {
           tranactions = state.transactionList;
           income = state.income;
           expense = state.expense;
+          balance = state.balance;
         }
 
         return Scaffold(
@@ -64,7 +65,7 @@ class _HomeState extends BaseState<HomeScreen> with RouteAware {
             child: Center(
               child: Column(
                 children: [
-                  Text(balance, style: theme.textTheme.titleLarge),
+                  Text(ConvertString.formatCurrencyFromDouble(balance), style: theme.textTheme.titleLarge),
                   IncomeExpenseSummary(income: ConvertString.formatCurrencyFromDouble(income), expense: ConvertString.formatCurrencyFromDouble(expense)),
                   // CustomPieChart(data: data),
                   Card(

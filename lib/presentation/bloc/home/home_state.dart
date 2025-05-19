@@ -11,12 +11,14 @@ final class InitialData extends HomeState {
   final List<Transaction> transactionList;
   final double income;
   final double expense;
+  final double balance;
 
   InitialData(
     this.dataList,
     this.transactionList,
     this.income,
     this.expense,
+    this.balance,
   );
 
   @override
@@ -25,5 +27,6 @@ final class InitialData extends HomeState {
     transactionList,
     income,
     expense,
+    balance,
   ];
 }
