@@ -25,4 +25,7 @@ class _AddTransactionScreenState
 
   @override
   String get categoryLabel => 'Category';
+
+  @override
+  DateTime get dateLabel => DateTime.now();
 }
