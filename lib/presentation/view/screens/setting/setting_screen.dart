@@ -1,4 +1,5 @@
-import 'package:finance_manager/core/constants/currency.dart';
+import 'package:finance_manager/core/constants/currency_list.dart';
+import 'package:finance_manager/data/models/currency.dart';
 import 'package:finance_manager/presentation/bloc/setting/setting_cubit.dart';
 import 'package:finance_manager/presentation/bloc/setting/setting_state.dart';
 import 'package:finance_manager/presentation/view/base/base_stateless_widget.dart';
@@ -21,15 +22,17 @@ class SettingScreen extends BaseStatelessWidget {
             padding: const EdgeInsets.all(16),
             child: Column(
               children: [
-                CustomDropdown(
-                  label: localization(context).currency,
+                CustomDropdown<Currency>(
+                  items: currencyList,
                   value: state.currency,
-                  items: worldCurrencies,
                   onChanged: (value) {
                     if (value != null) {
                       getBloc<SettingCubit>(context).changeCurrency(value);
                     }
                   },
+                  label: localization(context).currency,
+                  itemLabelBuilder:
+                      (currency) => '${currency.code} - ${currency.name}',
                 ),
                 SizedBox(height: 16),
                 CustomSwitch(
