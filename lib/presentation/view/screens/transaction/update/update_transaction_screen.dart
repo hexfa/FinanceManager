@@ -40,4 +40,7 @@ class _UpdateTransactionScreenState
     getBloc<TransactionCubit>().updateTransaction(widget.transaction.id ?? -1);
     navigator.pop();
   };
+
+  @override
+  String get categoryLabel => widget.transaction.category.name;
 }
