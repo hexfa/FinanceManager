@@ -5,8 +5,13 @@ import 'package:intl/intl.dart';
 
 class DateTimePickerContainer extends StatefulWidget {
   final ValueChanged<DateTime> onDateTimeSelected;
+  final DateTime? initialDateTime;
 
-  const DateTimePickerContainer({super.key, required this.onDateTimeSelected});
+  const DateTimePickerContainer({
+    super.key,
+    required this.onDateTimeSelected,
+    this.initialDateTime,
+  });
 
   @override
   State<DateTimePickerContainer> createState() =>
@@ -15,6 +20,12 @@ class DateTimePickerContainer extends StatefulWidget {
 
 class _DateTimePickerContainerState extends BaseState<DateTimePickerContainer> {
   DateTime? selectedDateTime;
+
+  @override
+  void initState() {
+    super.initState();
+    selectedDateTime = widget.initialDateTime;
+  }
 
   Future<void> _pickDateTime(BuildContext context) async {
     final now = DateTime.now();
@@ -52,10 +63,9 @@ class _DateTimePickerContainerState extends BaseState<DateTimePickerContainer> {
 
   @override
   Widget build(BuildContext context) {
-    final displayText =
-        selectedDateTime != null
-            ? DateFormat('yyyy/MM/dd – HH:mm').format(selectedDateTime!)
-            : DateFormat('yyyy/MM/dd – HH:mm').format(DateTime.now());
+    final displayText = DateFormat(
+      'yyyy/MM/dd – HH:mm',
+    ).format(selectedDateTime ?? DateTime.now());
 
     return InkWell(
       onTap: () => _pickDateTime(context),
