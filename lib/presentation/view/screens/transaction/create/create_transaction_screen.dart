@@ -22,4 +22,7 @@ class _AddTransactionScreenState
     getBloc<TransactionCubit>().createTransaction();
     navigator.pop();
   };
+
+  @override
+  String get categoryLabel => 'Category';
 }
