@@ -24,6 +24,7 @@ abstract class BaseTransactionScreenState<T extends BaseTransactionScreen>
   late TextEditingController amountController;
 
   VoidCallback get onActionPressed;
+  String get categoryLabel;
 
   @override
   void initState() {
@@ -63,7 +64,7 @@ abstract class BaseTransactionScreenState<T extends BaseTransactionScreen>
             ),
             const SizedBox(height: 16),
             CustomDropdown(
-              label: 'Category',
+              label: categoryLabel,
               items: ['Business', 'Food', 'Sport', 'Education', 'Other'],
               onChanged: (value) {
                 context.read<TransactionCubit>().updateCategory(value ?? '');
