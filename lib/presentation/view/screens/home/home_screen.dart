@@ -1,3 +1,4 @@
+import 'package:finance_manager/core/utils/convert_string.dart';
 import 'package:finance_manager/data/models/app_bar_menu.dart';
 import 'package:finance_manager/data/models/transaction.dart';
 import 'package:finance_manager/main.dart';
@@ -44,7 +45,7 @@ class _HomeState extends BaseState<HomeScreen> with RouteAware {
     // List<PieData> data = [];
     List<Transaction> tranactions = [];
     String balance = '\$2,455';
-    String income = '\$1,500';
+    double income = 0;
     String expense = '\$343,0';
 
     return BlocBuilder<HomeCubit, HomeState>(
@@ -52,6 +53,7 @@ class _HomeState extends BaseState<HomeScreen> with RouteAware {
         if (state is InitialData) {
           // data = state.dataList;
           tranactions = state.transactionList;
+          income = state.income;
         }
 
         return Scaffold(
@@ -62,7 +64,7 @@ class _HomeState extends BaseState<HomeScreen> with RouteAware {
               child: Column(
                 children: [
                   Text(balance, style: theme.textTheme.titleLarge),
-                  IncomeExpenseSummary(income: income, expense: expense),
+                  IncomeExpenseSummary(income: ConvertString.formatCurrencyFromDouble(income), expense: expense),
                   // CustomPieChart(data: data),
                   Card(
                     color: theme.colorScheme.surfaceContainer,

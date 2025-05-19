@@ -1,3 +1,4 @@
+import 'package:finance_manager/core/utils/transaction_type.dart';
 import 'package:finance_manager/data/models/PieData.dart';
 import 'package:finance_manager/domain/repositories/transaction_repository.dart';
 import 'package:finance_manager/presentation/bloc/base/base_cubit.dart';
@@ -19,6 +20,11 @@ class HomeCubit extends BaseCubit<HomeState> {
 
   Future<void> loadInitialData() async {
     final transactions = await transactionRepository.getAllTransactions();
-    emit(InitialData(data, transactions));
+
+    final income = transactions
+        .where((transaction) => transaction.type == TransactionType.income)
+        .fold<double>(0, (sum, transaction) => sum + transaction.amount);
+
+    emit(InitialData(data, transactions, income));
   }
 }
