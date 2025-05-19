@@ -27,6 +27,8 @@ abstract class BaseTransactionScreenState<T extends BaseTransactionScreen>
 
   String get categoryLabel;
 
+  DateTime get dateLabel;
+
   @override
   void initState() {
     super.initState();
@@ -73,6 +75,7 @@ abstract class BaseTransactionScreenState<T extends BaseTransactionScreen>
             ),
             const SizedBox(height: 16),
             DateTimePickerContainer(
+              initialDateTime: dateLabel,
               onDateTimeSelected: (selectedDateTime) {
                 getBloc<TransactionCubit>().updateDate(selectedDateTime);
               },
