@@ -64,7 +64,7 @@ abstract class BaseTransactionScreenState<T extends BaseTransactionScreen>
             const SizedBox(height: 16),
             CustomDropdown(
               label: 'Category',
-              items: ['Work', 'Sport', 'Education', 'Other'],
+              items: ['Business', 'Food', 'Sport', 'Education', 'Other'],
               onChanged: (value) {
                 context.read<TransactionCubit>().updateCategory(value ?? '');
               },
