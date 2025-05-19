@@ -24,6 +24,7 @@ abstract class BaseTransactionScreenState<T extends BaseTransactionScreen>
   late TextEditingController amountController;
 
   VoidCallback get onActionPressed;
+
   String get categoryLabel;
 
   @override
@@ -33,10 +34,10 @@ abstract class BaseTransactionScreenState<T extends BaseTransactionScreen>
     amountController = TextEditingController();
 
     titleController.addListener(() {
-      context.read<TransactionCubit>().updateTitle(titleController.text);
+      getBloc<TransactionCubit>().updateTitle(titleController.text);
     });
     amountController.addListener(() {
-      context.read<TransactionCubit>().updateAmount(amountController.text);
+      getBloc<TransactionCubit>().updateAmount(amountController.text);
     });
   }
 
@@ -67,13 +68,13 @@ abstract class BaseTransactionScreenState<T extends BaseTransactionScreen>
               label: categoryLabel,
               items: ['Business', 'Food', 'Sport', 'Education', 'Other'],
               onChanged: (value) {
-                context.read<TransactionCubit>().updateCategory(value ?? '');
+                getBloc<TransactionCubit>().updateCategory(value ?? '');
               },
             ),
             const SizedBox(height: 16),
             DateTimePickerContainer(
               onDateTimeSelected: (selectedDateTime) {
-                context.read<TransactionCubit>().updateDate(selectedDateTime);
+                getBloc<TransactionCubit>().updateDate(selectedDateTime);
               },
             ),
             const SizedBox(height: 16),
@@ -82,7 +83,7 @@ abstract class BaseTransactionScreenState<T extends BaseTransactionScreen>
                 return CustomTypeSelector(
                   selectedType: state.type,
                   onChanged: (type) {
-                    context.read<TransactionCubit>().updateType(type);
+                    getBloc<TransactionCubit>().updateType(type);
                   },
                 );
               },
