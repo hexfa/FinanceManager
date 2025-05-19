@@ -25,6 +25,10 @@ class HomeCubit extends BaseCubit<HomeState> {
         .where((transaction) => transaction.type == TransactionType.income)
         .fold<double>(0, (sum, transaction) => sum + transaction.amount);
 
-    emit(InitialData(data, transactions, income));
+    final expense = transactions
+        .where((transaction) => transaction.type == TransactionType.expense)
+        .fold<double>(0, (sum, transaction) => sum + transaction.amount);
+
+    emit(InitialData(data, transactions, income, expense));
   }
 }

@@ -46,7 +46,7 @@ class _HomeState extends BaseState<HomeScreen> with RouteAware {
     List<Transaction> tranactions = [];
     String balance = '\$2,455';
     double income = 0;
-    String expense = '\$343,0';
+    double expense = 0;
 
     return BlocBuilder<HomeCubit, HomeState>(
       builder: (context, state) {
@@ -54,6 +54,7 @@ class _HomeState extends BaseState<HomeScreen> with RouteAware {
           // data = state.dataList;
           tranactions = state.transactionList;
           income = state.income;
+          expense = state.expense;
         }
 
         return Scaffold(
@@ -64,7 +65,7 @@ class _HomeState extends BaseState<HomeScreen> with RouteAware {
               child: Column(
                 children: [
                   Text(balance, style: theme.textTheme.titleLarge),
-                  IncomeExpenseSummary(income: ConvertString.formatCurrencyFromDouble(income), expense: expense),
+                  IncomeExpenseSummary(income: ConvertString.formatCurrencyFromDouble(income), expense: ConvertString.formatCurrencyFromDouble(expense)),
                   // CustomPieChart(data: data),
                   Card(
                     color: theme.colorScheme.surfaceContainer,

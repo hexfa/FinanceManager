@@ -10,9 +10,20 @@ final class InitialData extends HomeState {
   final List<PieData> dataList;
   final List<Transaction> transactionList;
   final double income;
+  final double expense;
 
-  InitialData(this.dataList, this.transactionList, this.income);
+  InitialData(
+    this.dataList,
+    this.transactionList,
+    this.income,
+    this.expense,
+  );
 
   @override
-  List<Object?> get props => [dataList, transactionList, income];
+  List<Object?> get props => [
+    dataList,
+    transactionList,
+    income,
+    expense,
+  ];
 }
