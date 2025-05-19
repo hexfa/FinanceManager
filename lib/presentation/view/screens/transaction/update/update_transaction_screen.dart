@@ -43,4 +43,7 @@ class _UpdateTransactionScreenState
 
   @override
   String get categoryLabel => widget.transaction.category.name;
+
+  @override
+  DateTime get dateLabel => widget.transaction.date;
 }
