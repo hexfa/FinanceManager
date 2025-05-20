@@ -31,6 +31,6 @@ class HomeCubit extends BaseCubit<HomeState> {
 
     final balance = income - expense;
 
-    emit(InitialData(data, transactions, income, expense, balance));
+    emit(InitialData(data, transactions.take(10).toList(), income, expense, balance));
   }
 }
