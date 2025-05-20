@@ -8,6 +8,7 @@ import 'package:finance_manager/presentation/view/screens/home/home_screen.dart'
 import 'package:finance_manager/presentation/view/screens/setting/setting_screen.dart';
 import 'package:finance_manager/presentation/view/screens/transaction/create/create_transaction_screen.dart';
 import 'package:finance_manager/presentation/view/screens/transaction/detail/detail_transaction_screen.dart';
+import 'package:finance_manager/presentation/view/screens/transaction/list/transaction_list_screen.dart';
 import 'package:finance_manager/presentation/view/screens/transaction/update/update_transaction_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -75,6 +76,15 @@ class AppRouter {
           return _buildTransitionPage(
             key: state.pageKey,
             child: SettingScreen(),
+          );
+        },
+      ),
+      GoRoute(
+        path: RoutePath.transactionListRoute,
+        pageBuilder: (context, state) {
+          return _buildTransitionPage(
+            key: state.pageKey,
+            child: TransactionListScreen(),
           );
         },
       ),
