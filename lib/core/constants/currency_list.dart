@@ -39,7 +39,7 @@ extension CurrencyCodeExtension on String {
   Currency toCurrency() {
     return currencyList.firstWhere(
       (currency) => currency.code == this,
-      orElse: () => Currency(code: this, name: this),
+      orElse: () => Currency(code: 'USD', name: 'US Dollar'),
     );
   }
 }
