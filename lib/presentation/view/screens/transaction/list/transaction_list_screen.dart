@@ -1,4 +1,5 @@
 import 'package:finance_manager/presentation/view/base/base_stateless_widget.dart';
+import 'package:finance_manager/presentation/view/widgets/appbar/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 
 class TransactionListScreen extends BaseStatelessWidget {
@@ -6,6 +7,6 @@ class TransactionListScreen extends BaseStatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text('transaction List'));
+    return Scaffold(appBar: CustomAppBar(title: 'Transaction'));
   }
 }
