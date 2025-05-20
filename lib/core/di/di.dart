@@ -8,6 +8,7 @@ import 'package:finance_manager/domain/repositories/transaction_repository.dart'
 import 'package:finance_manager/presentation/bloc/home/home_cubit.dart';
 import 'package:finance_manager/presentation/bloc/setting/setting_cubit.dart';
 import 'package:finance_manager/presentation/bloc/transaction/detail/transaction_detail_cubit.dart';
+import 'package:finance_manager/presentation/bloc/transaction/list/transaction_list_cubit.dart';
 import 'package:finance_manager/presentation/bloc/transaction/transaction_cubit.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive_flutter/adapters.dart';
@@ -54,5 +55,10 @@ Future<void> _registerBlocs() async {
   );
   getIt.registerFactory<SettingCubit>(
     () => SettingCubit(getIt<SettingRepository>()),
+  );
+  getIt.registerFactory<TransactionListCubit>(
+    () => TransactionListCubit(
+      transactionRepository: getIt<TransactionRepository>(),
+    ),
   );
 }
