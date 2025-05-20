@@ -65,8 +65,14 @@ class _HomeState extends BaseState<HomeScreen> with RouteAware {
             child: Center(
               child: Column(
                 children: [
-                  Text(ConvertString.formatCurrencyFromDouble(balance), style: theme.textTheme.titleLarge),
-                  IncomeExpenseSummary(income: ConvertString.formatCurrencyFromDouble(income), expense: ConvertString.formatCurrencyFromDouble(expense)),
+                  Text(
+                    ConvertString.formatCurrencyFromDouble(balance),
+                    style: theme.textTheme.titleLarge,
+                  ),
+                  IncomeExpenseSummary(
+                    income: ConvertString.formatCurrencyFromDouble(income),
+                    expense: ConvertString.formatCurrencyFromDouble(expense),
+                  ),
                   // CustomPieChart(data: data),
                   Card(
                     color: theme.colorScheme.surfaceContainer,
@@ -94,11 +100,16 @@ class _HomeState extends BaseState<HomeScreen> with RouteAware {
                                     color: theme.colorScheme.onSurface,
                                   ),
                                 ),
-                                Text(
-                                  localization.seeAll,
-                                  style: theme.textTheme.titleSmall?.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                    color: theme.colorScheme.surfaceDim,
+                                InkWell(
+                                  onTap: () {
+                                    router.push(RoutePath.transactionListRoute);
+                                  },
+                                  child: Text(
+                                    localization.seeAll,
+                                    style: theme.textTheme.titleSmall?.copyWith(
+                                      fontWeight: FontWeight.bold,
+                                      color: theme.colorScheme.surfaceDim,
+                                    ),
                                   ),
                                 ),
                               ],
