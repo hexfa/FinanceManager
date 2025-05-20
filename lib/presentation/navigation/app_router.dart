@@ -2,6 +2,7 @@ import 'package:finance_manager/core/di/di.dart';
 import 'package:finance_manager/data/models/transaction.dart';
 import 'package:finance_manager/presentation/bloc/home/home_cubit.dart';
 import 'package:finance_manager/presentation/bloc/transaction/detail/transaction_detail_cubit.dart';
+import 'package:finance_manager/presentation/bloc/transaction/list/transaction_list_cubit.dart';
 import 'package:finance_manager/presentation/bloc/transaction/transaction_cubit.dart';
 import 'package:finance_manager/presentation/navigation/route_path.dart';
 import 'package:finance_manager/presentation/view/screens/home/home_screen.dart';
@@ -84,7 +85,10 @@ class AppRouter {
         pageBuilder: (context, state) {
           return _buildTransitionPage(
             key: state.pageKey,
-            child: TransactionListScreen(),
+            child: BlocProvider(
+              create: (_) => getIt<TransactionListCubit>()..loadInitialData(),
+              child: TransactionListScreen(),
+            ),
           );
         },
       ),
