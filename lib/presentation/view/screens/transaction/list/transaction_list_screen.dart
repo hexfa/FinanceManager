@@ -22,10 +22,13 @@ class TransactionListScreen extends BaseStatelessWidget {
           appBar: CustomAppBar(
             title: 'Transaction',
             actions: [
-              Text(
-                '${transactions.length}',
-                style: theme(context).textTheme.titleMedium?.copyWith(
-                  color: theme(context).colorScheme.onSurface,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Text(
+                  '${transactions.length}',
+                  style: theme(context).textTheme.titleMedium?.copyWith(
+                    color: theme(context).colorScheme.onSurface,
+                  ),
                 ),
               ),
             ],
