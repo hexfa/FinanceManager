@@ -1,4 +1,4 @@
-import 'package:finance_manager/data/models/PieData.dart';
+import 'package:finance_manager/data/models/pie_data.dart';
 import 'package:finance_manager/presentation/view/base/base_stateless_widget.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
