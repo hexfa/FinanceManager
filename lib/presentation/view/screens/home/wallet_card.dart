@@ -1,11 +1,13 @@
+import 'package:finance_manager/core/utils/convert_string.dart';
 import 'package:finance_manager/presentation/view/base/base_stateless_widget.dart';
 import 'package:finance_manager/presentation/view/screens/home/income_expense_summury.dart';
+import 'package:finance_manager/presentation/view/widgets/currency_label.dart';
 import 'package:flutter/material.dart';
 
 class WalletCard extends BaseStatelessWidget {
-  final String balance;
-  final String income;
-  final String expense;
+  final double balance;
+  final double income;
+  final double expense;
 
   const WalletCard({
     super.key,
@@ -35,15 +37,11 @@ class WalletCard extends BaseStatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(
-              balance,
-              style: theme(context).textTheme.titleLarge?.copyWith(
-                color: theme(context).colorScheme.onPrimary,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
+            CurrencyLabel(icon: Icons.currency_exchange, balance: balance),
             const SizedBox(height: 8),
-            IncomeExpenseSummary(income: income, expense: expense),
+            IncomeExpenseSummary(
+                income: ConvertString.formatCurrencyFromDouble(income),
+                expense: ConvertString.formatCurrencyFromDouble(expense)),
           ],
         ),
       ),
