@@ -43,7 +43,7 @@ class _HomeState extends BaseState<HomeScreen> with RouteAware {
   @override
   Widget build(BuildContext context) {
     // List<PieData> data = [];
-    List<Transaction> tranactions = [];
+    List<Transaction> transaction = [];
     double balance = 0;
     double income = 0;
     double expense = 0;
@@ -52,7 +52,7 @@ class _HomeState extends BaseState<HomeScreen> with RouteAware {
       builder: (context, state) {
         if (state is InitialData) {
           // data = state.dataList;
-          tranactions = state.transactionList;
+          transaction = state.transactionList;
           income = state.income;
           expense = state.expense;
           balance = state.balance;
@@ -115,7 +115,7 @@ class _HomeState extends BaseState<HomeScreen> with RouteAware {
                               ],
                             ),
                           ),
-                          TransactionTile(data: tranactions),
+                          TransactionTile(data: transaction),
                         ],
                       ),
                     ),
