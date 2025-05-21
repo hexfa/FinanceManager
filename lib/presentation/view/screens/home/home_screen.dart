@@ -44,9 +44,7 @@ class _HomeState extends BaseState<HomeScreen> with RouteAware {
   Widget build(BuildContext context) {
     // List<PieData> data = [];
     List<Transaction> transaction = [];
-    double balance = 0;
-    double income = 0;
-    double expense = 0;
+    double balance = 0, income = 0, expense = 0;
 
     return BlocBuilder<HomeCubit, HomeState>(
       builder: (context, state) {
