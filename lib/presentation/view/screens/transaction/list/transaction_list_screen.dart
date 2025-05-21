@@ -2,6 +2,7 @@ import 'package:finance_manager/data/models/transaction.dart';
 import 'package:finance_manager/presentation/bloc/transaction/list/transaction_list_cubit.dart';
 import 'package:finance_manager/presentation/bloc/transaction/list/transaction_list_state.dart';
 import 'package:finance_manager/presentation/view/base/base_stateless_widget.dart';
+import 'package:finance_manager/presentation/view/screens/home/transaction_tile.dart';
 import 'package:finance_manager/presentation/view/widgets/appbar/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -29,6 +30,7 @@ class TransactionListScreen extends BaseStatelessWidget {
               ),
             ],
           ),
+          body: TransactionTile(data: transactions),
         );
       },
     );
