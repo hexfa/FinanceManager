@@ -25,7 +25,7 @@ class TransactionListScreen extends BaseStatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Text(
-                  '${transactions.length}',
+                  '${transactions.length} count',
                   style: theme(context).textTheme.titleMedium?.copyWith(
                     color: theme(context).colorScheme.onSurface,
                   ),
