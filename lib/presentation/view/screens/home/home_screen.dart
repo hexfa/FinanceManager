@@ -7,7 +7,7 @@ import 'package:finance_manager/presentation/bloc/home/home_state.dart';
 import 'package:finance_manager/presentation/navigation/route_path.dart';
 import 'package:finance_manager/presentation/view/base/base_state.dart';
 import 'package:finance_manager/presentation/view/screens/home/transaction_tile.dart';
-import 'package:finance_manager/presentation/view/screens/home/income_expense_summury.dart';
+import 'package:finance_manager/presentation/view/screens/home/wallet_card.dart';
 import 'package:finance_manager/presentation/view/widgets/appbar/custom_app_bar_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -63,11 +63,8 @@ class _HomeState extends BaseState<HomeScreen> with RouteAware {
             child: Center(
               child: Column(
                 children: [
-                  Text(
-                    ConvertString.formatCurrencyFromDouble(balance),
-                    style: theme.textTheme.titleLarge,
-                  ),
-                  IncomeExpenseSummary(
+                  WalletCard(
+                    balance: ConvertString.formatCurrencyFromDouble(balance),
                     income: ConvertString.formatCurrencyFromDouble(income),
                     expense: ConvertString.formatCurrencyFromDouble(expense),
                   ),
