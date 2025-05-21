@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 /// Light Theme Colors
-const Color primaryColor = Colors.blue;
+const Color primaryColor = Colors.green;
 const Color onPrimaryColor = Colors.white;
 const Color card = Colors.white;
 const Color onCard = Colors.black87;
