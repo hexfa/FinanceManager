@@ -64,9 +64,9 @@ class _HomeState extends BaseState<HomeScreen> with RouteAware {
               child: Column(
                 children: [
                   WalletCard(
-                    balance: ConvertString.formatCurrencyFromDouble(balance),
-                    income: ConvertString.formatCurrencyFromDouble(income),
-                    expense: ConvertString.formatCurrencyFromDouble(expense),
+                    balance: balance,
+                    income: income,
+                    expense: expense,
                   ),
                   // CustomPieChart(data: data),
                   Card(
