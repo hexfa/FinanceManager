@@ -21,8 +21,9 @@ class Transaction {
   }) : _amount = amount;
 
   double get amount {
-    final currency = CurrencyService().currencyCode;
-    final rate = exchangeRates[currency] ?? 1.0;
-    return _amount * rate;
+    // final currency = CurrencyService().currencyCode;
+    // final rate = exchangeRates[currency] ?? 1.0;
+    // return _amount * rate;
+    return _amount;
   }
 }
