@@ -44,5 +44,9 @@ void main() {
       expect(ConvertString.formatCurrencyFromDouble(-1234567.89), '-1,234,568');
     });
 
+    test('toDouble handles negative numbers with commas', () {
+      expect(ConvertString.toDouble('-1,000'), -1000.0);
+    });
+
   });
 }
