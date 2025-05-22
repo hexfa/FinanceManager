@@ -9,5 +9,12 @@ void main() {
       expect('education'.toCategoryType(), CategoryType.education);
       expect('sport'.toCategoryType(), CategoryType.sport);
     });
+
+    test('returns CategoryType.other for unknown or invalid strings', () {
+      expect('travel'.toCategoryType(), CategoryType.other);
+      expect('randomString'.toCategoryType(), CategoryType.other);
+      expect(''.toCategoryType(), CategoryType.other);
+      expect('123'.toCategoryType(), CategoryType.other);
+    });
   });
 }
