@@ -7,5 +7,10 @@ void main() {
       expect('EUR'.toCurrency().name, 'Euro');
       expect('JPY'.toCurrency().name, 'Japanese Yen');
     });
+
+    test('returns USD Currency for unknown code', () {
+      expect('XYZ'.toCurrency().code, 'USD');
+      expect('XYZ'.toCurrency().name, 'US Dollar');
+    });
   });
 }
