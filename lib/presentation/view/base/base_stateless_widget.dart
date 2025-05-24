@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 // import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
 /// BaseStatelessWidget provides common utilities and methods for stateless widgets
@@ -61,18 +62,18 @@ abstract class BaseStatelessWidget extends StatelessWidget {
   double screenHeight(BuildContext context) => mediaQuery(context).size.height;
 
   //Get custom icon from assets
-  // SvgPicture getIcon(String iconPath, {Color? color, double size = 20}) =>
-  //     SvgPicture.asset(
-  //       iconPath,
-  //       width: size,
-  //       height: size,
-  //       colorFilter: color != null
-  //           ? ColorFilter.mode(
-  //               color,
-  //               BlendMode.srcIn,
-  //             )
-  //           : null,
-  //     );
+  SvgPicture getIcon(String iconPath, {Color? color, double size = 20}) =>
+      SvgPicture.asset(
+        iconPath,
+        width: size,
+        height: size,
+        colorFilter: color != null
+            ? ColorFilter.mode(
+                color,
+                BlendMode.srcIn,
+              )
+            : null,
+      );
 
   // Get bloc object
   TBloc getBloc<TBloc extends StateStreamableSource<Object?>>(BuildContext context) {

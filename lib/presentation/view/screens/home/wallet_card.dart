@@ -8,12 +8,14 @@ class WalletCard extends BaseStatelessWidget {
   final double balance;
   final double income;
   final double expense;
+  final String lastUpdate;
 
   const WalletCard({
     super.key,
     required this.balance,
     required this.income,
     required this.expense,
+    required this.lastUpdate,
   });
 
   @override
@@ -39,9 +41,17 @@ class WalletCard extends BaseStatelessWidget {
           children: [
             CurrencyLabel(icon: Icons.currency_exchange, balance: balance),
             const SizedBox(height: 8),
+            Text(
+              'Updated $lastUpdate',
+              style: theme(context).textTheme.labelMedium?.copyWith(
+                color: theme(context).colorScheme.tertiaryContainer,
+              ),
+            ),
+            const SizedBox(height: 16),
             IncomeExpenseSummary(
-                income: ConvertString.formatCurrencyFromDouble(income),
-                expense: ConvertString.formatCurrencyFromDouble(expense)),
+              income: ConvertString.formatCurrencyFromDouble(income),
+              expense: ConvertString.formatCurrencyFromDouble(expense),
+            ),
           ],
         ),
       ),
