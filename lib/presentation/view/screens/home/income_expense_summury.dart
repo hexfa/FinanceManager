@@ -20,7 +20,6 @@ class IncomeExpenseSummary extends BaseStatelessWidget {
         decoration: BoxDecoration(
           color: theme(context).colorScheme.surface,
           borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: theme(context).colorScheme.onSurface),
         ),
         child: Row(
           mainAxisSize: MainAxisSize.max,
