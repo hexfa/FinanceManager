@@ -1,3 +1,4 @@
+import 'package:finance_manager/core/utils/convert_string.dart';
 import 'package:finance_manager/data/models/app_bar_menu.dart';
 import 'package:finance_manager/data/models/transaction.dart';
 import 'package:finance_manager/main.dart';
@@ -66,6 +67,10 @@ class _HomeState extends BaseState<HomeScreen> with RouteAware {
                     balance: balance,
                     income: income,
                     expense: expense,
+                    lastUpdate:
+                        transaction.isNotEmpty
+                            ? (ConvertString.formatDate(transaction.last.date))
+                            : '',
                   ),
                   // CustomPieChart(data: data),
                   Card(
