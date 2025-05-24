@@ -15,15 +15,15 @@ class IncomeExpenseSummary extends BaseStatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        margin: const EdgeInsets.symmetric(vertical: 16),
-        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+        padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
         decoration: BoxDecoration(
           color: theme(context).colorScheme.surface,
           borderRadius: BorderRadius.circular(12),
           border: Border.all(color: theme(context).colorScheme.onSurface),
         ),
         child: Row(
-          mainAxisSize: MainAxisSize.min,
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             _buildIncomeExpenseTile(
               title: localization(context).income,
