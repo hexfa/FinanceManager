@@ -1,3 +1,4 @@
+import 'package:finance_manager/gen/assets.gen.dart';
 import 'package:finance_manager/presentation/view/base/base_stateless_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -28,7 +29,8 @@ class IncomeExpenseSummary extends BaseStatelessWidget {
             _buildIncomeExpenseTile(
               title: localization(context).income,
               subtitle: income,
-              icon: Icons.arrow_upward,
+              iconPath: Assets.icons.income,
+              iconColor: Colors.green,
               theme: theme(context),
             ),
             Container(
@@ -40,7 +42,8 @@ class IncomeExpenseSummary extends BaseStatelessWidget {
             _buildIncomeExpenseTile(
               title: localization(context).expense,
               subtitle: expense,
-              icon: Icons.arrow_downward,
+              iconPath: Assets.icons.expense,
+              iconColor: Colors.red,
               theme: theme(context),
             ),
           ],
@@ -48,29 +51,30 @@ class IncomeExpenseSummary extends BaseStatelessWidget {
       ),
     );
   }
-}
 
-Widget _buildIncomeExpenseTile({
-  required String title,
-  required String subtitle,
-  required IconData icon,
-  required ThemeData theme,
-}) {
-  return Row(
-    mainAxisSize: MainAxisSize.min,
-    children: [
-      Icon(icon, color: theme.colorScheme.secondary),
-      const SizedBox(height: 8),
-      Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(title, style: theme.textTheme.titleSmall),
-            const SizedBox(width: 8),
-            Text(subtitle, style: theme.textTheme.titleMedium),
-          ],
+  Widget _buildIncomeExpenseTile({
+    required String title,
+    required String subtitle,
+    required String iconPath,
+    required Color iconColor,
+    required ThemeData theme,
+  }) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        getIcon(iconPath, color: iconColor),
+        const SizedBox(height: 8),
+        Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(title, style: theme.textTheme.titleSmall),
+              const SizedBox(width: 8),
+              Text(subtitle, style: theme.textTheme.titleMedium),
+            ],
+          ),
         ),
-      ),
-    ],
-  );
+      ],
+    );
+  }
 }
