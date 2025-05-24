@@ -11,14 +11,14 @@ class CurrencyLabel extends BaseStatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Icon(icon, color: theme(context).colorScheme.onSurface),
         const SizedBox(width: 8),
-
         Text(
           ConvertString.formatCurrencyFromDouble(balance),
           style: theme(context).textTheme.titleLarge?.copyWith(
-            color: theme(context).colorScheme.onPrimary,
+            color: theme(context).colorScheme.onSurface,
             fontWeight: FontWeight.bold,
           ),
         ),
