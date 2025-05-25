@@ -13,12 +13,12 @@ class CurrencyLabel extends BaseStatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Icon(icon, color: theme(context).colorScheme.onSurface),
+        Icon(icon, color: theme(context).colorScheme.onPrimary),
         const SizedBox(width: 8),
         Text(
           ConvertString.formatCurrencyFromDouble(balance),
           style: theme(context).textTheme.titleLarge?.copyWith(
-            color: theme(context).colorScheme.onSurface,
+            color: theme(context).colorScheme.onPrimary,
             fontWeight: FontWeight.bold,
           ),
         ),
