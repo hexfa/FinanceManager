@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 /// Light Theme Colors
-const Color primaryColor = Colors.green;
+const Color primaryColor = Colors.teal;
 const Color onPrimaryColor = Colors.white;
 const Color card = Colors.white;
 const Color onCard = Colors.black87;
@@ -20,7 +20,7 @@ const Color surfaceDim = Colors.green;
 
 /// Dark Theme Colors
 const Color darkBackgroundColor = Color(0xFF2f2f2f);
-const Color darkPrimaryColor = Color(0xff4b60a4); // Dark blue
+const Color darkPrimaryColor = Colors.teal; // Dark blue
 const Color darkOnPrimaryColor = Colors.white;
 const Color darkCard = Colors.black12;
 const Color darkOnCard = Colors.white70;
