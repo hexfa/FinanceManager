@@ -1,7 +1,5 @@
-import 'package:finance_manager/core/constants/currency_list.dart';
 import 'package:finance_manager/core/utils/category_type.dart';
 import 'package:finance_manager/core/utils/transaction_type.dart';
-import 'package:finance_manager/data/service/currency_service.dart';
 
 class Transaction {
   final int? id;
