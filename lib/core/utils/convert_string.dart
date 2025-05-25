@@ -20,4 +20,8 @@ class ConvertString {
   static double toDouble(String value) {
     return double.tryParse(value.replaceAll(',', '')) ?? 0.0;
   }
+
+  static double roundToTwoDecimals(double value) {
+    return double.parse(value.toStringAsFixed(2));
+  }
 }
