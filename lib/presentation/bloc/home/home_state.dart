@@ -1,4 +1,4 @@
-import 'package:finance_manager/data/models/pie_data.dart';
+import 'package:finance_manager/data/models/transaction_chart_data.dart';
 import 'package:finance_manager/data/models/transaction.dart';
 import 'package:finance_manager/presentation/bloc/base/base_bloc_state.dart';
 
@@ -7,7 +7,7 @@ abstract class HomeState extends BaseBlocState {}
 final class HomeInitial extends HomeState {}
 
 final class InitialData extends HomeState {
-  final List<PieData> dataList;
+  final List<TransactionChartData> dataList;
   final List<Transaction> transactionList;
   final double income;
   final double expense;
