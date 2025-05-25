@@ -1,11 +1,13 @@
 import 'package:finance_manager/core/utils/convert_string.dart';
 import 'package:finance_manager/data/models/app_bar_menu.dart';
+import 'package:finance_manager/data/models/transaction_chart_data.dart';
 import 'package:finance_manager/data/models/transaction.dart';
 import 'package:finance_manager/main.dart';
 import 'package:finance_manager/presentation/bloc/home/home_cubit.dart';
 import 'package:finance_manager/presentation/bloc/home/home_state.dart';
 import 'package:finance_manager/presentation/navigation/route_path.dart';
 import 'package:finance_manager/presentation/view/base/base_state.dart';
+import 'package:finance_manager/presentation/view/screens/home/custom_pie_chart.dart';
 import 'package:finance_manager/presentation/view/screens/home/transaction_tile.dart';
 import 'package:finance_manager/presentation/view/screens/home/wallet_card.dart';
 import 'package:finance_manager/presentation/view/widgets/appbar/custom_app_bar_menu.dart';
@@ -42,14 +44,14 @@ class _HomeState extends BaseState<HomeScreen> with RouteAware {
 
   @override
   Widget build(BuildContext context) {
-    // List<PieData> data = [];
+    List<TransactionChartData> data = [];
     List<Transaction> transaction = [];
     double balance = 0, income = 0, expense = 0;
 
     return BlocBuilder<HomeCubit, HomeState>(
       builder: (context, state) {
         if (state is InitialData) {
-          // data = state.dataList;
+          data = state.dataList;
           transaction = state.transactionList;
           income = state.income;
           expense = state.expense;
@@ -72,7 +74,7 @@ class _HomeState extends BaseState<HomeScreen> with RouteAware {
                             ? (ConvertString.formatDate(transaction.last.date))
                             : '',
                   ),
-                  // CustomPieChart(data: data),
+                  CustomPieChart(data: data),
                   Card(
                     color: theme.colorScheme.surfaceContainer,
                     margin: const EdgeInsets.all(16),
@@ -119,7 +121,6 @@ class _HomeState extends BaseState<HomeScreen> with RouteAware {
                       ),
                     ),
                   ),
-                  // PieDataList(data: data),
                 ],
               ),
             ),
