@@ -74,6 +74,29 @@ class _HomeState extends BaseState<HomeScreen> with RouteAware {
                             ? (ConvertString.formatDate(transaction.last.date))
                             : '',
                   ),
+                  SizedBox(height: 8),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Icon(
+                          Icons.pie_chart,
+                          size: 20,
+                          color: theme.colorScheme.onSurface,
+                        ),
+                        const SizedBox(width: 8),
+                        Text(
+                          'Expense Chart',
+                          style: theme.textTheme.titleMedium?.copyWith(
+                            color: theme.colorScheme.onSurface,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                   CustomPieChart(data: data),
                   Card(
                     color: theme.colorScheme.surfaceContainer,
