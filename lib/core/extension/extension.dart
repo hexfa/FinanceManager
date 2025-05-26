@@ -6,6 +6,7 @@ extension TransactionEntityMapper on TransactionEntity {
     return Transaction(
       id: key as int,
       title: title,
+      description: description,
       amount: amount,
       type: type,
       category: category,
@@ -18,6 +19,7 @@ extension TransactionModelMapper on Transaction {
   TransactionEntity toEntity() {
     return TransactionEntity(
       title: title,
+      description: description,
       amount: amount,
       type: type,
       category: category,
