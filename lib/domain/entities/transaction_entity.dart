@@ -10,19 +10,23 @@ class TransactionEntity extends HiveObject {
   late String title;
 
   @HiveField(1)
-  late double amount;
+  late String description;
 
   @HiveField(2)
-  late TransactionType type;
+  late double amount;
 
   @HiveField(3)
-  late CategoryType category;
+  late TransactionType type;
 
   @HiveField(4)
+  late CategoryType category;
+
+  @HiveField(5)
   late DateTime date;
 
   TransactionEntity({
     required this.title,
+    required this.description,
     required this.amount,
     required this.type,
     required this.category,

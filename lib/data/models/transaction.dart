@@ -4,6 +4,7 @@ import 'package:finance_manager/core/utils/transaction_type.dart';
 class Transaction {
   final int? id;
   final String title;
+  final String description;
   final double _amount;
   final TransactionType type;
   final CategoryType category;
@@ -12,6 +13,7 @@ class Transaction {
   Transaction({
     this.id,
     required this.title,
+    required this.description,
     required double amount,
     required this.type,
     required this.category,
