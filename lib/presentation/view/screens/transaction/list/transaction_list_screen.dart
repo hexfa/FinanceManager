@@ -33,7 +33,10 @@ class TransactionListScreen extends BaseStatelessWidget {
               ),
             ],
           ),
-          body: TransactionTile(data: transactions),
+          body: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+            child: TransactionTile(data: transactions),
+          ),
         );
       },
     );
