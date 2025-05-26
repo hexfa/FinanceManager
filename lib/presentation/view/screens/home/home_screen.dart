@@ -47,6 +47,7 @@ class _HomeState extends BaseState<HomeScreen> with RouteAware {
     List<TransactionChartData> data = [];
     List<Transaction> transaction = [];
     double balance = 0, income = 0, expense = 0;
+    int transactionLength = 0;
 
     return BlocBuilder<HomeCubit, HomeState>(
       builder: (context, state) {
@@ -56,6 +57,7 @@ class _HomeState extends BaseState<HomeScreen> with RouteAware {
           income = state.income;
           expense = state.expense;
           balance = state.balance;
+          transactionLength = state.transactionLength;
         }
 
         return Scaffold(
@@ -129,7 +131,7 @@ class _HomeState extends BaseState<HomeScreen> with RouteAware {
                                     router.push(RoutePath.transactionListRoute);
                                   },
                                   child: Text(
-                                    localization.seeAll,
+                                    '${localization.seeAll} ($transactionLength)',
                                     style: theme.textTheme.titleSmall?.copyWith(
                                       fontWeight: FontWeight.bold,
                                       color: theme.colorScheme.surfaceDim,
