@@ -14,6 +14,9 @@ class TransactionCubit extends BaseCubit<TransactionState> {
 
   void updateTitle(String title) => safeEmit(state.copyWith(title: title));
 
+  void updateDescription(String description) =>
+      safeEmit(state.copyWith(description: description));
+
   void updateAmount(String amount) => safeEmit(state.copyWith(amount: amount));
 
   void updateCategory(String category) =>
@@ -27,6 +30,7 @@ class TransactionCubit extends BaseCubit<TransactionState> {
     await transactionRepository.createTransaction(
       transaction: Transaction(
         title: state.title,
+        description: state.description,
         amount: ConvertString.toDouble(state.amount),
         category: state.category.toCategoryType(),
         date: state.date ?? DateTime.now(),
@@ -39,6 +43,7 @@ class TransactionCubit extends BaseCubit<TransactionState> {
     final updatedTransaction = Transaction(
       id: transactionId,
       title: state.title,
+      description: state.description,
       amount: ConvertString.toDouble(state.amount),
       category: state.category.toCategoryType(),
       date: state.date ?? DateTime.now(),

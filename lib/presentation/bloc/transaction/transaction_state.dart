@@ -3,6 +3,7 @@ import 'package:finance_manager/presentation/bloc/base/base_bloc_state.dart';
 
 class TransactionState extends BaseBlocState {
   final String title;
+  final String description;
   final String amount;
   final String category;
   final DateTime? date;
@@ -10,6 +11,7 @@ class TransactionState extends BaseBlocState {
 
   const TransactionState({
     this.title = '',
+    this.description = '',
     this.amount = '',
     this.category = '',
     this.date,
@@ -18,6 +20,7 @@ class TransactionState extends BaseBlocState {
 
   TransactionState copyWith({
     String? title,
+    String? description,
     String? amount,
     String? category,
     DateTime? date,
@@ -25,6 +28,7 @@ class TransactionState extends BaseBlocState {
   }) {
     return TransactionState(
       title: title ?? this.title,
+      description: description ?? this.description,
       amount: amount ?? this.amount,
       category: category ?? this.category,
       date: date ?? this.date,
@@ -33,5 +37,5 @@ class TransactionState extends BaseBlocState {
   }
 
   @override
-  List<Object?> get props => [title, amount, category, date, type];
+  List<Object?> get props => [title, description, amount, category, date, type];
 }

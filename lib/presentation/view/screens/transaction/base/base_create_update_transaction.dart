@@ -21,6 +21,7 @@ abstract class BaseTransactionScreen extends StatefulWidget {
 abstract class BaseTransactionScreenState<T extends BaseTransactionScreen>
     extends BaseState<T> {
   late TextEditingController titleController;
+  late TextEditingController descriptionController;
   late TextEditingController amountController;
 
   VoidCallback get onActionPressed;
@@ -33,10 +34,14 @@ abstract class BaseTransactionScreenState<T extends BaseTransactionScreen>
   void initState() {
     super.initState();
     titleController = TextEditingController();
+    descriptionController = TextEditingController();
     amountController = TextEditingController();
 
     titleController.addListener(() {
       getBloc<TransactionCubit>().updateTitle(titleController.text);
+    });
+    descriptionController.addListener(() {
+      getBloc<TransactionCubit>().updateDescription(descriptionController.text);
     });
     amountController.addListener(() {
       getBloc<TransactionCubit>().updateAmount(amountController.text);
@@ -46,6 +51,7 @@ abstract class BaseTransactionScreenState<T extends BaseTransactionScreen>
   @override
   void dispose() {
     titleController.dispose();
+    descriptionController.dispose();
     amountController.dispose();
     super.dispose();
   }
@@ -59,6 +65,8 @@ abstract class BaseTransactionScreenState<T extends BaseTransactionScreen>
         child: Column(
           children: [
             CustomTextField(label: 'Title', controller: titleController),
+            const SizedBox(height: 16),
+            CustomTextField(label: 'Description', controller: descriptionController),
             const SizedBox(height: 16),
             CustomTextField(
               isCurrency: true,
