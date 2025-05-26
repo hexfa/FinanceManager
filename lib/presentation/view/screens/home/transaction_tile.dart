@@ -1,3 +1,4 @@
+import 'package:finance_manager/core/utils/category.dart';
 import 'package:finance_manager/core/utils/convert_string.dart';
 import 'package:finance_manager/core/utils/transaction_type.dart';
 import 'package:finance_manager/data/models/transaction.dart';
@@ -27,8 +28,11 @@ class TransactionTile extends BaseStatelessWidget {
               extra: transaction.id,
             );
           },
-          leading:
-              isIncome ? Icon(Icons.add_a_photo_outlined) : Icon(Icons.add),
+          leading: getIcon(
+            Category.getCategoryIconPath(transaction.category),
+            color: theme(context).colorScheme.primary,
+            size: 25,
+          ),
           title: Text(
             transaction.title,
             style: theme(
