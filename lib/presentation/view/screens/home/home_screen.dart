@@ -165,17 +165,11 @@ PreferredSizeWidget _homeAbbBar(
   return AppBar(
     backgroundColor: theme.colorScheme.surface,
     centerTitle: false,
-    title: Row(
-      children: [
-        Icon(Icons.currency_exchange, color: theme.colorScheme.onSurface),
-        SizedBox(width: 8),
-        Text(
-          localization.balance,
-          style: theme.textTheme.titleLarge?.copyWith(
-            color: theme.colorScheme.onSurface,
-          ),
-        ),
-      ],
+    title: Text(
+      'Finance Manager',
+      style: theme.textTheme.titleLarge?.copyWith(
+        color: theme.colorScheme.onSurface,
+      ),
     ),
     actions: [
       IconButton(
