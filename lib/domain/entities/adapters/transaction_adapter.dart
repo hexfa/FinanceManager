@@ -11,6 +11,7 @@ class TransactionAdapter extends TypeAdapter<TransactionEntity> {
   TransactionEntity read(BinaryReader reader) {
     return TransactionEntity(
       title: reader.readString(),
+      description: reader.readString(),
       amount: reader.readDouble(),
       type: reader.read() as TransactionType,
       category: reader.read() as CategoryType,
@@ -21,6 +22,7 @@ class TransactionAdapter extends TypeAdapter<TransactionEntity> {
   @override
   void write(BinaryWriter writer, TransactionEntity obj) {
     writer.writeString(obj.title);
+    writer.writeString(obj.description);
     writer.writeDouble(obj.amount);
     writer.write(obj.type);
     writer.write(obj.category);
