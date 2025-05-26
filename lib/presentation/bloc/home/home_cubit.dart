@@ -25,10 +25,11 @@ class HomeCubit extends BaseCubit<HomeState> {
     emit(
       InitialData(
         TransactionMapper.toChartData(transactions),
-        transactions.take(10).toList(),
+        transactions.take(5).toList(),
         income,
         expense,
         balance,
+        transactions.length,
       ),
     );
   }
