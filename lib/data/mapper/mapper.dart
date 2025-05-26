@@ -1,5 +1,5 @@
 import 'package:finance_manager/core/extension/extension.dart';
-import 'package:finance_manager/core/utils/category_color.dart';
+import 'package:finance_manager/core/utils/category.dart';
 import 'package:finance_manager/data/models/transaction.dart';
 import 'package:finance_manager/data/models/transaction_chart_data.dart';
 import 'package:finance_manager/domain/entities/transaction_entity.dart';
@@ -40,7 +40,7 @@ class TransactionMapper {
       return TransactionChartData(
         title: category.name,
         percentage: percentage,
-        color: CategoryColor.getCategoryColor(category),
+        color: Category.getCategoryColor(category),
       );
     }).toList();
   }
