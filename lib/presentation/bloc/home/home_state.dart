@@ -12,6 +12,7 @@ final class InitialData extends HomeState {
   final double income;
   final double expense;
   final double balance;
+  final int transactionLength;
 
   InitialData(
     this.dataList,
@@ -19,6 +20,7 @@ final class InitialData extends HomeState {
     this.income,
     this.expense,
     this.balance,
+    this.transactionLength,
   );
 
   @override
@@ -28,5 +30,6 @@ final class InitialData extends HomeState {
     income,
     expense,
     balance,
+    transactionLength,
   ];
 }
