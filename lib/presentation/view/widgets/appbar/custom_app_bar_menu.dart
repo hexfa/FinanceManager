@@ -11,6 +11,7 @@ class CustomAppBarMenu extends BaseStatelessWidget {
   Widget build(BuildContext context) {
     return PopupMenuButton<int>(
       icon: Icon(Icons.more_vert, color: theme(context).colorScheme.onSurface),
+      color: theme(context).colorScheme.surfaceContainer,
       onSelected: (int index) {
         menuItem[index].onTap();
       },
