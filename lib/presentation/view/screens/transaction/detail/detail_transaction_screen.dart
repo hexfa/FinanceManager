@@ -92,7 +92,8 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
                   category: transaction?.category ?? CategoryType.other,
                 ),
                 SizedBox(height: 16),
-                buildDescription(),
+                if ((transaction?.description ?? '').isNotEmpty)
+                  buildDescription(),
               ],
             ),
           );
