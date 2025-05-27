@@ -77,6 +77,7 @@ class _HomeState extends BaseState<HomeScreen> with RouteAware {
                             : '',
                   ),
                   SizedBox(height: 8),
+                  // label chart
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: Row(
@@ -99,6 +100,7 @@ class _HomeState extends BaseState<HomeScreen> with RouteAware {
                       ],
                     ),
                   ),
+                  //chart
                   CustomPieChart(data: data),
                   Card(
                     color: theme.colorScheme.surfaceContainer,
