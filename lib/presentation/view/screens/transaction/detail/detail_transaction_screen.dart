@@ -60,6 +60,13 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
                     color: theme.colorScheme.onSurface,
                   ),
                 ),
+                SizedBox(height: 12),
+                Text(
+                  ConvertString.formatDate(transaction?.date ?? DateTime.now()),
+                  style: theme.textTheme.labelMedium?.copyWith(
+                    color: theme.colorScheme.tertiary,
+                  ),
+                ),
                 SizedBox(height: 16),
                 Text('Amount'),
                 SizedBox(height: 4),
@@ -72,12 +79,6 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
                 Text('Category'),
                 SizedBox(height: 4),
                 Text(transaction?.category.name ?? ''),
-                SizedBox(height: 16),
-                Text('Date'),
-                SizedBox(height: 4),
-                Text(
-                  ConvertString.formatDate(transaction?.date ?? DateTime.now()),
-                ),
                 SizedBox(height: 16),
                 Text(transaction?.type.name ?? ''),
               ],
