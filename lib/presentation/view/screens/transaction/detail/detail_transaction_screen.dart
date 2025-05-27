@@ -107,7 +107,7 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
-        border: Border.all(color: amountColor, width: 1),
+        border: Border.all(color: amountColor, width: 1.5),
         borderRadius: BorderRadius.circular(8),
       ),
       child: Row(
@@ -116,7 +116,10 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
           const SizedBox(width: 4),
           Text(
             ConvertString.formatCurrencyFromDouble(transaction?.amount ?? 0),
-            style: theme.textTheme.titleMedium?.copyWith(color: amountColor),
+            style: theme.textTheme.titleMedium?.copyWith(
+              color: amountColor,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ],
       ),
