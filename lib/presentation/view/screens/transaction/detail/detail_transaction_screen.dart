@@ -91,6 +91,8 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
                 CategoryLabel(
                   category: transaction?.category ?? CategoryType.other,
                 ),
+                SizedBox(height: 16),
+                Text(transaction?.description ?? ''),
               ],
             ),
           );
