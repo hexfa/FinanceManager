@@ -1,6 +1,7 @@
 import 'package:finance_manager/gen/assets.gen.dart';
 import 'package:finance_manager/presentation/view/base/base_stateless_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:finance_manager/core/theme/colors.dart';
 
 class IncomeExpenseSummary extends BaseStatelessWidget {
   final String income;
@@ -29,7 +30,7 @@ class IncomeExpenseSummary extends BaseStatelessWidget {
               title: localization(context).income,
               subtitle: income,
               iconPath: Assets.icons.income,
-              iconColor: Colors.green,
+              iconColor: incomeColor,
               theme: theme(context),
             ),
             Container(
@@ -42,7 +43,7 @@ class IncomeExpenseSummary extends BaseStatelessWidget {
               title: localization(context).expense,
               subtitle: expense,
               iconPath: Assets.icons.expense,
-              iconColor: Colors.red,
+              iconColor: expenseColor,
               theme: theme(context),
             ),
           ],
