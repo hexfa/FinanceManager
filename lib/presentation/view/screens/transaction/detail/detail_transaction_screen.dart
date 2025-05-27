@@ -1,4 +1,5 @@
 import 'package:finance_manager/core/theme/colors.dart';
+import 'package:finance_manager/core/utils/category_type.dart';
 import 'package:finance_manager/core/utils/convert_string.dart';
 import 'package:finance_manager/core/utils/transaction_type.dart';
 import 'package:finance_manager/data/models/app_bar_menu.dart';
@@ -10,6 +11,7 @@ import 'package:finance_manager/presentation/navigation/route_path.dart';
 import 'package:finance_manager/presentation/view/base/base_state.dart';
 import 'package:finance_manager/presentation/view/widgets/appbar/custom_app_bar.dart';
 import 'package:finance_manager/presentation/view/widgets/appbar/custom_app_bar_menu.dart';
+import 'package:finance_manager/presentation/view/widgets/category_label.dart';
 import 'package:finance_manager/presentation/view/widgets/dialog/custom_confirm_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -86,9 +88,9 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
                   ],
                 ),
                 SizedBox(height: 16),
-                Text('Category'),
-                SizedBox(height: 4),
-                Text(transaction?.category.name ?? ''),
+                CategoryLabel(
+                  category: transaction?.category ?? CategoryType.other,
+                ),
                 SizedBox(height: 16),
                 Text(transaction?.type.name ?? ''),
               ],
