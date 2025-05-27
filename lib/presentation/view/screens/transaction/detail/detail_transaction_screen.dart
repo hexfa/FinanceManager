@@ -92,11 +92,29 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
                   category: transaction?.category ?? CategoryType.other,
                 ),
                 SizedBox(height: 16),
-                Text(transaction?.description ?? ''),
+                buildDescription(),
               ],
             ),
           );
         },
+      ),
+    );
+  }
+
+  Container buildDescription() {
+    return Container(
+      width: double.infinity,
+      height: 200,
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: theme.colorScheme.surfaceContainer,
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Text(
+        transaction?.description ?? '',
+        style: theme.textTheme.bodyMedium?.copyWith(
+          color: theme.colorScheme.onSurface,
+        ),
       ),
     );
   }
