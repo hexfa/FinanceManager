@@ -22,7 +22,8 @@ class DetailTransactionScreen extends StatefulWidget {
       _DetailTransactionScreenState();
 }
 
-class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen> with RouteAware {
+class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
+    with RouteAware {
   Transaction? transaction;
 
   @override
@@ -52,9 +53,13 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen> w
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Title'),
-                SizedBox(height: 4),
-                Text(transaction?.title ?? ''),
+                Text(
+                  transaction?.title ?? '',
+                  style: theme.textTheme.titleLarge?.copyWith(
+                    fontWeight: FontWeight.bold,
+                    color: theme.colorScheme.onSurface,
+                  ),
+                ),
                 SizedBox(height: 16),
                 Text('Amount'),
                 SizedBox(height: 4),
