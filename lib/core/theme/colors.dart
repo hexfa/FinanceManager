@@ -33,3 +33,6 @@ const Color darkError = Color(0xffea5a5a);
 const Color darkOnError = Colors.black;
 const Color darkCardOnSurface = Color(0xFF1E1E1E);
 const Color darkSurfaceDim = Colors.green;
+
+const Color incomeColor = Colors.green;
+const Color expenseColor = Colors.red;
