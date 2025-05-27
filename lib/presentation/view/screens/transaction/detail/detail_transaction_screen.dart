@@ -82,45 +82,7 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
                       ],
                     ),
                     //amount
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 8,
-                        vertical: 4,
-                      ),
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color:
-                              transaction?.type == TransactionType.income
-                                  ? incomeColor
-                                  : expenseColor,
-                          width: 1,
-                        ),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.currency_exchange,
-                            color:
-                                transaction?.type == TransactionType.income
-                                    ? incomeColor
-                                    : expenseColor,
-                          ),
-                          const SizedBox(width: 4),
-                          Text(
-                            ConvertString.formatCurrencyFromDouble(
-                              transaction?.amount ?? 0,
-                            ),
-                            style: theme.textTheme.titleMedium?.copyWith(
-                              color:
-                                  transaction?.type == TransactionType.income
-                                      ? incomeColor
-                                      : expenseColor,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                    buildAmount(),
                   ],
                 ),
                 SizedBox(height: 16),
@@ -133,6 +95,30 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
             ),
           );
         },
+      ),
+    );
+  }
+
+  Container buildAmount() {
+    Color amountColor =
+        transaction?.type == TransactionType.income
+            ? incomeColor
+            : expenseColor;
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      decoration: BoxDecoration(
+        border: Border.all(color: amountColor, width: 1),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Row(
+        children: [
+          Icon(Icons.currency_exchange, color: amountColor),
+          const SizedBox(width: 4),
+          Text(
+            ConvertString.formatCurrencyFromDouble(transaction?.amount ?? 0),
+            style: theme.textTheme.titleMedium?.copyWith(color: amountColor),
+          ),
+        ],
       ),
     );
   }
