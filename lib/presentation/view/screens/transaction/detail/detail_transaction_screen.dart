@@ -1,4 +1,6 @@
+import 'package:finance_manager/core/theme/colors.dart';
 import 'package:finance_manager/core/utils/convert_string.dart';
+import 'package:finance_manager/core/utils/transaction_type.dart';
 import 'package:finance_manager/data/models/app_bar_menu.dart';
 import 'package:finance_manager/data/models/transaction.dart';
 import 'package:finance_manager/main.dart';
@@ -53,27 +55,73 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  transaction?.title ?? '',
-                  style: theme.textTheme.titleLarge?.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: theme.colorScheme.onSurface,
-                  ),
-                ),
-                SizedBox(height: 12),
-                Text(
-                  ConvertString.formatDate(transaction?.date ?? DateTime.now()),
-                  style: theme.textTheme.labelMedium?.copyWith(
-                    color: theme.colorScheme.tertiary,
-                  ),
-                ),
-                SizedBox(height: 16),
-                Text('Amount'),
-                SizedBox(height: 4),
-                Text(
-                  ConvertString.formatCurrencyFromDouble(
-                    transaction?.amount ?? 0,
-                  ),
+                Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      children: [
+                        //title
+                        Text(
+                          transaction?.title ?? '',
+                          style: theme.textTheme.titleLarge?.copyWith(
+                            fontWeight: FontWeight.bold,
+                            color: theme.colorScheme.onSurface,
+                          ),
+                        ),
+                        SizedBox(height: 12),
+                        //date
+                        Text(
+                          ConvertString.formatDate(
+                            transaction?.date ?? DateTime.now(),
+                          ),
+                          style: theme.textTheme.labelMedium?.copyWith(
+                            color: theme.colorScheme.tertiary,
+                          ),
+                        ),
+                      ],
+                    ),
+                    //amount
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 8,
+                        vertical: 4,
+                      ),
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color:
+                              transaction?.type == TransactionType.income
+                                  ? incomeColor
+                                  : expenseColor,
+                          width: 1,
+                        ),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.currency_exchange,
+                            color:
+                                transaction?.type == TransactionType.income
+                                    ? incomeColor
+                                    : expenseColor,
+                          ),
+                          const SizedBox(width: 4),
+                          Text(
+                            ConvertString.formatCurrencyFromDouble(
+                              transaction?.amount ?? 0,
+                            ),
+                            style: theme.textTheme.titleMedium?.copyWith(
+                              color:
+                                  transaction?.type == TransactionType.income
+                                      ? incomeColor
+                                      : expenseColor,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
                 SizedBox(height: 16),
                 Text('Category'),
