@@ -82,7 +82,7 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
                       ],
                     ),
                     //amount
-                    buildAmount(),
+                    _buildAmount(),
                   ],
                 ),
                 SizedBox(height: 16),
@@ -99,7 +99,7 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
     );
   }
 
-  Container buildAmount() {
+  Container _buildAmount() {
     Color amountColor =
         transaction?.type == TransactionType.income
             ? incomeColor
