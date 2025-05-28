@@ -81,18 +81,64 @@ extension CurrencyCodeExtension on String {
 }
 
 IconData getCurrencyIcon(Currency currency) {
-  switch (currency.code) {
+  switch (currency) {
     case 'USD':
       return Icons.attach_money;
     case 'EUR':
       return Icons.euro;
-    case 'JPY':
-      return Icons.currency_yen;
+    case 'IRR':
+    // return Icons.currency_rial;
     case 'GBP':
       return Icons.currency_pound;
-    case 'IRR':
+    case 'JPY':
+      return Icons.currency_yen;
+    case 'CHF':
       return Icons.money;
+    case 'CAD':
+      return Icons.currency_exchange;
+    case 'AUD':
+      return Icons.public;
+    case 'NZD':
+      return Icons.south_america;
+    case 'CNY':
+      return Icons.account_balance_wallet;
+    case 'SEK':
+    case 'NOK':
+    case 'DKK':
+      return Icons.payments;
+    case 'INR':
+      return Icons.currency_rupee;
+    case 'RUB':
+      return Icons.currency_ruble;
+    case 'BRL':
+      return Icons.forest;
+    case 'ZAR':
+      return Icons.savings;
+    case 'MXN':
+      return Icons.attach_money;
+    case 'SGD':
+    case 'HKD':
+      return Icons.location_city;
+    case 'KRW':
+    // return Icons.currency_krw;
+    case 'TRY':
+      return Icons.currency_lira;
+    case 'SAR':
+    case 'AED':
+      return Icons.oil_barrel;
+    case 'EGP':
+      return Icons.account_balance;
+    case 'THB':
+      return Icons.card_giftcard;
+    case 'PLN':
+    case 'CZK':
+      return Icons.account_balance_wallet_outlined;
+    case 'MYR':
+    case 'IDR':
+    case 'PKR':
+    case 'TWD':
+      return Icons.money_rounded;
     default:
-      return Icons.monetization_on;
+      return Icons.attach_money;
   }
 }
