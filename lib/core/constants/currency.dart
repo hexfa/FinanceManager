@@ -1,4 +1,5 @@
 import 'package:finance_manager/data/models/currency.dart';
+import 'package:flutter/material.dart';
 
 final List<Currency> currencyList = [
   Currency(code: 'USD', name: 'US Dollar'),
@@ -76,5 +77,30 @@ extension CurrencyCodeExtension on String {
       (currency) => currency.code == this,
       orElse: () => Currency(code: 'USD', name: 'US Dollar'),
     );
+  }
+}
+
+Widget getCurrencyIcon(Currency currency) {
+  switch (currency.code) {
+    case 'USD':
+      return const Icon(Icons.attach_money);
+    case 'EUR':
+      return const Icon(Icons.euro);
+    case 'GBP':
+      return const Icon(Icons.currency_pound);
+    case 'JPY':
+      return const Icon(Icons.currency_yen);
+    case 'CNY':
+    case 'HKD':
+      return const Icon(Icons.currency_yuan);
+    case 'INR':
+    case 'PKR':
+      return const Icon(Icons.currency_rupee);
+    case 'IRR':
+    case 'AED':
+    case 'SAR':
+      return const Icon(Icons.money);
+    default:
+      return const Icon(Icons.attach_money);
   }
 }

@@ -1,4 +1,4 @@
-import 'package:finance_manager/core/constants/currency_list.dart';
+import 'package:finance_manager/core/constants/currency.dart';
 import 'package:finance_manager/data/models/currency.dart';
 import 'package:finance_manager/domain/repositories/setting_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

@@ -1,4 +1,4 @@
-import 'package:finance_manager/core/constants/currency_list.dart';
+import 'package:finance_manager/core/constants/currency.dart';
 import 'package:finance_manager/data/models/currency.dart';
 import 'package:finance_manager/presentation/bloc/setting/setting_cubit.dart';
 import 'package:finance_manager/presentation/bloc/setting/setting_state.dart';
@@ -30,9 +30,10 @@ class SettingScreen extends BaseStatelessWidget {
                       getBloc<SettingCubit>(context).changeCurrency(value);
                     }
                   },
-                  label: localization(context).currency,
+                  // label: localization(context).currency,
                   itemLabelBuilder:
                       (currency) => '${currency.code} - ${currency.name}',
+                  iconBuilder: getCurrencyIcon,
                 ),
                 SizedBox(height: 16),
                 CustomSwitch(
