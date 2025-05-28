@@ -18,5 +18,6 @@
   "cancel": "Cancel",
   "settings": "Settings",
   "currency": "Currency",
-  "darkTheme": "Dark Theme"
+  "darkTheme": "Dark Theme",
+  "country": "Country"
 }
