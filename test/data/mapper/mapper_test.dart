@@ -34,6 +34,7 @@ void main() {
         Transaction(
           id: 1,
           title: 'Test',
+          description: 'Description Test',
           amount: 100,
           category: CategoryType.business,
           date: DateTime.now(),
