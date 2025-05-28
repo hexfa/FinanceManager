@@ -8,6 +8,7 @@ class CustomDropdown<T> extends BaseStatelessWidget {
   final String? label;
   final ValueChanged<T?> onChanged;
   final String Function(T)? itemLabelBuilder;
+  final Widget Function(T)? iconBuilder;
 
   const CustomDropdown({
     super.key,
@@ -16,19 +17,27 @@ class CustomDropdown<T> extends BaseStatelessWidget {
     this.value,
     this.label,
     this.itemLabelBuilder,
+    this.iconBuilder,
   });
 
   @override
   Widget build(BuildContext context) {
+    final Widget? dynamicIcon =
+        value != null && iconBuilder != null ? iconBuilder!(value as T) : null;
+
     return DropdownButtonFormField<T>(
       value: value,
       items:
           items.map((item) {
-            final label = itemLabelBuilder?.call(item) ?? item.toString();
-            return DropdownMenuItem<T>(value: item, child: Text(label));
+            final itemLabel = itemLabelBuilder?.call(item) ?? item.toString();
+            return DropdownMenuItem<T>(value: item, child: Text(itemLabel));
           }).toList(),
       onChanged: onChanged,
-      decoration: customInputDecoration(context: context, label: label),
+      decoration: customInputDecoration(
+        context: context,
+        label: label,
+        prefixIcon: dynamicIcon,
+      ),
       icon: const Icon(Icons.arrow_drop_down),
     );
   }
