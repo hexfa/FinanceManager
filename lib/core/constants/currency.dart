@@ -80,27 +80,19 @@ extension CurrencyCodeExtension on String {
   }
 }
 
-Widget getCurrencyIcon(Currency currency) {
+IconData getCurrencyIcon(Currency currency) {
   switch (currency.code) {
     case 'USD':
-      return const Icon(Icons.attach_money);
+      return Icons.attach_money;
     case 'EUR':
-      return const Icon(Icons.euro);
-    case 'GBP':
-      return const Icon(Icons.currency_pound);
+      return Icons.euro;
     case 'JPY':
-      return const Icon(Icons.currency_yen);
-    case 'CNY':
-    case 'HKD':
-      return const Icon(Icons.currency_yuan);
-    case 'INR':
-    case 'PKR':
-      return const Icon(Icons.currency_rupee);
+      return Icons.currency_yen;
+    case 'GBP':
+      return Icons.currency_pound;
     case 'IRR':
-    case 'AED':
-    case 'SAR':
-      return const Icon(Icons.money);
+      return Icons.money;
     default:
-      return const Icon(Icons.attach_money);
+      return Icons.monetization_on;
   }
 }

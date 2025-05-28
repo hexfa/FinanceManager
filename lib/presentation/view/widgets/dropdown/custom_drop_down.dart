@@ -8,7 +8,7 @@ class CustomDropdown<T> extends BaseStatelessWidget {
   final String? label;
   final ValueChanged<T?> onChanged;
   final String Function(T)? itemLabelBuilder;
-  final Widget Function(T)? iconBuilder;
+  final IconData Function(T)? iconBuilder;
 
   const CustomDropdown({
     super.key,
@@ -23,7 +23,13 @@ class CustomDropdown<T> extends BaseStatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Widget? dynamicIcon =
-        value != null && iconBuilder != null ? iconBuilder!(value as T) : null;
+        (value != null && iconBuilder != null)
+            ? Icon(
+              iconBuilder!(value as T),
+              color: theme(context).colorScheme.onSurface,
+              // size: 20,
+            )
+            : null;
 
     return DropdownButtonFormField<T>(
       value: value,
