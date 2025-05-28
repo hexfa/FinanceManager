@@ -30,7 +30,6 @@ class SettingScreen extends BaseStatelessWidget {
                       getBloc<SettingCubit>(context).changeCurrency(value);
                     }
                   },
-                  // label: localization(context).currency,
                   itemLabelBuilder:
                       (currency) => '${currency.code} - ${currency.name}',
                   iconBuilder: getCurrencyIcon,
