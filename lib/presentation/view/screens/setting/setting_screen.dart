@@ -21,7 +21,16 @@ class SettingScreen extends BaseStatelessWidget {
           return Padding(
             padding: const EdgeInsets.all(16),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Text(
+                  'Country',
+                  style: theme(context).textTheme.labelMedium?.copyWith(
+                    color: theme(context).colorScheme.onSurface,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(height: 4),
                 CustomDropdown<Currency>(
                   items: currencyList,
                   value: state.currency,
