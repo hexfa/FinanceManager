@@ -8,19 +8,23 @@ InputDecoration customInputDecoration({
   final theme = Theme.of(context);
   return InputDecoration(
     filled: true,
-    fillColor: theme.colorScheme.surface,
+    fillColor: theme.colorScheme.surfaceContainer,
     labelText: label,
     floatingLabelBehavior: FloatingLabelBehavior.auto,
-    border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+    prefixIcon: prefixIcon,
+    contentPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(12),
+      borderSide: BorderSide.none,
+    ),
     enabledBorder: OutlineInputBorder(
-      borderSide: BorderSide(color: theme.colorScheme.tertiary),
-      borderRadius: BorderRadius.circular(8),
+      borderRadius: BorderRadius.circular(12),
+      borderSide: BorderSide.none,
     ),
     focusedBorder: OutlineInputBorder(
-      borderSide: BorderSide(color: theme.colorScheme.primary),
-      borderRadius: BorderRadius.circular(8),
+      borderRadius: BorderRadius.circular(12),
+      borderSide: BorderSide.none,
     ),
-    prefixIcon: prefixIcon,
   );
 }
 
