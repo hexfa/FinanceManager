@@ -6,10 +6,10 @@ import 'package:finance_manager/domain/entities/transaction_entity.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-
   test('TransactionEntity toModel returns correct Transaction', () {
     final entity = TransactionEntity(
       title: 'Lunch',
+      description: 'Lunch Description',
       amount: 50.0,
       type: TransactionType.expense,
       category: CategoryType.business,
