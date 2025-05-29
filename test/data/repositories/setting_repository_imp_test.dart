@@ -56,4 +56,17 @@ void main() {
     expect(result, false);
   });
 
+  test('setDarkTheme stores the theme preference', () async {
+    const isDark = true;
+
+    when(
+      mockDataSource.setBool(ConfigurationKey.darkTheme, isDark),
+    ).thenAnswer((_) async => {});
+
+    await repository.setDarkTheme(isDark);
+
+    verify(
+      mockDataSource.setBool(ConfigurationKey.darkTheme, isDark),
+    ).called(1);
+  });
 }
