@@ -47,4 +47,13 @@ void main() {
       ).called(1);
     },
   );
+
+  test('isDarkTheme returns false by default if not set', () {
+    when(mockDataSource.getBool(ConfigurationKey.darkTheme)).thenReturn(null);
+
+    final result = repository.isDarkTheme();
+
+    expect(result, false);
+  });
+
 }
