@@ -57,5 +57,18 @@ void main() {
         verify(mockDataSource.create(testTransactionEntity)).called(1);
       },
     );
+
+    test(
+      'updateTransaction calls dataSource.update with correct id and entity',
+      () async {
+        // Act
+        await repository.updateTransaction(transaction: testTransaction);
+
+        // Assert
+        verify(
+          mockDataSource.update(testTransaction.id!, testTransactionEntity),
+        ).called(1);
+      },
+    );
   });
 }
