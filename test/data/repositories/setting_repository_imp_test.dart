@@ -33,4 +33,18 @@ void main() {
 
     expect(result, 'EUR');
   });
+
+  test(
+    'setCurrency stores the currency and notifies the CurrencyService',
+    () async {
+      const currency = 'JPY';
+      when(
+        mockDataSource.setString(ConfigurationKey.currency, currency),
+      ).thenAnswer((_) async => {});
+      await repository.setCurrency(currency);
+      verify(
+        mockDataSource.setString(ConfigurationKey.currency, currency),
+      ).called(1);
+    },
+  );
 }
