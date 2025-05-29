@@ -78,5 +78,20 @@ void main() {
       // Assert
       verify(mockDataSource.delete(testTransaction.id!)).called(1);
     });
+
+    test('getTransactionById returns transaction when found', () async {
+      // Arrange
+      when(
+        mockDataSource.getById(testTransaction.id!),
+      ).thenAnswer((_) async => testTransactionEntity);
+
+      // Act
+      final result = await repository.getTransactionById(testTransaction.id!);
+
+      // Assert
+      expect(result, isNotNull);
+      expect(result!.id, testTransaction.id);
+      verify(mockDataSource.getById(testTransaction.id!)).called(1);
+    });
   });
 }
