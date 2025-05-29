@@ -1,17 +1,50 @@
+import 'package:finance_manager/core/extension/extension.dart';
+import 'package:finance_manager/core/utils/category_type.dart';
+import 'package:finance_manager/core/utils/transaction_type.dart';
 import 'package:finance_manager/data/repositories/transaction_repository_imp.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
+import 'package:mockito/mockito.dart';
 import 'package:finance_manager/data/datasource/db_data_source.dart';
+import 'package:finance_manager/data/models/transaction.dart';
 
-import 'transaction_repository_imp_test.mocks.dart';
+class MockDBDataSource extends Mock implements DBDataSource {}
 
-@GenerateMocks([DBDataSource])
 void main() {
   late MockDBDataSource mockDataSource;
   late TransactionRepositoryImpl repository;
 
+  final testTransaction = Transaction(
+    id: 1,
+    title: "Test Transaction",
+    description: "Description",
+    amount: 100.0,
+    type: TransactionType.income,
+    category: CategoryType.sport,
+    date: DateTime(2023, 1, 1),
+  );
+
+  final testTransactionEntity = testTransaction.toEntity();
+
   setUp(() {
     mockDataSource = MockDBDataSource();
     repository = TransactionRepositoryImpl(mockDataSource);
+  });
+
+  group('TransactionRepositoryImpl Tests', () {
+    test('getAllTransactions returns list of transactions', () async {
+      // Arrange
+      when(
+        mockDataSource.getAll(),
+      ).thenAnswer((_) async => [testTransactionEntity]);
+
+      // Act
+      final result = await repository.getAllTransactions();
+
+      // Assert
+      expect(result, isA<List<Transaction>>());
+      expect(result.length, 1);
+      expect(result[0].id, testTransaction.id);
+      verify(mockDataSource.getAll()).called(1);
+    });
   });
 }
