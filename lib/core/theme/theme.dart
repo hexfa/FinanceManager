@@ -25,8 +25,6 @@ final ThemeData lightTheme = ThemeData(
     onSecondary: onSecondaryColor,
     surface: card,
     onSurface: onCard,
-    background: backgroundColor,
-    onBackground: onBackground,
     error: error,
     onError: onError,
     brightness: Brightness.light,
