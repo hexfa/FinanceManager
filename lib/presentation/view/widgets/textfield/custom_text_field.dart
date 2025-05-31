@@ -39,7 +39,6 @@ class CustomTextField extends BaseStatelessWidget {
           isCurrency ? [FilteringTextInputFormatter.digitsOnly] : [],
       decoration: customInputDecoration(
         context: context,
-        label: label,
         prefixIcon: isCurrency ? Icon(Icons.attach_money) : null,
       ),
     );
