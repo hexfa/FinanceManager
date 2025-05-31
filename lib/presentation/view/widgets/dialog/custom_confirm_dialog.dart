@@ -21,7 +21,12 @@ class CustomConfirmDialog extends BaseStatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       backgroundColor: theme(context).colorScheme.surface,
-      title: Text(title),
+      title: Text(
+        title,
+        style: theme(context).textTheme.titleLarge?.copyWith(
+          color: theme(context).colorScheme.tertiary,
+        ),
+      ),
       content: Text(content),
       actions: [
         TextButton(
