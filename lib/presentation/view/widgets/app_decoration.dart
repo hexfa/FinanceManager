@@ -12,7 +12,7 @@ InputDecoration customInputDecoration({
     labelText: label,
     floatingLabelBehavior: FloatingLabelBehavior.auto,
     prefixIcon: prefixIcon,
-    contentPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+    contentPadding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
     border: OutlineInputBorder(
       borderRadius: BorderRadius.circular(12),
       borderSide: BorderSide.none,

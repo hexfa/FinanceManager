@@ -64,18 +64,16 @@ abstract class BaseTransactionScreenState<T extends BaseTransactionScreen>
         padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
         child: Column(
           children: [
-            CustomTextField(label: 'Title', controller: titleController),
+            //title
+            CustomTextField(controller: titleController),
             const SizedBox(height: 16),
-            CustomTextField(label: 'Description', controller: descriptionController),
+            //description
+            CustomTextField(controller: descriptionController),
             const SizedBox(height: 16),
-            CustomTextField(
-              isCurrency: true,
-              label: 'Amount',
-              controller: amountController,
-            ),
+            //amount
+            CustomTextField(isCurrency: true, controller: amountController),
             const SizedBox(height: 16),
             CustomDropdown(
-              label: categoryLabel,
               items: ['Business', 'Food', 'Sport', 'Education', 'Other'],
               onChanged: (value) {
                 getBloc<TransactionCubit>().updateCategory(value ?? '');

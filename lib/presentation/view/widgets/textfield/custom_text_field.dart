@@ -5,14 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class CustomTextField extends BaseStatelessWidget {
-  final String label;
   final TextEditingController? controller;
   final ValueChanged<String>? onChanged;
   final bool isCurrency;
 
   const CustomTextField({
     super.key,
-    required this.label,
     this.controller,
     this.onChanged,
     this.isCurrency = false,

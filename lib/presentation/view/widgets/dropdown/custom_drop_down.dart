@@ -5,7 +5,6 @@ import 'package:finance_manager/presentation/view/base/base_stateless_widget.dar
 class CustomDropdown<T> extends BaseStatelessWidget {
   final List<T> items;
   final T? value;
-  final String? label;
   final ValueChanged<T?> onChanged;
   final String Function(T)? itemLabelBuilder;
   final IconData Function(T)? iconBuilder;
@@ -15,7 +14,6 @@ class CustomDropdown<T> extends BaseStatelessWidget {
     required this.items,
     required this.onChanged,
     this.value,
-    this.label,
     this.itemLabelBuilder,
     this.iconBuilder,
   });
@@ -41,7 +39,6 @@ class CustomDropdown<T> extends BaseStatelessWidget {
       onChanged: onChanged,
       decoration: customInputDecoration(
         context: context,
-        label: label,
         prefixIcon: dynamicIcon,
       ),
       icon: const Icon(Icons.arrow_drop_down),
