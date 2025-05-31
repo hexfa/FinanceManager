@@ -65,8 +65,6 @@ final ThemeData darkTheme = ThemeData(
     onSecondary: darkOnSecondaryColor,
     surface: darkBackgroundColor,
     onSurface: darkOnBackground,
-    background: darkBackgroundColor,
-    onBackground: darkOnBackground,
     error: darkError,
     onError: darkOnError,
     brightness: Brightness.dark,
