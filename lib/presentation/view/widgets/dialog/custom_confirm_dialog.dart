@@ -27,7 +27,12 @@ class CustomConfirmDialog extends BaseStatelessWidget {
           color: theme(context).colorScheme.tertiary,
         ),
       ),
-      content: Text(content),
+      content: Text(
+        content,
+        style: theme(context).textTheme.titleMedium?.copyWith(
+          color: theme(context).colorScheme.onSurface,
+        ),
+      ),
       actions: [
         TextButton(
           onPressed: () => navigator(context).pop(),
