@@ -94,4 +94,18 @@ void main() {
       verify(mockDataSource.getById(testTransaction.id!)).called(1);
     });
   });
+
+  test('getTransactionById returns null when not found', () async {
+    // Arrange
+    when(
+      mockDataSource.getById(testTransaction.id!),
+    ).thenAnswer((_) async => null);
+
+    // Act
+    final result = await repository.getTransactionById(testTransaction.id!);
+
+    // Assert
+    expect(result, isNull);
+    verify(mockDataSource.getById(testTransaction.id!)).called(1);
+  });
 }
