@@ -11,6 +11,5 @@ abstract class BaseCubit<T extends BaseBlocState> extends Cubit<T> {
   @override
   void onError(Object error, StackTrace stackTrace) {
     super.onError(error, stackTrace);
-    print('Bloc Error: $error');
   }
 }
