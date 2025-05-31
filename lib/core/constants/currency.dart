@@ -81,7 +81,7 @@ extension CurrencyCodeExtension on String {
 }
 
 IconData getCurrencyIcon(Currency currency) {
-  switch (currency) {
+  switch (currency.code) {
     case 'USD':
       return Icons.attach_money;
     case 'EUR':
