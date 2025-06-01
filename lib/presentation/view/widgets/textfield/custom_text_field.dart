@@ -7,12 +7,14 @@ import 'package:flutter/services.dart';
 class CustomTextField extends BaseStatelessWidget {
   final TextEditingController? controller;
   final ValueChanged<String>? onChanged;
+  final IconData? prefixIcon;
   final bool isCurrency;
 
   const CustomTextField({
     super.key,
     this.controller,
     this.onChanged,
+    this.prefixIcon,
     this.isCurrency = false,
   });
 
@@ -37,7 +39,7 @@ class CustomTextField extends BaseStatelessWidget {
           isCurrency ? [FilteringTextInputFormatter.digitsOnly] : [],
       decoration: customInputDecoration(
         context: context,
-        prefixIcon: isCurrency ? Icon(Icons.attach_money) : null,
+        prefixIcon: isCurrency ? Icon(Icons.attach_money) : Icon(prefixIcon),
       ),
     );
   }
