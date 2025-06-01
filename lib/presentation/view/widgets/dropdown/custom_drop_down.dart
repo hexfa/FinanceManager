@@ -8,6 +8,7 @@ class CustomDropdown<T> extends BaseStatelessWidget {
   final ValueChanged<T?> onChanged;
   final String Function(T)? itemLabelBuilder;
   final IconData Function(T)? iconBuilder;
+  final String? hint;
 
   const CustomDropdown({
     super.key,
@@ -16,6 +17,7 @@ class CustomDropdown<T> extends BaseStatelessWidget {
     this.value,
     this.itemLabelBuilder,
     this.iconBuilder,
+    this.hint,
   });
 
   @override
@@ -40,6 +42,7 @@ class CustomDropdown<T> extends BaseStatelessWidget {
       decoration: customInputDecoration(
         context: context,
         prefixIcon: dynamicIcon,
+        hint: hint,
       ),
       icon: const Icon(Icons.arrow_drop_down),
     );
