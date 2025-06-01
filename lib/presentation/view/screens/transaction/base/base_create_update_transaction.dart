@@ -79,7 +79,11 @@ abstract class BaseTransactionScreenState<T extends BaseTransactionScreen>
             ),
             const SizedBox(height: 16),
             //amount
-            CustomTextField(isCurrency: true, controller: amountController),
+            CustomTextField(
+              hint: 'Amount ...',
+              isCurrency: true,
+              controller: amountController,
+            ),
             const SizedBox(height: 16),
             CustomDropdown(
               items: ['Business', 'Food', 'Sport', 'Education', 'Other'],
