@@ -66,13 +66,17 @@ abstract class BaseTransactionScreenState<T extends BaseTransactionScreen>
           children: [
             //title
             CustomTextField(
-              prefixIcon: Icons.title,
+              prefixIcon: Icons.title_outlined,
               hint: 'Title ...',
               controller: titleController,
             ),
             const SizedBox(height: 16),
             //description
-            CustomTextField(controller: descriptionController),
+            CustomTextField(
+              prefixIcon: Icons.description_outlined,
+              hint: 'Description ...',
+              controller: descriptionController,
+            ),
             const SizedBox(height: 16),
             //amount
             CustomTextField(isCurrency: true, controller: amountController),
