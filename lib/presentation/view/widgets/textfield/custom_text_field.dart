@@ -9,12 +9,14 @@ class CustomTextField extends BaseStatelessWidget {
   final ValueChanged<String>? onChanged;
   final IconData? prefixIcon;
   final bool isCurrency;
+  final String? hint;
 
   const CustomTextField({
     super.key,
     this.controller,
     this.onChanged,
     this.prefixIcon,
+    this.hint,
     this.isCurrency = false,
   });
 
@@ -40,6 +42,7 @@ class CustomTextField extends BaseStatelessWidget {
       decoration: customInputDecoration(
         context: context,
         prefixIcon: isCurrency ? Icon(Icons.attach_money) : Icon(prefixIcon),
+        hint: hint,
       ),
     );
   }
