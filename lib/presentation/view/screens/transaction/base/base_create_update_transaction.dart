@@ -1,4 +1,5 @@
 import 'package:finance_manager/core/constants/currency.dart';
+import 'package:finance_manager/core/utils/category_type.dart';
 import 'package:finance_manager/presentation/view/base/base_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -87,7 +88,13 @@ abstract class BaseTransactionScreenState<T extends BaseTransactionScreen>
             ),
             const SizedBox(height: 16),
             CustomDropdown(
-              items: ['Business', 'Food', 'Sport', 'Education', 'Other'],
+              items: [
+                CategoryType.business.name,
+                CategoryType.food.name,
+                CategoryType.sport.name,
+                CategoryType.education.name,
+                CategoryType.other.name,
+              ],
               onChanged: (value) {
                 getBloc<TransactionCubit>().updateCategory(value ?? '');
               },
