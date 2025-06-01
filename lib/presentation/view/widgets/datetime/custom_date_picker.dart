@@ -35,6 +35,14 @@ class _DateTimePickerContainerState extends BaseState<DateTimePickerContainer> {
       initialDate: selectedDateTime ?? now,
       firstDate: DateTime(2000),
       lastDate: DateTime(2100),
+      builder: (context, child) {
+        return Theme(
+          data: theme.copyWith(
+            dialogBackgroundColor: theme.colorScheme.surfaceContainer,
+          ),
+          child: child!,
+        );
+      },
     );
 
     if (date == null) return;
