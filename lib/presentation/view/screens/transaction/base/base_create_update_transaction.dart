@@ -1,4 +1,3 @@
-import 'package:finance_manager/core/constants/currency.dart';
 import 'package:finance_manager/core/utils/category_type.dart';
 import 'package:finance_manager/presentation/view/base/base_state.dart';
 import 'package:flutter/material.dart';
