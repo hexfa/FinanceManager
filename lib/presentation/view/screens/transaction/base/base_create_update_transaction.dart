@@ -1,3 +1,4 @@
+import 'package:finance_manager/core/constants/currency.dart';
 import 'package:finance_manager/presentation/view/base/base_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -90,6 +91,7 @@ abstract class BaseTransactionScreenState<T extends BaseTransactionScreen>
               onChanged: (value) {
                 getBloc<TransactionCubit>().updateCategory(value ?? '');
               },
+              hint: 'Category ...',
             ),
             const SizedBox(height: 16),
             DateTimePickerContainer(
