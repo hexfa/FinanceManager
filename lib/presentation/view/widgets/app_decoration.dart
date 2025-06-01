@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 InputDecoration customInputDecoration({
   required BuildContext context,
   String? label,
+  String? hint,
   Widget? prefixIcon,
 }) {
   final theme = Theme.of(context);
   return InputDecoration(
     filled: true,
     fillColor: theme.colorScheme.surfaceContainer,
+    hintText: hint,
     labelText: label,
     floatingLabelBehavior: FloatingLabelBehavior.auto,
     prefixIcon: prefixIcon,
