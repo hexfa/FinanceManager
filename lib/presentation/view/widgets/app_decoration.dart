@@ -11,6 +11,7 @@ InputDecoration customInputDecoration({
     filled: true,
     fillColor: theme.colorScheme.surfaceContainer,
     hintText: hint,
+    hintStyle: theme.textTheme.labelMedium?.copyWith(color: theme.colorScheme.tertiary),
     labelText: label,
     floatingLabelBehavior: FloatingLabelBehavior.auto,
     prefixIcon: prefixIcon,
