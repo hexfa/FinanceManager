@@ -50,6 +50,14 @@ class _DateTimePickerContainerState extends BaseState<DateTimePickerContainer> {
     final time = await showTimePicker(
       context: context,
       initialTime: TimeOfDay.fromDateTime(selectedDateTime ?? now),
+      builder: (context, child) {
+        return Theme(
+          data: theme.copyWith(
+            dialogBackgroundColor: theme.colorScheme.surfaceContainer,
+          ),
+          child: child!,
+        );
+      },
     );
 
     if (time == null) return;
