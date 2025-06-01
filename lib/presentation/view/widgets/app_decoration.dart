@@ -11,7 +11,9 @@ InputDecoration customInputDecoration({
     filled: true,
     fillColor: theme.colorScheme.surfaceContainer,
     hintText: hint,
-    hintStyle: theme.textTheme.labelMedium?.copyWith(color: theme.colorScheme.tertiary),
+    hintStyle: theme.textTheme.labelMedium?.copyWith(
+      color: theme.colorScheme.tertiary,
+    ),
     labelText: label,
     floatingLabelBehavior: FloatingLabelBehavior.auto,
     prefixIcon: prefixIcon,
@@ -34,8 +36,7 @@ InputDecoration customInputDecoration({
 BoxDecoration customBoxDecoration(BuildContext context) {
   final theme = Theme.of(context);
   return BoxDecoration(
-    color: theme.colorScheme.surface,
-    borderRadius: BorderRadius.circular(8),
-    border: Border.all(color: theme.colorScheme.tertiary),
+    color: theme.colorScheme.surfaceContainer,
+    borderRadius: BorderRadius.circular(12),
   );
 }
