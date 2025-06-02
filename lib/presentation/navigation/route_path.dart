@@ -5,4 +5,5 @@ class RoutePath {
   static const String updateTransactionRoute = '/updateTransaction';
   static const String settingRoute = '/setting';
   static const String transactionListRoute = '/transactionList';
+  static const String createCategoryRoute = '/createCategory';
 }
