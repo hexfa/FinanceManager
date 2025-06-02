@@ -52,26 +52,27 @@ class SettingScreen extends BaseStatelessWidget {
                     getBloc<SettingCubit>(context).toggleDarkTheme(value);
                   },
                 ),
-                InkWell(
-                  onTap: () {
-                    router(context).push(RoutePath.createCategoryRoute);
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 16),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Text('Create Category'),
-                        Icon(Icons.chevron_right),
-                      ],
-                    ),
-                  ),
-                ),
+                _buildCreateCategory(context),
               ],
             ),
           );
         },
+      ),
+    );
+  }
+
+  InkWell _buildCreateCategory(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        router(context).push(RoutePath.createCategoryRoute);
+      },
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 16),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisSize: MainAxisSize.max,
+          children: [Text('Create Category'), Icon(Icons.chevron_right)],
+        ),
       ),
     );
   }
