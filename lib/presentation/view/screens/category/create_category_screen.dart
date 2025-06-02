@@ -1,5 +1,6 @@
 import 'package:finance_manager/presentation/view/base/base_state.dart';
 import 'package:finance_manager/presentation/view/widgets/appbar/custom_app_bar.dart';
+import 'package:finance_manager/presentation/view/widgets/button/custom_button.dart';
 import 'package:finance_manager/presentation/view/widgets/textfield/custom_text_field.dart';
 import 'package:flutter/material.dart';
 
@@ -34,6 +35,7 @@ class _CreateCategoryScreenState extends BaseState<CreateCategoryScreen> {
             hint: 'Name ...',
             controller: nameController,
           ),
+          CustomButton(text: 'Create', onPressed: () {}),
         ],
       ),
     );
