@@ -28,15 +28,20 @@ class _CreateCategoryScreenState extends BaseState<CreateCategoryScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(title: 'Create Category'),
-      body: Column(
-        children: [
-          CustomTextField(
-            prefixIcon: Icons.category_outlined,
-            hint: 'Name ...',
-            controller: nameController,
-          ),
-          CustomButton(text: 'Create', onPressed: () {}),
-        ],
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            CustomTextField(
+              prefixIcon: Icons.category_outlined,
+              hint: 'Name ...',
+              controller: nameController,
+            ),
+            CustomButton(text: 'Create', onPressed: () {}),
+          ],
+        ),
       ),
     );
   }
