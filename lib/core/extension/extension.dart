@@ -34,3 +34,7 @@ extension TransactionModelMapper on Transaction {
 extension CategoryMapper on CategoryEntity {
   Category toModel(int id) => Category(id: id, name: name);
 }
+
+extension CategoryModelMapper on Category {
+  CategoryEntity toEntity() => CategoryEntity(name: name);
+}
