@@ -2,6 +2,7 @@ import 'package:finance_manager/core/constants/currency.dart';
 import 'package:finance_manager/data/models/currency.dart';
 import 'package:finance_manager/presentation/bloc/setting/setting_cubit.dart';
 import 'package:finance_manager/presentation/bloc/setting/setting_state.dart';
+import 'package:finance_manager/presentation/navigation/route_path.dart';
 import 'package:finance_manager/presentation/view/base/base_stateless_widget.dart';
 import 'package:finance_manager/presentation/view/widgets/appbar/custom_app_bar.dart';
 import 'package:finance_manager/presentation/view/widgets/dropdown/custom_drop_down.dart';
@@ -51,14 +52,21 @@ class SettingScreen extends BaseStatelessWidget {
                     getBloc<SettingCubit>(context).toggleDarkTheme(value);
                   },
                 ),
-                SizedBox(height: 16),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Text('Create Category'),
-                    Icon(Icons.chevron_right),
-                  ],
+                InkWell(
+                  onTap: () {
+                    router(context).push(RoutePath.createCategoryRoute);
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Text('Create Category'),
+                        Icon(Icons.chevron_right),
+                      ],
+                    ),
+                  ),
                 ),
               ],
             ),
