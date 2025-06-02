@@ -51,6 +51,15 @@ class SettingScreen extends BaseStatelessWidget {
                     getBloc<SettingCubit>(context).toggleDarkTheme(value);
                   },
                 ),
+                SizedBox(height: 16),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Text('Create Category'),
+                    Icon(Icons.chevron_right),
+                  ],
+                ),
               ],
             ),
           );
