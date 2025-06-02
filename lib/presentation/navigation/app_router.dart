@@ -5,6 +5,7 @@ import 'package:finance_manager/presentation/bloc/transaction/detail/transaction
 import 'package:finance_manager/presentation/bloc/transaction/list/transaction_list_cubit.dart';
 import 'package:finance_manager/presentation/bloc/transaction/transaction_cubit.dart';
 import 'package:finance_manager/presentation/navigation/route_path.dart';
+import 'package:finance_manager/presentation/view/screens/category/create_category_screen.dart';
 import 'package:finance_manager/presentation/view/screens/home/home_screen.dart';
 import 'package:finance_manager/presentation/view/screens/setting/setting_screen.dart';
 import 'package:finance_manager/presentation/view/screens/transaction/create/create_transaction_screen.dart';
@@ -89,6 +90,15 @@ class AppRouter {
               create: (_) => getIt<TransactionListCubit>()..loadInitialData(),
               child: TransactionListScreen(),
             ),
+          );
+        },
+      ),
+      GoRoute(
+        path: RoutePath.createCategoryRoute,
+        pageBuilder: (context, state) {
+          return _buildTransitionPage(
+            key: state.pageKey,
+            child: CreateCategoryScreen(),
           );
         },
       ),
