@@ -26,7 +26,7 @@ abstract class BaseStatelessWidget extends StatelessWidget {
   NavigatorState navigator(BuildContext context) => Navigator.of(context);
 
   // Access to GoRouter for navigating between pages
-  // GoRouter router(BuildContext context) => GoRouter.of(context);
+  GoRouter router(BuildContext context) => GoRouter.of(context);
 
   // Common method to show a SnackBar with a message
   void showSnackBar(BuildContext context, String message) {
@@ -67,16 +67,14 @@ abstract class BaseStatelessWidget extends StatelessWidget {
         iconPath,
         width: size,
         height: size,
-        colorFilter: color != null
-            ? ColorFilter.mode(
-                color,
-                BlendMode.srcIn,
-              )
-            : null,
+        colorFilter:
+            color != null ? ColorFilter.mode(color, BlendMode.srcIn) : null,
       );
 
   // Get bloc object
-  TBloc getBloc<TBloc extends StateStreamableSource<Object?>>(BuildContext context) {
+  TBloc getBloc<TBloc extends StateStreamableSource<Object?>>(
+    BuildContext context,
+  ) {
     return BlocProvider.of<TBloc>(context);
   }
 
