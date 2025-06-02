@@ -1,5 +1,8 @@
 import 'package:finance_manager/data/models/transaction.dart';
+import 'package:finance_manager/domain/entities/category_entity.dart';
 import 'package:finance_manager/domain/entities/transaction_entity.dart';
+
+import '../../data/models/category.dart';
 
 extension TransactionEntityMapper on TransactionEntity {
   Transaction toModel() {
@@ -26,4 +29,8 @@ extension TransactionModelMapper on Transaction {
       date: date,
     );
   }
+}
+
+extension CategoryMapper on CategoryEntity {
+  Category toModel(int id) => Category(id: id, name: name);
 }
