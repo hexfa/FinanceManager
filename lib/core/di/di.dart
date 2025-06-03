@@ -1,5 +1,6 @@
 import 'package:finance_manager/data/datasource/db_data_source.dart';
 import 'package:finance_manager/data/datasource/sharepref_data_source.dart';
+import 'package:finance_manager/data/repositories/category_repository_imp.dart';
 import 'package:finance_manager/data/repositories/setting_repository_imp.dart';
 import 'package:finance_manager/data/repositories/transaction_repository_imp.dart';
 import 'package:finance_manager/domain/entities/category_entity.dart';
@@ -42,6 +43,9 @@ void _registerRepositories() {
   );
   getIt.registerSingleton<SettingRepository>(
     SettingRepositoryImpl(getIt<ShareprefDataSource>()),
+  );
+  getIt.registerLazySingleton<CategoryRepository>(
+    () => CategoryRepositoryImpl(box: getIt<Box<CategoryEntity>>()),
   );
 }
 
