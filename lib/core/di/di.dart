@@ -3,8 +3,10 @@ import 'package:finance_manager/data/datasource/sharepref_data_source.dart';
 import 'package:finance_manager/data/repositories/setting_repository_imp.dart';
 import 'package:finance_manager/data/repositories/transaction_repository_imp.dart';
 import 'package:finance_manager/domain/entities/transaction_entity.dart';
+import 'package:finance_manager/domain/repositories/category_repository.dart';
 import 'package:finance_manager/domain/repositories/setting_repository.dart';
 import 'package:finance_manager/domain/repositories/transaction_repository.dart';
+import 'package:finance_manager/presentation/bloc/category/category_cubit.dart';
 import 'package:finance_manager/presentation/bloc/home/home_cubit.dart';
 import 'package:finance_manager/presentation/bloc/setting/setting_cubit.dart';
 import 'package:finance_manager/presentation/bloc/transaction/detail/transaction_detail_cubit.dart';
@@ -60,5 +62,8 @@ Future<void> _registerBlocs() async {
     () => TransactionListCubit(
       transactionRepository: getIt<TransactionRepository>(),
     ),
+  );
+  getIt.registerFactory<CategoryCubit>(
+    () => CategoryCubit(repository: getIt<CategoryRepository>()),
   );
 }
