@@ -19,5 +19,8 @@
   "settings": "تنظیمات",
   "currency": "واحد پول",
   "darkTheme": "تم تیره",
-  "country": "کشور"
+  "country": "کشور",
+  "createCategory": "ایجاد دسته بندی",
+  "name": "نام",
+  "create": "ایجاد"
 }
