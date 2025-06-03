@@ -2,6 +2,7 @@ import 'package:finance_manager/data/datasource/db_data_source.dart';
 import 'package:finance_manager/data/datasource/sharepref_data_source.dart';
 import 'package:finance_manager/data/repositories/setting_repository_imp.dart';
 import 'package:finance_manager/data/repositories/transaction_repository_imp.dart';
+import 'package:finance_manager/domain/entities/category_entity.dart';
 import 'package:finance_manager/domain/entities/transaction_entity.dart';
 import 'package:finance_manager/domain/repositories/category_repository.dart';
 import 'package:finance_manager/domain/repositories/setting_repository.dart';
@@ -31,6 +32,8 @@ Future<void> _registerDataSource() async {
   getIt.registerSingleton<DBDataSource>(
     DBDataSource(await Hive.openBox<TransactionEntity>('transactions')),
   );
+  final categoryBox = await Hive.openBox<CategoryEntity>('categories');
+  getIt.registerSingleton<Box<CategoryEntity>>(categoryBox);
 }
 
 void _registerRepositories() {
