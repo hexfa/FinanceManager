@@ -1,5 +1,6 @@
 import 'package:finance_manager/core/di/di.dart';
 import 'package:finance_manager/data/models/transaction.dart';
+import 'package:finance_manager/presentation/bloc/category/category_cubit.dart';
 import 'package:finance_manager/presentation/bloc/home/home_cubit.dart';
 import 'package:finance_manager/presentation/bloc/transaction/detail/transaction_detail_cubit.dart';
 import 'package:finance_manager/presentation/bloc/transaction/list/transaction_list_cubit.dart';
@@ -98,7 +99,10 @@ class AppRouter {
         pageBuilder: (context, state) {
           return _buildTransitionPage(
             key: state.pageKey,
-            child: CreateCategoryScreen(),
+            child: BlocProvider(
+              create: (_) => getIt<CategoryCubit>(),
+              child: CreateCategoryScreen(),
+            ),
           );
         },
       ),
