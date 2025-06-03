@@ -27,7 +27,7 @@ class _CreateCategoryScreenState extends BaseState<CreateCategoryScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: 'Create Category'),
+      appBar: CustomAppBar(title: localization.createCategory),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -36,10 +36,10 @@ class _CreateCategoryScreenState extends BaseState<CreateCategoryScreen> {
           children: [
             CustomTextField(
               prefixIcon: Icons.category_outlined,
-              hint: 'Name ...',
+              hint: '${localization.name} ...',
               controller: nameController,
             ),
-            CustomButton(text: 'Create', onPressed: () {}),
+            CustomButton(text: localization.create, onPressed: () {}),
           ],
         ),
       ),
