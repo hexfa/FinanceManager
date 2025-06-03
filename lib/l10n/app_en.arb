@@ -19,5 +19,8 @@
   "settings": "Settings",
   "currency": "Currency",
   "darkTheme": "Dark Theme",
-  "country": "Country"
+  "country": "Country",
+  "createCategory": "Create Category",
+  "name": "Name",
+  "create": "Create"
 }
