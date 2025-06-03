@@ -71,7 +71,10 @@ class SettingScreen extends BaseStatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           mainAxisSize: MainAxisSize.max,
-          children: [Text('Create Category'), Icon(Icons.chevron_right)],
+          children: [
+            Text(localization(context).createCategory),
+            Icon(Icons.chevron_right),
+          ],
         ),
       ),
     );
