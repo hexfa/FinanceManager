@@ -1,3 +1,4 @@
+import 'package:finance_manager/presentation/bloc/category/category_cubit.dart';
 import 'package:finance_manager/presentation/view/base/base_state.dart';
 import 'package:finance_manager/presentation/view/widgets/appbar/custom_app_bar.dart';
 import 'package:finance_manager/presentation/view/widgets/button/custom_button.dart';
@@ -39,7 +40,16 @@ class _CreateCategoryScreenState extends BaseState<CreateCategoryScreen> {
               hint: '${localization.name} ...',
               controller: nameController,
             ),
-            CustomButton(text: localization.create, onPressed: () {}),
+            CustomButton(
+              text: localization.create,
+              onPressed: () async {
+                final name = nameController.text.trim();
+                if (name.isNotEmpty) {
+                  await getBloc<CategoryCubit>().create(name);
+                  navigator.pop();
+                }
+              },
+            ),
           ],
         ),
       ),
