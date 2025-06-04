@@ -97,4 +97,26 @@ void main() {
 
     expect(find.textContaining('Test'), findsOneWidget);
   });
+
+  testWidgets('rounds percentage values to two decimal places', (
+    WidgetTester tester,
+  ) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: CustomPieChart(
+            data: [
+              TransactionChartData(
+                title: 'Test',
+                percentage: 33.3333,
+                color: Colors.blue,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+
+    expect(find.textContaining('33.33'), findsOneWidget);
+  });
 }
