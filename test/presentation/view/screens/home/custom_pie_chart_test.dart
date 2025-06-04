@@ -54,4 +54,25 @@ void main() {
     expect(find.textContaining('Transport'), findsOneWidget);
     expect(find.textContaining('50.12'), findsOneWidget);
   });
+
+  testWidgets('renders correct number of pie sections based on data length', (WidgetTester tester) async {
+    final data = [
+      TransactionChartData(title: 'A', percentage: 10, color: Colors.green),
+      TransactionChartData(title: 'B', percentage: 20, color: Colors.orange),
+      TransactionChartData(title: 'C', percentage: 30, color: Colors.purple),
+    ];
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: CustomPieChart(data: data),
+        ),
+      ),
+    );
+
+    for (var item in data) {
+      expect(find.textContaining(item.title), findsOneWidget);
+    }
+  });
+
 }
