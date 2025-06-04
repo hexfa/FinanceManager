@@ -25,4 +25,14 @@ void main() {
 
     expect(find.byKey(const Key('income_expense_separator')), findsOneWidget);
   });
+
+  testWidgets('displays icons for income and expense', (
+    WidgetTester tester,
+  ) async {
+    await tester.pumpWidget(
+      MaterialApp(home: IncomeExpenseSummary(income: '1000', expense: '500')),
+    );
+
+    expect(find.byType(Image), findsWidgets);
+  });
 }
