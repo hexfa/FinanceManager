@@ -15,4 +15,14 @@ void main() {
     expect(find.text('2000 \$'), findsOneWidget);
     expect(find.text('1500 \$'), findsOneWidget);
   });
+
+  testWidgets('shows a separator between income and expense', (
+    WidgetTester tester,
+  ) async {
+    await tester.pumpWidget(
+      MaterialApp(home: IncomeExpenseSummary(income: '1000', expense: '500')),
+    );
+
+    expect(find.byKey(const Key('income_expense_separator')), findsOneWidget);
+  });
 }
