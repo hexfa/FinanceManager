@@ -24,4 +24,34 @@ void main() {
 
     expect(find.byType(PieChart), findsOneWidget);
   });
+
+  testWidgets('displays correct titles and percentages', (
+    WidgetTester tester,
+  ) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: CustomPieChart(
+            data: [
+              TransactionChartData(
+                title: 'Food',
+                percentage: 25.456,
+                color: Colors.red,
+              ),
+              TransactionChartData(
+                title: 'Transport',
+                percentage: 50.1234,
+                color: Colors.blue,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+
+    expect(find.textContaining('Food'), findsOneWidget);
+    expect(find.textContaining('25.46'), findsOneWidget);
+    expect(find.textContaining('Transport'), findsOneWidget);
+    expect(find.textContaining('50.12'), findsOneWidget);
+  });
 }
