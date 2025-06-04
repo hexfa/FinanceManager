@@ -35,4 +35,15 @@ void main() {
 
     expect(find.byType(Image), findsWidgets);
   });
+
+  testWidgets('contains two income/expense sections', (
+    WidgetTester tester,
+  ) async {
+    await tester.pumpWidget(
+      MaterialApp(home: IncomeExpenseSummary(income: '1000', expense: '500')),
+    );
+
+    final columnCount = find.byType(Column);
+    expect(columnCount, findsNWidgets(2));
+  });
 }
