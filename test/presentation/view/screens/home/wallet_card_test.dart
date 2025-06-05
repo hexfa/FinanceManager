@@ -19,4 +19,21 @@ void main() {
 
     expect(find.textContaining('1234.56'), findsOneWidget);
   });
+
+  testWidgets('shows correct last update text', (WidgetTester tester) async {
+    const lastUpdateText = '5 minutes ago';
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: WalletCard(
+          balance: 0,
+          income: 0,
+          expense: 0,
+          lastUpdate: lastUpdateText,
+        ),
+      ),
+    );
+
+    expect(find.text('Updated $lastUpdateText'), findsOneWidget);
+  });
 }
