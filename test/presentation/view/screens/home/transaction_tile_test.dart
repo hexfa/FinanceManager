@@ -1,6 +1,7 @@
 import 'package:finance_manager/core/utils/category_type.dart';
 import 'package:finance_manager/core/utils/transaction_type.dart';
 import 'package:finance_manager/data/models/transaction.dart';
+import 'package:finance_manager/presentation/navigation/route_path.dart';
 import 'package:finance_manager/presentation/view/screens/home/transaction_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -88,5 +89,41 @@ void main() {
     );
 
     expect(find.text('2024/06/04'), findsOneWidget);
+  });
+
+  testWidgets('navigates to detail page with transaction ID on tap', (
+    WidgetTester tester,
+  ) async {
+    final navigatorKey = GlobalKey<NavigatorState>();
+
+    final transaction = Transaction(
+      id: 42,
+      title: 'business',
+      description: '',
+      amount: 75,
+      type: TransactionType.expense,
+      category: CategoryType.business,
+      date: DateTime.now(),
+    );
+
+    await tester.pumpWidget(
+      MaterialApp(
+        navigatorKey: navigatorKey,
+        onGenerateRoute: (settings) {
+          if (settings.name == RoutePath.transactionDetailRoute) {
+            return MaterialPageRoute(
+              builder: (_) => Text('Detail for ID: ${settings.arguments}'),
+            );
+          }
+          return null;
+        },
+        home: TransactionTile(data: [transaction]),
+      ),
+    );
+
+    await tester.tap(find.text('business'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Detail for ID: 42'), findsOneWidget);
   });
 }
