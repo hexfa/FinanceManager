@@ -1,4 +1,6 @@
+import 'package:finance_manager/presentation/view/screens/home/income_expense_summury.dart';
 import 'package:finance_manager/presentation/view/screens/home/wallet_card.dart';
+import 'package:finance_manager/presentation/view/widgets/currency_label.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -53,5 +55,23 @@ void main() {
 
     expect(find.textContaining('500'), findsOneWidget);
     expect(find.textContaining('200'), findsOneWidget);
+  });
+
+  testWidgets('contains CurrencyLabel and IncomeExpenseSummary widgets', (
+    WidgetTester tester,
+  ) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: WalletCard(
+          balance: 100,
+          income: 100,
+          expense: 50,
+          lastUpdate: 'yesterday',
+        ),
+      ),
+    );
+
+    expect(find.byType(CurrencyLabel), findsOneWidget);
+    expect(find.byType(IncomeExpenseSummary), findsOneWidget);
   });
 }
