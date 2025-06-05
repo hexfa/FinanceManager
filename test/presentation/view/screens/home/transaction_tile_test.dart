@@ -37,4 +37,36 @@ void main() {
     expect(find.text('food'), findsOneWidget);
     expect(find.text('sport'), findsOneWidget);
   });
+
+  testWidgets('displays amount with + or - prefix based on transaction type', (
+    WidgetTester tester,
+  ) async {
+    final transactions = [
+      Transaction(
+        id: 1,
+        title: 'food',
+        description: '',
+        amount: 800,
+        type: TransactionType.income,
+        category: CategoryType.food,
+        date: DateTime.now(),
+      ),
+      Transaction(
+        id: 2,
+        title: 'sport',
+        description: '',
+        amount: 1200,
+        type: TransactionType.expense,
+        category: CategoryType.sport,
+        date: DateTime.now(),
+      ),
+    ];
+
+    await tester.pumpWidget(
+      MaterialApp(home: TransactionTile(data: transactions)),
+    );
+
+    expect(find.text('+\$800.0'), findsOneWidget);
+    expect(find.text('-\$1200.0'), findsOneWidget);
+  });
 }
