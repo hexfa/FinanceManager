@@ -69,4 +69,24 @@ void main() {
     expect(find.text('+\$800.0'), findsOneWidget);
     expect(find.text('-\$1200.0'), findsOneWidget);
   });
+
+  testWidgets('displays formatted date from transaction model', (
+    WidgetTester tester,
+  ) async {
+    final transaction = Transaction(
+      id: 1,
+      title: 'education',
+      description: '',
+      amount: 50,
+      type: TransactionType.expense,
+      category: CategoryType.education,
+      date: DateTime(2024, 6, 4),
+    );
+
+    await tester.pumpWidget(
+      MaterialApp(home: TransactionTile(data: [transaction])),
+    );
+
+    expect(find.text('2024/06/04'), findsOneWidget);
+  });
 }
