@@ -36,4 +36,22 @@ void main() {
 
     expect(find.text('Updated $lastUpdateText'), findsOneWidget);
   });
+
+  testWidgets('renders income and expense summary correctly', (
+    WidgetTester tester,
+  ) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: WalletCard(
+          balance: 0,
+          income: 500.0,
+          expense: 200.0,
+          lastUpdate: '',
+        ),
+      ),
+    );
+
+    expect(find.textContaining('500'), findsOneWidget);
+    expect(find.textContaining('200'), findsOneWidget);
+  });
 }
