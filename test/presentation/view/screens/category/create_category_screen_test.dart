@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-import 'mock_category_cubit_test.dart';
+import '../../../../helpers/mock_category_cubit_test.dart';
 
 void main() {
   setUpAll(() {
