@@ -2,11 +2,14 @@ import 'package:finance_manager/core/utils/category_type.dart';
 import 'package:finance_manager/core/utils/transaction_type.dart';
 import 'package:finance_manager/data/models/transaction.dart';
 import 'package:finance_manager/presentation/bloc/home/home_state.dart';
+import 'package:finance_manager/presentation/navigation/route_path.dart';
 import 'package:finance_manager/presentation/view/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail/mocktail.dart';
 
+import '../../../../helpers/mock_go_router.dart';
 import '../../../../helpers/mock_home_cubit.dart';
 
 void main() {
@@ -33,7 +36,9 @@ void main() {
     await tester.pumpWidget(
       MaterialApp(
         home: BlocProvider(
-          create: (_) => MockHomeCubit()..emit(mockState),
+          create: (_) =>
+          MockHomeCubit()
+            ..emit(mockState),
           child: const HomeScreen(),
         ),
       ),
@@ -48,12 +53,30 @@ void main() {
     await tester.pumpWidget(
       MaterialApp(
         home: BlocProvider(
-          create: (_) => MockHomeCubit()..emit(InitialData(...)),
+          create: (_) =>
+          MockHomeCubit()
+            ..emit(InitialData(...)),
           child: const HomeScreen(),
         ),
       ),
     );
 
     expect(find.text('Expense Chart'), findsOneWidget);
+  });
+
+  testWidgets('should navigate to transaction list screen', (tester) async {
+    final mockRouter = MockGoRouter();
+
+    await tester.pumpWidget(
+      MaterialApp.router(
+        routerDelegate: mockRouter.routerDelegate,
+        routeInformationParser: mockRouter.routeInformationParser,
+      ),
+    );
+
+    await tester.tap(find.textContaining('See All'));
+    await tester.pumpAndSettle();
+
+    verify(() => mockRouter.push(RoutePath.transactionListRoute)).called(1);
   });
 }
