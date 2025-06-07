@@ -43,4 +43,17 @@ void main() {
     expect(find.text('100.0'), findsWidgets); // Income
     expect(find.text('50.0'), findsWidgets); // Expense
   });
+
+  testWidgets('should show expense chart label', (tester) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: BlocProvider(
+          create: (_) => MockHomeCubit()..emit(InitialData(...)),
+          child: const HomeScreen(),
+        ),
+      ),
+    );
+
+    expect(find.text('Expense Chart'), findsOneWidget);
+  });
 }
