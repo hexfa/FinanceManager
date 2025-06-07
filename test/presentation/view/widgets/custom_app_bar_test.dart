@@ -28,4 +28,18 @@ void main() {
 
     expect(find.byIcon(Icons.menu), findsOneWidget);
   });
+
+  testWidgets('render actions when provided in CustomAppBar', (tester) async {
+    const actionIcon = Icon(Icons.settings);
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          appBar: CustomAppBar(title: 'Test', actions: [actionIcon]),
+        ),
+      ),
+    );
+
+    expect(find.byIcon(Icons.settings), findsOneWidget);
+  });
 }
