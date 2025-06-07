@@ -3,13 +3,29 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  testWidgets('verify title is rendered correctly in CustomAppBar', (tester) async {
-    await tester.pumpWidget(MaterialApp(
-      home: Scaffold(
-        appBar: CustomAppBar(title: 'Test Title'),
-      ),
-    ));
+  testWidgets('verify title is rendered correctly in CustomAppBar', (
+    tester,
+  ) async {
+    await tester.pumpWidget(
+      MaterialApp(home: Scaffold(appBar: CustomAppBar(title: 'Test Title'))),
+    );
 
     expect(find.text('Test Title'), findsOneWidget);
+  });
+
+  testWidgets('ensure leading widget appears when provided in CustomAppBar', (
+    tester,
+  ) async {
+    const leadingIcon = Icon(Icons.menu);
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          appBar: CustomAppBar(title: 'Test', leading: leadingIcon),
+        ),
+      ),
+    );
+
+    expect(find.byIcon(Icons.menu), findsOneWidget);
   });
 }
