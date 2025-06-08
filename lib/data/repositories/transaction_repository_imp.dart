@@ -1,6 +1,6 @@
 import 'package:finance_manager/core/extension/extension.dart';
 import 'package:finance_manager/data/datasource/db_data_source.dart';
-import 'package:finance_manager/data/mapper/mapper.dart';
+import 'package:finance_manager/data/mapper/transaction_mapper.dart';
 import 'package:finance_manager/data/models/transaction.dart';
 import 'package:finance_manager/domain/repositories/transaction_repository.dart';
 
