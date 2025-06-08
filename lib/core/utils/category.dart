@@ -2,7 +2,7 @@ import 'package:finance_manager/core/utils/category_type.dart';
 import 'package:finance_manager/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 
-class Category {
+class CategoryUtils {
   static Color getCategoryColor(CategoryType category) {
     switch (category) {
       case CategoryType.food:

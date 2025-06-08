@@ -13,7 +13,7 @@ class CategoryLabel extends BaseStatelessWidget {
     return Row(
       children: [
         getIcon(
-          Category.getCategoryIconPath(category),
+          CategoryUtils.getCategoryIconPath(category),
           color: theme(context).colorScheme.onSurface,
         ),
         const SizedBox(width: 8),

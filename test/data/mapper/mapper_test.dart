@@ -1,5 +1,5 @@
 import 'package:finance_manager/core/utils/category_type.dart';
-import 'package:finance_manager/data/mapper/mapper.dart';
+import 'package:finance_manager/data/mapper/transaction_mapper.dart';
 import 'package:finance_manager/data/models/transaction.dart';
 import 'package:finance_manager/domain/entities/transaction_entity.dart';
 import 'package:flutter_test/flutter_test.dart';
