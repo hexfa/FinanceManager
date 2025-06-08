@@ -1,4 +1,6 @@
-import 'package:finance_manager/core/utils/category_type.dart';
+import 'package:finance_manager/data/models/category.dart';
+import 'package:finance_manager/presentation/bloc/category/category_cubit.dart';
+import 'package:finance_manager/presentation/bloc/category/category_state.dart';
 import 'package:finance_manager/presentation/view/base/base_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,6 +32,8 @@ abstract class BaseTransactionScreenState<T extends BaseTransactionScreen>
   String get categoryLabel;
 
   DateTime get dateLabel;
+
+  List<Category> categories = [];
 
   @override
   void initState() {
@@ -86,18 +90,18 @@ abstract class BaseTransactionScreenState<T extends BaseTransactionScreen>
               controller: amountController,
             ),
             const SizedBox(height: 16),
-            CustomDropdown(
-              items: [
-                CategoryType.business.name,
-                CategoryType.food.name,
-                CategoryType.sport.name,
-                CategoryType.education.name,
-                CategoryType.other.name,
-              ],
-              onChanged: (value) {
-                getBloc<TransactionCubit>().updateCategory(value ?? '');
+            BlocBuilder<CategoryCubit, CategoryState>(
+              builder: (context, state) {
+                categories = state.categories;
+
+                return CustomDropdown<Category>(
+                  items: categories,
+                  onChanged: (value) {
+                    getBloc<TransactionCubit>().updateCategory(value ?? '');
+                  },
+                  hint: 'Category ...',
+                );
               },
-              hint: 'Category ...',
             ),
             const SizedBox(height: 16),
             DateTimePickerContainer(
@@ -123,7 +127,7 @@ abstract class BaseTransactionScreenState<T extends BaseTransactionScreen>
                 final isFormValid =
                     state.title.isNotEmpty &&
                     state.amount.isNotEmpty &&
-                    state.category.isNotEmpty;
+                    state.category != null;
 
                 return CustomButton(
                   text: widget.actionButtonText,
