@@ -40,7 +40,7 @@ class TransactionMapper {
       return TransactionChartData(
         title: category.name,
         percentage: percentage,
-        color: Category.getCategoryColor(category),
+        color: CategoryUtils.getCategoryColor(category),
       );
     }).toList();
   }
