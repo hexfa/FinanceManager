@@ -29,7 +29,7 @@ class TransactionTile extends BaseStatelessWidget {
             );
           },
           leading: getIcon(
-            Category.getCategoryIconPath(transaction.category),
+            CategoryUtils.getCategoryIconPath(transaction.category),
             color: theme(context).colorScheme.primary,
             size: 25,
           ),
