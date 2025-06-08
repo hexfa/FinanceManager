@@ -32,7 +32,7 @@ extension TransactionModelMapper on Transaction {
 }
 
 extension CategoryMapper on CategoryEntity {
-  Category toModel(int id) => Category(id: id, name: name);
+  Category toModel() => Category(id: key as int, name: name);
 }
 
 extension CategoryModelMapper on Category {
