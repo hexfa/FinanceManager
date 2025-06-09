@@ -1,3 +1,4 @@
+import 'package:finance_manager/data/models/app_bar_menu.dart';
 import 'package:finance_manager/presentation/view/widgets/appbar/custom_app_bar_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -13,5 +14,24 @@ void main() {
     );
 
     expect(find.byIcon(Icons.more_vert), findsOneWidget);
+  });
+
+  testWidgets('Verify menu items appear when clicking on menu icon', (
+    tester,
+  ) async {
+    final menuItems = [
+      AppBarMenu(title: 'Item 1', icon: Icons.edit, onTap: () {}),
+      AppBarMenu(title: 'Item 2', icon: Icons.delete, onTap: () {}),
+    ];
+
+    await tester.pumpWidget(
+      buildTestableWidget(CustomAppBarMenu(menuItem: menuItems)),
+    );
+
+    await tester.tap(find.byIcon(Icons.more_vert));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Item 1'), findsOneWidget);
+    expect(find.text('Item 2'), findsOneWidget);
   });
 }
