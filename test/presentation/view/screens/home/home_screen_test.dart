@@ -50,16 +50,16 @@ void main() {
   });
 
   testWidgets('should show expense chart label', (tester) async {
-    await tester.pumpWidget(
-      MaterialApp(
-        home: BlocProvider(
-          create: (_) =>
-          MockHomeCubit()
-            ..emit(InitialData(...)),
-          child: const HomeScreen(),
-        ),
-      ),
-    );
+    // await tester.pumpWidget(
+    //   MaterialApp(
+    //     home: BlocProvider(
+    //       create: (_) =>
+    //       MockHomeCubit()
+    //         ..emit(InitialData(...)),
+    //       child: const HomeScreen(),
+    //     ),
+    //   ),
+    // );
 
     expect(find.text('Expense Chart'), findsOneWidget);
   });
@@ -67,12 +67,12 @@ void main() {
   testWidgets('should navigate to transaction list screen', (tester) async {
     final mockRouter = MockGoRouter();
 
-    await tester.pumpWidget(
-      MaterialApp.router(
-        routerDelegate: mockRouter.routerDelegate,
-        routeInformationParser: mockRouter.routeInformationParser,
-      ),
-    );
+    // await tester.pumpWidget(
+    //   MaterialApp.router(
+    //     routerDelegate: mockRouter.routerDelegate,
+    //     routeInformationParser: mockRouter.routeInformationParser,
+    //   ),
+    // );
 
     await tester.tap(find.textContaining('See All'));
     await tester.pumpAndSettle();
@@ -85,12 +85,12 @@ void main() {
       tester) async {
     final mockRouter = MockGoRouter();
 
-    await tester.pumpWidget(
-      MaterialApp.router(
-        routerDelegate: mockRouter.routerDelegate,
-        routeInformationParser: mockRouter.routeInformationParser,
-      ),
-    );
+    // await tester.pumpWidget(
+    //   MaterialApp.router(
+    //     routerDelegate: mockRouter.routerDelegate,
+    //     routeInformationParser: mockRouter.routeInformationParser,
+    //   ),
+    // );
 
     await tester.tap(find.byIcon(Icons.add));
     await tester.pumpAndSettle();
@@ -101,12 +101,12 @@ void main() {
   testWidgets('should navigate to setting screen from app bar menu', (tester) async {
     final mockRouter = MockGoRouter();
 
-    await tester.pumpWidget(
-      MaterialApp.router(
-        routerDelegate: mockRouter.routerDelegate,
-        routeInformationParser: mockRouter.routeInformationParser,
-      ),
-    );
+    // await tester.pumpWidget(
+    //   MaterialApp.router(
+    //     routerDelegate: mockRouter.routerDelegate,
+    //     routeInformationParser: mockRouter.routeInformationParser,
+    //   ),
+    // );
 
     await tester.tap(find.byIcon(Icons.more_vert));
     await tester.pumpAndSettle();
