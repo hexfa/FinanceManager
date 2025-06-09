@@ -34,4 +34,32 @@ void main() {
     expect(find.text('Item 1'), findsOneWidget);
     expect(find.text('Item 2'), findsOneWidget);
   });
+
+  testWidgets('ensure onTap is triggered when menu item is selected', (
+    tester,
+  ) async {
+    bool tapped = false;
+
+    final menuItems = [
+      AppBarMenu(
+        title: 'Do Action',
+        icon: Icons.done,
+        onTap: () {
+          tapped = true;
+        },
+      ),
+    ];
+
+    await tester.pumpWidget(
+      buildTestableWidget(CustomAppBarMenu(menuItem: menuItems)),
+    );
+
+    await tester.tap(find.byIcon(Icons.more_vert));
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.text('Do Action'));
+    await tester.pump();
+
+    expect(tapped, isTrue);
+  });
 }
