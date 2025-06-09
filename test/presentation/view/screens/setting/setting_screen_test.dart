@@ -68,4 +68,15 @@ void main() {
 
     verify(navObserver.didPush(any, any));
   });
+
+  testWidgets('should display selected currency in dropdown', (tester) async {
+    final currency = currencyList[2];
+    final cubit = SettingCubitFake(initialCurrency: currency);
+
+    await tester.pumpWidget(
+      buildTestableWidget(const SettingScreen(), settingCubit: cubit),
+    );
+
+    expect(find.text('${currency.code} - ${currency.name}'), findsOneWidget);
+  });
 }
