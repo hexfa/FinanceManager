@@ -37,4 +37,18 @@ void main() {
 
     expect(cubit.changedCurrencyCode, currencyList[1]);
   });
+
+  testWidgets('should call toggleDarkTheme when switch is toggled', (
+    tester,
+  ) async {
+    final cubit = SettingCubitFake();
+    await tester.pumpWidget(
+      buildTestableWidget(const SettingScreen(), settingCubit: cubit),
+    );
+
+    await tester.tap(find.byType(CustomSwitch));
+    await tester.pump();
+
+    expect(cubit.toggledDarkTheme, isTrue);
+  });
 }
