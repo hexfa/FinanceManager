@@ -1,10 +1,10 @@
 import 'package:finance_manager/core/extension/extension.dart';
 import 'package:finance_manager/core/utils/category.dart';
+import 'package:finance_manager/data/models/category.dart';
 import 'package:finance_manager/data/models/transaction.dart';
 import 'package:finance_manager/data/models/transaction_chart_data.dart';
 import 'package:finance_manager/domain/entities/transaction_entity.dart';
 import 'package:finance_manager/core/utils/transaction_type.dart';
-import 'package:finance_manager/core/utils/category_type.dart';
 
 class TransactionMapper {
   static List<Transaction> toModelList(List<TransactionEntity> entities) {
@@ -18,12 +18,12 @@ class TransactionMapper {
   }
 
   static List<TransactionChartData> toChartData(
-    List<Transaction> transactions,
-  ) {
+      List<Transaction> transactions,
+      ) {
     final expenseTransactions =
-        transactions.where((t) => t.type == TransactionType.expense).toList();
+    transactions.where((t) => t.type == TransactionType.expense).toList();
 
-    final Map<CategoryType, double> groupedAmount = {};
+    final Map<Category, double> groupedAmount = {};
     double totalAmount = 0;
 
     for (var transaction in expenseTransactions) {
