@@ -97,8 +97,11 @@ abstract class BaseTransactionScreenState<T extends BaseTransactionScreen>
                 return CustomDropdown<Category>(
                   items: categories,
                   onChanged: (value) {
-                    getBloc<TransactionCubit>().updateCategory(value ?? '');
+                    getBloc<TransactionCubit>().updateCategory(
+                      value ?? Category(id: 0, name: ''),
+                    );
                   },
+                  itemLabelBuilder: (category) => category.name,
                   hint: 'Category ...',
                 );
               },
