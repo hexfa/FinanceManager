@@ -1,35 +1,40 @@
 import 'package:finance_manager/core/utils/category_type.dart';
+import 'package:finance_manager/data/models/category.dart';
 import 'package:finance_manager/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 
 class CategoryUtils {
-  static Color getCategoryColor(CategoryType category) {
-    switch (category) {
-      case CategoryType.food:
+  static Color getCategoryColor(Category category) {
+    switch (category.name) {
+      case 'food':
         return Colors.orange;
-      case CategoryType.business:
+      case 'business':
         return Colors.blue;
-      case CategoryType.other:
+      case 'other':
         return Colors.purple;
-      case CategoryType.education:
+      case 'education':
         return Colors.green;
-      case CategoryType.sport:
+      case 'sport':
+        return Colors.grey;
+      default:
         return Colors.grey;
     }
   }
 
-  static String getCategoryIconPath(CategoryType category) {
-    switch (category) {
-      case CategoryType.food:
+  static String getCategoryIconPath(Category category) {
+    switch (category.name) {
+      case 'food':
         return Assets.icons.food;
-      case CategoryType.business:
+      case 'business':
         return Assets.icons.work;
-      case CategoryType.other:
+      case 'other':
         return Assets.icons.other;
-      case CategoryType.education:
+      case 'education':
         return Assets.icons.education;
-      case CategoryType.sport:
+      case 'sport':
         return Assets.icons.sport;
+      default:
+        return Assets.icons.other;
     }
   }
 }
