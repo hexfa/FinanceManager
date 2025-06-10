@@ -1,6 +1,6 @@
-import 'package:finance_manager/core/utils/category_type.dart';
 import 'package:finance_manager/core/utils/convert_string.dart';
 import 'package:finance_manager/core/utils/transaction_type.dart';
+import 'package:finance_manager/data/models/category.dart';
 import 'package:finance_manager/data/models/transaction.dart';
 import 'package:finance_manager/domain/repositories/transaction_repository.dart';
 import 'package:finance_manager/presentation/bloc/base/base_cubit.dart';
@@ -19,7 +19,7 @@ class TransactionCubit extends BaseCubit<TransactionState> {
 
   void updateAmount(String amount) => safeEmit(state.copyWith(amount: amount));
 
-  void updateCategory(String category) =>
+  void updateCategory(Category category) =>
       safeEmit(state.copyWith(category: category));
 
   void updateDate(DateTime date) => safeEmit(state.copyWith(date: date));
@@ -32,7 +32,7 @@ class TransactionCubit extends BaseCubit<TransactionState> {
         title: state.title,
         description: state.description,
         amount: ConvertString.toDouble(state.amount),
-        category: state.category.toCategoryType(),
+        category: state.category,
         date: state.date ?? DateTime.now(),
         type: state.type,
       ),
@@ -45,7 +45,7 @@ class TransactionCubit extends BaseCubit<TransactionState> {
       title: state.title,
       description: state.description,
       amount: ConvertString.toDouble(state.amount),
-      category: state.category.toCategoryType(),
+      category: state.category,
       date: state.date ?? DateTime.now(),
       type: state.type,
     );
