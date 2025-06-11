@@ -45,4 +45,17 @@ void main() {
     final ElevatedButton button = tester.widget(find.byType(ElevatedButton));
     expect(button.onPressed, isNull);
   });
+
+  testWidgets('should have correct style', (tester) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(body: CustomButton(text: 'Styled', onPressed: () {})),
+      ),
+    );
+
+    final button = tester.widget<ElevatedButton>(find.byType(ElevatedButton));
+    final shape = button.style?.shape?.resolve({}) as RoundedRectangleBorder;
+
+    expect(shape.borderRadius, BorderRadius.circular(8));
+  });
 }
