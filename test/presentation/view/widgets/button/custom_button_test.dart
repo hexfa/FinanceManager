@@ -3,19 +3,35 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-
   testWidgets('should display the correct text', (tester) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(body: CustomButton(text: 'Save', onPressed: () {})),
+      ),
+    );
+
+    expect(find.text('Save'), findsOneWidget);
+  });
+
+  testWidgets('should call onPressed when tapped', (tester) async {
+    var wasPressed = false;
+
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(
           body: CustomButton(
-            text: 'Save',
-            onPressed: () {},
+            text: 'Click me',
+            onPressed: () {
+              wasPressed = true;
+            },
           ),
         ),
       ),
     );
 
-    expect(find.text('Save'), findsOneWidget);
+    await tester.tap(find.byType(ElevatedButton));
+    await tester.pump();
+
+    expect(wasPressed, isTrue);
   });
 }
