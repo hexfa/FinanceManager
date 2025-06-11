@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 class CategoryUtils {
   static Color getCategoryColor(Category category) {
-    switch (category.name) {
+    switch (category.name.toLowerCase()) {
       case 'food':
         return Colors.orange;
       case 'business':
