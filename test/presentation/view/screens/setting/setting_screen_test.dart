@@ -1,8 +1,11 @@
 import 'package:finance_manager/core/constants/currency.dart';
+import 'package:finance_manager/data/models/app_bar_menu.dart';
 import 'package:finance_manager/data/models/currency.dart';
 import 'package:finance_manager/presentation/view/screens/setting/setting_screen.dart';
+import 'package:finance_manager/presentation/view/widgets/appbar/custom_app_bar_menu.dart';
 import 'package:finance_manager/presentation/view/widgets/dropdown/custom_drop_down.dart';
 import 'package:finance_manager/presentation/view/widgets/switch/custom_switch.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
@@ -78,5 +81,24 @@ void main() {
     );
 
     expect(find.text('${currency.code} - ${currency.name}'), findsOneWidget);
+  });
+
+  testWidgets('Verify each menu item displays its correct icon', (
+    tester,
+  ) async {
+    final menuItems = [
+      AppBarMenu(title: 'Edit', icon: Icons.edit, onTap: () {}),
+      AppBarMenu(title: 'Delete', icon: Icons.delete, onTap: () {}),
+    ];
+
+    await tester.pumpWidget(
+      buildTestableWidget(CustomAppBarMenu(menuItem: menuItems)),
+    );
+
+    await tester.tap(find.byIcon(Icons.more_vert));
+    await tester.pumpAndSettle();
+
+    expect(find.byIcon(Icons.edit), findsOneWidget);
+    expect(find.byIcon(Icons.delete), findsOneWidget);
   });
 }
