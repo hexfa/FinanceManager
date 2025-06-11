@@ -101,4 +101,15 @@ void main() {
     expect(find.byIcon(Icons.edit), findsOneWidget);
     expect(find.byIcon(Icons.delete), findsOneWidget);
   });
+
+  testWidgets('Ensure no menu items are shown when list is empty', (tester) async {
+    await tester.pumpWidget(buildTestableWidget(
+      CustomAppBarMenu(menuItem: []),
+    ));
+
+    await tester.tap(find.byIcon(Icons.more_vert));
+    await tester.pumpAndSettle();
+
+    expect(find.byType(PopupMenuItem), findsNothing);
+  });
 }
