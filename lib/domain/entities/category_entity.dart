@@ -6,4 +6,11 @@ class CategoryEntity extends HiveObject {
   final String name;
 
   CategoryEntity({required this.name});
+
+  int get id {
+    if (key == null) {
+      throw Exception('CategoryEntity must be saved before accessing its id.');
+    }
+    return key as int;
+  }
 }
