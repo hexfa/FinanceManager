@@ -34,4 +34,15 @@ void main() {
 
     expect(wasPressed, isTrue);
   });
+
+  testWidgets('should be disabled when onPressed is null', (tester) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(body: CustomButton(text: 'Disabled', onPressed: null)),
+      ),
+    );
+
+    final ElevatedButton button = tester.widget(find.byType(ElevatedButton));
+    expect(button.onPressed, isNull);
+  });
 }
