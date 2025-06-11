@@ -22,7 +22,7 @@ class CategoryUtils {
   }
 
   static String getCategoryIconPath(Category category) {
-    switch (category.name) {
+    switch (category.name.toLowerCase()) {
       case 'food':
         return Assets.icons.food;
       case 'business':
