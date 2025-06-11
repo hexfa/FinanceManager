@@ -11,4 +11,9 @@ class CategoryCubit extends BaseCubit<CategoryState> {
   Future<void> create(String name) async {
     await repository.createCategory(Category(id: 0, name: name));
   }
+
+  Future<void> getAll() async {
+    final categories = await repository.getAllCategories();
+    emit(state.copyWith(categories: categories));
+  }
 }

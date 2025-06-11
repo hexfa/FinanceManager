@@ -1,4 +1,5 @@
 import 'package:finance_manager/core/di/di.dart';
+import 'package:finance_manager/domain/entities/adapters/category_adapter.dart';
 import 'package:finance_manager/domain/entities/adapters/category_type_adapter.dart';
 import 'package:finance_manager/domain/entities/adapters/transaction_adapter.dart';
 import 'package:finance_manager/domain/entities/transaction_entity.dart';
@@ -25,6 +26,7 @@ void main() async {
   Hive.registerAdapter(TransactionTypeAdapter());
   Hive.registerAdapter(CategoryTypeAdapter());
   Hive.registerAdapter(TransactionAdapter());
+  Hive.registerAdapter(CategoryAdapter());
   await Hive.openBox<TransactionEntity>('transactions');
 
   await setup();

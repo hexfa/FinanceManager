@@ -12,7 +12,7 @@ extension TransactionEntityMapper on TransactionEntity {
       description: description,
       amount: amount,
       type: type,
-      category: category,
+      category: category.toModel(),
       date: date,
     );
   }
@@ -25,14 +25,14 @@ extension TransactionModelMapper on Transaction {
       description: description,
       amount: amount,
       type: type,
-      category: category,
+      category: category.toEntity(),
       date: date,
     );
   }
 }
 
 extension CategoryMapper on CategoryEntity {
-  Category toModel(int id) => Category(id: id, name: name);
+  Category toModel() => Category(id: key as int, name: name);
 }
 
 extension CategoryModelMapper on Category {

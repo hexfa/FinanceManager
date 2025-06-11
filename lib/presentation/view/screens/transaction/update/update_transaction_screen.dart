@@ -30,7 +30,7 @@ class _UpdateTransactionScreenState
     getBloc<TransactionCubit>()
       ..updateTitle(updateTransaction.title)
       ..updateAmount(updateTransaction.amount.toString())
-      ..updateCategory(updateTransaction.category.name)
+      ..updateCategory(updateTransaction.category)
       ..updateDate(updateTransaction.date)
       ..updateType(updateTransaction.type);
   }

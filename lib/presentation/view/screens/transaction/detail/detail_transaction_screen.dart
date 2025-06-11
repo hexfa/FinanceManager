@@ -3,6 +3,7 @@ import 'package:finance_manager/core/utils/category_type.dart';
 import 'package:finance_manager/core/utils/convert_string.dart';
 import 'package:finance_manager/core/utils/transaction_type.dart';
 import 'package:finance_manager/data/models/app_bar_menu.dart';
+import 'package:finance_manager/data/models/category.dart';
 import 'package:finance_manager/data/models/transaction.dart';
 import 'package:finance_manager/main.dart';
 import 'package:finance_manager/presentation/bloc/transaction/detail/transaction_detail_cubit.dart';
@@ -89,7 +90,8 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
                 ),
                 SizedBox(height: 16),
                 CategoryLabel(
-                  category: transaction?.category ?? CategoryType.other,
+                  category:
+                      transaction?.category ?? Category(id: 1, name: 'other'),
                 ),
                 SizedBox(height: 16),
                 if ((transaction?.description ?? '').isNotEmpty)

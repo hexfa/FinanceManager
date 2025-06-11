@@ -1,5 +1,5 @@
-import 'package:finance_manager/core/utils/category_type.dart';
 import 'package:finance_manager/core/utils/transaction_type.dart';
+import 'package:finance_manager/data/models/category.dart';
 
 class Transaction {
   final int? id;
@@ -7,7 +7,7 @@ class Transaction {
   final String description;
   final double _amount;
   final TransactionType type;
-  final CategoryType category;
+  final Category category;
   final DateTime date;
 
   Transaction({

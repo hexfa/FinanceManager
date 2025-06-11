@@ -14,4 +14,11 @@ class CategoryRepositoryImpl implements CategoryRepository {
     final entity = category.toEntity();
     await box.add(entity);
   }
+
+  @override
+  Future<List<Category>> getAllCategories() async {
+    return box.values
+        .map((e) => Category(id: e.key as int, name: e.name))
+        .toList();
+  }
 }

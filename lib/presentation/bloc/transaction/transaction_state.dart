@@ -1,11 +1,13 @@
 import 'package:finance_manager/core/utils/transaction_type.dart';
+import 'package:finance_manager/data/models/category.dart';
 import 'package:finance_manager/presentation/bloc/base/base_bloc_state.dart';
 
 class TransactionState extends BaseBlocState {
   final String title;
   final String description;
   final String amount;
-  final String category;
+  final Category category;
+
   final DateTime? date;
   final TransactionType type;
 
@@ -13,7 +15,7 @@ class TransactionState extends BaseBlocState {
     this.title = '',
     this.description = '',
     this.amount = '',
-    this.category = '',
+    this.category = const Category(id: 0, name: ''),
     this.date,
     this.type = TransactionType.income,
   });
@@ -22,7 +24,7 @@ class TransactionState extends BaseBlocState {
     String? title,
     String? description,
     String? amount,
-    String? category,
+    Category? category,
     DateTime? date,
     TransactionType? type,
   }) {
