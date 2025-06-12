@@ -190,18 +190,23 @@ void main() {
     verify(() => mockCubit.updateAmount('150')).called(1);
   });
 
-  testWidgets('updates type when user selects different transaction type', (tester) async {
+  testWidgets('updates type when user selects different transaction type', (
+    tester,
+  ) async {
     final transaction = Transaction(
       id: 4,
       title: 'Salary',
       amount: 5000,
       category: Category(id: 6, name: 'Income'),
       type: TransactionType.income,
-      date: DateTime.now(), description: '',
+      date: DateTime.now(),
+      description: '',
     );
 
     final mockCubit = MockTransactionCubit();
-    when(() => mockCubit.state).thenReturn(TransactionState() as TransactionState Function());
+    when(
+      () => mockCubit.state,
+    ).thenReturn(TransactionState() as TransactionState Function());
 
     await tester.pumpWidget(
       MaterialApp(
@@ -221,5 +226,45 @@ void main() {
     await tester.pump();
 
     verify(() => mockCubit.updateType(TransactionType.expense)).called(1);
+  });
+
+  testWidgets('updates category when a new category is selected', (
+    tester,
+  ) async {
+    final transaction = Transaction(
+      id: 5,
+      title: 'Book',
+      amount: 40,
+      category: Category(id: 1, name: 'Education'),
+      type: TransactionType.expense,
+      date: DateTime.now(),
+      description: '',
+    );
+
+    final newCategory = Category(id: 2, name: 'Work');
+
+    final mockCubit = MockTransactionCubit();
+    when(
+      () => mockCubit.state,
+    ).thenReturn(TransactionState() as TransactionState Function());
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: BlocProvider<TransactionCubit>.value(
+          value: mockCubit,
+          child: UpdateTransactionScreen(transaction: transaction),
+        ),
+      ),
+    );
+
+    await tester.pump();
+
+    await tester.tap(find.byType(DropdownButton<Category>));
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.text('Work').last);
+    await tester.pump();
+
+    verify(() => mockCubit.updateCategory(newCategory)).called(1);
   });
 }
