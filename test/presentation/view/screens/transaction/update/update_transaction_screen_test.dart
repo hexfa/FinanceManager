@@ -42,4 +42,50 @@ void main() {
     expect(find.widgetWithText(TextField, 'Rent'), findsOneWidget);
     expect(find.text('5000'), findsOneWidget);
   });
+
+  testWidgets(
+    'calls updateTransaction and pops when update button is pressed',
+    (tester) async {
+      final transaction = Transaction(
+        id: 1,
+        title: 'Rent',
+        amount: 5000,
+        category: Category(id: 2, name: 'Housing'),
+        type: TransactionType.expense,
+        date: DateTime(2024, 1, 1),
+        description: '',
+      );
+
+      final mockCubit = MockTransactionCubit();
+      when(() => mockCubit.state).thenReturn(
+        TransactionState(
+              title: 'Rent',
+              amount: '5000',
+              category: transaction.category,
+              type: transaction.type,
+              date: transaction.date,
+            )
+            as TransactionState Function(),
+      );
+
+      await tester.pumpWidget(
+        MaterialApp(
+          home: BlocProvider<TransactionCubit>.value(
+            value: mockCubit,
+            child: UpdateTransactionScreen(transaction: transaction),
+          ),
+        ),
+      );
+
+      await tester.pump();
+
+      final updateButton = find.widgetWithText(ElevatedButton, 'Update');
+      expect(updateButton, findsOneWidget);
+
+      await tester.tap(updateButton);
+      await tester.pumpAndSettle();
+
+      verify(() => mockCubit.updateTransaction(transaction.id!)).called(1);
+    },
+  );
 }
