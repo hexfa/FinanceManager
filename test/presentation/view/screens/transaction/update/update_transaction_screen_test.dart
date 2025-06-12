@@ -155,4 +155,38 @@ void main() {
 
     verify(() => mockCubit.updateTitle('Taxi to airport')).called(1);
   });
+
+  testWidgets('updates amount when user types in amount field', (tester) async {
+    final transaction = Transaction(
+      id: 3,
+      title: 'Internet',
+      amount: 100,
+      category: Category(id: 4, name: 'Utilities'),
+      type: TransactionType.expense,
+      date: DateTime.now(),
+      description: '',
+    );
+
+    final mockCubit = MockTransactionCubit();
+    when(
+      () => mockCubit.state,
+    ).thenReturn(TransactionState() as TransactionState Function());
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: BlocProvider<TransactionCubit>.value(
+          value: mockCubit,
+          child: UpdateTransactionScreen(transaction: transaction),
+        ),
+      ),
+    );
+
+    await tester.pump();
+
+    final amountField = find.byType(TextField).at(1);
+    await tester.enterText(amountField, '150');
+    await tester.pump();
+
+    verify(() => mockCubit.updateAmount('150')).called(1);
+  });
 }
