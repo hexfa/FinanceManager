@@ -92,4 +92,22 @@ void main() {
     final ElevatedButton buttonWidget = tester.widget(createButton);
     expect(buttonWidget.onPressed, isNull);
   });
+
+  testWidgets('uses current date as initial date label', (tester) async {
+    final now = DateTime.now();
+
+    final mockCubit = MockTransactionCubit();
+    // when(() => mockCubit.state).thenReturn(TransactionState.initial());
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: BlocProvider<TransactionCubit>.value(
+          value: mockCubit,
+          child: const CreateTransactionScreen(),
+        ),
+      ),
+    );
+
+    expect(find.textContaining('${now.year}'), findsOneWidget);
+  });
 }
