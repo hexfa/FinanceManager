@@ -189,4 +189,37 @@ void main() {
 
     verify(() => mockCubit.updateAmount('150')).called(1);
   });
+
+  testWidgets('updates type when user selects different transaction type', (tester) async {
+    final transaction = Transaction(
+      id: 4,
+      title: 'Salary',
+      amount: 5000,
+      category: Category(id: 6, name: 'Income'),
+      type: TransactionType.income,
+      date: DateTime.now(), description: '',
+    );
+
+    final mockCubit = MockTransactionCubit();
+    when(() => mockCubit.state).thenReturn(TransactionState() as TransactionState Function());
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: BlocProvider<TransactionCubit>.value(
+          value: mockCubit,
+          child: UpdateTransactionScreen(transaction: transaction),
+        ),
+      ),
+    );
+
+    await tester.pump();
+
+    final expenseRadio = find.widgetWithText(Radio<TransactionType>, 'Expense');
+    expect(expenseRadio, findsOneWidget);
+
+    await tester.tap(expenseRadio);
+    await tester.pump();
+
+    verify(() => mockCubit.updateType(TransactionType.expense)).called(1);
+  });
 }
