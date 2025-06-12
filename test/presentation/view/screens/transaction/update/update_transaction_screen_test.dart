@@ -88,4 +88,37 @@ void main() {
       verify(() => mockCubit.updateTransaction(transaction.id!)).called(1);
     },
   );
+
+  testWidgets('displays initial category name and date correctly', (
+    tester,
+  ) async {
+    final transaction = Transaction(
+      id: 1,
+      title: 'Gym',
+      amount: 200,
+      category: Category(id: 5, name: 'Health'),
+      type: TransactionType.expense,
+      date: DateTime(2023, 12, 31),
+      description: '',
+    );
+
+    final mockCubit = MockTransactionCubit();
+    when(
+      () => mockCubit.state,
+    ).thenReturn(TransactionState() as TransactionState Function());
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: BlocProvider<TransactionCubit>.value(
+          value: mockCubit,
+          child: UpdateTransactionScreen(transaction: transaction),
+        ),
+      ),
+    );
+
+    await tester.pump();
+
+    expect(find.text('Health'), findsWidgets);
+    expect(find.textContaining('2023'), findsWidgets);
+  });
 }
