@@ -31,12 +31,13 @@ void main() {
 
       when(() => mockCubit.state).thenReturn(
         TransactionState(
-          title: 'Groceries',
-          amount: '1200',
-          category: Category(id: 1, name: 'Food'),
-          type: TransactionType.expense,
-          date: DateTime.now(),
-        ),
+              title: 'Groceries',
+              amount: '1200',
+              category: Category(id: 1, name: 'Food'),
+              type: TransactionType.expense,
+              date: DateTime.now(),
+            )
+            as TransactionState Function(),
       );
 
       await tester.pumpWidget(
@@ -59,4 +60,36 @@ void main() {
       verify(() => mockCubit.createTransaction()).called(1);
     },
   );
+
+  testWidgets('disables Create button when form is invalid', (tester) async {
+    final mockCubit = MockTransactionCubit();
+
+    when(() => mockCubit.state).thenReturn(
+      TransactionState(
+            title: '',
+            amount: '',
+            category: Category(id: 1, name: 'Food'),
+            type: TransactionType.expense,
+            date: DateTime.now(),
+          )
+          as TransactionState Function(),
+    );
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: BlocProvider<TransactionCubit>.value(
+          value: mockCubit,
+          child: const CreateTransactionScreen(),
+        ),
+      ),
+    );
+
+    await tester.pump();
+
+    final createButton = find.widgetWithText(ElevatedButton, 'Create');
+    expect(createButton, findsOneWidget);
+
+    final ElevatedButton buttonWidget = tester.widget(createButton);
+    expect(buttonWidget.onPressed, isNull);
+  });
 }
