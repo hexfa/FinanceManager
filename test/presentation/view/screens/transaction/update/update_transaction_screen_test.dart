@@ -121,4 +121,38 @@ void main() {
     expect(find.text('Health'), findsWidgets);
     expect(find.textContaining('2023'), findsWidgets);
   });
+
+  testWidgets('updates title when user types in title field', (tester) async {
+    final transaction = Transaction(
+      id: 2,
+      title: 'Taxi',
+      amount: 30,
+      category: Category(id: 3, name: 'Transport'),
+      type: TransactionType.expense,
+      date: DateTime.now(),
+      description: '',
+    );
+
+    final mockCubit = MockTransactionCubit();
+    when(
+      () => mockCubit.state,
+    ).thenReturn(TransactionState() as TransactionState Function());
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: BlocProvider<TransactionCubit>.value(
+          value: mockCubit,
+          child: UpdateTransactionScreen(transaction: transaction),
+        ),
+      ),
+    );
+
+    await tester.pump();
+
+    final titleField = find.byType(TextField).first;
+    await tester.enterText(titleField, 'Taxi to airport');
+    await tester.pump();
+
+    verify(() => mockCubit.updateTitle('Taxi to airport')).called(1);
+  });
 }
