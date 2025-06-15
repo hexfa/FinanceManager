@@ -1,6 +1,6 @@
 import 'package:finance_manager/core/extension/extension.dart';
-import 'package:finance_manager/core/utils/category_type.dart';
 import 'package:finance_manager/core/utils/transaction_type.dart';
+import 'package:finance_manager/data/models/category.dart';
 import 'package:finance_manager/data/models/transaction.dart';
 import 'package:finance_manager/domain/entities/transaction_entity.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -12,7 +12,7 @@ void main() {
       description: 'Lunch Description',
       amount: 50.0,
       type: TransactionType.expense,
-      category: CategoryType.business,
+      category: Category(id: 1, name: 'name'),
       date: DateTime(2024, 1, 1),
     );
 
@@ -32,7 +32,7 @@ void main() {
       description: 'Lunch Description',
       amount: 50.0,
       type: TransactionType.expense,
-      category: CategoryType.business,
+      category: Category(id: 1, name: 'name'),
       date: DateTime(2024, 1, 1),
     );
 
