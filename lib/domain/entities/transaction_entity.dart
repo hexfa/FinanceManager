@@ -1,4 +1,4 @@
-import 'package:finance_manager/domain/entities/category_entity.dart';
+import 'package:finance_manager/data/models/category.dart';
 import 'package:hive/hive.dart';
 import 'package:finance_manager/core/utils/transaction_type.dart';
 
@@ -17,7 +17,7 @@ class TransactionEntity extends HiveObject {
   late TransactionType type;
 
   @HiveField(4)
-  late CategoryEntity category;
+  late Category category;
 
   @HiveField(5)
   late DateTime date;
