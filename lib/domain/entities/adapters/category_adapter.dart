@@ -1,19 +1,19 @@
+import 'package:finance_manager/data/models/category.dart';
 import 'package:finance_manager/domain/entities/category_entity.dart';
 import 'package:hive/hive.dart';
 
-class CategoryAdapter extends TypeAdapter<CategoryEntity> {
+class CategoryAdapter extends TypeAdapter<Category> {
   @override
-  final int typeId = 3;
+  final int typeId = 4;
 
   @override
-  CategoryEntity read(BinaryReader reader) {
-    return CategoryEntity(
-      name: reader.readString(),
-    );
+  Category read(BinaryReader reader) {
+    return Category(id: reader.readInt(), name: reader.readString());
   }
 
   @override
-  void write(BinaryWriter writer, CategoryEntity obj) {
+  void write(BinaryWriter writer, Category obj) {
+    writer.writeInt(obj.id);
     writer.writeString(obj.name);
   }
 }
