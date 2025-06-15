@@ -1,7 +1,5 @@
-import 'package:finance_manager/core/utils/category_type.dart';
 import 'package:finance_manager/core/utils/transaction_type.dart';
 import 'package:finance_manager/data/models/category.dart';
-import 'package:finance_manager/domain/entities/category_entity.dart';
 import 'package:finance_manager/domain/entities/transaction_entity.dart';
 import 'package:hive/hive.dart';
 
