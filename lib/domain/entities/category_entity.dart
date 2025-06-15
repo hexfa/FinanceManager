@@ -6,4 +6,12 @@ class CategoryEntity extends HiveObject {
   final String name;
 
   CategoryEntity({required this.name});
+
+  int get id {
+    try {
+      return key as int;
+    } catch (_) {
+      return -1;
+    }
+  }
 }

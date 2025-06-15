@@ -67,8 +67,11 @@ class AppRouter {
         pageBuilder: (context, state) {
           return _buildTransitionPage(
             key: state.pageKey,
-            child: BlocProvider(
-              create: (_) => getIt<TransactionCubit>(),
+            child: MultiBlocProvider(
+              providers: [
+                BlocProvider(create: (_) => getIt<TransactionCubit>()),
+                BlocProvider(create: (_) => getIt<CategoryCubit>()..getAll()),
+              ],
               child: UpdateTransactionScreen(
                 transaction: state.extra as Transaction,
               ),

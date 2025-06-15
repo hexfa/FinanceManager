@@ -1,11 +1,10 @@
-import 'package:finance_manager/core/utils/category_type.dart';
 import 'package:finance_manager/data/models/category.dart';
 import 'package:finance_manager/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 
 class CategoryUtils {
   static Color getCategoryColor(Category category) {
-    switch (category.name) {
+    switch (category.name.toLowerCase()) {
       case 'food':
         return Colors.orange;
       case 'business':
@@ -22,7 +21,7 @@ class CategoryUtils {
   }
 
   static String getCategoryIconPath(Category category) {
-    switch (category.name) {
+    switch (category.name.toLowerCase()) {
       case 'food':
         return Assets.icons.food;
       case 'business':
