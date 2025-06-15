@@ -1,5 +1,5 @@
-import 'package:finance_manager/core/utils/category_type.dart';
 import 'package:finance_manager/data/mapper/transaction_mapper.dart';
+import 'package:finance_manager/data/models/category.dart';
 import 'package:finance_manager/data/models/transaction.dart';
 import 'package:finance_manager/domain/entities/transaction_entity.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -14,7 +14,7 @@ void main() {
           title: 'Test',
           description: 'Description Test',
           amount: 100,
-          category: CategoryType.business,
+          category: Category(id: 1, name: 'business'),
           date: DateTime.now(),
           type: TransactionType.income,
         ),
@@ -36,7 +36,7 @@ void main() {
           title: 'Test',
           description: 'Description Test',
           amount: 100,
-          category: CategoryType.business,
+          category: Category(id: 1, name: 'business'),
           date: DateTime.now(),
           type: TransactionType.income,
         ),
