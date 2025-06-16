@@ -29,7 +29,7 @@ abstract class BaseTransactionScreenState<T extends BaseTransactionScreen>
 
   VoidCallback get onActionPressed;
 
-  String get categoryLabel;
+  Category? get selectedCategory => null;
 
   DateTime get dateLabel;
 
@@ -97,6 +97,7 @@ abstract class BaseTransactionScreenState<T extends BaseTransactionScreen>
 
                 return CustomDropdown<Category>(
                   items: categories,
+                  value: selectedCategory,
                   onChanged: (value) {
                     getBloc<TransactionCubit>().updateCategory(
                       value ?? Category(id: 0, name: ''),
