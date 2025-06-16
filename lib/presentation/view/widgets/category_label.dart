@@ -1,5 +1,4 @@
 import 'package:finance_manager/core/utils/category.dart';
-import 'package:finance_manager/core/utils/category_type.dart';
 import 'package:finance_manager/data/models/category.dart';
 import 'package:finance_manager/presentation/view/base/base_stateless_widget.dart';
 import 'package:flutter/material.dart';

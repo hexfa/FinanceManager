@@ -1,5 +1,4 @@
 import 'package:finance_manager/core/theme/colors.dart';
-import 'package:finance_manager/core/utils/category_type.dart';
 import 'package:finance_manager/core/utils/convert_string.dart';
 import 'package:finance_manager/core/utils/transaction_type.dart';
 import 'package:finance_manager/data/models/app_bar_menu.dart';

@@ -1,7 +1,6 @@
 import 'package:finance_manager/core/di/di.dart';
 import 'package:finance_manager/domain/entities/adapters/category_adapter.dart';
 import 'package:finance_manager/domain/entities/adapters/category_entity_adapter.dart';
-import 'package:finance_manager/domain/entities/adapters/category_type_adapter.dart';
 import 'package:finance_manager/domain/entities/adapters/transaction_adapter.dart';
 import 'package:finance_manager/domain/entities/transaction_entity.dart';
 import 'package:finance_manager/presentation/navigation/app_router.dart';
@@ -25,7 +24,6 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   Hive.registerAdapter(TransactionTypeAdapter());
-  Hive.registerAdapter(CategoryTypeAdapter());
   Hive.registerAdapter(TransactionAdapter());
   Hive.registerAdapter(CategoryAdapter());
   Hive.registerAdapter(CategoryEntityAdapter());
