@@ -13,7 +13,17 @@ class CategoryCubit extends BaseCubit<CategoryState> {
   }
 
   Future<void> getAll() async {
-    final categories = await repository.getAllCategories();
+    List<Category> categories = await repository.getAllCategories();
+    if (categories.isEmpty) {
+      await repository.createDefaultCategories([
+        'Business',
+        'Food',
+        'Education',
+        'Sport',
+        'Other',
+      ]);
+      categories = await repository.getAllCategories();
+    }
     emit(state.copyWith(categories: categories));
   }
 }
