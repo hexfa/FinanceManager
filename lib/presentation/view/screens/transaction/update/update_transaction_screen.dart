@@ -25,10 +25,12 @@ class _UpdateTransactionScreenState
     super.initState();
     final updateTransaction = widget.transaction;
     titleController.text = updateTransaction.title;
+    descriptionController.text = updateTransaction.description;
     amountController.text = updateTransaction.amount.toString();
 
     getBloc<TransactionCubit>()
       ..updateTitle(updateTransaction.title)
+      ..updateDescription(updateTransaction.description)
       ..updateAmount(updateTransaction.amount.toString())
       ..updateCategory(updateTransaction.category)
       ..updateDate(updateTransaction.date)
