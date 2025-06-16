@@ -21,4 +21,13 @@ class CategoryRepositoryImpl implements CategoryRepository {
         .map((e) => Category(id: e.key as int, name: e.name))
         .toList();
   }
+
+  @override
+  Future<void> createDefaultCategories(List<String> categoriesName) async {
+    final List<CategoryEntity> entities = [];
+    for (var name in categoriesName) {
+      entities.add(CategoryEntity(name: name));
+    }
+    await box.addAll(entities);
+  }
 }
