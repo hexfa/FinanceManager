@@ -90,6 +90,7 @@ abstract class BaseTransactionScreenState<T extends BaseTransactionScreen>
               controller: amountController,
             ),
             const SizedBox(height: 16),
+            //category
             BlocBuilder<CategoryCubit, CategoryState>(
               builder: (context, state) {
                 categories = state.categories;
