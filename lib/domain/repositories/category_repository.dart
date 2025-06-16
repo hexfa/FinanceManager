@@ -4,4 +4,6 @@ abstract class CategoryRepository {
   Future<void> createCategory(Category category);
 
   Future<List<Category>> getAllCategories();
+
+  Future<void> createDefaultCategories(List<String> categoriesName);
 }
