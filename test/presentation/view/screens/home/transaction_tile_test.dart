@@ -1,5 +1,5 @@
-import 'package:finance_manager/core/utils/category_type.dart';
 import 'package:finance_manager/core/utils/transaction_type.dart';
+import 'package:finance_manager/data/models/category.dart';
 import 'package:finance_manager/data/models/transaction.dart';
 import 'package:finance_manager/presentation/navigation/route_path.dart';
 import 'package:finance_manager/presentation/view/screens/home/transaction_tile.dart';
@@ -17,7 +17,7 @@ void main() {
         description: '',
         amount: 5000,
         type: TransactionType.income,
-        category: CategoryType.food,
+        category: Category(id: 1, name: 'food'),
         date: DateTime(2024, 5, 1),
       ),
       Transaction(
@@ -26,7 +26,7 @@ void main() {
         description: '',
         amount: 300,
         type: TransactionType.expense,
-        category: CategoryType.sport,
+        category: Category(id: 1, name: 'sport'),
         date: DateTime(2024, 5, 2),
       ),
     ];
@@ -49,7 +49,7 @@ void main() {
         description: '',
         amount: 800,
         type: TransactionType.income,
-        category: CategoryType.food,
+        category: Category(id: 1, name: 'food'),
         date: DateTime.now(),
       ),
       Transaction(
@@ -58,7 +58,7 @@ void main() {
         description: '',
         amount: 1200,
         type: TransactionType.expense,
-        category: CategoryType.sport,
+        category: Category(id: 1, name: 'sport'),
         date: DateTime.now(),
       ),
     ];
@@ -80,7 +80,7 @@ void main() {
       description: '',
       amount: 50,
       type: TransactionType.expense,
-      category: CategoryType.education,
+      category: Category(id: 1, name: 'education'),
       date: DateTime(2024, 6, 4),
     );
 
@@ -102,7 +102,7 @@ void main() {
       description: '',
       amount: 75,
       type: TransactionType.expense,
-      category: CategoryType.business,
+      category: Category(id: 1, name: 'business'),
       date: DateTime.now(),
     );
 
