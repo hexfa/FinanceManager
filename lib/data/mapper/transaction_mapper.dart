@@ -23,19 +23,32 @@ class TransactionMapper {
     final expenseTransactions =
     transactions.where((t) => t.type == TransactionType.expense).toList();
 
-    final Map<Category, double> groupedAmount = {};
+    final Map<int, (Category, double)> groupedAmount = {};
     double totalAmount = 0;
 
     for (var transaction in expenseTransactions) {
-      groupedAmount[transaction.category] =
-          (groupedAmount[transaction.category] ?? 0) + transaction.amount;
+      final int key = transaction.category.id;
+
+      if (groupedAmount.containsKey(key)) {
+        final current = groupedAmount[key]!;
+        groupedAmount[key] = (
+        current.$1,
+        current.$2 + transaction.amount,
+        );
+      } else {
+        groupedAmount[key] = (
+        transaction.category,
+        transaction.amount,
+        );
+      }
+
       totalAmount += transaction.amount;
     }
 
-    return groupedAmount.entries.map((entry) {
-      final category = entry.key;
-      final amount = entry.value;
-      double percentage = totalAmount > 0 ? (amount / totalAmount) * 100 : 0;
+    return groupedAmount.values.map((entry) {
+      final category = entry.$1;
+      final amount = entry.$2;
+      final double percentage = totalAmount > 0 ? (amount / totalAmount) * 100 : 0;
 
       return TransactionChartData(
         title: category.name,
