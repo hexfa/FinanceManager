@@ -98,7 +98,8 @@ class _HomeState extends BaseState<HomeScreen> with RouteAware {
                             ),
                           ),
                           const SizedBox(height: 8),
-                          _buildPieChartSection(data, theme),
+                          if (data.isNotEmpty)
+                            _buildPieChartSection(data, theme),
                           Card(
                             color: theme.colorScheme.surfaceContainer,
                             margin: const EdgeInsets.all(16),
