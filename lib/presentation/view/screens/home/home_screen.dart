@@ -45,7 +45,7 @@ class _HomeState extends BaseState<HomeScreen> with RouteAware {
   @override
   Widget build(BuildContext context) {
     List<TransactionChartData> data = [];
-    List<Transaction> transaction = [];
+    List<Transaction> transactions = [];
     double balance = 0, income = 0, expense = 0;
     int transactionLength = 0;
 
@@ -53,7 +53,7 @@ class _HomeState extends BaseState<HomeScreen> with RouteAware {
       builder: (context, state) {
         if (state is InitialData) {
           data = state.dataList;
-          transaction = state.transactionList;
+          transactions = state.transactionList;
           income = state.income;
           expense = state.expense;
           balance = state.balance;
@@ -72,8 +72,8 @@ class _HomeState extends BaseState<HomeScreen> with RouteAware {
                     income: income,
                     expense: expense,
                     lastUpdate:
-                        transaction.isNotEmpty
-                            ? (ConvertString.formatDate(transaction.last.date))
+                        transactions.isNotEmpty
+                            ? (ConvertString.formatDate(transactions.last.date))
                             : '',
                   ),
                   SizedBox(height: 8),
@@ -119,7 +119,7 @@ class _HomeState extends BaseState<HomeScreen> with RouteAware {
                               ],
                             ),
                           ),
-                          TransactionTile(data: transaction),
+                          TransactionTile(data: transactions),
                         ],
                       ),
                     ),
