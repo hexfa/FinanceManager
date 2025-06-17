@@ -48,7 +48,15 @@ class CustomTypeSelector extends BaseStatelessWidget {
                 ? theme.colorScheme.surfaceDim
                 : theme.colorScheme.error,
       ),
-      label: Text(type.name, style: theme.textTheme.bodyMedium?.copyWith(color: theme.colorScheme.onSurface)),
+      label: Text(
+        type.name,
+        style: theme.textTheme.bodyMedium?.copyWith(
+          color:
+              isSelected
+                  ? theme.colorScheme.onPrimary
+                  : theme.colorScheme.onSurface,
+        ),
+      ),
       selected: isSelected,
       onSelected: (_) => onChanged(type),
       selectedColor: theme.colorScheme.primary,
