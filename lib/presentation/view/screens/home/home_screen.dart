@@ -13,8 +13,6 @@ import 'package:finance_manager/presentation/view/screens/home/wallet_card.dart'
 import 'package:finance_manager/presentation/view/widgets/appbar/custom_app_bar_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:go_router/go_router.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -62,7 +60,7 @@ class _HomeState extends BaseState<HomeScreen> with RouteAware {
 
         return Scaffold(
           backgroundColor: theme.colorScheme.surface,
-          appBar: _homeAbbBar(context, theme, localization, router),
+          appBar: _homeAbbBar(),
           body:
               transactions.isEmpty
                   ? Column(
@@ -76,7 +74,7 @@ class _HomeState extends BaseState<HomeScreen> with RouteAware {
                       Expanded(
                         child: Center(
                           child: Text(
-                            'No transactions were recorded.',
+                            localization.noTransactionsWereRecorded,
                             style: theme.textTheme.bodyLarge?.copyWith(
                               color: theme.colorScheme.onSurfaceVariant,
                             ),
@@ -163,70 +161,72 @@ class _HomeState extends BaseState<HomeScreen> with RouteAware {
       },
     );
   }
-}
 
-Widget _buildPieChartSection(List<TransactionChartData> data, ThemeData theme) {
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      // label chart
-      Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: Row(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Icon(Icons.pie_chart, size: 20, color: theme.colorScheme.onSurface),
-            const SizedBox(width: 8),
-            Text(
-              'Expense Chart',
-              style: theme.textTheme.titleMedium?.copyWith(
+  Widget _buildPieChartSection(
+    List<TransactionChartData> data,
+    ThemeData theme,
+  ) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // label chart
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Icon(
+                Icons.pie_chart,
+                size: 20,
                 color: theme.colorScheme.onSurface,
-                fontWeight: FontWeight.bold,
               ),
+              const SizedBox(width: 8),
+              Text(
+                localization.expenseChart,
+                style: theme.textTheme.titleMedium?.copyWith(
+                  color: theme.colorScheme.onSurface,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
+        ),
+        //chart
+        CustomPieChart(data: data),
+      ],
+    );
+  }
+
+  PreferredSizeWidget _homeAbbBar() {
+    return AppBar(
+      backgroundColor: theme.colorScheme.surface,
+      centerTitle: false,
+      title: Text(
+        localization.financeManager,
+        style: theme.textTheme.titleLarge?.copyWith(
+          color: theme.colorScheme.onSurface,
+        ),
+      ),
+      actions: [
+        IconButton(
+          onPressed: () {
+            router.push(RoutePath.createTransactionRoute);
+          },
+          icon: Icon(Icons.add, color: theme.colorScheme.onSurface),
+        ),
+        CustomAppBarMenu(
+          menuItem: [
+            AppBarMenu(
+              title: localization.setting,
+              icon: Icons.settings,
+              onTap: () {
+                router.push(RoutePath.settingRoute);
+              },
             ),
           ],
         ),
-      ),
-      //chart
-      CustomPieChart(data: data),
-    ],
-  );
-}
-
-PreferredSizeWidget _homeAbbBar(
-  BuildContext context,
-  ThemeData theme,
-  AppLocalizations localization,
-  GoRouter router,
-) {
-  return AppBar(
-    backgroundColor: theme.colorScheme.surface,
-    centerTitle: false,
-    title: Text(
-      'Finance Manager',
-      style: theme.textTheme.titleLarge?.copyWith(
-        color: theme.colorScheme.onSurface,
-      ),
-    ),
-    actions: [
-      IconButton(
-        onPressed: () {
-          router.push(RoutePath.createTransactionRoute);
-        },
-        icon: Icon(Icons.add, color: theme.colorScheme.onSurface),
-      ),
-      CustomAppBarMenu(
-        menuItem: [
-          AppBarMenu(
-            title: localization.setting,
-            icon: Icons.settings,
-            onTap: () {
-              router.push(RoutePath.settingRoute);
-            },
-          ),
-        ],
-      ),
-    ],
-  );
+      ],
+    );
+  }
 }

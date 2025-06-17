@@ -22,5 +22,11 @@
   "country": "Country",
   "createCategory": "Create Category",
   "name": "Name",
-  "create": "Create"
+  "create": "Create",
+  "noTransactionsWereRecorded": "No transactions were recorded.",
+  "expenseChart": "Expense Chart",
+  "financeManager": "Finance Manager",
+  "updated": "Updated",
+  "other": "Other",
+  "description": "Description"
 }
