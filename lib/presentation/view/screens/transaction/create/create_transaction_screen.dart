@@ -23,8 +23,8 @@ class _AddTransactionScreenState
     navigator.pop();
   };
 
-  @override
-  String get categoryLabel => 'Category';
+  // @override
+  // String get categoryLabel => 'Category';
 
   @override
   DateTime get dateLabel => DateTime.now();
