@@ -77,31 +77,7 @@ class _HomeState extends BaseState<HomeScreen> with RouteAware {
                             : '',
                   ),
                   SizedBox(height: 8),
-                  // label chart
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Icon(
-                          Icons.pie_chart,
-                          size: 20,
-                          color: theme.colorScheme.onSurface,
-                        ),
-                        const SizedBox(width: 8),
-                        Text(
-                          'Expense Chart',
-                          style: theme.textTheme.titleMedium?.copyWith(
-                            color: theme.colorScheme.onSurface,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  //chart
-                  CustomPieChart(data: data),
+                  if (data.isNotEmpty) _buildPieChartSection(data, theme),
                   Card(
                     color: theme.colorScheme.surfaceContainer,
                     margin: const EdgeInsets.all(16),
@@ -156,6 +132,35 @@ class _HomeState extends BaseState<HomeScreen> with RouteAware {
       },
     );
   }
+}
+
+Widget _buildPieChartSection(List<TransactionChartData> data, ThemeData theme) {
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      // label chart
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Icon(Icons.pie_chart, size: 20, color: theme.colorScheme.onSurface),
+            const SizedBox(width: 8),
+            Text(
+              'Expense Chart',
+              style: theme.textTheme.titleMedium?.copyWith(
+                color: theme.colorScheme.onSurface,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+      ),
+      //chart
+      CustomPieChart(data: data),
+    ],
+  );
 }
 
 PreferredSizeWidget _homeAbbBar(
