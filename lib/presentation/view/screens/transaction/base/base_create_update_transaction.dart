@@ -131,8 +131,7 @@ abstract class BaseTransactionScreenState<T extends BaseTransactionScreen>
               builder: (context, state) {
                 final isFormValid =
                     state.title.isNotEmpty &&
-                    state.amount.isNotEmpty &&
-                    state.category != null;
+                    state.amount.isNotEmpty;
 
                 return CustomButton(
                   text: widget.actionButtonText,
