@@ -77,53 +77,61 @@ class _HomeState extends BaseState<HomeScreen> with RouteAware {
                             : '',
                   ),
                   SizedBox(height: 8),
+                  if (transactions.isEmpty)
+                    Text('No transactions were recorded.'),
                   if (data.isNotEmpty) _buildPieChartSection(data, theme),
-                  Card(
-                    color: theme.colorScheme.surfaceContainer,
-                    margin: const EdgeInsets.all(16),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    elevation: 2,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 8,
-                        horizontal: 8,
+                  if (transactions.isNotEmpty)
+                    Card(
+                      color: theme.colorScheme.surfaceContainer,
+                      margin: const EdgeInsets.all(16),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
                       ),
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  localization.transactions,
-                                  style: theme.textTheme.titleMedium?.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                    color: theme.colorScheme.onSurface,
+                      elevation: 2,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 8,
+                          horizontal: 8,
+                        ),
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    localization.transactions,
+                                    style: theme.textTheme.titleMedium
+                                        ?.copyWith(
+                                          fontWeight: FontWeight.bold,
+                                          color: theme.colorScheme.onSurface,
+                                        ),
                                   ),
-                                ),
-                                InkWell(
-                                  onTap: () {
-                                    router.push(RoutePath.transactionListRoute);
-                                  },
-                                  child: Text(
-                                    '${localization.seeAll} ($transactionLength)',
-                                    style: theme.textTheme.titleSmall?.copyWith(
-                                      fontWeight: FontWeight.bold,
-                                      color: theme.colorScheme.surfaceDim,
+                                  InkWell(
+                                    onTap: () {
+                                      router.push(
+                                        RoutePath.transactionListRoute,
+                                      );
+                                    },
+                                    child: Text(
+                                      '${localization.seeAll} ($transactionLength)',
+                                      style: theme.textTheme.titleSmall
+                                          ?.copyWith(
+                                            fontWeight: FontWeight.bold,
+                                            color: theme.colorScheme.surfaceDim,
+                                          ),
                                     ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
-                          ),
-                          TransactionTile(data: transactions),
-                        ],
+                            TransactionTile(data: transactions),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
                 ],
               ),
             ),
