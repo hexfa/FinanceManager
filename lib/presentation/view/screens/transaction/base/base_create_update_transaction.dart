@@ -72,20 +72,20 @@ abstract class BaseTransactionScreenState<T extends BaseTransactionScreen>
             //title
             CustomTextField(
               prefixIcon: Icons.title_outlined,
-              hint: 'Title ...',
+              hint: '${localization.title} ...',
               controller: titleController,
             ),
             const SizedBox(height: 16),
             //description
             CustomTextField(
               prefixIcon: Icons.description_outlined,
-              hint: 'Description ...',
+              hint: '${localization.description} ...',
               controller: descriptionController,
             ),
             const SizedBox(height: 16),
             //amount
             CustomTextField(
-              hint: 'Amount ...',
+              hint: '${localization.amount} ...',
               isCurrency: true,
               controller: amountController,
             ),
@@ -104,7 +104,7 @@ abstract class BaseTransactionScreenState<T extends BaseTransactionScreen>
                     );
                   },
                   itemLabelBuilder: (category) => category.name,
-                  hint: 'Category ...',
+                  hint: '${localization.category} ...',
                 );
               },
             ),
@@ -130,8 +130,7 @@ abstract class BaseTransactionScreenState<T extends BaseTransactionScreen>
             BlocBuilder<TransactionCubit, TransactionState>(
               builder: (context, state) {
                 final isFormValid =
-                    state.title.isNotEmpty &&
-                    state.amount.isNotEmpty;
+                    state.title.isNotEmpty && state.amount.isNotEmpty;
 
                 return CustomButton(
                   text: widget.actionButtonText,
