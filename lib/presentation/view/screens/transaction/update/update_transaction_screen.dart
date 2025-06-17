@@ -1,4 +1,3 @@
-import 'package:finance_manager/data/models/category.dart';
 import 'package:finance_manager/data/models/transaction.dart';
 import 'package:finance_manager/presentation/bloc/transaction/transaction_cubit.dart';
 import 'package:finance_manager/presentation/view/screens/transaction/base/base_create_update_transaction.dart';
