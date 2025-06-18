@@ -8,7 +8,7 @@ import 'package:finance_manager/presentation/bloc/transaction/transaction_cubit.
 import 'package:finance_manager/presentation/bloc/transaction/transaction_state.dart';
 import 'package:finance_manager/presentation/view/widgets/appbar/custom_app_bar.dart';
 import 'package:finance_manager/presentation/view/widgets/button/custom_button.dart';
-import 'package:finance_manager/presentation/view/widgets/choice_chip/custom_type_selector.dart';
+import 'package:finance_manager/presentation/view/widgets/choicechip/custom_type_selector.dart';
 import 'package:finance_manager/presentation/view/widgets/datetime/custom_date_picker.dart';
 import 'package:finance_manager/presentation/view/widgets/dropdown/custom_drop_down.dart';
 import 'package:finance_manager/presentation/view/widgets/textfield/custom_text_field.dart';
