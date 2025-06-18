@@ -46,4 +46,13 @@ void main() {
     final textWidget = tester.widget<Text>(find.byType(Text).first);
     expect(textWidget.style, isNotNull);
   });
+
+  testWidgets('renders layout with Row and Expanded text', (tester) async {
+    await tester.pumpWidget(
+      MaterialApp(home: DateTimePickerContainer(onDateTimeSelected: (_) {})),
+    );
+
+    expect(find.byType(Row), findsOneWidget);
+    expect(find.byType(Expanded), findsOneWidget);
+  });
 }
