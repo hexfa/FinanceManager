@@ -34,4 +34,23 @@ void main() {
 
     expect(selectedChip.selected, isTrue);
   });
+
+  testWidgets('calls onChanged when a chip is tapped', (tester) async {
+    TransactionType? selected;
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: CustomTypeSelector(
+          selectedType: null,
+          onChanged: (value) => selected = value,
+        ),
+      ),
+    );
+
+    await tester.tap(find.text('income'));
+    expect(selected, TransactionType.income);
+
+    await tester.tap(find.text('expense'));
+    expect(selected, TransactionType.expense);
+  });
 }
