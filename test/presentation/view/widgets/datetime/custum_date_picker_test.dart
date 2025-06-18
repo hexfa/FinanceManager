@@ -37,4 +37,13 @@ void main() {
     expect(find.byIcon(Icons.calendar_today), findsOneWidget);
     expect(find.byIcon(Icons.arrow_drop_down), findsOneWidget);
   });
+
+  testWidgets('uses theme text style for datetime text', (tester) async {
+    await tester.pumpWidget(
+      MaterialApp(home: DateTimePickerContainer(onDateTimeSelected: (_) {})),
+    );
+
+    final textWidget = tester.widget<Text>(find.byType(Text).first);
+    expect(textWidget.style, isNotNull);
+  });
 }
