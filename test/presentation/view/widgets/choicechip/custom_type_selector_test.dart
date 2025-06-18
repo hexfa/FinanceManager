@@ -53,4 +53,21 @@ void main() {
     await tester.tap(find.text('expense'));
     expect(selected, TransactionType.expense);
   });
+
+  testWidgets('displays correct icons for income and expense', (tester) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: CustomTypeSelector(
+          selectedType: TransactionType.expense,
+          onChanged: (_) {},
+        ),
+      ),
+    );
+
+    final incomeIcon = find.byIcon(Icons.arrow_downward);
+    final expenseIcon = find.byIcon(Icons.arrow_upward);
+
+    expect(incomeIcon, findsOneWidget);
+    expect(expenseIcon, findsOneWidget);
+  });
 }
