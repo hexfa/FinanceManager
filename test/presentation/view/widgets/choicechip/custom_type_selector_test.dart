@@ -17,4 +17,21 @@ void main() {
     expect(find.text('income'), findsOneWidget);
     expect(find.text('expense'), findsOneWidget);
   });
+
+  testWidgets('highlights selected type', (tester) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: CustomTypeSelector(
+          selectedType: TransactionType.expense,
+          onChanged: (_) {},
+        ),
+      ),
+    );
+
+    final selectedChip = tester.widget<ChoiceChip>(
+      find.widgetWithText(ChoiceChip, 'expense'),
+    );
+
+    expect(selectedChip.selected, isTrue);
+  });
 }
