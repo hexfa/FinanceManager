@@ -13,4 +13,19 @@ void main() {
     final now = DateTime.now();
     expect(find.textContaining('${now.year}'), findsOneWidget);
   });
+
+  testWidgets('displays initial datetime if provided', (tester) async {
+    final initial = DateTime(2023, 1, 1, 10, 30);
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: DateTimePickerContainer(
+          initialDateTime: initial,
+          onDateTimeSelected: (_) {},
+        ),
+      ),
+    );
+
+    expect(find.text('2023/01/01 – 10:30'), findsOneWidget);
+  });
 }
