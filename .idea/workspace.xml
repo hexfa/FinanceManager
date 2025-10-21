@@ -1,56 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-    <component name="AndroidLayouts">
-        <shared>
-            <config />
-        </shared>
-    </component>
-    <component name="AutoImportSettings">
-        <option name="autoReloadType" value="NONE" />
-    </component>
-    <component name="ChangeListManager">
-        <list name="Changes" comment="Add base_stateless_widget.darttatless" default="true"
-            id="13178677-1dff-4855-a748-b263d6799d61">
-            <change afterDir="false"
-                afterPath="$PROJECT_DIR$/lib/presentation/view/screens/home.dart" beforeDir="false"
-                beforePath="$PROJECT_DIR$/lib/presentation/view/screens/home.dart" />
-        </list>
-        <option name="SHOW_DIALOG" value="false" />
-        <option name="HIGHLIGHT_CONFLICTS" value="true" />
-        <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
-        <option name="LAST_RESOLUTION" value="IGNORE" />
-    </component>
-    <component name="ClangdSettings">
-        <option name="formatViaClangd" value="false" />
-    </component>
-    <component name="FileTemplateManagerImpl">
-        <option name="RECENT_TEMPLATES">
-            <list>
-                <option value="Dart File" />
-            </list>
-        </option>
-    </component>
-    <component name="Git.Settings">
-        <option name="RECENT_BRANCH_BY_REPOSITORY">
-            <map>
-                <entry key="$PROJECT_DIR$" value="develop" />
-            </map>
-        </option>
-        <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-        <option name="ROOT_SYNC" value="SYNC" />
-    </component>
-    <component name="MarkdownSettingsMigration">
-        <option name="stateVersion" value="1" />
-    </component>
-    <component name="ProjectColorInfo">{ &quot;associatedIndex&quot;: 4
-        }
-    </component>
-    <component name="ProjectId" id="2wJdUEwNBQpFaRNqc2vwDUuY4bC" />
-    <component name="ProjectViewState">
-        <option name="hideEmptyMiddlePackages" value="true" />
-        <option name="showLibraryContents" value="true" />
-    </component>
-    <component name="PropertiesComponent"><![CDATA[{
+  <component name="AndroidLayouts">
+    <shared>
+      <config />
+    </shared>
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="13178677-1dff-4855-a748-b263d6799d61" name="Changes" comment="Update main.dart">
+      <change beforePath="$PROJECT_DIR$/.dart_tool/dartpad/web_plugin_registrant.dart" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/dartpad/web_plugin_registrant.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/package_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/package_config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/package_config_subset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/version" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/version" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/13bc6456434669ee877fede93bba0873/_composite.stamp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/13bc6456434669ee877fede93bba0873/gen_dart_plugin_registrant.stamp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/13bc6456434669ee877fede93bba0873/gen_localizations.stamp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/f872507f30e2ff2523f0f1d19160266e.cache.dill.track.dill" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/flutter_assets/NOTICES" beforeDir="false" afterPath="$PROJECT_DIR$/build/flutter_assets/NOTICES" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/macos/Flutter/GeneratedPluginRegistrant.swift" beforeDir="false" afterPath="$PROJECT_DIR$/macos/Flutter/GeneratedPluginRegistrant.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Dart File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="origin/develop" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="develop" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="ROOT_SYNC" value="SYNC" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{ &quot;associatedIndex&quot;: 4
+        }</component>
+  <component name="ProjectId" id="2wJdUEwNBQpFaRNqc2vwDUuY4bC" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -59,191 +74,482 @@
     "cidr.known.project.marker": "true",
     "dart.analysis.tool.window.visible": "false",
     "io.flutter.reload.alreadyRun": "true",
-    "last_opened_file_path": "/Users/sarayetel/Job/Hex/finance_manager/lib/presentation/base",
+    "last_opened_file_path": "/Users/sarayetel/Job/Hex/Flutter/finance_manager",
     "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
     "show.migrate.to.gradle.popup": "false"
   }
 }]]></component>
-    <component name="RecentsManager">
-        <key name="CopyFile.RECENT_KEYS">
-            <recent name="$PROJECT_DIR$/lib/presentation/base" />
-        </key>
-        <key name="MoveFile.RECENT_KEYS">
-            <recent name="$PROJECT_DIR$/lib/data/models" />
-            <recent name="$PROJECT_DIR$/lib/presentation/view/screens" />
-        </key>
-    </component>
-    <component name="RunManager" selected="Flutter.main.dart">
-        <configuration name="main.dart" factoryName="Flutter" type="FlutterRunConfigurationType">
-            <option name="filePath" value="$PROJECT_DIR$/lib/main.dart" />
-            <method v="2" />
-        </configuration>
-        <configuration name="test.dart" factoryName="Flutter" nameIsGenerated="true"
-            temporary="true" type="FlutterRunConfigurationType">
-            <option name="filePath" value="$PROJECT_DIR$/lib/test.dart" />
-            <method v="2" />
-        </configuration>
-        <recent_temporary>
-            <list>
-                <item itemvalue="Flutter.test.dart" />
-                <item itemvalue="Flutter.test.dart" />
-            </list>
-        </recent_temporary>
-    </component>
-    <component name="SpellCheckerSettings" CustomDictionaries="0" DefaultDictionary="application-level"
-        Folders="0" RuntimeDictionaries="0" UseSingleDictionary="true"
-        transferred="true" />
-    <component name="TaskManager">
-        <task active="true" id="Default" summary="Default task">
-            <changelist name="Changes" comment="" id="13178677-1dff-4855-a748-b263d6799d61" />
-            <created>1745763636699</created>
-            <option name="number" value="Default" />
-            <option name="presentableId" value="Default" />
-            <updated>1745763636699</updated>
-        </task>
-        <task id="LOCAL-00001" summary="Add HomeScreen">
-            <option name="closed" value="true" />
-            <created>1745767771917</created>
-            <option name="number" value="00001" />
-            <option name="presentableId" value="LOCAL-00001" />
-            <option name="project" value="LOCAL" />
-            <updated>1745767771917</updated>
-        </task>
-        <task id="LOCAL-00002" summary="Add package">
-            <option name="closed" value="true" />
-            <created>1745768101204</created>
-            <option name="number" value="00002" />
-            <option name="presentableId" value="LOCAL-00002" />
-            <option name="project" value="LOCAL" />
-            <updated>1745768101204</updated>
-        </task>
-        <task id="LOCAL-00003" summary="Add constant.dart">
-            <option name="closed" value="true" />
-            <created>1745768624512</created>
-            <option name="number" value="00003" />
-            <option name="presentableId" value="LOCAL-00003" />
-            <option name="project" value="LOCAL" />
-            <updated>1745768624512</updated>
-        </task>
-        <task id="LOCAL-00004" summary="Add utils.dart">
-            <option name="closed" value="true" />
-            <created>1745768789564</created>
-            <option name="number" value="00004" />
-            <option name="presentableId" value="LOCAL-00004" />
-            <option name="project" value="LOCAL" />
-            <updated>1745768789564</updated>
-        </task>
-        <task id="LOCAL-00005" summary="Add model">
-            <option name="closed" value="true" />
-            <created>1745771926311</created>
-            <option name="number" value="00005" />
-            <option name="presentableId" value="LOCAL-00005" />
-            <option name="project" value="LOCAL" />
-            <updated>1745771926311</updated>
-        </task>
-        <task id="LOCAL-00006" summary="Add source.dart">
-            <option name="closed" value="true" />
-            <created>1745772029803</created>
-            <option name="number" value="00006" />
-            <option name="presentableId" value="LOCAL-00006" />
-            <option name="project" value="LOCAL" />
-            <updated>1745772029803</updated>
-        </task>
-        <task id="LOCAL-00007" summary="Add interface repository">
-            <option name="closed" value="true" />
-            <created>1745772323846</created>
-            <option name="number" value="00007" />
-            <option name="presentableId" value="LOCAL-00007" />
-            <option name="project" value="LOCAL" />
-            <updated>1745772323846</updated>
-        </task>
-        <task id="LOCAL-00008" summary="Add implementation repository">
-            <option name="closed" value="true" />
-            <created>1745772356304</created>
-            <option name="number" value="00008" />
-            <option name="presentableId" value="LOCAL-00008" />
-            <option name="project" value="LOCAL" />
-            <updated>1745772356304</updated>
-        </task>
-        <task id="LOCAL-00009" summary="Add finance_entity.dart">
-            <option name="closed" value="true" />
-            <created>1745772578457</created>
-            <option name="number" value="00009" />
-            <option name="presentableId" value="LOCAL-00009" />
-            <option name="project" value="LOCAL" />
-            <updated>1745772578457</updated>
-        </task>
-        <task id="LOCAL-00010" summary="Add custom widget">
-            <option name="closed" value="true" />
-            <created>1745772818312</created>
-            <option name="number" value="00010" />
-            <option name="presentableId" value="LOCAL-00010" />
-            <option name="project" value="LOCAL" />
-            <updated>1745772818312</updated>
-        </task>
-        <task id="LOCAL-00011" summary="Add view model">
-            <option name="closed" value="true" />
-            <created>1745773017615</created>
-            <option name="number" value="00011" />
-            <option name="presentableId" value="LOCAL-00011" />
-            <option name="project" value="LOCAL" />
-            <updated>1745773017615</updated>
-        </task>
-        <task id="LOCAL-00012" summary="Add routes.dart">
-            <option name="closed" value="true" />
-            <created>1745773128315</created>
-            <option name="number" value="00012" />
-            <option name="presentableId" value="LOCAL-00012" />
-            <option name="project" value="LOCAL" />
-            <updated>1745773128315</updated>
-        </task>
-        <task id="LOCAL-00013" summary="Add colors.dart">
-            <option name="closed" value="true" />
-            <created>1745774650256</created>
-            <option name="number" value="00013" />
-            <option name="presentableId" value="LOCAL-00013" />
-            <option name="project" value="LOCAL" />
-            <updated>1745774650256</updated>
-        </task>
-        <task id="LOCAL-00014" summary="Add base_stateless_widget.darttatless">
-            <option name="closed" value="true" />
-            <created>1745849602073</created>
-            <option name="number" value="00014" />
-            <option name="presentableId" value="LOCAL-00014" />
-            <option name="project" value="LOCAL" />
-            <updated>1745849602073</updated>
-        </task>
-        <option name="localTasksCounter" value="15" />
-        <servers />
-    </component>
-    <component name="Vcs.Log.Tabs.Properties">
-        <option name="TAB_STATES">
-            <map>
-                <entry key="MAIN">
-                    <value>
-                        <State />
-                    </value>
-                </entry>
-            </map>
-        </option>
-    </component>
-    <component name="VcsManagerConfiguration">
-        <MESSAGE value="Add HomeScreen" />
-        <MESSAGE value="Add package" />
-        <MESSAGE value="Add constant.dart" />
-        <MESSAGE value="Add utils.dart" />
-        <MESSAGE value="Add model" />
-        <MESSAGE value="Add source.dart" />
-        <MESSAGE value="Add interface repository" />
-        <MESSAGE value="Add implementation repository" />
-        <MESSAGE value="Add finance_entity.dart" />
-        <MESSAGE value="Add custom widget" />
-        <MESSAGE value="Add view model" />
-        <MESSAGE value="Add routes.dart" />
-        <MESSAGE value="Add colors.dart" />
-        <MESSAGE value="Add theme.dart" />
-        <MESSAGE value="CLean" />
-        <MESSAGE value="Add base_stateless_widget.darttatless" />
-        <option name="LAST_COMMIT_MESSAGE" value="Add base_stateless_widget.darttatless" />
-    </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/lib/presentation/base" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/test/presentation/view/screens/transaction/create" />
+      <recent name="$PROJECT_DIR$/test/presentation/view/widgets/appbar" />
+      <recent name="$PROJECT_DIR$/lib/data/models" />
+      <recent name="$PROJECT_DIR$/lib/presentation/view/screens" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Flutter.main.dart">
+    <configuration name="main.dart" type="FlutterRunConfigurationType" factoryName="Flutter">
+      <option name="filePath" value="$PROJECT_DIR$/lib/main.dart" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test.dart" type="FlutterRunConfigurationType" factoryName="Flutter" temporary="true" nameIsGenerated="true">
+      <option name="filePath" value="$PROJECT_DIR$/lib/test.dart" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Flutter.test.dart" />
+        <item itemvalue="Flutter.test.dart" />
+        <item itemvalue="Flutter.test.dart" />
+        <item itemvalue="Flutter.test.dart" />
+        <item itemvalue="Flutter.test.dart" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="13178677-1dff-4855-a748-b263d6799d61" name="Changes" comment="" />
+      <created>1745763636699</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1745763636699</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Add interface repository">
+      <option name="closed" value="true" />
+      <created>1745772323846</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1745772323846</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Add implementation repository">
+      <option name="closed" value="true" />
+      <created>1745772356304</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1745772356304</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Add finance_entity.dart">
+      <option name="closed" value="true" />
+      <created>1745772578457</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1745772578457</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Add custom widget">
+      <option name="closed" value="true" />
+      <created>1745772818312</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1745772818312</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Add view model">
+      <option name="closed" value="true" />
+      <created>1745773017615</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1745773017615</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Add routes.dart">
+      <option name="closed" value="true" />
+      <created>1745773128315</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1745773128315</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Add colors.dart">
+      <option name="closed" value="true" />
+      <created>1745774650256</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1745774650256</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Add base_stateless_widget.darttatless">
+      <option name="closed" value="true" />
+      <created>1745849602073</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1745849602073</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Verify each menu item displays its correct icon">
+      <option name="closed" value="true" />
+      <created>1749651594655</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1749651594656</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Ensure no menu items are shown when list is empty">
+      <option name="closed" value="true" />
+      <created>1749651767373</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1749651767374</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Resolve bug related update transaction">
+      <option name="closed" value="true" />
+      <created>1749654982898</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1749654982900</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Update category_entity.dart">
+      <option name="closed" value="true" />
+      <created>1749655056294</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1749655056294</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Update category_entity.dart">
+      <option name="closed" value="true" />
+      <created>1749655471280</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1749655471282</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Update extension.dart">
+      <option name="closed" value="true" />
+      <created>1749658109534</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1749658109534</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Update getCategoryColor">
+      <option name="closed" value="true" />
+      <created>1749658385895</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1749658385895</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Update getCategoryIconPath">
+      <option name="closed" value="true" />
+      <created>1749658407095</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1749658407096</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Clean code">
+      <option name="closed" value="true" />
+      <created>1749658424583</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1749658424583</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Refactor">
+      <option name="closed" value="true" />
+      <created>1749658645864</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1749658645864</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Add custom_button_test.dart">
+      <option name="closed" value="true" />
+      <created>1749658657783</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1749658657783</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Verify that CustomButton displays correct text">
+      <option name="closed" value="true" />
+      <created>1749658736432</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1749658736432</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Ensure CustomButton triggers onPressed callback when tapped">
+      <option name="closed" value="true" />
+      <created>1749658780042</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1749658780042</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Validate that CustomButton is disabled when onPressed is null">
+      <option name="closed" value="true" />
+      <created>1749658831799</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1749658831800</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Check CustomButton has correct style and border radius">
+      <option name="closed" value="true" />
+      <created>1749658870549</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1749658870549</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Add create_transaction_screen_test.dart">
+      <option name="closed" value="true" />
+      <created>1749711627225</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1749711627225</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Add mock_cubit.dart">
+      <option name="closed" value="true" />
+      <created>1749711642233</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1749711642233</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Ensure CreateTransactionScreen shows correct app bar title and action button text">
+      <option name="closed" value="true" />
+      <created>1749711864238</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1749711864239</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Verify createTransaction is called and navigator.pop is triggered on valid form submission">
+      <option name="closed" value="true" />
+      <created>1749712166766</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1749712166767</updated>
+    </task>
+    <task id="LOCAL-00034" summary="Ensure Create button is disabled when required fields are empty">
+      <option name="closed" value="true" />
+      <created>1749712242085</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1749712242086</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Confirm current date is used as initial value in date picker">
+      <option name="closed" value="true" />
+      <created>1749712326603</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1749712326604</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Clean code">
+      <option name="closed" value="true" />
+      <created>1749712612384</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1749712612384</updated>
+    </task>
+    <task id="LOCAL-00037" summary="Add update_transaction_screen_test.dart">
+      <option name="closed" value="true" />
+      <created>1749712669801</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1749712669801</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Verify UpdateTransactionScreen initializes fields with transaction data">
+      <option name="closed" value="true" />
+      <created>1749712814375</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1749712814376</updated>
+    </task>
+    <task id="LOCAL-00039" summary="Ensure updateTransaction is called and screen pops on update">
+      <option name="closed" value="true" />
+      <created>1749712896409</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1749712896409</updated>
+    </task>
+    <task id="LOCAL-00040" summary="Check initial display of category and date in UpdateTransactionScreen">
+      <option name="closed" value="true" />
+      <created>1749712961479</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1749712961479</updated>
+    </task>
+    <task id="LOCAL-00041" summary="Add app_localizations.dart">
+      <option name="closed" value="true" />
+      <created>1760961409455</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1760961409455</updated>
+    </task>
+    <task id="LOCAL-00042" summary="Add app_localizations_en.dart">
+      <option name="closed" value="true" />
+      <created>1760961620013</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1760961620013</updated>
+    </task>
+    <task id="LOCAL-00043" summary="Add app_localizations_fa.dart">
+      <option name="closed" value="true" />
+      <created>1760961628705</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1760961628705</updated>
+    </task>
+    <task id="LOCAL-00044" summary="Update base_state.dart.dart">
+      <option name="closed" value="true" />
+      <created>1760961653878</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1760961653878</updated>
+    </task>
+    <task id="LOCAL-00045" summary="Update base_stateless_widget.dart">
+      <option name="closed" value="true" />
+      <created>1760961672483</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1760961672485</updated>
+    </task>
+    <task id="LOCAL-00046" summary="Update finance_manager.iml">
+      <option name="closed" value="true" />
+      <created>1760961708119</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1760961708119</updated>
+    </task>
+    <task id="LOCAL-00047" summary="Update Dart_Packages.iml">
+      <option name="closed" value="true" />
+      <created>1760961737674</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1760961737675</updated>
+    </task>
+    <task id="LOCAL-00048" summary="Update Flutter_Plugins.xml">
+      <option name="closed" value="true" />
+      <created>1760961870310</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1760961870311</updated>
+    </task>
+    <task id="LOCAL-00049" summary="Update flutter-plugins-dependencies">
+      <option name="closed" value="true" />
+      <created>1760962438553</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1760962438554</updated>
+    </task>
+    <task id="LOCAL-00050" summary="Update AssetManifest.bin">
+      <option name="closed" value="true" />
+      <created>1760962453694</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1760962453698</updated>
+    </task>
+    <task id="LOCAL-00051" summary="Update AssetManifest.bin.json">
+      <option name="closed" value="true" />
+      <created>1760962468841</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1760962468842</updated>
+    </task>
+    <task id="LOCAL-00052" summary="Update AssetManifest.json">
+      <option name="closed" value="true" />
+      <created>1760962480093</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1760962480094</updated>
+    </task>
+    <task id="LOCAL-00053" summary="Add devtools_options.yaml">
+      <option name="closed" value="true" />
+      <created>1760962496978</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1760962496984</updated>
+    </task>
+    <task id="LOCAL-00054" summary="Update Flutter_Plugins.xml">
+      <option name="closed" value="true" />
+      <created>1760962537859</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1760962537861</updated>
+    </task>
+    <task id="LOCAL-00055" summary="Update main.dart">
+      <option name="closed" value="true" />
+      <created>1760962552136</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1760962552136</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Add create_transaction_screen_test.dart" />
+    <MESSAGE value="Add mock_cubit.dart" />
+    <MESSAGE value="Ensure CreateTransactionScreen shows correct app bar title and action button text" />
+    <MESSAGE value="Verify createTransaction is called and navigator.pop is triggered on valid form submission" />
+    <MESSAGE value="Ensure Create button is disabled when required fields are empty" />
+    <MESSAGE value="Confirm current date is used as initial value in date picker" />
+    <MESSAGE value="Clean code" />
+    <MESSAGE value="Add update_transaction_screen_test.dart" />
+    <MESSAGE value="Verify UpdateTransactionScreen initializes fields with transaction data" />
+    <MESSAGE value="Ensure updateTransaction is called and screen pops on update" />
+    <MESSAGE value="Check initial display of category and date in UpdateTransactionScreen" />
+    <MESSAGE value="Add app_localizations.dart" />
+    <MESSAGE value="Add app_localizations_en.dart" />
+    <MESSAGE value="Add app_localizations_fa.dart" />
+    <MESSAGE value="Update base_state.dart.dart" />
+    <MESSAGE value="Update base_stateless_widget.dart" />
+    <MESSAGE value="Update finance_manager.iml" />
+    <MESSAGE value="Update Dart_Packages.iml" />
+    <MESSAGE value="Update flutter-plugins-dependencies" />
+    <MESSAGE value="Update AssetManifest.bin" />
+    <MESSAGE value="Update AssetManifest.bin.json" />
+    <MESSAGE value="Update AssetManifest.json" />
+    <MESSAGE value="Add devtools_options.yaml" />
+    <MESSAGE value="Update Flutter_Plugins.xml" />
+    <MESSAGE value="Update main.dart" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update main.dart" />
+  </component>
 </project>
