@@ -1,0 +1,602 @@
+Index: lib/presentation/view/screens/transaction/base/base_create_update_transaction.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import 'package:finance_manager/data/models/category.dart';\nimport 'package:finance_manager/presentation/bloc/category/category_cubit.dart';\nimport 'package:finance_manager/presentation/bloc/category/category_state.dart';\nimport 'package:finance_manager/presentation/view/base/base_state.dart';\nimport 'package:flutter/material.dart';\nimport 'package:flutter_bloc/flutter_bloc.dart';\nimport 'package:finance_manager/presentation/bloc/transaction/transaction_cubit.dart';\nimport 'package:finance_manager/presentation/bloc/transaction/transaction_state.dart';\nimport 'package:finance_manager/presentation/view/widgets/appbar/custom_app_bar.dart';\nimport 'package:finance_manager/presentation/view/widgets/button/custom_button.dart';\nimport 'package:finance_manager/presentation/view/widgets/choice_chip/custom_type_selector.dart';\nimport 'package:finance_manager/presentation/view/widgets/datetime/custom_date_picker.dart';\nimport 'package:finance_manager/presentation/view/widgets/dropdown/custom_drop_down.dart';\nimport 'package:finance_manager/presentation/view/widgets/textfield/custom_text_field.dart';\n\nabstract class BaseTransactionScreen extends StatefulWidget {\n  const BaseTransactionScreen({super.key});\n\n  String get appBarTitle;\n\n  String get actionButtonText;\n}\n\nabstract class BaseTransactionScreenState<T extends BaseTransactionScreen>\n    extends BaseState<T> {\n  late TextEditingController titleController;\n  late TextEditingController descriptionController;\n  late TextEditingController amountController;\n\n  VoidCallback get onActionPressed;\n\n  String get categoryLabel;\n\n  DateTime get dateLabel;\n\n  List<Category> categories = [];\n\n  @override\n  void initState() {\n    super.initState();\n    titleController = TextEditingController();\n    descriptionController = TextEditingController();\n    amountController = TextEditingController();\n\n    titleController.addListener(() {\n      getBloc<TransactionCubit>().updateTitle(titleController.text);\n    });\n    descriptionController.addListener(() {\n      getBloc<TransactionCubit>().updateDescription(descriptionController.text);\n    });\n    amountController.addListener(() {\n      getBloc<TransactionCubit>().updateAmount(amountController.text);\n    });\n  }\n\n  @override\n  void dispose() {\n    titleController.dispose();\n    descriptionController.dispose();\n    amountController.dispose();\n    super.dispose();\n  }\n\n  @override\n  Widget build(BuildContext context) {\n    return Scaffold(\n      appBar: CustomAppBar(title: widget.appBarTitle),\n      body: Padding(\n        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),\n        child: Column(\n          children: [\n            //title\n            CustomTextField(\n              prefixIcon: Icons.title_outlined,\n              hint: 'Title ...',\n              controller: titleController,\n            ),\n            const SizedBox(height: 16),\n            //description\n            CustomTextField(\n              prefixIcon: Icons.description_outlined,\n              hint: 'Description ...',\n              controller: descriptionController,\n            ),\n            const SizedBox(height: 16),\n            //amount\n            CustomTextField(\n              hint: 'Amount ...',\n              isCurrency: true,\n              controller: amountController,\n            ),\n            const SizedBox(height: 16),\n            BlocBuilder<CategoryCubit, CategoryState>(\n              builder: (context, state) {\n                categories = state.categories;\n\n                return CustomDropdown<Category>(\n                  items: categories,\n                  onChanged: (value) {\n                    getBloc<TransactionCubit>().updateCategory(value ?? '');\n                  },\n                  hint: 'Category ...',\n                );\n              },\n            ),\n            const SizedBox(height: 16),\n            DateTimePickerContainer(\n              initialDateTime: dateLabel,\n              onDateTimeSelected: (selectedDateTime) {\n                getBloc<TransactionCubit>().updateDate(selectedDateTime);\n              },\n            ),\n            const SizedBox(height: 16),\n            BlocBuilder<TransactionCubit, TransactionState>(\n              builder: (context, state) {\n                return CustomTypeSelector(\n                  selectedType: state.type,\n                  onChanged: (type) {\n                    getBloc<TransactionCubit>().updateType(type);\n                  },\n                );\n              },\n            ),\n            const SizedBox(height: 16),\n            BlocBuilder<TransactionCubit, TransactionState>(\n              builder: (context, state) {\n                final isFormValid =\n                    state.title.isNotEmpty &&\n                    state.amount.isNotEmpty &&\n                    state.category != null;\n\n                return CustomButton(\n                  text: widget.actionButtonText,\n                  onPressed: isFormValid ? onActionPressed : null,\n                );\n              },\n            ),\n          ],\n        ),\n      ),\n    );\n  }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/lib/presentation/view/screens/transaction/base/base_create_update_transaction.dart b/lib/presentation/view/screens/transaction/base/base_create_update_transaction.dart
+--- a/lib/presentation/view/screens/transaction/base/base_create_update_transaction.dart	
++++ b/lib/presentation/view/screens/transaction/base/base_create_update_transaction.dart	
+@@ -97,7 +97,8 @@
+                 return CustomDropdown<Category>(
+                   items: categories,
+                   onChanged: (value) {
+-                    getBloc<TransactionCubit>().updateCategory(value ?? '');
++                    //todo
++                    // getBloc<TransactionCubit>().updateCategory(value ?? '');
+                   },
+                   hint: 'Category ...',
+                 );
+Index: .flutter-plugins-dependencies
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{\"info\":\"This is a generated file; do not edit or check into version control.\",\"plugins\":{\"ios\":[{\"name\":\"path_provider_foundation\",\"path\":\"/Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_foundation-2.4.1/\",\"shared_darwin_source\":true,\"native_build\":true,\"dependencies\":[],\"dev_dependency\":false}],\"android\":[{\"name\":\"path_provider_android\",\"path\":\"/Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_android-2.2.17/\",\"native_build\":true,\"dependencies\":[],\"dev_dependency\":false}],\"macos\":[{\"name\":\"path_provider_foundation\",\"path\":\"/Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_foundation-2.4.1/\",\"shared_darwin_source\":true,\"native_build\":true,\"dependencies\":[],\"dev_dependency\":false}],\"linux\":[{\"name\":\"path_provider_linux\",\"path\":\"/Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_linux-2.2.1/\",\"native_build\":false,\"dependencies\":[],\"dev_dependency\":false}],\"windows\":[{\"name\":\"path_provider_windows\",\"path\":\"/Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_windows-2.3.0/\",\"native_build\":false,\"dependencies\":[],\"dev_dependency\":false}],\"web\":[]},\"dependencyGraph\":[{\"name\":\"path_provider\",\"dependencies\":[\"path_provider_android\",\"path_provider_foundation\",\"path_provider_linux\",\"path_provider_windows\"]},{\"name\":\"path_provider_android\",\"dependencies\":[]},{\"name\":\"path_provider_foundation\",\"dependencies\":[]},{\"name\":\"path_provider_linux\",\"dependencies\":[]},{\"name\":\"path_provider_windows\",\"dependencies\":[]}],\"date_created\":\"2025-04-28 21:15:33.965314\",\"version\":\"3.29.3\",\"swift_package_manager_enabled\":{\"ios\":false,\"macos\":false}}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.flutter-plugins-dependencies b/.flutter-plugins-dependencies
+--- a/.flutter-plugins-dependencies	
++++ b/.flutter-plugins-dependencies	
+@@ -1,1 +1,1 @@
+-{"info":"This is a generated file; do not edit or check into version control.","plugins":{"ios":[{"name":"path_provider_foundation","path":"/Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_foundation-2.4.1/","shared_darwin_source":true,"native_build":true,"dependencies":[],"dev_dependency":false}],"android":[{"name":"path_provider_android","path":"/Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_android-2.2.17/","native_build":true,"dependencies":[],"dev_dependency":false}],"macos":[{"name":"path_provider_foundation","path":"/Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_foundation-2.4.1/","shared_darwin_source":true,"native_build":true,"dependencies":[],"dev_dependency":false}],"linux":[{"name":"path_provider_linux","path":"/Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_linux-2.2.1/","native_build":false,"dependencies":[],"dev_dependency":false}],"windows":[{"name":"path_provider_windows","path":"/Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_windows-2.3.0/","native_build":false,"dependencies":[],"dev_dependency":false}],"web":[]},"dependencyGraph":[{"name":"path_provider","dependencies":["path_provider_android","path_provider_foundation","path_provider_linux","path_provider_windows"]},{"name":"path_provider_android","dependencies":[]},{"name":"path_provider_foundation","dependencies":[]},{"name":"path_provider_linux","dependencies":[]},{"name":"path_provider_windows","dependencies":[]}],"date_created":"2025-04-28 21:15:33.965314","version":"3.29.3","swift_package_manager_enabled":{"ios":false,"macos":false}}
+\ No newline at end of file
++{"info":"This is a generated file; do not edit or check into version control.","plugins":{"ios":[{"name":"path_provider_foundation","path":"/Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_foundation-2.4.1/","shared_darwin_source":true,"native_build":true,"dependencies":[],"dev_dependency":false},{"name":"shared_preferences_foundation","path":"/Users/sarayetel/.pub-cache/hosted/pub.dev/shared_preferences_foundation-2.5.4/","shared_darwin_source":true,"native_build":true,"dependencies":[],"dev_dependency":false}],"android":[{"name":"path_provider_android","path":"/Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_android-2.2.17/","native_build":true,"dependencies":[],"dev_dependency":false},{"name":"shared_preferences_android","path":"/Users/sarayetel/.pub-cache/hosted/pub.dev/shared_preferences_android-2.4.10/","native_build":true,"dependencies":[],"dev_dependency":false}],"macos":[{"name":"path_provider_foundation","path":"/Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_foundation-2.4.1/","shared_darwin_source":true,"native_build":true,"dependencies":[],"dev_dependency":false},{"name":"shared_preferences_foundation","path":"/Users/sarayetel/.pub-cache/hosted/pub.dev/shared_preferences_foundation-2.5.4/","shared_darwin_source":true,"native_build":true,"dependencies":[],"dev_dependency":false}],"linux":[{"name":"path_provider_linux","path":"/Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_linux-2.2.1/","native_build":false,"dependencies":[],"dev_dependency":false},{"name":"shared_preferences_linux","path":"/Users/sarayetel/.pub-cache/hosted/pub.dev/shared_preferences_linux-2.4.1/","native_build":false,"dependencies":["path_provider_linux"],"dev_dependency":false}],"windows":[{"name":"path_provider_windows","path":"/Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_windows-2.3.0/","native_build":false,"dependencies":[],"dev_dependency":false},{"name":"shared_preferences_windows","path":"/Users/sarayetel/.pub-cache/hosted/pub.dev/shared_preferences_windows-2.4.1/","native_build":false,"dependencies":["path_provider_windows"],"dev_dependency":false}],"web":[{"name":"shared_preferences_web","path":"/Users/sarayetel/.pub-cache/hosted/pub.dev/shared_preferences_web-2.4.3/","dependencies":[],"dev_dependency":false}]},"dependencyGraph":[{"name":"path_provider","dependencies":["path_provider_android","path_provider_foundation","path_provider_linux","path_provider_windows"]},{"name":"path_provider_android","dependencies":[]},{"name":"path_provider_foundation","dependencies":[]},{"name":"path_provider_linux","dependencies":[]},{"name":"path_provider_windows","dependencies":[]},{"name":"shared_preferences","dependencies":["shared_preferences_android","shared_preferences_foundation","shared_preferences_linux","shared_preferences_web","shared_preferences_windows"]},{"name":"shared_preferences_android","dependencies":[]},{"name":"shared_preferences_foundation","dependencies":[]},{"name":"shared_preferences_linux","dependencies":["path_provider_linux"]},{"name":"shared_preferences_web","dependencies":[]},{"name":"shared_preferences_windows","dependencies":["path_provider_windows"]}],"date_created":"2025-06-09 22:00:12.138132","version":"3.29.3","swift_package_manager_enabled":{"ios":false,"macos":false}}
+\ No newline at end of file
+Index: .dart_tool/package_config.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{\"configVersion\":2,\"packages\":[{\"name\":\"async\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/async-2.12.0\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.4\"},{\"name\":\"boolean_selector\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/boolean_selector-2.1.2\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.1\"},{\"name\":\"characters\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/characters-1.4.0\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.4\"},{\"name\":\"clock\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/clock-1.1.2\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.4\"},{\"name\":\"collection\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/collection-1.19.1\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.4\"},{\"name\":\"crypto\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/crypto-3.0.6\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.4\"},{\"name\":\"cupertino_icons\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/cupertino_icons-1.0.8\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.1\"},{\"name\":\"fake_async\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/fake_async-1.3.2\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.3\"},{\"name\":\"ffi\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/ffi-2.1.4\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.7\"},{\"name\":\"flutter\",\"rootUri\":\"file:///Users/sarayetel/User/development/flutter/packages/flutter\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.7\"},{\"name\":\"flutter_lints\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/flutter_lints-5.0.0\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.5\"},{\"name\":\"flutter_localizations\",\"rootUri\":\"file:///Users/sarayetel/User/development/flutter/packages/flutter_localizations\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.7\"},{\"name\":\"flutter_test\",\"rootUri\":\"file:///Users/sarayetel/User/development/flutter/packages/flutter_test\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.7\"},{\"name\":\"google_fonts\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/google_fonts-4.0.5\",\"packageUri\":\"lib/\",\"languageVersion\":\"2.14\"},{\"name\":\"http\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/http-1.3.0\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.4\"},{\"name\":\"http_parser\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/http_parser-4.1.2\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.4\"},{\"name\":\"intl\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/intl-0.19.0\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.0\"},{\"name\":\"leak_tracker\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/leak_tracker-10.0.8\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.2\"},{\"name\":\"leak_tracker_flutter_testing\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/leak_tracker_flutter_testing-3.0.9\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.2\"},{\"name\":\"leak_tracker_testing\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/leak_tracker_testing-3.0.1\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.2\"},{\"name\":\"lints\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/lints-5.1.1\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.6\"},{\"name\":\"matcher\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/matcher-0.12.17\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.4\"},{\"name\":\"material_color_utilities\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/material_color_utilities-0.11.1\",\"packageUri\":\"lib/\",\"languageVersion\":\"2.17\"},{\"name\":\"meta\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/meta-1.16.0\",\"packageUri\":\"lib/\",\"languageVersion\":\"2.12\"},{\"name\":\"path\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/path-1.9.1\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.4\"},{\"name\":\"path_provider\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider-2.1.5\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.4\"},{\"name\":\"path_provider_android\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_android-2.2.17\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.6\"},{\"name\":\"path_provider_foundation\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_foundation-2.4.1\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.3\"},{\"name\":\"path_provider_linux\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_linux-2.2.1\",\"packageUri\":\"lib/\",\"languageVersion\":\"2.19\"},{\"name\":\"path_provider_platform_interface\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_platform_interface-2.1.2\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.0\"},{\"name\":\"path_provider_windows\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_windows-2.3.0\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.2\"},{\"name\":\"platform\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/platform-3.1.6\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.2\"},{\"name\":\"plugin_platform_interface\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/plugin_platform_interface-2.1.8\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.0\"},{\"name\":\"sky_engine\",\"rootUri\":\"file:///Users/sarayetel/User/development/flutter/bin/cache/pkg/sky_engine\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.7\"},{\"name\":\"source_span\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/source_span-1.10.1\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.1\"},{\"name\":\"stack_trace\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/stack_trace-1.12.1\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.4\"},{\"name\":\"stream_channel\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/stream_channel-2.1.4\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.3\"},{\"name\":\"string_scanner\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/string_scanner-1.4.1\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.1\"},{\"name\":\"term_glyph\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/term_glyph-1.2.2\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.1\"},{\"name\":\"test_api\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/test_api-0.7.4\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.5\"},{\"name\":\"typed_data\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/typed_data-1.4.0\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.5\"},{\"name\":\"vector_math\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/vector_math-2.1.4\",\"packageUri\":\"lib/\",\"languageVersion\":\"2.14\"},{\"name\":\"vm_service\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/vm_service-14.3.1\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.3\"},{\"name\":\"web\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/web-1.1.1\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.4\"},{\"name\":\"xdg_directories\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/xdg_directories-1.1.0\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.3\"},{\"name\":\"finance_manager\",\"rootUri\":\"../\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.7\"},{\"name\":\"flutter_gen\",\"rootUri\":\"flutter_gen\",\"languageVersion\":\"2.12\"}],\"generated\":\"2025-04-28T18:01:13.091132Z\",\"generator\":\"pub\",\"generatorVersion\":\"3.7.2\",\"flutterRoot\":\"file:///Users/sarayetel/User/development/flutter\",\"flutterVersion\":\"3.29.3\",\"pubCache\":\"file:///Users/sarayetel/.pub-cache\"}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.dart_tool/package_config.json b/.dart_tool/package_config.json
+--- a/.dart_tool/package_config.json	
++++ b/.dart_tool/package_config.json	
+@@ -1,1 +1,1 @@
+-{"configVersion":2,"packages":[{"name":"async","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/async-2.12.0","packageUri":"lib/","languageVersion":"3.4"},{"name":"boolean_selector","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/boolean_selector-2.1.2","packageUri":"lib/","languageVersion":"3.1"},{"name":"characters","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/characters-1.4.0","packageUri":"lib/","languageVersion":"3.4"},{"name":"clock","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/clock-1.1.2","packageUri":"lib/","languageVersion":"3.4"},{"name":"collection","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/collection-1.19.1","packageUri":"lib/","languageVersion":"3.4"},{"name":"crypto","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/crypto-3.0.6","packageUri":"lib/","languageVersion":"3.4"},{"name":"cupertino_icons","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/cupertino_icons-1.0.8","packageUri":"lib/","languageVersion":"3.1"},{"name":"fake_async","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/fake_async-1.3.2","packageUri":"lib/","languageVersion":"3.3"},{"name":"ffi","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/ffi-2.1.4","packageUri":"lib/","languageVersion":"3.7"},{"name":"flutter","rootUri":"file:///Users/sarayetel/User/development/flutter/packages/flutter","packageUri":"lib/","languageVersion":"3.7"},{"name":"flutter_lints","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/flutter_lints-5.0.0","packageUri":"lib/","languageVersion":"3.5"},{"name":"flutter_localizations","rootUri":"file:///Users/sarayetel/User/development/flutter/packages/flutter_localizations","packageUri":"lib/","languageVersion":"3.7"},{"name":"flutter_test","rootUri":"file:///Users/sarayetel/User/development/flutter/packages/flutter_test","packageUri":"lib/","languageVersion":"3.7"},{"name":"google_fonts","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/google_fonts-4.0.5","packageUri":"lib/","languageVersion":"2.14"},{"name":"http","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/http-1.3.0","packageUri":"lib/","languageVersion":"3.4"},{"name":"http_parser","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/http_parser-4.1.2","packageUri":"lib/","languageVersion":"3.4"},{"name":"intl","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/intl-0.19.0","packageUri":"lib/","languageVersion":"3.0"},{"name":"leak_tracker","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/leak_tracker-10.0.8","packageUri":"lib/","languageVersion":"3.2"},{"name":"leak_tracker_flutter_testing","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/leak_tracker_flutter_testing-3.0.9","packageUri":"lib/","languageVersion":"3.2"},{"name":"leak_tracker_testing","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/leak_tracker_testing-3.0.1","packageUri":"lib/","languageVersion":"3.2"},{"name":"lints","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/lints-5.1.1","packageUri":"lib/","languageVersion":"3.6"},{"name":"matcher","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/matcher-0.12.17","packageUri":"lib/","languageVersion":"3.4"},{"name":"material_color_utilities","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/material_color_utilities-0.11.1","packageUri":"lib/","languageVersion":"2.17"},{"name":"meta","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/meta-1.16.0","packageUri":"lib/","languageVersion":"2.12"},{"name":"path","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/path-1.9.1","packageUri":"lib/","languageVersion":"3.4"},{"name":"path_provider","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider-2.1.5","packageUri":"lib/","languageVersion":"3.4"},{"name":"path_provider_android","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_android-2.2.17","packageUri":"lib/","languageVersion":"3.6"},{"name":"path_provider_foundation","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_foundation-2.4.1","packageUri":"lib/","languageVersion":"3.3"},{"name":"path_provider_linux","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_linux-2.2.1","packageUri":"lib/","languageVersion":"2.19"},{"name":"path_provider_platform_interface","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_platform_interface-2.1.2","packageUri":"lib/","languageVersion":"3.0"},{"name":"path_provider_windows","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_windows-2.3.0","packageUri":"lib/","languageVersion":"3.2"},{"name":"platform","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/platform-3.1.6","packageUri":"lib/","languageVersion":"3.2"},{"name":"plugin_platform_interface","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/plugin_platform_interface-2.1.8","packageUri":"lib/","languageVersion":"3.0"},{"name":"sky_engine","rootUri":"file:///Users/sarayetel/User/development/flutter/bin/cache/pkg/sky_engine","packageUri":"lib/","languageVersion":"3.7"},{"name":"source_span","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/source_span-1.10.1","packageUri":"lib/","languageVersion":"3.1"},{"name":"stack_trace","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/stack_trace-1.12.1","packageUri":"lib/","languageVersion":"3.4"},{"name":"stream_channel","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/stream_channel-2.1.4","packageUri":"lib/","languageVersion":"3.3"},{"name":"string_scanner","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/string_scanner-1.4.1","packageUri":"lib/","languageVersion":"3.1"},{"name":"term_glyph","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/term_glyph-1.2.2","packageUri":"lib/","languageVersion":"3.1"},{"name":"test_api","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/test_api-0.7.4","packageUri":"lib/","languageVersion":"3.5"},{"name":"typed_data","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/typed_data-1.4.0","packageUri":"lib/","languageVersion":"3.5"},{"name":"vector_math","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/vector_math-2.1.4","packageUri":"lib/","languageVersion":"2.14"},{"name":"vm_service","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/vm_service-14.3.1","packageUri":"lib/","languageVersion":"3.3"},{"name":"web","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/web-1.1.1","packageUri":"lib/","languageVersion":"3.4"},{"name":"xdg_directories","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/xdg_directories-1.1.0","packageUri":"lib/","languageVersion":"3.3"},{"name":"finance_manager","rootUri":"../","packageUri":"lib/","languageVersion":"3.7"},{"name":"flutter_gen","rootUri":"flutter_gen","languageVersion":"2.12"}],"generated":"2025-04-28T18:01:13.091132Z","generator":"pub","generatorVersion":"3.7.2","flutterRoot":"file:///Users/sarayetel/User/development/flutter","flutterVersion":"3.29.3","pubCache":"file:///Users/sarayetel/.pub-cache"}
+\ No newline at end of file
++{"configVersion":2,"packages":[{"name":"_fe_analyzer_shared","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/_fe_analyzer_shared-76.0.0","packageUri":"lib/","languageVersion":"3.3"},{"name":"_macros","rootUri":"file:///Users/sarayetel/User/development/flutter/bin/cache/dart-sdk/pkg/_macros","packageUri":"lib/","languageVersion":"3.4"},{"name":"analyzer","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/analyzer-6.11.0","packageUri":"lib/","languageVersion":"3.3"},{"name":"archive","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/archive-4.0.7","packageUri":"lib/","languageVersion":"3.0"},{"name":"args","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/args-2.7.0","packageUri":"lib/","languageVersion":"3.3"},{"name":"async","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/async-2.12.0","packageUri":"lib/","languageVersion":"3.4"},{"name":"bloc","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/bloc-8.1.4","packageUri":"lib/","languageVersion":"2.12"},{"name":"boolean_selector","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/boolean_selector-2.1.2","packageUri":"lib/","languageVersion":"3.1"},{"name":"build","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/build-2.4.2","packageUri":"lib/","languageVersion":"3.6"},{"name":"build_config","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/build_config-1.1.2","packageUri":"lib/","languageVersion":"3.6"},{"name":"build_daemon","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/build_daemon-4.0.4","packageUri":"lib/","languageVersion":"3.6"},{"name":"build_resolvers","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/build_resolvers-2.4.4","packageUri":"lib/","languageVersion":"3.6"},{"name":"build_runner","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/build_runner-2.4.15","packageUri":"lib/","languageVersion":"3.6"},{"name":"build_runner_core","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/build_runner_core-8.0.0","packageUri":"lib/","languageVersion":"3.6"},{"name":"built_collection","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/built_collection-5.1.1","packageUri":"lib/","languageVersion":"2.12"},{"name":"built_value","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/built_value-8.9.5","packageUri":"lib/","languageVersion":"3.0"},{"name":"characters","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/characters-1.4.0","packageUri":"lib/","languageVersion":"3.4"},{"name":"checked_yaml","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/checked_yaml-2.0.3","packageUri":"lib/","languageVersion":"2.19"},{"name":"clock","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/clock-1.1.2","packageUri":"lib/","languageVersion":"3.4"},{"name":"code_builder","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/code_builder-4.10.1","packageUri":"lib/","languageVersion":"3.5"},{"name":"collection","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/collection-1.19.1","packageUri":"lib/","languageVersion":"3.4"},{"name":"color","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/color-3.0.0","packageUri":"lib/","languageVersion":"2.12"},{"name":"convert","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/convert-3.1.2","packageUri":"lib/","languageVersion":"3.4"},{"name":"crypto","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/crypto-3.0.6","packageUri":"lib/","languageVersion":"3.4"},{"name":"cupertino_icons","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/cupertino_icons-1.0.8","packageUri":"lib/","languageVersion":"3.1"},{"name":"dart_style","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/dart_style-2.3.8","packageUri":"lib/","languageVersion":"3.0"},{"name":"dartx","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/dartx-1.2.0","packageUri":"lib/","languageVersion":"2.12"},{"name":"equatable","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/equatable-2.0.7","packageUri":"lib/","languageVersion":"2.12"},{"name":"fake_async","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/fake_async-1.3.2","packageUri":"lib/","languageVersion":"3.3"},{"name":"ffi","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/ffi-2.1.4","packageUri":"lib/","languageVersion":"3.7"},{"name":"file","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/file-7.0.1","packageUri":"lib/","languageVersion":"3.0"},{"name":"fixnum","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/fixnum-1.1.1","packageUri":"lib/","languageVersion":"3.1"},{"name":"fl_chart","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/fl_chart-0.71.0","packageUri":"lib/","languageVersion":"3.2"},{"name":"flutter","rootUri":"file:///Users/sarayetel/User/development/flutter/packages/flutter","packageUri":"lib/","languageVersion":"3.7"},{"name":"flutter_bloc","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/flutter_bloc-8.1.6","packageUri":"lib/","languageVersion":"2.12"},{"name":"flutter_gen_core","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/flutter_gen_core-5.10.0","packageUri":"lib/","languageVersion":"3.0"},{"name":"flutter_gen_runner","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/flutter_gen_runner-5.10.0","packageUri":"lib/","languageVersion":"3.0"},{"name":"flutter_lints","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/flutter_lints-5.0.0","packageUri":"lib/","languageVersion":"3.5"},{"name":"flutter_localizations","rootUri":"file:///Users/sarayetel/User/development/flutter/packages/flutter_localizations","packageUri":"lib/","languageVersion":"3.7"},{"name":"flutter_svg","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/flutter_svg-2.1.0","packageUri":"lib/","languageVersion":"3.4"},{"name":"flutter_test","rootUri":"file:///Users/sarayetel/User/development/flutter/packages/flutter_test","packageUri":"lib/","languageVersion":"3.7"},{"name":"flutter_web_plugins","rootUri":"file:///Users/sarayetel/User/development/flutter/packages/flutter_web_plugins","packageUri":"lib/","languageVersion":"3.7"},{"name":"frontend_server_client","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/frontend_server_client-4.0.0","packageUri":"lib/","languageVersion":"3.0"},{"name":"get_it","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/get_it-7.7.0","packageUri":"lib/","languageVersion":"3.0"},{"name":"glob","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/glob-2.1.3","packageUri":"lib/","languageVersion":"3.3"},{"name":"go_router","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/go_router-14.8.1","packageUri":"lib/","languageVersion":"3.4"},{"name":"golden_toolkit","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/golden_toolkit-0.15.0","packageUri":"lib/","languageVersion":"2.18"},{"name":"google_fonts","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/google_fonts-4.0.5","packageUri":"lib/","languageVersion":"2.14"},{"name":"graphs","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/graphs-2.3.2","packageUri":"lib/","languageVersion":"3.4"},{"name":"hashcodes","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/hashcodes-2.0.0","packageUri":"lib/","languageVersion":"2.12"},{"name":"hive","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/hive-2.2.3","packageUri":"lib/","languageVersion":"2.12"},{"name":"hive_flutter","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/hive_flutter-1.1.0","packageUri":"lib/","languageVersion":"2.12"},{"name":"hive_generator","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/hive_generator-2.0.1","packageUri":"lib/","languageVersion":"2.12"},{"name":"http","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/http-1.3.0","packageUri":"lib/","languageVersion":"3.4"},{"name":"http_multi_server","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/http_multi_server-3.2.2","packageUri":"lib/","languageVersion":"3.2"},{"name":"http_parser","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/http_parser-4.1.2","packageUri":"lib/","languageVersion":"3.4"},{"name":"image_size_getter","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/image_size_getter-2.4.0","packageUri":"lib/","languageVersion":"2.12"},{"name":"injectable","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/injectable-2.5.0","packageUri":"lib/","languageVersion":"3.0"},{"name":"injectable_generator","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/injectable_generator-2.6.2","packageUri":"lib/","languageVersion":"3.0"},{"name":"intl","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/intl-0.19.0","packageUri":"lib/","languageVersion":"3.0"},{"name":"io","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/io-1.0.5","packageUri":"lib/","languageVersion":"3.4"},{"name":"js","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/js-0.7.2","packageUri":"lib/","languageVersion":"3.7"},{"name":"json_annotation","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/json_annotation-4.9.0","packageUri":"lib/","languageVersion":"3.0"},{"name":"leak_tracker","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/leak_tracker-10.0.8","packageUri":"lib/","languageVersion":"3.2"},{"name":"leak_tracker_flutter_testing","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/leak_tracker_flutter_testing-3.0.9","packageUri":"lib/","languageVersion":"3.2"},{"name":"leak_tracker_testing","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/leak_tracker_testing-3.0.1","packageUri":"lib/","languageVersion":"3.2"},{"name":"lints","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/lints-5.1.1","packageUri":"lib/","languageVersion":"3.6"},{"name":"logging","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/logging-1.3.0","packageUri":"lib/","languageVersion":"3.4"},{"name":"macros","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/macros-0.1.3-main.0","packageUri":"lib/","languageVersion":"3.4"},{"name":"matcher","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/matcher-0.12.17","packageUri":"lib/","languageVersion":"3.4"},{"name":"material_color_utilities","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/material_color_utilities-0.11.1","packageUri":"lib/","languageVersion":"2.17"},{"name":"meta","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/meta-1.16.0","packageUri":"lib/","languageVersion":"2.12"},{"name":"mime","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/mime-2.0.0","packageUri":"lib/","languageVersion":"3.2"},{"name":"mockito","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/mockito-5.4.5","packageUri":"lib/","languageVersion":"3.6"},{"name":"mocktail","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/mocktail-1.0.4","packageUri":"lib/","languageVersion":"2.12"},{"name":"nested","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/nested-1.0.0","packageUri":"lib/","languageVersion":"2.12"},{"name":"package_config","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/package_config-2.2.0","packageUri":"lib/","languageVersion":"3.4"},{"name":"path","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/path-1.9.1","packageUri":"lib/","languageVersion":"3.4"},{"name":"path_parsing","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_parsing-1.1.0","packageUri":"lib/","languageVersion":"3.3"},{"name":"path_provider","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider-2.1.5","packageUri":"lib/","languageVersion":"3.4"},{"name":"path_provider_android","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_android-2.2.17","packageUri":"lib/","languageVersion":"3.6"},{"name":"path_provider_foundation","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_foundation-2.4.1","packageUri":"lib/","languageVersion":"3.3"},{"name":"path_provider_linux","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_linux-2.2.1","packageUri":"lib/","languageVersion":"2.19"},{"name":"path_provider_platform_interface","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_platform_interface-2.1.2","packageUri":"lib/","languageVersion":"3.0"},{"name":"path_provider_windows","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_windows-2.3.0","packageUri":"lib/","languageVersion":"3.2"},{"name":"petitparser","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/petitparser-6.1.0","packageUri":"lib/","languageVersion":"3.5"},{"name":"platform","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/platform-3.1.6","packageUri":"lib/","languageVersion":"3.2"},{"name":"plugin_platform_interface","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/plugin_platform_interface-2.1.8","packageUri":"lib/","languageVersion":"3.0"},{"name":"pool","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/pool-1.5.1","packageUri":"lib/","languageVersion":"2.12"},{"name":"posix","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/posix-6.0.2","packageUri":"lib/","languageVersion":"3.0"},{"name":"provider","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/provider-6.1.5","packageUri":"lib/","languageVersion":"2.12"},{"name":"pub_semver","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/pub_semver-2.2.0","packageUri":"lib/","languageVersion":"3.4"},{"name":"pubspec_parse","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/pubspec_parse-1.5.0","packageUri":"lib/","languageVersion":"3.6"},{"name":"recase","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/recase-4.1.0","packageUri":"lib/","languageVersion":"2.12"},{"name":"shared_preferences","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/shared_preferences-2.5.3","packageUri":"lib/","languageVersion":"3.5"},{"name":"shared_preferences_android","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/shared_preferences_android-2.4.10","packageUri":"lib/","languageVersion":"3.6"},{"name":"shared_preferences_foundation","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/shared_preferences_foundation-2.5.4","packageUri":"lib/","languageVersion":"3.4"},{"name":"shared_preferences_linux","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/shared_preferences_linux-2.4.1","packageUri":"lib/","languageVersion":"3.3"},{"name":"shared_preferences_platform_interface","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/shared_preferences_platform_interface-2.4.1","packageUri":"lib/","languageVersion":"3.2"},{"name":"shared_preferences_web","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/shared_preferences_web-2.4.3","packageUri":"lib/","languageVersion":"3.4"},{"name":"shared_preferences_windows","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/shared_preferences_windows-2.4.1","packageUri":"lib/","languageVersion":"3.3"},{"name":"shelf","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/shelf-1.4.2","packageUri":"lib/","languageVersion":"3.4"},{"name":"shelf_web_socket","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/shelf_web_socket-3.0.0","packageUri":"lib/","languageVersion":"3.5"},{"name":"sky_engine","rootUri":"file:///Users/sarayetel/User/development/flutter/bin/cache/pkg/sky_engine","packageUri":"lib/","languageVersion":"3.7"},{"name":"source_gen","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/source_gen-1.5.0","packageUri":"lib/","languageVersion":"3.0"},{"name":"source_helper","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/source_helper-1.3.5","packageUri":"lib/","languageVersion":"3.4"},{"name":"source_span","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/source_span-1.10.1","packageUri":"lib/","languageVersion":"3.1"},{"name":"sprintf","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/sprintf-7.0.0","packageUri":"lib/","languageVersion":"2.12"},{"name":"stack_trace","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/stack_trace-1.12.1","packageUri":"lib/","languageVersion":"3.4"},{"name":"stream_channel","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/stream_channel-2.1.4","packageUri":"lib/","languageVersion":"3.3"},{"name":"stream_transform","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/stream_transform-2.1.1","packageUri":"lib/","languageVersion":"3.1"},{"name":"string_scanner","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/string_scanner-1.4.1","packageUri":"lib/","languageVersion":"3.1"},{"name":"term_glyph","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/term_glyph-1.2.2","packageUri":"lib/","languageVersion":"3.1"},{"name":"test_api","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/test_api-0.7.4","packageUri":"lib/","languageVersion":"3.5"},{"name":"time","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/time-2.1.5","packageUri":"lib/","languageVersion":"2.12"},{"name":"timing","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/timing-1.0.2","packageUri":"lib/","languageVersion":"3.4"},{"name":"typed_data","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/typed_data-1.4.0","packageUri":"lib/","languageVersion":"3.5"},{"name":"uuid","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/uuid-4.5.1","packageUri":"lib/","languageVersion":"3.0"},{"name":"vector_graphics","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/vector_graphics-1.1.18","packageUri":"lib/","languageVersion":"3.4"},{"name":"vector_graphics_codec","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/vector_graphics_codec-1.1.13","packageUri":"lib/","languageVersion":"3.4"},{"name":"vector_graphics_compiler","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/vector_graphics_compiler-1.1.17","packageUri":"lib/","languageVersion":"3.6"},{"name":"vector_math","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/vector_math-2.1.4","packageUri":"lib/","languageVersion":"2.14"},{"name":"vm_service","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/vm_service-14.3.1","packageUri":"lib/","languageVersion":"3.3"},{"name":"watcher","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/watcher-1.1.1","packageUri":"lib/","languageVersion":"3.1"},{"name":"web","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/web-1.1.1","packageUri":"lib/","languageVersion":"3.4"},{"name":"web_socket","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/web_socket-1.0.1","packageUri":"lib/","languageVersion":"3.4"},{"name":"web_socket_channel","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/web_socket_channel-3.0.3","packageUri":"lib/","languageVersion":"3.3"},{"name":"xdg_directories","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/xdg_directories-1.1.0","packageUri":"lib/","languageVersion":"3.3"},{"name":"xml","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/xml-6.5.0","packageUri":"lib/","languageVersion":"3.2"},{"name":"yaml","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/yaml-3.1.3","packageUri":"lib/","languageVersion":"3.4"},{"name":"finance_manager","rootUri":"../","packageUri":"lib/","languageVersion":"3.7"},{"name":"flutter_gen","rootUri":"flutter_gen","languageVersion":"2.12"}],"generated":"2025-06-09T18:30:11.968505Z","generator":"pub","generatorVersion":"3.7.2","flutterRoot":"file:///Users/sarayetel/User/development/flutter","flutterVersion":"3.29.3","pubCache":"file:///Users/sarayetel/.pub-cache"}
+\ No newline at end of file
+Index: .flutter-plugins
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+># This is a generated file; do not edit or check into version control.\npath_provider=/Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider-2.1.5/\npath_provider_android=/Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_android-2.2.17/\npath_provider_foundation=/Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_foundation-2.4.1/\npath_provider_linux=/Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_linux-2.2.1/\npath_provider_windows=/Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_windows-2.3.0/\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.flutter-plugins b/.flutter-plugins
+--- a/.flutter-plugins	
++++ b/.flutter-plugins	
+@@ -4,3 +4,9 @@
+ path_provider_foundation=/Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_foundation-2.4.1/
+ path_provider_linux=/Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_linux-2.2.1/
+ path_provider_windows=/Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_windows-2.3.0/
++shared_preferences=/Users/sarayetel/.pub-cache/hosted/pub.dev/shared_preferences-2.5.3/
++shared_preferences_android=/Users/sarayetel/.pub-cache/hosted/pub.dev/shared_preferences_android-2.4.10/
++shared_preferences_foundation=/Users/sarayetel/.pub-cache/hosted/pub.dev/shared_preferences_foundation-2.5.4/
++shared_preferences_linux=/Users/sarayetel/.pub-cache/hosted/pub.dev/shared_preferences_linux-2.4.1/
++shared_preferences_web=/Users/sarayetel/.pub-cache/hosted/pub.dev/shared_preferences_web-2.4.3/
++shared_preferences_windows=/Users/sarayetel/.pub-cache/hosted/pub.dev/shared_preferences_windows-2.4.1/
+Index: .dart_tool/package_config_subset
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>async\n3.4\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/async-2.12.0/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/async-2.12.0/lib/\nboolean_selector\n3.1\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/boolean_selector-2.1.2/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/boolean_selector-2.1.2/lib/\ncharacters\n3.4\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/characters-1.4.0/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/characters-1.4.0/lib/\nclock\n3.4\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/clock-1.1.2/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/clock-1.1.2/lib/\ncollection\n3.4\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/collection-1.19.1/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/collection-1.19.1/lib/\ncrypto\n3.4\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/crypto-3.0.6/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/crypto-3.0.6/lib/\ncupertino_icons\n3.1\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/cupertino_icons-1.0.8/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/cupertino_icons-1.0.8/lib/\nfake_async\n3.3\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/fake_async-1.3.2/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/fake_async-1.3.2/lib/\nffi\n3.7\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/ffi-2.1.4/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/ffi-2.1.4/lib/\nflutter_lints\n3.5\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/flutter_lints-5.0.0/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/flutter_lints-5.0.0/lib/\ngoogle_fonts\n2.14\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/google_fonts-4.0.5/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/google_fonts-4.0.5/lib/\nhttp\n3.4\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/http-1.3.0/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/http-1.3.0/lib/\nhttp_parser\n3.4\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/http_parser-4.1.2/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/http_parser-4.1.2/lib/\nintl\n3.0\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/intl-0.19.0/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/intl-0.19.0/lib/\nleak_tracker\n3.2\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/leak_tracker-10.0.8/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/leak_tracker-10.0.8/lib/\nleak_tracker_flutter_testing\n3.2\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/leak_tracker_flutter_testing-3.0.9/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/leak_tracker_flutter_testing-3.0.9/lib/\nleak_tracker_testing\n3.2\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/leak_tracker_testing-3.0.1/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/leak_tracker_testing-3.0.1/lib/\nlints\n3.6\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/lints-5.1.1/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/lints-5.1.1/lib/\nmatcher\n3.4\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/matcher-0.12.17/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/matcher-0.12.17/lib/\nmaterial_color_utilities\n2.17\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/material_color_utilities-0.11.1/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/material_color_utilities-0.11.1/lib/\nmeta\n2.12\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/meta-1.16.0/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/meta-1.16.0/lib/\npath\n3.4\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/path-1.9.1/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/path-1.9.1/lib/\npath_provider\n3.4\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider-2.1.5/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider-2.1.5/lib/\npath_provider_android\n3.6\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_android-2.2.17/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_android-2.2.17/lib/\npath_provider_foundation\n3.3\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_foundation-2.4.1/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_foundation-2.4.1/lib/\npath_provider_linux\n2.19\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_linux-2.2.1/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_linux-2.2.1/lib/\npath_provider_platform_interface\n3.0\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_platform_interface-2.1.2/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_platform_interface-2.1.2/lib/\npath_provider_windows\n3.2\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_windows-2.3.0/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_windows-2.3.0/lib/\nplatform\n3.2\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/platform-3.1.6/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/platform-3.1.6/lib/\nplugin_platform_interface\n3.0\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/plugin_platform_interface-2.1.8/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/plugin_platform_interface-2.1.8/lib/\nsource_span\n3.1\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/source_span-1.10.1/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/source_span-1.10.1/lib/\nstack_trace\n3.4\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/stack_trace-1.12.1/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/stack_trace-1.12.1/lib/\nstream_channel\n3.3\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/stream_channel-2.1.4/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/stream_channel-2.1.4/lib/\nstring_scanner\n3.1\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/string_scanner-1.4.1/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/string_scanner-1.4.1/lib/\nterm_glyph\n3.1\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/term_glyph-1.2.2/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/term_glyph-1.2.2/lib/\ntest_api\n3.5\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/test_api-0.7.4/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/test_api-0.7.4/lib/\ntyped_data\n3.5\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/typed_data-1.4.0/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/typed_data-1.4.0/lib/\nvector_math\n2.14\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/vector_math-2.1.4/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/vector_math-2.1.4/lib/\nvm_service\n3.3\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/vm_service-14.3.1/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/vm_service-14.3.1/lib/\nweb\n3.4\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/web-1.1.1/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/web-1.1.1/lib/\nxdg_directories\n3.3\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/xdg_directories-1.1.0/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/xdg_directories-1.1.0/lib/\nfinance_manager\n3.7\nfile:///Users/sarayetel/Job/Hex/finance_manager/\nfile:///Users/sarayetel/Job/Hex/finance_manager/lib/\nsky_engine\n3.7\nfile:///Users/sarayetel/User/development/flutter/bin/cache/pkg/sky_engine/\nfile:///Users/sarayetel/User/development/flutter/bin/cache/pkg/sky_engine/lib/\nflutter\n3.7\nfile:///Users/sarayetel/User/development/flutter/packages/flutter/\nfile:///Users/sarayetel/User/development/flutter/packages/flutter/lib/\nflutter_localizations\n3.7\nfile:///Users/sarayetel/User/development/flutter/packages/flutter_localizations/\nfile:///Users/sarayetel/User/development/flutter/packages/flutter_localizations/lib/\nflutter_test\n3.7\nfile:///Users/sarayetel/User/development/flutter/packages/flutter_test/\nfile:///Users/sarayetel/User/development/flutter/packages/flutter_test/lib/\n2\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.dart_tool/package_config_subset b/.dart_tool/package_config_subset
+--- a/.dart_tool/package_config_subset	
++++ b/.dart_tool/package_config_subset	
+@@ -1,23 +1,91 @@
++_fe_analyzer_shared
++3.3
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/_fe_analyzer_shared-76.0.0/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/_fe_analyzer_shared-76.0.0/lib/
++analyzer
++3.3
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/analyzer-6.11.0/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/analyzer-6.11.0/lib/
++archive
++3.0
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/archive-4.0.7/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/archive-4.0.7/lib/
++args
++3.3
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/args-2.7.0/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/args-2.7.0/lib/
+ async
+ 3.4
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/async-2.12.0/
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/async-2.12.0/lib/
++bloc
++2.12
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/bloc-8.1.4/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/bloc-8.1.4/lib/
+ boolean_selector
+ 3.1
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/boolean_selector-2.1.2/
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/boolean_selector-2.1.2/lib/
++build
++3.6
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/build-2.4.2/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/build-2.4.2/lib/
++build_config
++3.6
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/build_config-1.1.2/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/build_config-1.1.2/lib/
++build_daemon
++3.6
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/build_daemon-4.0.4/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/build_daemon-4.0.4/lib/
++build_resolvers
++3.6
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/build_resolvers-2.4.4/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/build_resolvers-2.4.4/lib/
++build_runner
++3.6
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/build_runner-2.4.15/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/build_runner-2.4.15/lib/
++build_runner_core
++3.6
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/build_runner_core-8.0.0/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/build_runner_core-8.0.0/lib/
++built_collection
++2.12
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/built_collection-5.1.1/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/built_collection-5.1.1/lib/
++built_value
++3.0
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/built_value-8.9.5/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/built_value-8.9.5/lib/
+ characters
+ 3.4
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/characters-1.4.0/
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/characters-1.4.0/lib/
++checked_yaml
++2.19
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/checked_yaml-2.0.3/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/checked_yaml-2.0.3/lib/
+ clock
+ 3.4
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/clock-1.1.2/
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/clock-1.1.2/lib/
++code_builder
++3.5
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/code_builder-4.10.1/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/code_builder-4.10.1/lib/
+ collection
+ 3.4
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/collection-1.19.1/
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/collection-1.19.1/lib/
++color
++2.12
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/color-3.0.0/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/color-3.0.0/lib/
++convert
++3.4
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/convert-3.1.2/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/convert-3.1.2/lib/
+ crypto
+ 3.4
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/crypto-3.0.6/
+@@ -26,6 +94,18 @@
+ 3.1
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/cupertino_icons-1.0.8/
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/cupertino_icons-1.0.8/lib/
++dart_style
++3.0
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/dart_style-2.3.8/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/dart_style-2.3.8/lib/
++dartx
++2.12
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/dartx-1.2.0/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/dartx-1.2.0/lib/
++equatable
++2.12
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/equatable-2.0.7/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/equatable-2.0.7/lib/
+ fake_async
+ 3.3
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/fake_async-1.3.2/
+@@ -34,26 +114,122 @@
+ 3.7
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/ffi-2.1.4/
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/ffi-2.1.4/lib/
++file
++3.0
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/file-7.0.1/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/file-7.0.1/lib/
++fixnum
++3.1
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/fixnum-1.1.1/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/fixnum-1.1.1/lib/
++fl_chart
++3.2
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/fl_chart-0.71.0/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/fl_chart-0.71.0/lib/
++flutter_bloc
++2.12
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/flutter_bloc-8.1.6/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/flutter_bloc-8.1.6/lib/
++flutter_gen_core
++3.0
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/flutter_gen_core-5.10.0/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/flutter_gen_core-5.10.0/lib/
++flutter_gen_runner
++3.0
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/flutter_gen_runner-5.10.0/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/flutter_gen_runner-5.10.0/lib/
+ flutter_lints
+ 3.5
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/flutter_lints-5.0.0/
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/flutter_lints-5.0.0/lib/
++flutter_svg
++3.4
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/flutter_svg-2.1.0/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/flutter_svg-2.1.0/lib/
++frontend_server_client
++3.0
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/frontend_server_client-4.0.0/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/frontend_server_client-4.0.0/lib/
++get_it
++3.0
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/get_it-7.7.0/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/get_it-7.7.0/lib/
++glob
++3.3
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/glob-2.1.3/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/glob-2.1.3/lib/
++go_router
++3.4
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/go_router-14.8.1/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/go_router-14.8.1/lib/
++golden_toolkit
++2.18
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/golden_toolkit-0.15.0/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/golden_toolkit-0.15.0/lib/
+ google_fonts
+ 2.14
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/google_fonts-4.0.5/
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/google_fonts-4.0.5/lib/
++graphs
++3.4
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/graphs-2.3.2/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/graphs-2.3.2/lib/
++hashcodes
++2.12
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/hashcodes-2.0.0/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/hashcodes-2.0.0/lib/
++hive
++2.12
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/hive-2.2.3/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/hive-2.2.3/lib/
++hive_flutter
++2.12
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/hive_flutter-1.1.0/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/hive_flutter-1.1.0/lib/
++hive_generator
++2.12
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/hive_generator-2.0.1/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/hive_generator-2.0.1/lib/
+ http
+ 3.4
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/http-1.3.0/
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/http-1.3.0/lib/
++http_multi_server
++3.2
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/http_multi_server-3.2.2/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/http_multi_server-3.2.2/lib/
+ http_parser
+ 3.4
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/http_parser-4.1.2/
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/http_parser-4.1.2/lib/
++image_size_getter
++2.12
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/image_size_getter-2.4.0/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/image_size_getter-2.4.0/lib/
++injectable
++3.0
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/injectable-2.5.0/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/injectable-2.5.0/lib/
++injectable_generator
++3.0
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/injectable_generator-2.6.2/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/injectable_generator-2.6.2/lib/
+ intl
+ 3.0
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/intl-0.19.0/
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/intl-0.19.0/lib/
++io
++3.4
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/io-1.0.5/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/io-1.0.5/lib/
++js
++3.7
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/js-0.7.2/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/js-0.7.2/lib/
++json_annotation
++3.0
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/json_annotation-4.9.0/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/json_annotation-4.9.0/lib/
+ leak_tracker
+ 3.2
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/leak_tracker-10.0.8/
+@@ -70,6 +246,14 @@
+ 3.6
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/lints-5.1.1/
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/lints-5.1.1/lib/
++logging
++3.4
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/logging-1.3.0/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/logging-1.3.0/lib/
++macros
++3.4
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/macros-0.1.3-main.0/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/macros-0.1.3-main.0/lib/
+ matcher
+ 3.4
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/matcher-0.12.17/
+@@ -82,10 +266,34 @@
+ 2.12
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/meta-1.16.0/
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/meta-1.16.0/lib/
++mime
++3.2
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/mime-2.0.0/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/mime-2.0.0/lib/
++mockito
++3.6
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/mockito-5.4.5/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/mockito-5.4.5/lib/
++mocktail
++2.12
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/mocktail-1.0.4/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/mocktail-1.0.4/lib/
++nested
++2.12
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/nested-1.0.0/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/nested-1.0.0/lib/
++package_config
++3.4
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/package_config-2.2.0/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/package_config-2.2.0/lib/
+ path
+ 3.4
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/path-1.9.1/
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/path-1.9.1/lib/
++path_parsing
++3.3
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_parsing-1.1.0/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_parsing-1.1.0/lib/
+ path_provider
+ 3.4
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider-2.1.5/
+@@ -110,6 +318,10 @@
+ 3.2
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_windows-2.3.0/
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_windows-2.3.0/lib/
++petitparser
++3.5
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/petitparser-6.1.0/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/petitparser-6.1.0/lib/
+ platform
+ 3.2
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/platform-3.1.6/
+@@ -118,10 +330,82 @@
+ 3.0
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/plugin_platform_interface-2.1.8/
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/plugin_platform_interface-2.1.8/lib/
++pool
++2.12
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/pool-1.5.1/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/pool-1.5.1/lib/
++posix
++3.0
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/posix-6.0.2/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/posix-6.0.2/lib/
++provider
++2.12
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/provider-6.1.5/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/provider-6.1.5/lib/
++pub_semver
++3.4
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/pub_semver-2.2.0/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/pub_semver-2.2.0/lib/
++pubspec_parse
++3.6
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/pubspec_parse-1.5.0/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/pubspec_parse-1.5.0/lib/
++recase
++2.12
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/recase-4.1.0/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/recase-4.1.0/lib/
++shared_preferences
++3.5
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/shared_preferences-2.5.3/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/shared_preferences-2.5.3/lib/
++shared_preferences_android
++3.6
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/shared_preferences_android-2.4.10/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/shared_preferences_android-2.4.10/lib/
++shared_preferences_foundation
++3.4
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/shared_preferences_foundation-2.5.4/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/shared_preferences_foundation-2.5.4/lib/
++shared_preferences_linux
++3.3
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/shared_preferences_linux-2.4.1/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/shared_preferences_linux-2.4.1/lib/
++shared_preferences_platform_interface
++3.2
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/shared_preferences_platform_interface-2.4.1/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/shared_preferences_platform_interface-2.4.1/lib/
++shared_preferences_web
++3.4
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/shared_preferences_web-2.4.3/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/shared_preferences_web-2.4.3/lib/
++shared_preferences_windows
++3.3
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/shared_preferences_windows-2.4.1/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/shared_preferences_windows-2.4.1/lib/
++shelf
++3.4
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/shelf-1.4.2/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/shelf-1.4.2/lib/
++shelf_web_socket
++3.5
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/shelf_web_socket-3.0.0/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/shelf_web_socket-3.0.0/lib/
++source_gen
++3.0
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/source_gen-1.5.0/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/source_gen-1.5.0/lib/
++source_helper
++3.4
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/source_helper-1.3.5/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/source_helper-1.3.5/lib/
+ source_span
+ 3.1
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/source_span-1.10.1/
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/source_span-1.10.1/lib/
++sprintf
++2.12
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/sprintf-7.0.0/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/sprintf-7.0.0/lib/
+ stack_trace
+ 3.4
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/stack_trace-1.12.1/
+@@ -130,6 +414,10 @@
+ 3.3
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/stream_channel-2.1.4/
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/stream_channel-2.1.4/lib/
++stream_transform
++3.1
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/stream_transform-2.1.1/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/stream_transform-2.1.1/lib/
+ string_scanner
+ 3.1
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/string_scanner-1.4.1/
+@@ -142,10 +430,34 @@
+ 3.5
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/test_api-0.7.4/
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/test_api-0.7.4/lib/
++time
++2.12
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/time-2.1.5/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/time-2.1.5/lib/
++timing
++3.4
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/timing-1.0.2/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/timing-1.0.2/lib/
+ typed_data
+ 3.5
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/typed_data-1.4.0/
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/typed_data-1.4.0/lib/
++uuid
++3.0
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/uuid-4.5.1/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/uuid-4.5.1/lib/
++vector_graphics
++3.4
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/vector_graphics-1.1.18/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/vector_graphics-1.1.18/lib/
++vector_graphics_codec
++3.4
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/vector_graphics_codec-1.1.13/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/vector_graphics_codec-1.1.13/lib/
++vector_graphics_compiler
++3.6
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/vector_graphics_compiler-1.1.17/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/vector_graphics_compiler-1.1.17/lib/
+ vector_math
+ 2.14
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/vector_math-2.1.4/
+@@ -154,18 +466,42 @@
+ 3.3
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/vm_service-14.3.1/
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/vm_service-14.3.1/lib/
++watcher
++3.1
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/watcher-1.1.1/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/watcher-1.1.1/lib/
+ web
+ 3.4
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/web-1.1.1/
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/web-1.1.1/lib/
++web_socket
++3.4
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/web_socket-1.0.1/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/web_socket-1.0.1/lib/
++web_socket_channel
++3.3
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/web_socket_channel-3.0.3/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/web_socket_channel-3.0.3/lib/
+ xdg_directories
+ 3.3
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/xdg_directories-1.1.0/
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/xdg_directories-1.1.0/lib/
++xml
++3.2
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/xml-6.5.0/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/xml-6.5.0/lib/
++yaml
++3.4
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/yaml-3.1.3/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/yaml-3.1.3/lib/
+ finance_manager
+ 3.7
+ file:///Users/sarayetel/Job/Hex/finance_manager/
+ file:///Users/sarayetel/Job/Hex/finance_manager/lib/
++_macros
++3.4
++file:///Users/sarayetel/User/development/flutter/bin/cache/dart-sdk/pkg/_macros/
++file:///Users/sarayetel/User/development/flutter/bin/cache/dart-sdk/pkg/_macros/lib/
+ sky_engine
+ 3.7
+ file:///Users/sarayetel/User/development/flutter/bin/cache/pkg/sky_engine/
+@@ -182,4 +518,8 @@
+ 3.7
+ file:///Users/sarayetel/User/development/flutter/packages/flutter_test/
+ file:///Users/sarayetel/User/development/flutter/packages/flutter_test/lib/
++flutter_web_plugins
++3.7
++file:///Users/sarayetel/User/development/flutter/packages/flutter_web_plugins/
++file:///Users/sarayetel/User/development/flutter/packages/flutter_web_plugins/lib/
+ 2
+Index: macos/Flutter/GeneratedPluginRegistrant.swift
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>//\n//  Generated file. Do not edit.\n//\n\nimport FlutterMacOS\nimport Foundation\n\nimport path_provider_foundation\n\nfunc RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {\n  PathProviderPlugin.register(with: registry.registrar(forPlugin: \"PathProviderPlugin\"))\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/macos/Flutter/GeneratedPluginRegistrant.swift b/macos/Flutter/GeneratedPluginRegistrant.swift
+--- a/macos/Flutter/GeneratedPluginRegistrant.swift	
++++ b/macos/Flutter/GeneratedPluginRegistrant.swift	
+@@ -6,7 +6,9 @@
+ import Foundation
+ 
+ import path_provider_foundation
++import shared_preferences_foundation
+ 
+ func RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {
+   PathProviderPlugin.register(with: registry.registrar(forPlugin: "PathProviderPlugin"))
++  SharedPreferencesPlugin.register(with: registry.registrar(forPlugin: "SharedPreferencesPlugin"))
+ }
+Index: .dart_tool/dartpad/web_plugin_registrant.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>// Flutter web plugin registrant file.\n//\n// Generated file. Do not edit.\n//\n\n// ignore_for_file: type=lint\n\nvoid registerPlugins() {}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.dart_tool/dartpad/web_plugin_registrant.dart b/.dart_tool/dartpad/web_plugin_registrant.dart
+--- a/.dart_tool/dartpad/web_plugin_registrant.dart	
++++ b/.dart_tool/dartpad/web_plugin_registrant.dart	
+@@ -3,6 +3,14 @@
+ // Generated file. Do not edit.
+ //
+ 
++// @dart = 2.13
+ // ignore_for_file: type=lint
+ 
+-void registerPlugins() {}
++import 'package:shared_preferences_web/shared_preferences_web.dart';
++import 'package:flutter_web_plugins/flutter_web_plugins.dart';
++
++void registerPlugins([final Registrar? pluginRegistrar]) {
++  final Registrar registrar = pluginRegistrar ?? webPluginRegistrar;
++  SharedPreferencesPlugin.registerWith(registrar);
++  registrar.registerMessageHandler();
++}
