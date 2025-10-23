@@ -1,0 +1,28 @@
+Index: lib/presentation/view/screens/transaction/create/create_transaction_screen.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import 'package:finance_manager/presentation/bloc/transaction/transaction_cubit.dart';\nimport 'package:finance_manager/presentation/view/screens/transaction/base/base_create_update_transaction.dart';\nimport 'package:flutter/material.dart';\n\nclass AddTransactionScreen extends BaseTransactionScreen {\n  const AddTransactionScreen({super.key});\n\n  @override\n  String get appBarTitle => 'Add Transaction';\n\n  @override\n  String get actionButtonText => 'Save';\n\n  @override\n  State<StatefulWidget> createState() => _AddTransactionScreenState();\n}\n\nclass _AddTransactionScreenState\n    extends BaseTransactionScreenState<AddTransactionScreen> {\n  @override\n  VoidCallback get onActionPressed => () {\n    getBloc<TransactionCubit>().createTransaction();\n    Navigator.of(context).pop();\n  };\n}\n
+===================================================================
+diff --git a/lib/presentation/view/screens/transaction/create/create_transaction_screen.dart b/lib/presentation/view/screens/transaction/create/create_transaction_screen.dart
+--- a/lib/presentation/view/screens/transaction/create/create_transaction_screen.dart	
++++ b/lib/presentation/view/screens/transaction/create/create_transaction_screen.dart	
+@@ -2,8 +2,8 @@
+ import 'package:finance_manager/presentation/view/screens/transaction/base/base_create_update_transaction.dart';
+ import 'package:flutter/material.dart';
+ 
+-class AddTransactionScreen extends BaseTransactionScreen {
+-  const AddTransactionScreen({super.key});
++class CreateTransactionScreen extends BaseTransactionScreen {
++  const CreateTransactionScreen({super.key});
+ 
+   @override
+   String get appBarTitle => 'Add Transaction';
+@@ -16,7 +16,7 @@
+ }
+ 
+ class _AddTransactionScreenState
+-    extends BaseTransactionScreenState<AddTransactionScreen> {
++    extends BaseTransactionScreenState<CreateTransactionScreen> {
+   @override
+   VoidCallback get onActionPressed => () {
+     getBloc<TransactionCubit>().createTransaction();
