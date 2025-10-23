@@ -1,0 +1,17 @@
+Index: lib/data/repositories/transaction_repository_imp.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import 'package:finance_manager/core/extension/entity_extension.dart';\nimport 'package:finance_manager/data/mapper/transaction_mapper.dart';\nimport 'package:finance_manager/data/models/transaction.dart';\nimport 'package:finance_manager/domain/entities/transaction_entity.dart';\nimport 'package:finance_manager/domain/repositories/transaction_repository.dart';\nimport 'package:hive/hive.dart';\n\nclass TransactionRepositoryImpl implements TransactionRepository {\n  final _db = Hive.box<TransactionEntity>('transactions');\n\n  @override\n  Future<List<Transaction>> getAllTransactions() async {\n    final transactions = _db.values.toList();\n    print('------------------- getAllTransactions ${transactions.length}');\n    return transactions.map((entity) => entity.toModel()).toList();\n  }\n\n  @override\n  Future<void> createTransaction({required Transaction transaction}) async {\n    // print('-------------------repo');\n    _db.add(transaction.toDb());\n  }\n}\n
+===================================================================
+diff --git a/lib/data/repositories/transaction_repository_imp.dart b/lib/data/repositories/transaction_repository_imp.dart
+--- a/lib/data/repositories/transaction_repository_imp.dart	
++++ b/lib/data/repositories/transaction_repository_imp.dart	
+@@ -17,7 +17,7 @@
+ 
+   @override
+   Future<void> createTransaction({required Transaction transaction}) async {
+-    // print('-------------------repo');
++    print('------------------- create');
+     _db.add(transaction.toDb());
+   }
+ }
