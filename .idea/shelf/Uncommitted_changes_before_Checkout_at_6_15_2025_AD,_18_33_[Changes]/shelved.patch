@@ -1,0 +1,2526 @@
+Index: lib/domain/entities/adapters/category_adapter.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import 'package:finance_manager/domain/entities/category_entity.dart';\nimport 'package:hive/hive.dart';\n\nclass CategoryAdapter extends TypeAdapter<CategoryEntity> {\n  @override\n  final int typeId = 3;\n\n  @override\n  CategoryEntity read(BinaryReader reader) {\n    return CategoryEntity(\n      name: reader.readString(),\n    );\n  }\n\n  @override\n  void write(BinaryWriter writer, CategoryEntity obj) {\n    writer.writeString(obj.name);\n  }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/lib/domain/entities/adapters/category_adapter.dart b/lib/domain/entities/adapters/category_adapter.dart
+--- a/lib/domain/entities/adapters/category_adapter.dart	(revision 49368156e4383368212408bb1544dc9d97442235)
++++ b/lib/domain/entities/adapters/category_adapter.dart	(date 1749974924005)
+@@ -1,19 +1,22 @@
++import 'package:finance_manager/data/models/category.dart';
+ import 'package:finance_manager/domain/entities/category_entity.dart';
+ import 'package:hive/hive.dart';
+ 
+-class CategoryAdapter extends TypeAdapter<CategoryEntity> {
++class CategoryAdapter extends TypeAdapter<Category> {
+   @override
+-  final int typeId = 3;
++  final int typeId = 4;
+ 
+   @override
+-  CategoryEntity read(BinaryReader reader) {
+-    return CategoryEntity(
++  Category read(BinaryReader reader) {
++    return Category(
++        id: reader.readInt(),
+       name: reader.readString(),
+     );
+   }
+ 
+   @override
+-  void write(BinaryWriter writer, CategoryEntity obj) {
++  void write(BinaryWriter writer, Category obj) {
++    writer.writeInt(obj.id);
+     writer.writeString(obj.name);
+   }
+ }
+Index: lib/presentation/bloc/home/home_cubit.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import 'package:finance_manager/core/utils/transaction_type.dart';\nimport 'package:finance_manager/data/mapper/transaction_mapper.dart';\nimport 'package:finance_manager/domain/repositories/transaction_repository.dart';\nimport 'package:finance_manager/presentation/bloc/base/base_cubit.dart';\nimport 'package:finance_manager/presentation/bloc/home/home_state.dart';\n\nclass HomeCubit extends BaseCubit<HomeState> {\n  final TransactionRepository transactionRepository;\n\n  HomeCubit({required this.transactionRepository}) : super(HomeInitial());\n\n  Future<void> loadInitialData() async {\n    final transactions = await transactionRepository.getAllTransactions();\n\n    final income = transactions\n        .where((transaction) => transaction.type == TransactionType.income)\n        .fold<double>(0, (sum, transaction) => sum + transaction.amount);\n\n    final expense = transactions\n        .where((transaction) => transaction.type == TransactionType.expense)\n        .fold<double>(0, (sum, transaction) => sum + transaction.amount);\n\n    final balance = income - expense;\n\n    emit(\n      InitialData(\n        TransactionMapper.toChartData(transactions),\n        transactions.take(5).toList(),\n        income,\n        expense,\n        balance,\n        transactions.length,\n      ),\n    );\n  }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/lib/presentation/bloc/home/home_cubit.dart b/lib/presentation/bloc/home/home_cubit.dart
+--- a/lib/presentation/bloc/home/home_cubit.dart	(revision 49368156e4383368212408bb1544dc9d97442235)
++++ b/lib/presentation/bloc/home/home_cubit.dart	(date 1749975288473)
+@@ -11,6 +11,13 @@
+ 
+   Future<void> loadInitialData() async {
+     final transactions = await transactionRepository.getAllTransactions();
++    // print('--------------------------- load data: ${transactions.length}');
++
++    for (var item in transactions) {
++      print(
++        '--------------------------- load data: ${item.category.id} - ${item.category.name}',
++      );
++    }
+ 
+     final income = transactions
+         .where((transaction) => transaction.type == TransactionType.income)
+Index: lib/main.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import 'package:finance_manager/core/di/di.dart';\nimport 'package:finance_manager/domain/entities/adapters/category_adapter.dart';\nimport 'package:finance_manager/domain/entities/adapters/category_type_adapter.dart';\nimport 'package:finance_manager/domain/entities/adapters/transaction_adapter.dart';\nimport 'package:finance_manager/domain/entities/transaction_entity.dart';\nimport 'package:finance_manager/presentation/navigation/app_router.dart';\nimport 'package:finance_manager/presentation/view/base/base_stateless_widget.dart';\nimport 'package:flutter/material.dart';\nimport 'package:flutter_localizations/flutter_localizations.dart';\nimport 'package:flutter_gen/gen_l10n/app_localizations.dart';\nimport 'package:hive_flutter/hive_flutter.dart';\nimport 'package:flutter_bloc/flutter_bloc.dart';\nimport 'package:shared_preferences/shared_preferences.dart';\nimport 'core/theme/theme.dart';\nimport 'core/utils/configuration_key.dart';\nimport 'domain/entities/adapters/transaction_type_adapter.dart';\nimport 'presentation/bloc/setting/setting_cubit.dart';\nimport 'presentation/bloc/setting/setting_state.dart';\n\nfinal RouteObserver<ModalRoute<void>> routeObserver =\n    RouteObserver<ModalRoute<void>>();\n\nvoid main() async {\n  WidgetsFlutterBinding.ensureInitialized();\n  await Hive.initFlutter();\n  Hive.registerAdapter(TransactionTypeAdapter());\n  Hive.registerAdapter(CategoryTypeAdapter());\n  Hive.registerAdapter(TransactionAdapter());\n  Hive.registerAdapter(CategoryAdapter());\n  await Hive.openBox<TransactionEntity>('transactions');\n\n  await setup();\n\n  final prefs = await SharedPreferences.getInstance();\n  final isDarkTheme = prefs.getBool(ConfigurationKey.darkTheme) ?? false;\n  final currency = prefs.getString(ConfigurationKey.currency) ?? 'USD';\n\n  runApp(MyApp(initialThemeIsDark: isDarkTheme, initialCurrency: currency));\n}\n\nclass MyApp extends BaseStatelessWidget {\n  final bool initialThemeIsDark;\n  final String initialCurrency;\n\n  const MyApp({\n    super.key,\n    required this.initialThemeIsDark,\n    required this.initialCurrency,\n  });\n\n  @override\n  Widget build(BuildContext context) {\n    final appRouter = AppRouter();\n\n    return BlocProvider(\n      create: (_) => getIt<SettingCubit>(),\n      child: BlocBuilder<SettingCubit, SettingState>(\n        builder: (context, state) {\n          return MaterialApp.router(\n            debugShowCheckedModeBanner: false,\n            theme: lightTheme,\n            darkTheme: darkTheme,\n            themeMode: state.isDarkTheme ? ThemeMode.dark : ThemeMode.light,\n            localizationsDelegates: const [\n              AppLocalizations.delegate,\n              GlobalMaterialLocalizations.delegate,\n              GlobalWidgetsLocalizations.delegate,\n              GlobalCupertinoLocalizations.delegate,\n            ],\n            supportedLocales: const [Locale('en'), Locale('fa')],\n            routerConfig: appRouter.router,\n          );\n        },\n      ),\n    );\n  }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/lib/main.dart b/lib/main.dart
+--- a/lib/main.dart	(revision 49368156e4383368212408bb1544dc9d97442235)
++++ b/lib/main.dart	(date 1749975084543)
+@@ -1,7 +1,9 @@
+ import 'package:finance_manager/core/di/di.dart';
+ import 'package:finance_manager/domain/entities/adapters/category_adapter.dart';
++import 'package:finance_manager/domain/entities/adapters/category_entity_adapter.dart';
+ import 'package:finance_manager/domain/entities/adapters/category_type_adapter.dart';
+ import 'package:finance_manager/domain/entities/adapters/transaction_adapter.dart';
++import 'package:finance_manager/domain/entities/category_entity.dart';
+ import 'package:finance_manager/domain/entities/transaction_entity.dart';
+ import 'package:finance_manager/presentation/navigation/app_router.dart';
+ import 'package:finance_manager/presentation/view/base/base_stateless_widget.dart';
+@@ -27,6 +29,7 @@
+   Hive.registerAdapter(CategoryTypeAdapter());
+   Hive.registerAdapter(TransactionAdapter());
+   Hive.registerAdapter(CategoryAdapter());
++  Hive.registerAdapter(CategoryEntityAdapter());
+   await Hive.openBox<TransactionEntity>('transactions');
+ 
+   await setup();
+Index: finance_manager.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<module type=\"JAVA_MODULE\" version=\"4\">\n  <component name=\"NewModuleRootManager\" inherit-compiler-output=\"true\">\n    <exclude-output />\n    <content url=\"file://$MODULE_DIR$\">\n      <excludeFolder url=\"file://$MODULE_DIR$/.dart_tool\" />\n      <excludeFolder url=\"file://$MODULE_DIR$/.pub\" />\n      <excludeFolder url=\"file://$MODULE_DIR$/build\" />\n    </content>\n    <orderEntry type=\"sourceFolder\" forTests=\"false\" />\n    <orderEntry type=\"library\" name=\"Dart SDK\" level=\"project\" />\n    <orderEntry type=\"library\" name=\"Dart Packages\" level=\"project\" />\n    <orderEntry type=\"library\" name=\"Flutter Plugins\" level=\"project\" />\n  </component>\n</module>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/finance_manager.iml b/finance_manager.iml
+--- a/finance_manager.iml	(revision 49368156e4383368212408bb1544dc9d97442235)
++++ b/finance_manager.iml	(date 1749713674626)
+@@ -6,6 +6,30 @@
+       <excludeFolder url="file://$MODULE_DIR$/.dart_tool" />
+       <excludeFolder url="file://$MODULE_DIR$/.pub" />
+       <excludeFolder url="file://$MODULE_DIR$/build" />
++      <excludeFolder url="file://$MODULE_DIR$/linux/flutter/ephemeral/.plugin_symlinks/path_provider_linux/.dart_tool" />
++      <excludeFolder url="file://$MODULE_DIR$/linux/flutter/ephemeral/.plugin_symlinks/path_provider_linux/.pub" />
++      <excludeFolder url="file://$MODULE_DIR$/linux/flutter/ephemeral/.plugin_symlinks/path_provider_linux/build" />
++      <excludeFolder url="file://$MODULE_DIR$/linux/flutter/ephemeral/.plugin_symlinks/path_provider_linux/example/.dart_tool" />
++      <excludeFolder url="file://$MODULE_DIR$/linux/flutter/ephemeral/.plugin_symlinks/path_provider_linux/example/.pub" />
++      <excludeFolder url="file://$MODULE_DIR$/linux/flutter/ephemeral/.plugin_symlinks/path_provider_linux/example/build" />
++      <excludeFolder url="file://$MODULE_DIR$/linux/flutter/ephemeral/.plugin_symlinks/shared_preferences_linux/.dart_tool" />
++      <excludeFolder url="file://$MODULE_DIR$/linux/flutter/ephemeral/.plugin_symlinks/shared_preferences_linux/.pub" />
++      <excludeFolder url="file://$MODULE_DIR$/linux/flutter/ephemeral/.plugin_symlinks/shared_preferences_linux/build" />
++      <excludeFolder url="file://$MODULE_DIR$/linux/flutter/ephemeral/.plugin_symlinks/shared_preferences_linux/example/.dart_tool" />
++      <excludeFolder url="file://$MODULE_DIR$/linux/flutter/ephemeral/.plugin_symlinks/shared_preferences_linux/example/.pub" />
++      <excludeFolder url="file://$MODULE_DIR$/linux/flutter/ephemeral/.plugin_symlinks/shared_preferences_linux/example/build" />
++      <excludeFolder url="file://$MODULE_DIR$/windows/flutter/ephemeral/.plugin_symlinks/path_provider_windows/.dart_tool" />
++      <excludeFolder url="file://$MODULE_DIR$/windows/flutter/ephemeral/.plugin_symlinks/path_provider_windows/.pub" />
++      <excludeFolder url="file://$MODULE_DIR$/windows/flutter/ephemeral/.plugin_symlinks/path_provider_windows/build" />
++      <excludeFolder url="file://$MODULE_DIR$/windows/flutter/ephemeral/.plugin_symlinks/path_provider_windows/example/.dart_tool" />
++      <excludeFolder url="file://$MODULE_DIR$/windows/flutter/ephemeral/.plugin_symlinks/path_provider_windows/example/.pub" />
++      <excludeFolder url="file://$MODULE_DIR$/windows/flutter/ephemeral/.plugin_symlinks/path_provider_windows/example/build" />
++      <excludeFolder url="file://$MODULE_DIR$/windows/flutter/ephemeral/.plugin_symlinks/shared_preferences_windows/.dart_tool" />
++      <excludeFolder url="file://$MODULE_DIR$/windows/flutter/ephemeral/.plugin_symlinks/shared_preferences_windows/.pub" />
++      <excludeFolder url="file://$MODULE_DIR$/windows/flutter/ephemeral/.plugin_symlinks/shared_preferences_windows/build" />
++      <excludeFolder url="file://$MODULE_DIR$/windows/flutter/ephemeral/.plugin_symlinks/shared_preferences_windows/example/.dart_tool" />
++      <excludeFolder url="file://$MODULE_DIR$/windows/flutter/ephemeral/.plugin_symlinks/shared_preferences_windows/example/.pub" />
++      <excludeFolder url="file://$MODULE_DIR$/windows/flutter/ephemeral/.plugin_symlinks/shared_preferences_windows/example/build" />
+     </content>
+     <orderEntry type="sourceFolder" forTests="false" />
+     <orderEntry type="library" name="Dart SDK" level="project" />
+Index: .flutter-plugins-dependencies
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{\"info\":\"This is a generated file; do not edit or check into version control.\",\"plugins\":{\"ios\":[{\"name\":\"path_provider_foundation\",\"path\":\"/Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_foundation-2.4.1/\",\"shared_darwin_source\":true,\"native_build\":true,\"dependencies\":[],\"dev_dependency\":false}],\"android\":[{\"name\":\"path_provider_android\",\"path\":\"/Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_android-2.2.17/\",\"native_build\":true,\"dependencies\":[],\"dev_dependency\":false}],\"macos\":[{\"name\":\"path_provider_foundation\",\"path\":\"/Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_foundation-2.4.1/\",\"shared_darwin_source\":true,\"native_build\":true,\"dependencies\":[],\"dev_dependency\":false}],\"linux\":[{\"name\":\"path_provider_linux\",\"path\":\"/Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_linux-2.2.1/\",\"native_build\":false,\"dependencies\":[],\"dev_dependency\":false}],\"windows\":[{\"name\":\"path_provider_windows\",\"path\":\"/Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_windows-2.3.0/\",\"native_build\":false,\"dependencies\":[],\"dev_dependency\":false}],\"web\":[]},\"dependencyGraph\":[{\"name\":\"path_provider\",\"dependencies\":[\"path_provider_android\",\"path_provider_foundation\",\"path_provider_linux\",\"path_provider_windows\"]},{\"name\":\"path_provider_android\",\"dependencies\":[]},{\"name\":\"path_provider_foundation\",\"dependencies\":[]},{\"name\":\"path_provider_linux\",\"dependencies\":[]},{\"name\":\"path_provider_windows\",\"dependencies\":[]}],\"date_created\":\"2025-04-28 21:15:33.965314\",\"version\":\"3.29.3\",\"swift_package_manager_enabled\":{\"ios\":false,\"macos\":false}}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.flutter-plugins-dependencies b/.flutter-plugins-dependencies
+--- a/.flutter-plugins-dependencies	(revision 49368156e4383368212408bb1544dc9d97442235)
++++ b/.flutter-plugins-dependencies	(date 1749974145873)
+@@ -1,1 +1,1 @@
+-{"info":"This is a generated file; do not edit or check into version control.","plugins":{"ios":[{"name":"path_provider_foundation","path":"/Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_foundation-2.4.1/","shared_darwin_source":true,"native_build":true,"dependencies":[],"dev_dependency":false}],"android":[{"name":"path_provider_android","path":"/Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_android-2.2.17/","native_build":true,"dependencies":[],"dev_dependency":false}],"macos":[{"name":"path_provider_foundation","path":"/Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_foundation-2.4.1/","shared_darwin_source":true,"native_build":true,"dependencies":[],"dev_dependency":false}],"linux":[{"name":"path_provider_linux","path":"/Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_linux-2.2.1/","native_build":false,"dependencies":[],"dev_dependency":false}],"windows":[{"name":"path_provider_windows","path":"/Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_windows-2.3.0/","native_build":false,"dependencies":[],"dev_dependency":false}],"web":[]},"dependencyGraph":[{"name":"path_provider","dependencies":["path_provider_android","path_provider_foundation","path_provider_linux","path_provider_windows"]},{"name":"path_provider_android","dependencies":[]},{"name":"path_provider_foundation","dependencies":[]},{"name":"path_provider_linux","dependencies":[]},{"name":"path_provider_windows","dependencies":[]}],"date_created":"2025-04-28 21:15:33.965314","version":"3.29.3","swift_package_manager_enabled":{"ios":false,"macos":false}}
+\ No newline at end of file
++{"info":"This is a generated file; do not edit or check into version control.","plugins":{"ios":[{"name":"path_provider_foundation","path":"/Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_foundation-2.4.1/","shared_darwin_source":true,"native_build":true,"dependencies":[],"dev_dependency":false},{"name":"shared_preferences_foundation","path":"/Users/sarayetel/.pub-cache/hosted/pub.dev/shared_preferences_foundation-2.5.4/","shared_darwin_source":true,"native_build":true,"dependencies":[],"dev_dependency":false}],"android":[{"name":"path_provider_android","path":"/Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_android-2.2.17/","native_build":true,"dependencies":[],"dev_dependency":false},{"name":"shared_preferences_android","path":"/Users/sarayetel/.pub-cache/hosted/pub.dev/shared_preferences_android-2.4.10/","native_build":true,"dependencies":[],"dev_dependency":false}],"macos":[{"name":"path_provider_foundation","path":"/Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_foundation-2.4.1/","shared_darwin_source":true,"native_build":true,"dependencies":[],"dev_dependency":false},{"name":"shared_preferences_foundation","path":"/Users/sarayetel/.pub-cache/hosted/pub.dev/shared_preferences_foundation-2.5.4/","shared_darwin_source":true,"native_build":true,"dependencies":[],"dev_dependency":false}],"linux":[{"name":"path_provider_linux","path":"/Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_linux-2.2.1/","native_build":false,"dependencies":[],"dev_dependency":false},{"name":"shared_preferences_linux","path":"/Users/sarayetel/.pub-cache/hosted/pub.dev/shared_preferences_linux-2.4.1/","native_build":false,"dependencies":["path_provider_linux"],"dev_dependency":false}],"windows":[{"name":"path_provider_windows","path":"/Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_windows-2.3.0/","native_build":false,"dependencies":[],"dev_dependency":false},{"name":"shared_preferences_windows","path":"/Users/sarayetel/.pub-cache/hosted/pub.dev/shared_preferences_windows-2.4.1/","native_build":false,"dependencies":["path_provider_windows"],"dev_dependency":false}],"web":[{"name":"shared_preferences_web","path":"/Users/sarayetel/.pub-cache/hosted/pub.dev/shared_preferences_web-2.4.3/","dependencies":[],"dev_dependency":false}]},"dependencyGraph":[{"name":"path_provider","dependencies":["path_provider_android","path_provider_foundation","path_provider_linux","path_provider_windows"]},{"name":"path_provider_android","dependencies":[]},{"name":"path_provider_foundation","dependencies":[]},{"name":"path_provider_linux","dependencies":[]},{"name":"path_provider_windows","dependencies":[]},{"name":"shared_preferences","dependencies":["shared_preferences_android","shared_preferences_foundation","shared_preferences_linux","shared_preferences_web","shared_preferences_windows"]},{"name":"shared_preferences_android","dependencies":[]},{"name":"shared_preferences_foundation","dependencies":[]},{"name":"shared_preferences_linux","dependencies":["path_provider_linux"]},{"name":"shared_preferences_web","dependencies":[]},{"name":"shared_preferences_windows","dependencies":["path_provider_windows"]}],"date_created":"2025-06-15 11:25:45.871730","version":"3.29.3","swift_package_manager_enabled":{"ios":false,"macos":false}}
+\ No newline at end of file
+Index: .flutter-plugins
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+># This is a generated file; do not edit or check into version control.\npath_provider=/Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider-2.1.5/\npath_provider_android=/Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_android-2.2.17/\npath_provider_foundation=/Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_foundation-2.4.1/\npath_provider_linux=/Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_linux-2.2.1/\npath_provider_windows=/Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_windows-2.3.0/\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.flutter-plugins b/.flutter-plugins
+--- a/.flutter-plugins	(revision 49368156e4383368212408bb1544dc9d97442235)
++++ b/.flutter-plugins	(date 1749974145868)
+@@ -4,3 +4,9 @@
+ path_provider_foundation=/Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_foundation-2.4.1/
+ path_provider_linux=/Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_linux-2.2.1/
+ path_provider_windows=/Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_windows-2.3.0/
++shared_preferences=/Users/sarayetel/.pub-cache/hosted/pub.dev/shared_preferences-2.5.3/
++shared_preferences_android=/Users/sarayetel/.pub-cache/hosted/pub.dev/shared_preferences_android-2.4.10/
++shared_preferences_foundation=/Users/sarayetel/.pub-cache/hosted/pub.dev/shared_preferences_foundation-2.5.4/
++shared_preferences_linux=/Users/sarayetel/.pub-cache/hosted/pub.dev/shared_preferences_linux-2.4.1/
++shared_preferences_web=/Users/sarayetel/.pub-cache/hosted/pub.dev/shared_preferences_web-2.4.3/
++shared_preferences_windows=/Users/sarayetel/.pub-cache/hosted/pub.dev/shared_preferences_windows-2.4.1/
+Index: .dart_tool/package_config.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{\"configVersion\":2,\"packages\":[{\"name\":\"async\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/async-2.12.0\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.4\"},{\"name\":\"boolean_selector\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/boolean_selector-2.1.2\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.1\"},{\"name\":\"characters\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/characters-1.4.0\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.4\"},{\"name\":\"clock\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/clock-1.1.2\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.4\"},{\"name\":\"collection\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/collection-1.19.1\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.4\"},{\"name\":\"crypto\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/crypto-3.0.6\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.4\"},{\"name\":\"cupertino_icons\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/cupertino_icons-1.0.8\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.1\"},{\"name\":\"fake_async\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/fake_async-1.3.2\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.3\"},{\"name\":\"ffi\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/ffi-2.1.4\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.7\"},{\"name\":\"flutter\",\"rootUri\":\"file:///Users/sarayetel/User/development/flutter/packages/flutter\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.7\"},{\"name\":\"flutter_lints\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/flutter_lints-5.0.0\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.5\"},{\"name\":\"flutter_localizations\",\"rootUri\":\"file:///Users/sarayetel/User/development/flutter/packages/flutter_localizations\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.7\"},{\"name\":\"flutter_test\",\"rootUri\":\"file:///Users/sarayetel/User/development/flutter/packages/flutter_test\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.7\"},{\"name\":\"google_fonts\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/google_fonts-4.0.5\",\"packageUri\":\"lib/\",\"languageVersion\":\"2.14\"},{\"name\":\"http\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/http-1.3.0\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.4\"},{\"name\":\"http_parser\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/http_parser-4.1.2\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.4\"},{\"name\":\"intl\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/intl-0.19.0\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.0\"},{\"name\":\"leak_tracker\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/leak_tracker-10.0.8\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.2\"},{\"name\":\"leak_tracker_flutter_testing\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/leak_tracker_flutter_testing-3.0.9\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.2\"},{\"name\":\"leak_tracker_testing\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/leak_tracker_testing-3.0.1\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.2\"},{\"name\":\"lints\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/lints-5.1.1\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.6\"},{\"name\":\"matcher\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/matcher-0.12.17\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.4\"},{\"name\":\"material_color_utilities\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/material_color_utilities-0.11.1\",\"packageUri\":\"lib/\",\"languageVersion\":\"2.17\"},{\"name\":\"meta\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/meta-1.16.0\",\"packageUri\":\"lib/\",\"languageVersion\":\"2.12\"},{\"name\":\"path\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/path-1.9.1\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.4\"},{\"name\":\"path_provider\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider-2.1.5\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.4\"},{\"name\":\"path_provider_android\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_android-2.2.17\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.6\"},{\"name\":\"path_provider_foundation\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_foundation-2.4.1\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.3\"},{\"name\":\"path_provider_linux\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_linux-2.2.1\",\"packageUri\":\"lib/\",\"languageVersion\":\"2.19\"},{\"name\":\"path_provider_platform_interface\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_platform_interface-2.1.2\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.0\"},{\"name\":\"path_provider_windows\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_windows-2.3.0\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.2\"},{\"name\":\"platform\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/platform-3.1.6\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.2\"},{\"name\":\"plugin_platform_interface\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/plugin_platform_interface-2.1.8\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.0\"},{\"name\":\"sky_engine\",\"rootUri\":\"file:///Users/sarayetel/User/development/flutter/bin/cache/pkg/sky_engine\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.7\"},{\"name\":\"source_span\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/source_span-1.10.1\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.1\"},{\"name\":\"stack_trace\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/stack_trace-1.12.1\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.4\"},{\"name\":\"stream_channel\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/stream_channel-2.1.4\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.3\"},{\"name\":\"string_scanner\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/string_scanner-1.4.1\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.1\"},{\"name\":\"term_glyph\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/term_glyph-1.2.2\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.1\"},{\"name\":\"test_api\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/test_api-0.7.4\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.5\"},{\"name\":\"typed_data\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/typed_data-1.4.0\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.5\"},{\"name\":\"vector_math\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/vector_math-2.1.4\",\"packageUri\":\"lib/\",\"languageVersion\":\"2.14\"},{\"name\":\"vm_service\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/vm_service-14.3.1\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.3\"},{\"name\":\"web\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/web-1.1.1\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.4\"},{\"name\":\"xdg_directories\",\"rootUri\":\"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/xdg_directories-1.1.0\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.3\"},{\"name\":\"finance_manager\",\"rootUri\":\"../\",\"packageUri\":\"lib/\",\"languageVersion\":\"3.7\"},{\"name\":\"flutter_gen\",\"rootUri\":\"flutter_gen\",\"languageVersion\":\"2.12\"}],\"generated\":\"2025-04-28T18:01:13.091132Z\",\"generator\":\"pub\",\"generatorVersion\":\"3.7.2\",\"flutterRoot\":\"file:///Users/sarayetel/User/development/flutter\",\"flutterVersion\":\"3.29.3\",\"pubCache\":\"file:///Users/sarayetel/.pub-cache\"}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.dart_tool/package_config.json b/.dart_tool/package_config.json
+--- a/.dart_tool/package_config.json	(revision 49368156e4383368212408bb1544dc9d97442235)
++++ b/.dart_tool/package_config.json	(date 1749651428541)
+@@ -1,1 +1,1 @@
+-{"configVersion":2,"packages":[{"name":"async","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/async-2.12.0","packageUri":"lib/","languageVersion":"3.4"},{"name":"boolean_selector","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/boolean_selector-2.1.2","packageUri":"lib/","languageVersion":"3.1"},{"name":"characters","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/characters-1.4.0","packageUri":"lib/","languageVersion":"3.4"},{"name":"clock","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/clock-1.1.2","packageUri":"lib/","languageVersion":"3.4"},{"name":"collection","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/collection-1.19.1","packageUri":"lib/","languageVersion":"3.4"},{"name":"crypto","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/crypto-3.0.6","packageUri":"lib/","languageVersion":"3.4"},{"name":"cupertino_icons","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/cupertino_icons-1.0.8","packageUri":"lib/","languageVersion":"3.1"},{"name":"fake_async","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/fake_async-1.3.2","packageUri":"lib/","languageVersion":"3.3"},{"name":"ffi","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/ffi-2.1.4","packageUri":"lib/","languageVersion":"3.7"},{"name":"flutter","rootUri":"file:///Users/sarayetel/User/development/flutter/packages/flutter","packageUri":"lib/","languageVersion":"3.7"},{"name":"flutter_lints","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/flutter_lints-5.0.0","packageUri":"lib/","languageVersion":"3.5"},{"name":"flutter_localizations","rootUri":"file:///Users/sarayetel/User/development/flutter/packages/flutter_localizations","packageUri":"lib/","languageVersion":"3.7"},{"name":"flutter_test","rootUri":"file:///Users/sarayetel/User/development/flutter/packages/flutter_test","packageUri":"lib/","languageVersion":"3.7"},{"name":"google_fonts","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/google_fonts-4.0.5","packageUri":"lib/","languageVersion":"2.14"},{"name":"http","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/http-1.3.0","packageUri":"lib/","languageVersion":"3.4"},{"name":"http_parser","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/http_parser-4.1.2","packageUri":"lib/","languageVersion":"3.4"},{"name":"intl","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/intl-0.19.0","packageUri":"lib/","languageVersion":"3.0"},{"name":"leak_tracker","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/leak_tracker-10.0.8","packageUri":"lib/","languageVersion":"3.2"},{"name":"leak_tracker_flutter_testing","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/leak_tracker_flutter_testing-3.0.9","packageUri":"lib/","languageVersion":"3.2"},{"name":"leak_tracker_testing","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/leak_tracker_testing-3.0.1","packageUri":"lib/","languageVersion":"3.2"},{"name":"lints","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/lints-5.1.1","packageUri":"lib/","languageVersion":"3.6"},{"name":"matcher","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/matcher-0.12.17","packageUri":"lib/","languageVersion":"3.4"},{"name":"material_color_utilities","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/material_color_utilities-0.11.1","packageUri":"lib/","languageVersion":"2.17"},{"name":"meta","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/meta-1.16.0","packageUri":"lib/","languageVersion":"2.12"},{"name":"path","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/path-1.9.1","packageUri":"lib/","languageVersion":"3.4"},{"name":"path_provider","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider-2.1.5","packageUri":"lib/","languageVersion":"3.4"},{"name":"path_provider_android","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_android-2.2.17","packageUri":"lib/","languageVersion":"3.6"},{"name":"path_provider_foundation","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_foundation-2.4.1","packageUri":"lib/","languageVersion":"3.3"},{"name":"path_provider_linux","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_linux-2.2.1","packageUri":"lib/","languageVersion":"2.19"},{"name":"path_provider_platform_interface","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_platform_interface-2.1.2","packageUri":"lib/","languageVersion":"3.0"},{"name":"path_provider_windows","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_windows-2.3.0","packageUri":"lib/","languageVersion":"3.2"},{"name":"platform","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/platform-3.1.6","packageUri":"lib/","languageVersion":"3.2"},{"name":"plugin_platform_interface","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/plugin_platform_interface-2.1.8","packageUri":"lib/","languageVersion":"3.0"},{"name":"sky_engine","rootUri":"file:///Users/sarayetel/User/development/flutter/bin/cache/pkg/sky_engine","packageUri":"lib/","languageVersion":"3.7"},{"name":"source_span","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/source_span-1.10.1","packageUri":"lib/","languageVersion":"3.1"},{"name":"stack_trace","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/stack_trace-1.12.1","packageUri":"lib/","languageVersion":"3.4"},{"name":"stream_channel","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/stream_channel-2.1.4","packageUri":"lib/","languageVersion":"3.3"},{"name":"string_scanner","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/string_scanner-1.4.1","packageUri":"lib/","languageVersion":"3.1"},{"name":"term_glyph","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/term_glyph-1.2.2","packageUri":"lib/","languageVersion":"3.1"},{"name":"test_api","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/test_api-0.7.4","packageUri":"lib/","languageVersion":"3.5"},{"name":"typed_data","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/typed_data-1.4.0","packageUri":"lib/","languageVersion":"3.5"},{"name":"vector_math","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/vector_math-2.1.4","packageUri":"lib/","languageVersion":"2.14"},{"name":"vm_service","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/vm_service-14.3.1","packageUri":"lib/","languageVersion":"3.3"},{"name":"web","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/web-1.1.1","packageUri":"lib/","languageVersion":"3.4"},{"name":"xdg_directories","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/xdg_directories-1.1.0","packageUri":"lib/","languageVersion":"3.3"},{"name":"finance_manager","rootUri":"../","packageUri":"lib/","languageVersion":"3.7"},{"name":"flutter_gen","rootUri":"flutter_gen","languageVersion":"2.12"}],"generated":"2025-04-28T18:01:13.091132Z","generator":"pub","generatorVersion":"3.7.2","flutterRoot":"file:///Users/sarayetel/User/development/flutter","flutterVersion":"3.29.3","pubCache":"file:///Users/sarayetel/.pub-cache"}
+\ No newline at end of file
++{"configVersion":2,"packages":[{"name":"_fe_analyzer_shared","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/_fe_analyzer_shared-76.0.0","packageUri":"lib/","languageVersion":"3.3"},{"name":"_macros","rootUri":"file:///Users/sarayetel/User/development/flutter/bin/cache/dart-sdk/pkg/_macros","packageUri":"lib/","languageVersion":"3.4"},{"name":"analyzer","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/analyzer-6.11.0","packageUri":"lib/","languageVersion":"3.3"},{"name":"archive","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/archive-4.0.7","packageUri":"lib/","languageVersion":"3.0"},{"name":"args","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/args-2.7.0","packageUri":"lib/","languageVersion":"3.3"},{"name":"async","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/async-2.12.0","packageUri":"lib/","languageVersion":"3.4"},{"name":"bloc","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/bloc-8.1.4","packageUri":"lib/","languageVersion":"2.12"},{"name":"boolean_selector","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/boolean_selector-2.1.2","packageUri":"lib/","languageVersion":"3.1"},{"name":"build","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/build-2.4.2","packageUri":"lib/","languageVersion":"3.6"},{"name":"build_config","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/build_config-1.1.2","packageUri":"lib/","languageVersion":"3.6"},{"name":"build_daemon","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/build_daemon-4.0.4","packageUri":"lib/","languageVersion":"3.6"},{"name":"build_resolvers","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/build_resolvers-2.4.4","packageUri":"lib/","languageVersion":"3.6"},{"name":"build_runner","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/build_runner-2.4.15","packageUri":"lib/","languageVersion":"3.6"},{"name":"build_runner_core","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/build_runner_core-8.0.0","packageUri":"lib/","languageVersion":"3.6"},{"name":"built_collection","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/built_collection-5.1.1","packageUri":"lib/","languageVersion":"2.12"},{"name":"built_value","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/built_value-8.9.5","packageUri":"lib/","languageVersion":"3.0"},{"name":"characters","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/characters-1.4.0","packageUri":"lib/","languageVersion":"3.4"},{"name":"checked_yaml","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/checked_yaml-2.0.3","packageUri":"lib/","languageVersion":"2.19"},{"name":"clock","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/clock-1.1.2","packageUri":"lib/","languageVersion":"3.4"},{"name":"code_builder","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/code_builder-4.10.1","packageUri":"lib/","languageVersion":"3.5"},{"name":"collection","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/collection-1.19.1","packageUri":"lib/","languageVersion":"3.4"},{"name":"color","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/color-3.0.0","packageUri":"lib/","languageVersion":"2.12"},{"name":"convert","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/convert-3.1.2","packageUri":"lib/","languageVersion":"3.4"},{"name":"crypto","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/crypto-3.0.6","packageUri":"lib/","languageVersion":"3.4"},{"name":"cupertino_icons","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/cupertino_icons-1.0.8","packageUri":"lib/","languageVersion":"3.1"},{"name":"dart_style","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/dart_style-2.3.8","packageUri":"lib/","languageVersion":"3.0"},{"name":"dartx","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/dartx-1.2.0","packageUri":"lib/","languageVersion":"2.12"},{"name":"equatable","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/equatable-2.0.7","packageUri":"lib/","languageVersion":"2.12"},{"name":"fake_async","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/fake_async-1.3.2","packageUri":"lib/","languageVersion":"3.3"},{"name":"ffi","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/ffi-2.1.4","packageUri":"lib/","languageVersion":"3.7"},{"name":"file","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/file-7.0.1","packageUri":"lib/","languageVersion":"3.0"},{"name":"fixnum","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/fixnum-1.1.1","packageUri":"lib/","languageVersion":"3.1"},{"name":"fl_chart","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/fl_chart-0.71.0","packageUri":"lib/","languageVersion":"3.2"},{"name":"flutter","rootUri":"file:///Users/sarayetel/User/development/flutter/packages/flutter","packageUri":"lib/","languageVersion":"3.7"},{"name":"flutter_bloc","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/flutter_bloc-8.1.6","packageUri":"lib/","languageVersion":"2.12"},{"name":"flutter_gen_core","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/flutter_gen_core-5.10.0","packageUri":"lib/","languageVersion":"3.0"},{"name":"flutter_gen_runner","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/flutter_gen_runner-5.10.0","packageUri":"lib/","languageVersion":"3.0"},{"name":"flutter_lints","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/flutter_lints-5.0.0","packageUri":"lib/","languageVersion":"3.5"},{"name":"flutter_localizations","rootUri":"file:///Users/sarayetel/User/development/flutter/packages/flutter_localizations","packageUri":"lib/","languageVersion":"3.7"},{"name":"flutter_svg","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/flutter_svg-2.1.0","packageUri":"lib/","languageVersion":"3.4"},{"name":"flutter_test","rootUri":"file:///Users/sarayetel/User/development/flutter/packages/flutter_test","packageUri":"lib/","languageVersion":"3.7"},{"name":"flutter_web_plugins","rootUri":"file:///Users/sarayetel/User/development/flutter/packages/flutter_web_plugins","packageUri":"lib/","languageVersion":"3.7"},{"name":"frontend_server_client","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/frontend_server_client-4.0.0","packageUri":"lib/","languageVersion":"3.0"},{"name":"get_it","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/get_it-7.7.0","packageUri":"lib/","languageVersion":"3.0"},{"name":"glob","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/glob-2.1.3","packageUri":"lib/","languageVersion":"3.3"},{"name":"go_router","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/go_router-14.8.1","packageUri":"lib/","languageVersion":"3.4"},{"name":"golden_toolkit","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/golden_toolkit-0.15.0","packageUri":"lib/","languageVersion":"2.18"},{"name":"google_fonts","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/google_fonts-4.0.5","packageUri":"lib/","languageVersion":"2.14"},{"name":"graphs","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/graphs-2.3.2","packageUri":"lib/","languageVersion":"3.4"},{"name":"hashcodes","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/hashcodes-2.0.0","packageUri":"lib/","languageVersion":"2.12"},{"name":"hive","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/hive-2.2.3","packageUri":"lib/","languageVersion":"2.12"},{"name":"hive_flutter","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/hive_flutter-1.1.0","packageUri":"lib/","languageVersion":"2.12"},{"name":"hive_generator","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/hive_generator-2.0.1","packageUri":"lib/","languageVersion":"2.12"},{"name":"http","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/http-1.3.0","packageUri":"lib/","languageVersion":"3.4"},{"name":"http_multi_server","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/http_multi_server-3.2.2","packageUri":"lib/","languageVersion":"3.2"},{"name":"http_parser","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/http_parser-4.1.2","packageUri":"lib/","languageVersion":"3.4"},{"name":"image_size_getter","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/image_size_getter-2.4.0","packageUri":"lib/","languageVersion":"2.12"},{"name":"injectable","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/injectable-2.5.0","packageUri":"lib/","languageVersion":"3.0"},{"name":"injectable_generator","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/injectable_generator-2.6.2","packageUri":"lib/","languageVersion":"3.0"},{"name":"intl","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/intl-0.19.0","packageUri":"lib/","languageVersion":"3.0"},{"name":"io","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/io-1.0.5","packageUri":"lib/","languageVersion":"3.4"},{"name":"js","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/js-0.7.2","packageUri":"lib/","languageVersion":"3.7"},{"name":"json_annotation","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/json_annotation-4.9.0","packageUri":"lib/","languageVersion":"3.0"},{"name":"leak_tracker","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/leak_tracker-10.0.8","packageUri":"lib/","languageVersion":"3.2"},{"name":"leak_tracker_flutter_testing","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/leak_tracker_flutter_testing-3.0.9","packageUri":"lib/","languageVersion":"3.2"},{"name":"leak_tracker_testing","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/leak_tracker_testing-3.0.1","packageUri":"lib/","languageVersion":"3.2"},{"name":"lints","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/lints-5.1.1","packageUri":"lib/","languageVersion":"3.6"},{"name":"logging","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/logging-1.3.0","packageUri":"lib/","languageVersion":"3.4"},{"name":"macros","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/macros-0.1.3-main.0","packageUri":"lib/","languageVersion":"3.4"},{"name":"matcher","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/matcher-0.12.17","packageUri":"lib/","languageVersion":"3.4"},{"name":"material_color_utilities","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/material_color_utilities-0.11.1","packageUri":"lib/","languageVersion":"2.17"},{"name":"meta","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/meta-1.16.0","packageUri":"lib/","languageVersion":"2.12"},{"name":"mime","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/mime-2.0.0","packageUri":"lib/","languageVersion":"3.2"},{"name":"mockito","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/mockito-5.4.5","packageUri":"lib/","languageVersion":"3.6"},{"name":"mocktail","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/mocktail-1.0.4","packageUri":"lib/","languageVersion":"2.12"},{"name":"nested","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/nested-1.0.0","packageUri":"lib/","languageVersion":"2.12"},{"name":"package_config","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/package_config-2.2.0","packageUri":"lib/","languageVersion":"3.4"},{"name":"path","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/path-1.9.1","packageUri":"lib/","languageVersion":"3.4"},{"name":"path_parsing","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_parsing-1.1.0","packageUri":"lib/","languageVersion":"3.3"},{"name":"path_provider","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider-2.1.5","packageUri":"lib/","languageVersion":"3.4"},{"name":"path_provider_android","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_android-2.2.17","packageUri":"lib/","languageVersion":"3.6"},{"name":"path_provider_foundation","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_foundation-2.4.1","packageUri":"lib/","languageVersion":"3.3"},{"name":"path_provider_linux","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_linux-2.2.1","packageUri":"lib/","languageVersion":"2.19"},{"name":"path_provider_platform_interface","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_platform_interface-2.1.2","packageUri":"lib/","languageVersion":"3.0"},{"name":"path_provider_windows","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_windows-2.3.0","packageUri":"lib/","languageVersion":"3.2"},{"name":"petitparser","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/petitparser-6.1.0","packageUri":"lib/","languageVersion":"3.5"},{"name":"platform","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/platform-3.1.6","packageUri":"lib/","languageVersion":"3.2"},{"name":"plugin_platform_interface","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/plugin_platform_interface-2.1.8","packageUri":"lib/","languageVersion":"3.0"},{"name":"pool","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/pool-1.5.1","packageUri":"lib/","languageVersion":"2.12"},{"name":"posix","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/posix-6.0.2","packageUri":"lib/","languageVersion":"3.0"},{"name":"provider","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/provider-6.1.5","packageUri":"lib/","languageVersion":"2.12"},{"name":"pub_semver","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/pub_semver-2.2.0","packageUri":"lib/","languageVersion":"3.4"},{"name":"pubspec_parse","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/pubspec_parse-1.5.0","packageUri":"lib/","languageVersion":"3.6"},{"name":"recase","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/recase-4.1.0","packageUri":"lib/","languageVersion":"2.12"},{"name":"shared_preferences","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/shared_preferences-2.5.3","packageUri":"lib/","languageVersion":"3.5"},{"name":"shared_preferences_android","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/shared_preferences_android-2.4.10","packageUri":"lib/","languageVersion":"3.6"},{"name":"shared_preferences_foundation","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/shared_preferences_foundation-2.5.4","packageUri":"lib/","languageVersion":"3.4"},{"name":"shared_preferences_linux","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/shared_preferences_linux-2.4.1","packageUri":"lib/","languageVersion":"3.3"},{"name":"shared_preferences_platform_interface","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/shared_preferences_platform_interface-2.4.1","packageUri":"lib/","languageVersion":"3.2"},{"name":"shared_preferences_web","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/shared_preferences_web-2.4.3","packageUri":"lib/","languageVersion":"3.4"},{"name":"shared_preferences_windows","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/shared_preferences_windows-2.4.1","packageUri":"lib/","languageVersion":"3.3"},{"name":"shelf","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/shelf-1.4.2","packageUri":"lib/","languageVersion":"3.4"},{"name":"shelf_web_socket","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/shelf_web_socket-3.0.0","packageUri":"lib/","languageVersion":"3.5"},{"name":"sky_engine","rootUri":"file:///Users/sarayetel/User/development/flutter/bin/cache/pkg/sky_engine","packageUri":"lib/","languageVersion":"3.7"},{"name":"source_gen","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/source_gen-1.5.0","packageUri":"lib/","languageVersion":"3.0"},{"name":"source_helper","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/source_helper-1.3.5","packageUri":"lib/","languageVersion":"3.4"},{"name":"source_span","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/source_span-1.10.1","packageUri":"lib/","languageVersion":"3.1"},{"name":"sprintf","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/sprintf-7.0.0","packageUri":"lib/","languageVersion":"2.12"},{"name":"stack_trace","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/stack_trace-1.12.1","packageUri":"lib/","languageVersion":"3.4"},{"name":"stream_channel","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/stream_channel-2.1.4","packageUri":"lib/","languageVersion":"3.3"},{"name":"stream_transform","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/stream_transform-2.1.1","packageUri":"lib/","languageVersion":"3.1"},{"name":"string_scanner","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/string_scanner-1.4.1","packageUri":"lib/","languageVersion":"3.1"},{"name":"term_glyph","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/term_glyph-1.2.2","packageUri":"lib/","languageVersion":"3.1"},{"name":"test_api","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/test_api-0.7.4","packageUri":"lib/","languageVersion":"3.5"},{"name":"time","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/time-2.1.5","packageUri":"lib/","languageVersion":"2.12"},{"name":"timing","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/timing-1.0.2","packageUri":"lib/","languageVersion":"3.4"},{"name":"typed_data","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/typed_data-1.4.0","packageUri":"lib/","languageVersion":"3.5"},{"name":"uuid","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/uuid-4.5.1","packageUri":"lib/","languageVersion":"3.0"},{"name":"vector_graphics","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/vector_graphics-1.1.18","packageUri":"lib/","languageVersion":"3.4"},{"name":"vector_graphics_codec","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/vector_graphics_codec-1.1.13","packageUri":"lib/","languageVersion":"3.4"},{"name":"vector_graphics_compiler","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/vector_graphics_compiler-1.1.17","packageUri":"lib/","languageVersion":"3.6"},{"name":"vector_math","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/vector_math-2.1.4","packageUri":"lib/","languageVersion":"2.14"},{"name":"vm_service","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/vm_service-14.3.1","packageUri":"lib/","languageVersion":"3.3"},{"name":"watcher","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/watcher-1.1.1","packageUri":"lib/","languageVersion":"3.1"},{"name":"web","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/web-1.1.1","packageUri":"lib/","languageVersion":"3.4"},{"name":"web_socket","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/web_socket-1.0.1","packageUri":"lib/","languageVersion":"3.4"},{"name":"web_socket_channel","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/web_socket_channel-3.0.3","packageUri":"lib/","languageVersion":"3.3"},{"name":"xdg_directories","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/xdg_directories-1.1.0","packageUri":"lib/","languageVersion":"3.3"},{"name":"xml","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/xml-6.5.0","packageUri":"lib/","languageVersion":"3.2"},{"name":"yaml","rootUri":"file:///Users/sarayetel/.pub-cache/hosted/pub.dev/yaml-3.1.3","packageUri":"lib/","languageVersion":"3.4"},{"name":"finance_manager","rootUri":"../","packageUri":"lib/","languageVersion":"3.7"},{"name":"flutter_gen","rootUri":"flutter_gen","languageVersion":"2.12"}],"generated":"2025-06-11T14:17:08.509824Z","generator":"pub","generatorVersion":"3.7.2","flutterRoot":"file:///Users/sarayetel/User/development/flutter","flutterVersion":"3.29.3","pubCache":"file:///Users/sarayetel/.pub-cache"}
+\ No newline at end of file
+Index: .dart_tool/package_config_subset
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>async\n3.4\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/async-2.12.0/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/async-2.12.0/lib/\nboolean_selector\n3.1\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/boolean_selector-2.1.2/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/boolean_selector-2.1.2/lib/\ncharacters\n3.4\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/characters-1.4.0/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/characters-1.4.0/lib/\nclock\n3.4\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/clock-1.1.2/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/clock-1.1.2/lib/\ncollection\n3.4\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/collection-1.19.1/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/collection-1.19.1/lib/\ncrypto\n3.4\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/crypto-3.0.6/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/crypto-3.0.6/lib/\ncupertino_icons\n3.1\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/cupertino_icons-1.0.8/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/cupertino_icons-1.0.8/lib/\nfake_async\n3.3\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/fake_async-1.3.2/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/fake_async-1.3.2/lib/\nffi\n3.7\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/ffi-2.1.4/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/ffi-2.1.4/lib/\nflutter_lints\n3.5\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/flutter_lints-5.0.0/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/flutter_lints-5.0.0/lib/\ngoogle_fonts\n2.14\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/google_fonts-4.0.5/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/google_fonts-4.0.5/lib/\nhttp\n3.4\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/http-1.3.0/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/http-1.3.0/lib/\nhttp_parser\n3.4\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/http_parser-4.1.2/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/http_parser-4.1.2/lib/\nintl\n3.0\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/intl-0.19.0/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/intl-0.19.0/lib/\nleak_tracker\n3.2\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/leak_tracker-10.0.8/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/leak_tracker-10.0.8/lib/\nleak_tracker_flutter_testing\n3.2\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/leak_tracker_flutter_testing-3.0.9/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/leak_tracker_flutter_testing-3.0.9/lib/\nleak_tracker_testing\n3.2\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/leak_tracker_testing-3.0.1/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/leak_tracker_testing-3.0.1/lib/\nlints\n3.6\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/lints-5.1.1/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/lints-5.1.1/lib/\nmatcher\n3.4\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/matcher-0.12.17/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/matcher-0.12.17/lib/\nmaterial_color_utilities\n2.17\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/material_color_utilities-0.11.1/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/material_color_utilities-0.11.1/lib/\nmeta\n2.12\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/meta-1.16.0/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/meta-1.16.0/lib/\npath\n3.4\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/path-1.9.1/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/path-1.9.1/lib/\npath_provider\n3.4\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider-2.1.5/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider-2.1.5/lib/\npath_provider_android\n3.6\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_android-2.2.17/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_android-2.2.17/lib/\npath_provider_foundation\n3.3\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_foundation-2.4.1/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_foundation-2.4.1/lib/\npath_provider_linux\n2.19\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_linux-2.2.1/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_linux-2.2.1/lib/\npath_provider_platform_interface\n3.0\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_platform_interface-2.1.2/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_platform_interface-2.1.2/lib/\npath_provider_windows\n3.2\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_windows-2.3.0/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_windows-2.3.0/lib/\nplatform\n3.2\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/platform-3.1.6/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/platform-3.1.6/lib/\nplugin_platform_interface\n3.0\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/plugin_platform_interface-2.1.8/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/plugin_platform_interface-2.1.8/lib/\nsource_span\n3.1\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/source_span-1.10.1/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/source_span-1.10.1/lib/\nstack_trace\n3.4\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/stack_trace-1.12.1/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/stack_trace-1.12.1/lib/\nstream_channel\n3.3\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/stream_channel-2.1.4/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/stream_channel-2.1.4/lib/\nstring_scanner\n3.1\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/string_scanner-1.4.1/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/string_scanner-1.4.1/lib/\nterm_glyph\n3.1\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/term_glyph-1.2.2/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/term_glyph-1.2.2/lib/\ntest_api\n3.5\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/test_api-0.7.4/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/test_api-0.7.4/lib/\ntyped_data\n3.5\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/typed_data-1.4.0/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/typed_data-1.4.0/lib/\nvector_math\n2.14\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/vector_math-2.1.4/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/vector_math-2.1.4/lib/\nvm_service\n3.3\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/vm_service-14.3.1/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/vm_service-14.3.1/lib/\nweb\n3.4\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/web-1.1.1/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/web-1.1.1/lib/\nxdg_directories\n3.3\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/xdg_directories-1.1.0/\nfile:///Users/sarayetel/.pub-cache/hosted/pub.dev/xdg_directories-1.1.0/lib/\nfinance_manager\n3.7\nfile:///Users/sarayetel/Job/Hex/finance_manager/\nfile:///Users/sarayetel/Job/Hex/finance_manager/lib/\nsky_engine\n3.7\nfile:///Users/sarayetel/User/development/flutter/bin/cache/pkg/sky_engine/\nfile:///Users/sarayetel/User/development/flutter/bin/cache/pkg/sky_engine/lib/\nflutter\n3.7\nfile:///Users/sarayetel/User/development/flutter/packages/flutter/\nfile:///Users/sarayetel/User/development/flutter/packages/flutter/lib/\nflutter_localizations\n3.7\nfile:///Users/sarayetel/User/development/flutter/packages/flutter_localizations/\nfile:///Users/sarayetel/User/development/flutter/packages/flutter_localizations/lib/\nflutter_test\n3.7\nfile:///Users/sarayetel/User/development/flutter/packages/flutter_test/\nfile:///Users/sarayetel/User/development/flutter/packages/flutter_test/lib/\n2\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.dart_tool/package_config_subset b/.dart_tool/package_config_subset
+--- a/.dart_tool/package_config_subset	(revision 49368156e4383368212408bb1544dc9d97442235)
++++ b/.dart_tool/package_config_subset	(date 1749651428536)
+@@ -1,23 +1,91 @@
++_fe_analyzer_shared
++3.3
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/_fe_analyzer_shared-76.0.0/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/_fe_analyzer_shared-76.0.0/lib/
++analyzer
++3.3
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/analyzer-6.11.0/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/analyzer-6.11.0/lib/
++archive
++3.0
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/archive-4.0.7/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/archive-4.0.7/lib/
++args
++3.3
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/args-2.7.0/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/args-2.7.0/lib/
+ async
+ 3.4
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/async-2.12.0/
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/async-2.12.0/lib/
++bloc
++2.12
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/bloc-8.1.4/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/bloc-8.1.4/lib/
+ boolean_selector
+ 3.1
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/boolean_selector-2.1.2/
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/boolean_selector-2.1.2/lib/
++build
++3.6
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/build-2.4.2/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/build-2.4.2/lib/
++build_config
++3.6
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/build_config-1.1.2/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/build_config-1.1.2/lib/
++build_daemon
++3.6
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/build_daemon-4.0.4/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/build_daemon-4.0.4/lib/
++build_resolvers
++3.6
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/build_resolvers-2.4.4/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/build_resolvers-2.4.4/lib/
++build_runner
++3.6
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/build_runner-2.4.15/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/build_runner-2.4.15/lib/
++build_runner_core
++3.6
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/build_runner_core-8.0.0/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/build_runner_core-8.0.0/lib/
++built_collection
++2.12
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/built_collection-5.1.1/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/built_collection-5.1.1/lib/
++built_value
++3.0
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/built_value-8.9.5/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/built_value-8.9.5/lib/
+ characters
+ 3.4
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/characters-1.4.0/
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/characters-1.4.0/lib/
++checked_yaml
++2.19
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/checked_yaml-2.0.3/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/checked_yaml-2.0.3/lib/
+ clock
+ 3.4
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/clock-1.1.2/
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/clock-1.1.2/lib/
++code_builder
++3.5
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/code_builder-4.10.1/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/code_builder-4.10.1/lib/
+ collection
+ 3.4
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/collection-1.19.1/
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/collection-1.19.1/lib/
++color
++2.12
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/color-3.0.0/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/color-3.0.0/lib/
++convert
++3.4
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/convert-3.1.2/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/convert-3.1.2/lib/
+ crypto
+ 3.4
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/crypto-3.0.6/
+@@ -26,6 +94,18 @@
+ 3.1
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/cupertino_icons-1.0.8/
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/cupertino_icons-1.0.8/lib/
++dart_style
++3.0
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/dart_style-2.3.8/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/dart_style-2.3.8/lib/
++dartx
++2.12
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/dartx-1.2.0/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/dartx-1.2.0/lib/
++equatable
++2.12
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/equatable-2.0.7/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/equatable-2.0.7/lib/
+ fake_async
+ 3.3
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/fake_async-1.3.2/
+@@ -34,26 +114,122 @@
+ 3.7
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/ffi-2.1.4/
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/ffi-2.1.4/lib/
++file
++3.0
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/file-7.0.1/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/file-7.0.1/lib/
++fixnum
++3.1
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/fixnum-1.1.1/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/fixnum-1.1.1/lib/
++fl_chart
++3.2
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/fl_chart-0.71.0/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/fl_chart-0.71.0/lib/
++flutter_bloc
++2.12
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/flutter_bloc-8.1.6/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/flutter_bloc-8.1.6/lib/
++flutter_gen_core
++3.0
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/flutter_gen_core-5.10.0/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/flutter_gen_core-5.10.0/lib/
++flutter_gen_runner
++3.0
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/flutter_gen_runner-5.10.0/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/flutter_gen_runner-5.10.0/lib/
+ flutter_lints
+ 3.5
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/flutter_lints-5.0.0/
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/flutter_lints-5.0.0/lib/
++flutter_svg
++3.4
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/flutter_svg-2.1.0/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/flutter_svg-2.1.0/lib/
++frontend_server_client
++3.0
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/frontend_server_client-4.0.0/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/frontend_server_client-4.0.0/lib/
++get_it
++3.0
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/get_it-7.7.0/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/get_it-7.7.0/lib/
++glob
++3.3
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/glob-2.1.3/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/glob-2.1.3/lib/
++go_router
++3.4
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/go_router-14.8.1/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/go_router-14.8.1/lib/
++golden_toolkit
++2.18
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/golden_toolkit-0.15.0/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/golden_toolkit-0.15.0/lib/
+ google_fonts
+ 2.14
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/google_fonts-4.0.5/
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/google_fonts-4.0.5/lib/
++graphs
++3.4
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/graphs-2.3.2/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/graphs-2.3.2/lib/
++hashcodes
++2.12
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/hashcodes-2.0.0/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/hashcodes-2.0.0/lib/
++hive
++2.12
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/hive-2.2.3/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/hive-2.2.3/lib/
++hive_flutter
++2.12
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/hive_flutter-1.1.0/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/hive_flutter-1.1.0/lib/
++hive_generator
++2.12
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/hive_generator-2.0.1/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/hive_generator-2.0.1/lib/
+ http
+ 3.4
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/http-1.3.0/
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/http-1.3.0/lib/
++http_multi_server
++3.2
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/http_multi_server-3.2.2/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/http_multi_server-3.2.2/lib/
+ http_parser
+ 3.4
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/http_parser-4.1.2/
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/http_parser-4.1.2/lib/
++image_size_getter
++2.12
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/image_size_getter-2.4.0/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/image_size_getter-2.4.0/lib/
++injectable
++3.0
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/injectable-2.5.0/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/injectable-2.5.0/lib/
++injectable_generator
++3.0
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/injectable_generator-2.6.2/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/injectable_generator-2.6.2/lib/
+ intl
+ 3.0
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/intl-0.19.0/
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/intl-0.19.0/lib/
++io
++3.4
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/io-1.0.5/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/io-1.0.5/lib/
++js
++3.7
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/js-0.7.2/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/js-0.7.2/lib/
++json_annotation
++3.0
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/json_annotation-4.9.0/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/json_annotation-4.9.0/lib/
+ leak_tracker
+ 3.2
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/leak_tracker-10.0.8/
+@@ -70,6 +246,14 @@
+ 3.6
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/lints-5.1.1/
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/lints-5.1.1/lib/
++logging
++3.4
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/logging-1.3.0/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/logging-1.3.0/lib/
++macros
++3.4
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/macros-0.1.3-main.0/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/macros-0.1.3-main.0/lib/
+ matcher
+ 3.4
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/matcher-0.12.17/
+@@ -82,10 +266,34 @@
+ 2.12
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/meta-1.16.0/
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/meta-1.16.0/lib/
++mime
++3.2
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/mime-2.0.0/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/mime-2.0.0/lib/
++mockito
++3.6
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/mockito-5.4.5/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/mockito-5.4.5/lib/
++mocktail
++2.12
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/mocktail-1.0.4/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/mocktail-1.0.4/lib/
++nested
++2.12
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/nested-1.0.0/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/nested-1.0.0/lib/
++package_config
++3.4
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/package_config-2.2.0/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/package_config-2.2.0/lib/
+ path
+ 3.4
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/path-1.9.1/
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/path-1.9.1/lib/
++path_parsing
++3.3
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_parsing-1.1.0/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_parsing-1.1.0/lib/
+ path_provider
+ 3.4
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider-2.1.5/
+@@ -110,6 +318,10 @@
+ 3.2
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_windows-2.3.0/
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/path_provider_windows-2.3.0/lib/
++petitparser
++3.5
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/petitparser-6.1.0/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/petitparser-6.1.0/lib/
+ platform
+ 3.2
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/platform-3.1.6/
+@@ -118,10 +330,82 @@
+ 3.0
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/plugin_platform_interface-2.1.8/
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/plugin_platform_interface-2.1.8/lib/
++pool
++2.12
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/pool-1.5.1/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/pool-1.5.1/lib/
++posix
++3.0
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/posix-6.0.2/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/posix-6.0.2/lib/
++provider
++2.12
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/provider-6.1.5/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/provider-6.1.5/lib/
++pub_semver
++3.4
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/pub_semver-2.2.0/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/pub_semver-2.2.0/lib/
++pubspec_parse
++3.6
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/pubspec_parse-1.5.0/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/pubspec_parse-1.5.0/lib/
++recase
++2.12
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/recase-4.1.0/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/recase-4.1.0/lib/
++shared_preferences
++3.5
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/shared_preferences-2.5.3/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/shared_preferences-2.5.3/lib/
++shared_preferences_android
++3.6
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/shared_preferences_android-2.4.10/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/shared_preferences_android-2.4.10/lib/
++shared_preferences_foundation
++3.4
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/shared_preferences_foundation-2.5.4/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/shared_preferences_foundation-2.5.4/lib/
++shared_preferences_linux
++3.3
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/shared_preferences_linux-2.4.1/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/shared_preferences_linux-2.4.1/lib/
++shared_preferences_platform_interface
++3.2
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/shared_preferences_platform_interface-2.4.1/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/shared_preferences_platform_interface-2.4.1/lib/
++shared_preferences_web
++3.4
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/shared_preferences_web-2.4.3/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/shared_preferences_web-2.4.3/lib/
++shared_preferences_windows
++3.3
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/shared_preferences_windows-2.4.1/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/shared_preferences_windows-2.4.1/lib/
++shelf
++3.4
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/shelf-1.4.2/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/shelf-1.4.2/lib/
++shelf_web_socket
++3.5
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/shelf_web_socket-3.0.0/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/shelf_web_socket-3.0.0/lib/
++source_gen
++3.0
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/source_gen-1.5.0/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/source_gen-1.5.0/lib/
++source_helper
++3.4
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/source_helper-1.3.5/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/source_helper-1.3.5/lib/
+ source_span
+ 3.1
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/source_span-1.10.1/
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/source_span-1.10.1/lib/
++sprintf
++2.12
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/sprintf-7.0.0/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/sprintf-7.0.0/lib/
+ stack_trace
+ 3.4
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/stack_trace-1.12.1/
+@@ -130,6 +414,10 @@
+ 3.3
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/stream_channel-2.1.4/
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/stream_channel-2.1.4/lib/
++stream_transform
++3.1
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/stream_transform-2.1.1/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/stream_transform-2.1.1/lib/
+ string_scanner
+ 3.1
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/string_scanner-1.4.1/
+@@ -142,10 +430,34 @@
+ 3.5
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/test_api-0.7.4/
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/test_api-0.7.4/lib/
++time
++2.12
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/time-2.1.5/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/time-2.1.5/lib/
++timing
++3.4
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/timing-1.0.2/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/timing-1.0.2/lib/
+ typed_data
+ 3.5
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/typed_data-1.4.0/
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/typed_data-1.4.0/lib/
++uuid
++3.0
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/uuid-4.5.1/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/uuid-4.5.1/lib/
++vector_graphics
++3.4
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/vector_graphics-1.1.18/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/vector_graphics-1.1.18/lib/
++vector_graphics_codec
++3.4
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/vector_graphics_codec-1.1.13/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/vector_graphics_codec-1.1.13/lib/
++vector_graphics_compiler
++3.6
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/vector_graphics_compiler-1.1.17/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/vector_graphics_compiler-1.1.17/lib/
+ vector_math
+ 2.14
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/vector_math-2.1.4/
+@@ -154,18 +466,42 @@
+ 3.3
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/vm_service-14.3.1/
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/vm_service-14.3.1/lib/
++watcher
++3.1
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/watcher-1.1.1/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/watcher-1.1.1/lib/
+ web
+ 3.4
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/web-1.1.1/
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/web-1.1.1/lib/
++web_socket
++3.4
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/web_socket-1.0.1/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/web_socket-1.0.1/lib/
++web_socket_channel
++3.3
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/web_socket_channel-3.0.3/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/web_socket_channel-3.0.3/lib/
+ xdg_directories
+ 3.3
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/xdg_directories-1.1.0/
+ file:///Users/sarayetel/.pub-cache/hosted/pub.dev/xdg_directories-1.1.0/lib/
++xml
++3.2
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/xml-6.5.0/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/xml-6.5.0/lib/
++yaml
++3.4
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/yaml-3.1.3/
++file:///Users/sarayetel/.pub-cache/hosted/pub.dev/yaml-3.1.3/lib/
+ finance_manager
+ 3.7
+ file:///Users/sarayetel/Job/Hex/finance_manager/
+ file:///Users/sarayetel/Job/Hex/finance_manager/lib/
++_macros
++3.4
++file:///Users/sarayetel/User/development/flutter/bin/cache/dart-sdk/pkg/_macros/
++file:///Users/sarayetel/User/development/flutter/bin/cache/dart-sdk/pkg/_macros/lib/
+ sky_engine
+ 3.7
+ file:///Users/sarayetel/User/development/flutter/bin/cache/pkg/sky_engine/
+@@ -182,4 +518,8 @@
+ 3.7
+ file:///Users/sarayetel/User/development/flutter/packages/flutter_test/
+ file:///Users/sarayetel/User/development/flutter/packages/flutter_test/lib/
++flutter_web_plugins
++3.7
++file:///Users/sarayetel/User/development/flutter/packages/flutter_web_plugins/
++file:///Users/sarayetel/User/development/flutter/packages/flutter_web_plugins/lib/
+ 2
+Index: lib/domain/entities/transaction_entity.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import 'package:finance_manager/domain/entities/category_entity.dart';\nimport 'package:hive/hive.dart';\nimport 'package:finance_manager/core/utils/transaction_type.dart';\n\n@HiveType(typeId: 0)\nclass TransactionEntity extends HiveObject {\n  @HiveField(0)\n  late String title;\n\n  @HiveField(1)\n  late String description;\n\n  @HiveField(2)\n  late double amount;\n\n  @HiveField(3)\n  late TransactionType type;\n\n  @HiveField(4)\n  late CategoryEntity category;\n\n  @HiveField(5)\n  late DateTime date;\n\n  TransactionEntity({\n    required this.title,\n    required this.description,\n    required this.amount,\n    required this.type,\n    required this.category,\n    required this.date,\n  });\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/lib/domain/entities/transaction_entity.dart b/lib/domain/entities/transaction_entity.dart
+--- a/lib/domain/entities/transaction_entity.dart	(revision 49368156e4383368212408bb1544dc9d97442235)
++++ b/lib/domain/entities/transaction_entity.dart	(date 1749974041174)
+@@ -1,4 +1,4 @@
+-import 'package:finance_manager/domain/entities/category_entity.dart';
++import 'package:finance_manager/data/models/category.dart';
+ import 'package:hive/hive.dart';
+ import 'package:finance_manager/core/utils/transaction_type.dart';
+ 
+@@ -17,7 +17,7 @@
+   late TransactionType type;
+ 
+   @HiveField(4)
+-  late CategoryEntity category;
++  late Category category;
+ 
+   @HiveField(5)
+   late DateTime date;
+Index: .idea/libraries/Dart_Packages.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><component name=\"libraryTable\">\n  <library name=\"Dart Packages\" type=\"DartPackagesLibraryType\">\n    <properties>\n      <option name=\"packageNameToDirsMap\">\n        <entry key=\"async\">\n          <value>\n            <list>\n              <option value=\"$USER_HOME$/.pub-cache/hosted/pub.dev/async-2.12.0/lib\" />\n            </list>\n          </value>\n        </entry>\n        <entry key=\"boolean_selector\">\n          <value>\n            <list>\n              <option value=\"$USER_HOME$/.pub-cache/hosted/pub.dev/boolean_selector-2.1.2/lib\" />\n            </list>\n          </value>\n        </entry>\n        <entry key=\"characters\">\n          <value>\n            <list>\n              <option value=\"$USER_HOME$/.pub-cache/hosted/pub.dev/characters-1.4.0/lib\" />\n            </list>\n          </value>\n        </entry>\n        <entry key=\"clock\">\n          <value>\n            <list>\n              <option value=\"$USER_HOME$/.pub-cache/hosted/pub.dev/clock-1.1.2/lib\" />\n            </list>\n          </value>\n        </entry>\n        <entry key=\"collection\">\n          <value>\n            <list>\n              <option value=\"$USER_HOME$/.pub-cache/hosted/pub.dev/collection-1.19.1/lib\" />\n            </list>\n          </value>\n        </entry>\n        <entry key=\"crypto\">\n          <value>\n            <list>\n              <option value=\"$USER_HOME$/.pub-cache/hosted/pub.dev/crypto-3.0.6/lib\" />\n            </list>\n          </value>\n        </entry>\n        <entry key=\"cupertino_icons\">\n          <value>\n            <list>\n              <option value=\"$USER_HOME$/.pub-cache/hosted/pub.dev/cupertino_icons-1.0.8/lib\" />\n            </list>\n          </value>\n        </entry>\n        <entry key=\"fake_async\">\n          <value>\n            <list>\n              <option value=\"$USER_HOME$/.pub-cache/hosted/pub.dev/fake_async-1.3.2/lib\" />\n            </list>\n          </value>\n        </entry>\n        <entry key=\"ffi\">\n          <value>\n            <list>\n              <option value=\"$USER_HOME$/.pub-cache/hosted/pub.dev/ffi-2.1.4/lib\" />\n            </list>\n          </value>\n        </entry>\n        <entry key=\"flutter\">\n          <value>\n            <list>\n              <option value=\"$USER_HOME$/User/development/flutter/packages/flutter/lib\" />\n            </list>\n          </value>\n        </entry>\n        <entry key=\"flutter_lints\">\n          <value>\n            <list>\n              <option value=\"$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_lints-5.0.0/lib\" />\n            </list>\n          </value>\n        </entry>\n        <entry key=\"flutter_test\">\n          <value>\n            <list>\n              <option value=\"$USER_HOME$/User/development/flutter/packages/flutter_test/lib\" />\n            </list>\n          </value>\n        </entry>\n        <entry key=\"google_fonts\">\n          <value>\n            <list>\n              <option value=\"$USER_HOME$/.pub-cache/hosted/pub.dev/google_fonts-4.0.5/lib\" />\n            </list>\n          </value>\n        </entry>\n        <entry key=\"http\">\n          <value>\n            <list>\n              <option value=\"$USER_HOME$/.pub-cache/hosted/pub.dev/http-1.3.0/lib\" />\n            </list>\n          </value>\n        </entry>\n        <entry key=\"http_parser\">\n          <value>\n            <list>\n              <option value=\"$USER_HOME$/.pub-cache/hosted/pub.dev/http_parser-4.1.2/lib\" />\n            </list>\n          </value>\n        </entry>\n        <entry key=\"leak_tracker\">\n          <value>\n            <list>\n              <option value=\"$USER_HOME$/.pub-cache/hosted/pub.dev/leak_tracker-10.0.8/lib\" />\n            </list>\n          </value>\n        </entry>\n        <entry key=\"leak_tracker_flutter_testing\">\n          <value>\n            <list>\n              <option value=\"$USER_HOME$/.pub-cache/hosted/pub.dev/leak_tracker_flutter_testing-3.0.9/lib\" />\n            </list>\n          </value>\n        </entry>\n        <entry key=\"leak_tracker_testing\">\n          <value>\n            <list>\n              <option value=\"$USER_HOME$/.pub-cache/hosted/pub.dev/leak_tracker_testing-3.0.1/lib\" />\n            </list>\n          </value>\n        </entry>\n        <entry key=\"lints\">\n          <value>\n            <list>\n              <option value=\"$USER_HOME$/.pub-cache/hosted/pub.dev/lints-5.1.1/lib\" />\n            </list>\n          </value>\n        </entry>\n        <entry key=\"matcher\">\n          <value>\n            <list>\n              <option value=\"$USER_HOME$/.pub-cache/hosted/pub.dev/matcher-0.12.17/lib\" />\n            </list>\n          </value>\n        </entry>\n        <entry key=\"material_color_utilities\">\n          <value>\n            <list>\n              <option value=\"$USER_HOME$/.pub-cache/hosted/pub.dev/material_color_utilities-0.11.1/lib\" />\n            </list>\n          </value>\n        </entry>\n        <entry key=\"meta\">\n          <value>\n            <list>\n              <option value=\"$USER_HOME$/.pub-cache/hosted/pub.dev/meta-1.16.0/lib\" />\n            </list>\n          </value>\n        </entry>\n        <entry key=\"path\">\n          <value>\n            <list>\n              <option value=\"$USER_HOME$/.pub-cache/hosted/pub.dev/path-1.9.1/lib\" />\n            </list>\n          </value>\n        </entry>\n        <entry key=\"path_provider\">\n          <value>\n            <list>\n              <option value=\"$USER_HOME$/.pub-cache/hosted/pub.dev/path_provider-2.1.5/lib\" />\n            </list>\n          </value>\n        </entry>\n        <entry key=\"path_provider_android\">\n          <value>\n            <list>\n              <option value=\"$USER_HOME$/.pub-cache/hosted/pub.dev/path_provider_android-2.2.17/lib\" />\n            </list>\n          </value>\n        </entry>\n        <entry key=\"path_provider_foundation\">\n          <value>\n            <list>\n              <option value=\"$USER_HOME$/.pub-cache/hosted/pub.dev/path_provider_foundation-2.4.1/lib\" />\n            </list>\n          </value>\n        </entry>\n        <entry key=\"path_provider_linux\">\n          <value>\n            <list>\n              <option value=\"$USER_HOME$/.pub-cache/hosted/pub.dev/path_provider_linux-2.2.1/lib\" />\n            </list>\n          </value>\n        </entry>\n        <entry key=\"path_provider_platform_interface\">\n          <value>\n            <list>\n              <option value=\"$USER_HOME$/.pub-cache/hosted/pub.dev/path_provider_platform_interface-2.1.2/lib\" />\n            </list>\n          </value>\n        </entry>\n        <entry key=\"path_provider_windows\">\n          <value>\n            <list>\n              <option value=\"$USER_HOME$/.pub-cache/hosted/pub.dev/path_provider_windows-2.3.0/lib\" />\n            </list>\n          </value>\n        </entry>\n        <entry key=\"platform\">\n          <value>\n            <list>\n              <option value=\"$USER_HOME$/.pub-cache/hosted/pub.dev/platform-3.1.6/lib\" />\n            </list>\n          </value>\n        </entry>\n        <entry key=\"plugin_platform_interface\">\n          <value>\n            <list>\n              <option value=\"$USER_HOME$/.pub-cache/hosted/pub.dev/plugin_platform_interface-2.1.8/lib\" />\n            </list>\n          </value>\n        </entry>\n        <entry key=\"sky_engine\">\n          <value>\n            <list>\n              <option value=\"$USER_HOME$/User/development/flutter/bin/cache/pkg/sky_engine/lib\" />\n            </list>\n          </value>\n        </entry>\n        <entry key=\"source_span\">\n          <value>\n            <list>\n              <option value=\"$USER_HOME$/.pub-cache/hosted/pub.dev/source_span-1.10.1/lib\" />\n            </list>\n          </value>\n        </entry>\n        <entry key=\"stack_trace\">\n          <value>\n            <list>\n              <option value=\"$USER_HOME$/.pub-cache/hosted/pub.dev/stack_trace-1.12.1/lib\" />\n            </list>\n          </value>\n        </entry>\n        <entry key=\"stream_channel\">\n          <value>\n            <list>\n              <option value=\"$USER_HOME$/.pub-cache/hosted/pub.dev/stream_channel-2.1.4/lib\" />\n            </list>\n          </value>\n        </entry>\n        <entry key=\"string_scanner\">\n          <value>\n            <list>\n              <option value=\"$USER_HOME$/.pub-cache/hosted/pub.dev/string_scanner-1.4.1/lib\" />\n            </list>\n          </value>\n        </entry>\n        <entry key=\"term_glyph\">\n          <value>\n            <list>\n              <option value=\"$USER_HOME$/.pub-cache/hosted/pub.dev/term_glyph-1.2.2/lib\" />\n            </list>\n          </value>\n        </entry>\n        <entry key=\"test_api\">\n          <value>\n            <list>\n              <option value=\"$USER_HOME$/.pub-cache/hosted/pub.dev/test_api-0.7.4/lib\" />\n            </list>\n          </value>\n        </entry>\n        <entry key=\"typed_data\">\n          <value>\n            <list>\n              <option value=\"$USER_HOME$/.pub-cache/hosted/pub.dev/typed_data-1.4.0/lib\" />\n            </list>\n          </value>\n        </entry>\n        <entry key=\"vector_math\">\n          <value>\n            <list>\n              <option value=\"$USER_HOME$/.pub-cache/hosted/pub.dev/vector_math-2.1.4/lib\" />\n            </list>\n          </value>\n        </entry>\n        <entry key=\"vm_service\">\n          <value>\n            <list>\n              <option value=\"$USER_HOME$/.pub-cache/hosted/pub.dev/vm_service-14.3.1/lib\" />\n            </list>\n          </value>\n        </entry>\n        <entry key=\"web\">\n          <value>\n            <list>\n              <option value=\"$USER_HOME$/.pub-cache/hosted/pub.dev/web-1.1.1/lib\" />\n            </list>\n          </value>\n        </entry>\n        <entry key=\"xdg_directories\">\n          <value>\n            <list>\n              <option value=\"$USER_HOME$/.pub-cache/hosted/pub.dev/xdg_directories-1.1.0/lib\" />\n            </list>\n          </value>\n        </entry>\n      </option>\n    </properties>\n    <CLASSES>\n      <root url=\"file://$USER_HOME$/.pub-cache/hosted/pub.dev/async-2.12.0/lib\" />\n      <root url=\"file://$USER_HOME$/.pub-cache/hosted/pub.dev/boolean_selector-2.1.2/lib\" />\n      <root url=\"file://$USER_HOME$/.pub-cache/hosted/pub.dev/characters-1.4.0/lib\" />\n      <root url=\"file://$USER_HOME$/.pub-cache/hosted/pub.dev/clock-1.1.2/lib\" />\n      <root url=\"file://$USER_HOME$/.pub-cache/hosted/pub.dev/collection-1.19.1/lib\" />\n      <root url=\"file://$USER_HOME$/.pub-cache/hosted/pub.dev/crypto-3.0.6/lib\" />\n      <root url=\"file://$USER_HOME$/.pub-cache/hosted/pub.dev/cupertino_icons-1.0.8/lib\" />\n      <root url=\"file://$USER_HOME$/.pub-cache/hosted/pub.dev/fake_async-1.3.2/lib\" />\n      <root url=\"file://$USER_HOME$/.pub-cache/hosted/pub.dev/ffi-2.1.4/lib\" />\n      <root url=\"file://$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_lints-5.0.0/lib\" />\n      <root url=\"file://$USER_HOME$/.pub-cache/hosted/pub.dev/google_fonts-4.0.5/lib\" />\n      <root url=\"file://$USER_HOME$/.pub-cache/hosted/pub.dev/http-1.3.0/lib\" />\n      <root url=\"file://$USER_HOME$/.pub-cache/hosted/pub.dev/http_parser-4.1.2/lib\" />\n      <root url=\"file://$USER_HOME$/.pub-cache/hosted/pub.dev/leak_tracker-10.0.8/lib\" />\n      <root url=\"file://$USER_HOME$/.pub-cache/hosted/pub.dev/leak_tracker_flutter_testing-3.0.9/lib\" />\n      <root url=\"file://$USER_HOME$/.pub-cache/hosted/pub.dev/leak_tracker_testing-3.0.1/lib\" />\n      <root url=\"file://$USER_HOME$/.pub-cache/hosted/pub.dev/lints-5.1.1/lib\" />\n      <root url=\"file://$USER_HOME$/.pub-cache/hosted/pub.dev/matcher-0.12.17/lib\" />\n      <root url=\"file://$USER_HOME$/.pub-cache/hosted/pub.dev/material_color_utilities-0.11.1/lib\" />\n      <root url=\"file://$USER_HOME$/.pub-cache/hosted/pub.dev/meta-1.16.0/lib\" />\n      <root url=\"file://$USER_HOME$/.pub-cache/hosted/pub.dev/path-1.9.1/lib\" />\n      <root url=\"file://$USER_HOME$/.pub-cache/hosted/pub.dev/path_provider-2.1.5/lib\" />\n      <root url=\"file://$USER_HOME$/.pub-cache/hosted/pub.dev/path_provider_android-2.2.17/lib\" />\n      <root url=\"file://$USER_HOME$/.pub-cache/hosted/pub.dev/path_provider_foundation-2.4.1/lib\" />\n      <root url=\"file://$USER_HOME$/.pub-cache/hosted/pub.dev/path_provider_linux-2.2.1/lib\" />\n      <root url=\"file://$USER_HOME$/.pub-cache/hosted/pub.dev/path_provider_platform_interface-2.1.2/lib\" />\n      <root url=\"file://$USER_HOME$/.pub-cache/hosted/pub.dev/path_provider_windows-2.3.0/lib\" />\n      <root url=\"file://$USER_HOME$/.pub-cache/hosted/pub.dev/platform-3.1.6/lib\" />\n      <root url=\"file://$USER_HOME$/.pub-cache/hosted/pub.dev/plugin_platform_interface-2.1.8/lib\" />\n      <root url=\"file://$USER_HOME$/.pub-cache/hosted/pub.dev/source_span-1.10.1/lib\" />\n      <root url=\"file://$USER_HOME$/.pub-cache/hosted/pub.dev/stack_trace-1.12.1/lib\" />\n      <root url=\"file://$USER_HOME$/.pub-cache/hosted/pub.dev/stream_channel-2.1.4/lib\" />\n      <root url=\"file://$USER_HOME$/.pub-cache/hosted/pub.dev/string_scanner-1.4.1/lib\" />\n      <root url=\"file://$USER_HOME$/.pub-cache/hosted/pub.dev/term_glyph-1.2.2/lib\" />\n      <root url=\"file://$USER_HOME$/.pub-cache/hosted/pub.dev/test_api-0.7.4/lib\" />\n      <root url=\"file://$USER_HOME$/.pub-cache/hosted/pub.dev/typed_data-1.4.0/lib\" />\n      <root url=\"file://$USER_HOME$/.pub-cache/hosted/pub.dev/vector_math-2.1.4/lib\" />\n      <root url=\"file://$USER_HOME$/.pub-cache/hosted/pub.dev/vm_service-14.3.1/lib\" />\n      <root url=\"file://$USER_HOME$/.pub-cache/hosted/pub.dev/web-1.1.1/lib\" />\n      <root url=\"file://$USER_HOME$/.pub-cache/hosted/pub.dev/xdg_directories-1.1.0/lib\" />\n      <root url=\"file://$USER_HOME$/User/development/flutter/bin/cache/pkg/sky_engine/lib\" />\n      <root url=\"file://$USER_HOME$/User/development/flutter/packages/flutter/lib\" />\n      <root url=\"file://$USER_HOME$/User/development/flutter/packages/flutter_test/lib\" />\n    </CLASSES>\n    <JAVADOC />\n    <SOURCES />\n  </library>\n</component>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/libraries/Dart_Packages.xml b/.idea/libraries/Dart_Packages.xml
+--- a/.idea/libraries/Dart_Packages.xml	(revision 49368156e4383368212408bb1544dc9d97442235)
++++ b/.idea/libraries/Dart_Packages.xml	(date 1749651437356)
+@@ -2,6 +2,41 @@
+   <library name="Dart Packages" type="DartPackagesLibraryType">
+     <properties>
+       <option name="packageNameToDirsMap">
++        <entry key="_fe_analyzer_shared">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/_fe_analyzer_shared-76.0.0/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="_macros">
++          <value>
++            <list>
++              <option value="$USER_HOME$/User/development/flutter/bin/cache/dart-sdk/pkg/_macros/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="analyzer">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/analyzer-6.11.0/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="archive">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/archive-4.0.7/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="args">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/args-2.7.0/lib" />
++            </list>
++          </value>
++        </entry>
+         <entry key="async">
+           <value>
+             <list>
+@@ -9,6 +44,13 @@
+             </list>
+           </value>
+         </entry>
++        <entry key="bloc">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/bloc-8.1.4/lib" />
++            </list>
++          </value>
++        </entry>
+         <entry key="boolean_selector">
+           <value>
+             <list>
+@@ -16,6 +58,62 @@
+             </list>
+           </value>
+         </entry>
++        <entry key="build">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/build-2.4.2/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="build_config">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/build_config-1.1.2/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="build_daemon">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/build_daemon-4.0.4/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="build_resolvers">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/build_resolvers-2.4.4/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="build_runner">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/build_runner-2.4.15/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="build_runner_core">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/build_runner_core-8.0.0/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="built_collection">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/built_collection-5.1.1/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="built_value">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/built_value-8.9.5/lib" />
++            </list>
++          </value>
++        </entry>
+         <entry key="characters">
+           <value>
+             <list>
+@@ -23,6 +121,13 @@
+             </list>
+           </value>
+         </entry>
++        <entry key="checked_yaml">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/checked_yaml-2.0.3/lib" />
++            </list>
++          </value>
++        </entry>
+         <entry key="clock">
+           <value>
+             <list>
+@@ -30,10 +135,31 @@
+             </list>
+           </value>
+         </entry>
++        <entry key="code_builder">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/code_builder-4.10.1/lib" />
++            </list>
++          </value>
++        </entry>
+         <entry key="collection">
+           <value>
+             <list>
+               <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/collection-1.19.1/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="color">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/color-3.0.0/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="convert">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/convert-3.1.2/lib" />
+             </list>
+           </value>
+         </entry>
+@@ -51,6 +177,27 @@
+             </list>
+           </value>
+         </entry>
++        <entry key="dart_style">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/dart_style-2.3.8/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="dartx">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/dartx-1.2.0/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="equatable">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/equatable-2.0.7/lib" />
++            </list>
++          </value>
++        </entry>
+         <entry key="fake_async">
+           <value>
+             <list>
+@@ -62,6 +209,27 @@
+           <value>
+             <list>
+               <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/ffi-2.1.4/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="file">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/file-7.0.1/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="fixnum">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/fixnum-1.1.1/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="fl_chart">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/fl_chart-0.71.0/lib" />
+             </list>
+           </value>
+         </entry>
+@@ -72,6 +240,27 @@
+             </list>
+           </value>
+         </entry>
++        <entry key="flutter_bloc">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_bloc-8.1.6/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="flutter_gen_core">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_gen_core-5.10.0/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="flutter_gen_runner">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_gen_runner-5.10.0/lib" />
++            </list>
++          </value>
++        </entry>
+         <entry key="flutter_lints">
+           <value>
+             <list>
+@@ -79,6 +268,20 @@
+             </list>
+           </value>
+         </entry>
++        <entry key="flutter_localizations">
++          <value>
++            <list>
++              <option value="$USER_HOME$/User/development/flutter/packages/flutter_localizations/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="flutter_svg">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_svg-2.1.0/lib" />
++            </list>
++          </value>
++        </entry>
+         <entry key="flutter_test">
+           <value>
+             <list>
+@@ -86,10 +289,87 @@
+             </list>
+           </value>
+         </entry>
++        <entry key="flutter_web_plugins">
++          <value>
++            <list>
++              <option value="$USER_HOME$/User/development/flutter/packages/flutter_web_plugins/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="frontend_server_client">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/frontend_server_client-4.0.0/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="get_it">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/get_it-7.7.0/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="glob">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/glob-2.1.3/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="go_router">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/go_router-14.8.1/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="golden_toolkit">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/golden_toolkit-0.15.0/lib" />
++            </list>
++          </value>
++        </entry>
+         <entry key="google_fonts">
+           <value>
+             <list>
+               <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/google_fonts-4.0.5/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="graphs">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/graphs-2.3.2/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="hashcodes">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/hashcodes-2.0.0/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="hive">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/hive-2.2.3/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="hive_flutter">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/hive_flutter-1.1.0/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="hive_generator">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/hive_generator-2.0.1/lib" />
+             </list>
+           </value>
+         </entry>
+@@ -100,6 +380,13 @@
+             </list>
+           </value>
+         </entry>
++        <entry key="http_multi_server">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/http_multi_server-3.2.2/lib" />
++            </list>
++          </value>
++        </entry>
+         <entry key="http_parser">
+           <value>
+             <list>
+@@ -107,6 +394,55 @@
+             </list>
+           </value>
+         </entry>
++        <entry key="image_size_getter">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/image_size_getter-2.4.0/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="injectable">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/injectable-2.5.0/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="injectable_generator">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/injectable_generator-2.6.2/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="intl">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/intl-0.19.0/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="io">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/io-1.0.5/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="js">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/js-0.7.2/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="json_annotation">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/json_annotation-4.9.0/lib" />
++            </list>
++          </value>
++        </entry>
+         <entry key="leak_tracker">
+           <value>
+             <list>
+@@ -135,6 +471,20 @@
+             </list>
+           </value>
+         </entry>
++        <entry key="logging">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/logging-1.3.0/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="macros">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/macros-0.1.3-main.0/lib" />
++            </list>
++          </value>
++        </entry>
+         <entry key="matcher">
+           <value>
+             <list>
+@@ -156,10 +506,52 @@
+             </list>
+           </value>
+         </entry>
++        <entry key="mime">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/mime-2.0.0/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="mockito">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/mockito-5.4.5/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="mocktail">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/mocktail-1.0.4/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="nested">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/nested-1.0.0/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="package_config">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/package_config-2.2.0/lib" />
++            </list>
++          </value>
++        </entry>
+         <entry key="path">
+           <value>
+             <list>
+               <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/path-1.9.1/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="path_parsing">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/path_parsing-1.1.0/lib" />
+             </list>
+           </value>
+         </entry>
+@@ -205,6 +597,13 @@
+             </list>
+           </value>
+         </entry>
++        <entry key="petitparser">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/petitparser-6.1.0/lib" />
++            </list>
++          </value>
++        </entry>
+         <entry key="platform">
+           <value>
+             <list>
+@@ -219,6 +618,111 @@
+             </list>
+           </value>
+         </entry>
++        <entry key="pool">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/pool-1.5.1/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="posix">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/posix-6.0.2/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="provider">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/provider-6.1.5/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="pub_semver">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/pub_semver-2.2.0/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="pubspec_parse">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/pubspec_parse-1.5.0/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="recase">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/recase-4.1.0/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="shared_preferences">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/shared_preferences-2.5.3/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="shared_preferences_android">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/shared_preferences_android-2.4.10/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="shared_preferences_foundation">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/shared_preferences_foundation-2.5.4/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="shared_preferences_linux">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/shared_preferences_linux-2.4.1/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="shared_preferences_platform_interface">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/shared_preferences_platform_interface-2.4.1/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="shared_preferences_web">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/shared_preferences_web-2.4.3/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="shared_preferences_windows">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/shared_preferences_windows-2.4.1/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="shelf">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/shelf-1.4.2/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="shelf_web_socket">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/shelf_web_socket-3.0.0/lib" />
++            </list>
++          </value>
++        </entry>
+         <entry key="sky_engine">
+           <value>
+             <list>
+@@ -226,6 +730,20 @@
+             </list>
+           </value>
+         </entry>
++        <entry key="source_gen">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/source_gen-1.5.0/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="source_helper">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/source_helper-1.3.5/lib" />
++            </list>
++          </value>
++        </entry>
+         <entry key="source_span">
+           <value>
+             <list>
+@@ -233,6 +751,13 @@
+             </list>
+           </value>
+         </entry>
++        <entry key="sprintf">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/sprintf-7.0.0/lib" />
++            </list>
++          </value>
++        </entry>
+         <entry key="stack_trace">
+           <value>
+             <list>
+@@ -247,6 +772,13 @@
+             </list>
+           </value>
+         </entry>
++        <entry key="stream_transform">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/stream_transform-2.1.1/lib" />
++            </list>
++          </value>
++        </entry>
+         <entry key="string_scanner">
+           <value>
+             <list>
+@@ -265,6 +797,20 @@
+           <value>
+             <list>
+               <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/test_api-0.7.4/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="time">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/time-2.1.5/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="timing">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/timing-1.0.2/lib" />
+             </list>
+           </value>
+         </entry>
+@@ -272,6 +818,34 @@
+           <value>
+             <list>
+               <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/typed_data-1.4.0/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="uuid">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/uuid-4.5.1/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="vector_graphics">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/vector_graphics-1.1.18/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="vector_graphics_codec">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/vector_graphics_codec-1.1.13/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="vector_graphics_compiler">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/vector_graphics_compiler-1.1.17/lib" />
+             </list>
+           </value>
+         </entry>
+@@ -286,6 +860,13 @@
+           <value>
+             <list>
+               <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/vm_service-14.3.1/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="watcher">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/watcher-1.1.1/lib" />
+             </list>
+           </value>
+         </entry>
+@@ -296,6 +877,20 @@
+             </list>
+           </value>
+         </entry>
++        <entry key="web_socket">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/web_socket-1.0.1/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="web_socket_channel">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/web_socket_channel-3.0.3/lib" />
++            </list>
++          </value>
++        </entry>
+         <entry key="xdg_directories">
+           <value>
+             <list>
+@@ -303,52 +898,153 @@
+             </list>
+           </value>
+         </entry>
++        <entry key="xml">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/xml-6.5.0/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="yaml">
++          <value>
++            <list>
++              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/yaml-3.1.3/lib" />
++            </list>
++          </value>
++        </entry>
+       </option>
+     </properties>
+     <CLASSES>
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/_fe_analyzer_shared-76.0.0/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/analyzer-6.11.0/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/archive-4.0.7/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/args-2.7.0/lib" />
+       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/async-2.12.0/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/bloc-8.1.4/lib" />
+       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/boolean_selector-2.1.2/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/build-2.4.2/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/build_config-1.1.2/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/build_daemon-4.0.4/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/build_resolvers-2.4.4/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/build_runner-2.4.15/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/build_runner_core-8.0.0/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/built_collection-5.1.1/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/built_value-8.9.5/lib" />
+       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/characters-1.4.0/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/checked_yaml-2.0.3/lib" />
+       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/clock-1.1.2/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/code_builder-4.10.1/lib" />
+       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/collection-1.19.1/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/color-3.0.0/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/convert-3.1.2/lib" />
+       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/crypto-3.0.6/lib" />
+       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/cupertino_icons-1.0.8/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/dart_style-2.3.8/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/dartx-1.2.0/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/equatable-2.0.7/lib" />
+       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/fake_async-1.3.2/lib" />
+       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/ffi-2.1.4/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/file-7.0.1/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/fixnum-1.1.1/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/fl_chart-0.71.0/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_bloc-8.1.6/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_gen_core-5.10.0/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_gen_runner-5.10.0/lib" />
+       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_lints-5.0.0/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_svg-2.1.0/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/frontend_server_client-4.0.0/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/get_it-7.7.0/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/glob-2.1.3/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/go_router-14.8.1/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/golden_toolkit-0.15.0/lib" />
+       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/google_fonts-4.0.5/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/graphs-2.3.2/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/hashcodes-2.0.0/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/hive-2.2.3/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/hive_flutter-1.1.0/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/hive_generator-2.0.1/lib" />
+       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/http-1.3.0/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/http_multi_server-3.2.2/lib" />
+       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/http_parser-4.1.2/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/image_size_getter-2.4.0/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/injectable-2.5.0/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/injectable_generator-2.6.2/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/intl-0.19.0/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/io-1.0.5/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/js-0.7.2/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/json_annotation-4.9.0/lib" />
+       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/leak_tracker-10.0.8/lib" />
+       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/leak_tracker_flutter_testing-3.0.9/lib" />
+       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/leak_tracker_testing-3.0.1/lib" />
+       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/lints-5.1.1/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/logging-1.3.0/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/macros-0.1.3-main.0/lib" />
+       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/matcher-0.12.17/lib" />
+       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/material_color_utilities-0.11.1/lib" />
+       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/meta-1.16.0/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/mime-2.0.0/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/mockito-5.4.5/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/mocktail-1.0.4/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/nested-1.0.0/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/package_config-2.2.0/lib" />
+       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/path-1.9.1/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/path_parsing-1.1.0/lib" />
+       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/path_provider-2.1.5/lib" />
+       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/path_provider_android-2.2.17/lib" />
+       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/path_provider_foundation-2.4.1/lib" />
+       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/path_provider_linux-2.2.1/lib" />
+       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/path_provider_platform_interface-2.1.2/lib" />
+       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/path_provider_windows-2.3.0/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/petitparser-6.1.0/lib" />
+       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/platform-3.1.6/lib" />
+       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/plugin_platform_interface-2.1.8/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/pool-1.5.1/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/posix-6.0.2/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/provider-6.1.5/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/pub_semver-2.2.0/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/pubspec_parse-1.5.0/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/recase-4.1.0/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/shared_preferences-2.5.3/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/shared_preferences_android-2.4.10/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/shared_preferences_foundation-2.5.4/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/shared_preferences_linux-2.4.1/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/shared_preferences_platform_interface-2.4.1/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/shared_preferences_web-2.4.3/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/shared_preferences_windows-2.4.1/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/shelf-1.4.2/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/shelf_web_socket-3.0.0/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/source_gen-1.5.0/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/source_helper-1.3.5/lib" />
+       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/source_span-1.10.1/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/sprintf-7.0.0/lib" />
+       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/stack_trace-1.12.1/lib" />
+       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/stream_channel-2.1.4/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/stream_transform-2.1.1/lib" />
+       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/string_scanner-1.4.1/lib" />
+       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/term_glyph-1.2.2/lib" />
+       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/test_api-0.7.4/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/time-2.1.5/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/timing-1.0.2/lib" />
+       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/typed_data-1.4.0/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/uuid-4.5.1/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/vector_graphics-1.1.18/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/vector_graphics_codec-1.1.13/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/vector_graphics_compiler-1.1.17/lib" />
+       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/vector_math-2.1.4/lib" />
+       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/vm_service-14.3.1/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/watcher-1.1.1/lib" />
+       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/web-1.1.1/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/web_socket-1.0.1/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/web_socket_channel-3.0.3/lib" />
+       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/xdg_directories-1.1.0/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/xml-6.5.0/lib" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/yaml-3.1.3/lib" />
++      <root url="file://$USER_HOME$/User/development/flutter/bin/cache/dart-sdk/pkg/_macros/lib" />
+       <root url="file://$USER_HOME$/User/development/flutter/bin/cache/pkg/sky_engine/lib" />
+       <root url="file://$USER_HOME$/User/development/flutter/packages/flutter/lib" />
++      <root url="file://$USER_HOME$/User/development/flutter/packages/flutter_localizations/lib" />
+       <root url="file://$USER_HOME$/User/development/flutter/packages/flutter_test/lib" />
++      <root url="file://$USER_HOME$/User/development/flutter/packages/flutter_web_plugins/lib" />
+     </CLASSES>
+     <JAVADOC />
+     <SOURCES />
+Index: lib/domain/entities/adapters/transaction_adapter.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import 'package:finance_manager/core/utils/category_type.dart';\nimport 'package:finance_manager/core/utils/transaction_type.dart';\nimport 'package:finance_manager/domain/entities/category_entity.dart';\nimport 'package:finance_manager/domain/entities/transaction_entity.dart';\nimport 'package:hive/hive.dart';\n\nclass TransactionAdapter extends TypeAdapter<TransactionEntity> {\n  @override\n  final int typeId = 2;\n\n  @override\n  TransactionEntity read(BinaryReader reader) {\n    return TransactionEntity(\n      title: reader.readString(),\n      description: reader.readString(),\n      amount: reader.readDouble(),\n      type: reader.read() as TransactionType,\n      category: reader.read() as CategoryEntity,\n      date: DateTime.fromMillisecondsSinceEpoch(reader.readInt()),\n    );\n  }\n\n  @override\n  void write(BinaryWriter writer, TransactionEntity obj) {\n    writer.writeString(obj.title);\n    writer.writeString(obj.description);\n    writer.writeDouble(obj.amount);\n    writer.write(obj.type);\n    writer.write(obj.category);\n    writer.writeInt(obj.date.millisecondsSinceEpoch);\n  }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/lib/domain/entities/adapters/transaction_adapter.dart b/lib/domain/entities/adapters/transaction_adapter.dart
+--- a/lib/domain/entities/adapters/transaction_adapter.dart	(revision 49368156e4383368212408bb1544dc9d97442235)
++++ b/lib/domain/entities/adapters/transaction_adapter.dart	(date 1749974041216)
+@@ -1,5 +1,6 @@
+ import 'package:finance_manager/core/utils/category_type.dart';
+ import 'package:finance_manager/core/utils/transaction_type.dart';
++import 'package:finance_manager/data/models/category.dart';
+ import 'package:finance_manager/domain/entities/category_entity.dart';
+ import 'package:finance_manager/domain/entities/transaction_entity.dart';
+ import 'package:hive/hive.dart';
+@@ -15,7 +16,7 @@
+       description: reader.readString(),
+       amount: reader.readDouble(),
+       type: reader.read() as TransactionType,
+-      category: reader.read() as CategoryEntity,
++      category: reader.read() as Category,
+       date: DateTime.fromMillisecondsSinceEpoch(reader.readInt()),
+     );
+   }
+Index: lib/data/repositories/transaction_repository_imp.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import 'package:finance_manager/core/extension/extension.dart';\nimport 'package:finance_manager/data/datasource/db_data_source.dart';\nimport 'package:finance_manager/data/mapper/transaction_mapper.dart';\nimport 'package:finance_manager/data/models/transaction.dart';\nimport 'package:finance_manager/domain/repositories/transaction_repository.dart';\n\nclass TransactionRepositoryImpl implements TransactionRepository {\n  final DBDataSource dataSource;\n\n  TransactionRepositoryImpl(this.dataSource);\n\n  @override\n  Future<List<Transaction>> getAllTransactions() async {\n    final list = await dataSource.getAll();\n    return TransactionMapper.toModelList(list);\n  }\n\n  @override\n  Future<void> createTransaction({required Transaction transaction}) async {\n    await dataSource.create(transaction.toEntity());\n  }\n\n  @override\n  Future<void> updateTransaction({required Transaction transaction}) async {\n    await dataSource.update(transaction.id ?? -1, transaction.toEntity());\n  }\n\n  @override\n  Future<void> deleteTransaction(int id) async {\n    await dataSource.delete(id);\n  }\n\n  @override\n  Future<Transaction?> getTransactionById(int id) async {\n    final entity = await dataSource.getById(id);\n    return entity?.toModel();\n  }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/lib/data/repositories/transaction_repository_imp.dart b/lib/data/repositories/transaction_repository_imp.dart
+--- a/lib/data/repositories/transaction_repository_imp.dart	(revision 49368156e4383368212408bb1544dc9d97442235)
++++ b/lib/data/repositories/transaction_repository_imp.dart	(date 1749974688639)
+@@ -12,12 +12,14 @@
+   @override
+   Future<List<Transaction>> getAllTransactions() async {
+     final list = await dataSource.getAll();
++    print('--------------------------- load repo: ${list.length}');
+     return TransactionMapper.toModelList(list);
+   }
+ 
+   @override
+   Future<void> createTransaction({required Transaction transaction}) async {
+     await dataSource.create(transaction.toEntity());
++    print('--------------------------- createTransaction');
+   }
+ 
+   @override
+Index: lib/domain/entities/adapters/category_entity_adapter.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/lib/domain/entities/adapters/category_entity_adapter.dart b/lib/domain/entities/adapters/category_entity_adapter.dart
+new file mode 100644
+--- /dev/null	(date 1749975084570)
++++ b/lib/domain/entities/adapters/category_entity_adapter.dart	(date 1749975084570)
+@@ -0,0 +1,19 @@
++import 'package:finance_manager/domain/entities/category_entity.dart';
++import 'package:hive/hive.dart';
++
++class CategoryEntityAdapter extends TypeAdapter<CategoryEntity> {
++  @override
++  final int typeId = 3;
++
++  @override
++  CategoryEntity read(BinaryReader reader) {
++    return CategoryEntity(
++      name: reader.readString(),
++    );
++  }
++
++  @override
++  void write(BinaryWriter writer, CategoryEntity obj) {
++    writer.writeString(obj.name);
++  }
++}
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n    <component name=\"AndroidLayouts\">\n        <shared>\n            <config />\n        </shared>\n    </component>\n    <component name=\"AutoImportSettings\">\n        <option name=\"autoReloadType\" value=\"NONE\" />\n    </component>\n    <component name=\"ChangeListManager\">\n        <list name=\"Changes\" comment=\"Add base_stateless_widget.darttatless\" default=\"true\"\n            id=\"13178677-1dff-4855-a748-b263d6799d61\">\n            <change afterDir=\"false\"\n                afterPath=\"$PROJECT_DIR$/lib/presentation/view/screens/home.dart\" beforeDir=\"false\"\n                beforePath=\"$PROJECT_DIR$/lib/presentation/view/screens/home.dart\" />\n        </list>\n        <option name=\"SHOW_DIALOG\" value=\"false\" />\n        <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n        <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n        <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n    </component>\n    <component name=\"ClangdSettings\">\n        <option name=\"formatViaClangd\" value=\"false\" />\n    </component>\n    <component name=\"FileTemplateManagerImpl\">\n        <option name=\"RECENT_TEMPLATES\">\n            <list>\n                <option value=\"Dart File\" />\n            </list>\n        </option>\n    </component>\n    <component name=\"Git.Settings\">\n        <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\n            <map>\n                <entry key=\"$PROJECT_DIR$\" value=\"develop\" />\n            </map>\n        </option>\n        <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n        <option name=\"ROOT_SYNC\" value=\"SYNC\" />\n    </component>\n    <component name=\"MarkdownSettingsMigration\">\n        <option name=\"stateVersion\" value=\"1\" />\n    </component>\n    <component name=\"ProjectColorInfo\">{ &quot;associatedIndex&quot;: 4\n        }\n    </component>\n    <component name=\"ProjectId\" id=\"2wJdUEwNBQpFaRNqc2vwDUuY4bC\" />\n    <component name=\"ProjectViewState\">\n        <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n        <option name=\"showLibraryContents\" value=\"true\" />\n    </component>\n    <component name=\"PropertiesComponent\"><![CDATA[{\n  \"keyToString\": {\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\n    \"RunOnceActivity.cidr.known.project.marker\": \"true\",\n    \"cf.first.check.clang-format\": \"false\",\n    \"cidr.known.project.marker\": \"true\",\n    \"dart.analysis.tool.window.visible\": \"false\",\n    \"io.flutter.reload.alreadyRun\": \"true\",\n    \"last_opened_file_path\": \"/Users/sarayetel/Job/Hex/finance_manager/lib/presentation/base\",\n    \"settings.editor.selected.configurable\": \"project.propVCSSupport.DirectoryMappings\",\n    \"show.migrate.to.gradle.popup\": \"false\"\n  }\n}]]></component>\n    <component name=\"RecentsManager\">\n        <key name=\"CopyFile.RECENT_KEYS\">\n            <recent name=\"$PROJECT_DIR$/lib/presentation/base\" />\n        </key>\n        <key name=\"MoveFile.RECENT_KEYS\">\n            <recent name=\"$PROJECT_DIR$/lib/data/models\" />\n            <recent name=\"$PROJECT_DIR$/lib/presentation/view/screens\" />\n        </key>\n    </component>\n    <component name=\"RunManager\" selected=\"Flutter.main.dart\">\n        <configuration name=\"main.dart\" factoryName=\"Flutter\" type=\"FlutterRunConfigurationType\">\n            <option name=\"filePath\" value=\"$PROJECT_DIR$/lib/main.dart\" />\n            <method v=\"2\" />\n        </configuration>\n        <configuration name=\"test.dart\" factoryName=\"Flutter\" nameIsGenerated=\"true\"\n            temporary=\"true\" type=\"FlutterRunConfigurationType\">\n            <option name=\"filePath\" value=\"$PROJECT_DIR$/lib/test.dart\" />\n            <method v=\"2\" />\n        </configuration>\n        <recent_temporary>\n            <list>\n                <item itemvalue=\"Flutter.test.dart\" />\n                <item itemvalue=\"Flutter.test.dart\" />\n            </list>\n        </recent_temporary>\n    </component>\n    <component name=\"SpellCheckerSettings\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\"\n        Folders=\"0\" RuntimeDictionaries=\"0\" UseSingleDictionary=\"true\"\n        transferred=\"true\" />\n    <component name=\"TaskManager\">\n        <task active=\"true\" id=\"Default\" summary=\"Default task\">\n            <changelist name=\"Changes\" comment=\"\" id=\"13178677-1dff-4855-a748-b263d6799d61\" />\n            <created>1745763636699</created>\n            <option name=\"number\" value=\"Default\" />\n            <option name=\"presentableId\" value=\"Default\" />\n            <updated>1745763636699</updated>\n        </task>\n        <task id=\"LOCAL-00001\" summary=\"Add HomeScreen\">\n            <option name=\"closed\" value=\"true\" />\n            <created>1745767771917</created>\n            <option name=\"number\" value=\"00001\" />\n            <option name=\"presentableId\" value=\"LOCAL-00001\" />\n            <option name=\"project\" value=\"LOCAL\" />\n            <updated>1745767771917</updated>\n        </task>\n        <task id=\"LOCAL-00002\" summary=\"Add package\">\n            <option name=\"closed\" value=\"true\" />\n            <created>1745768101204</created>\n            <option name=\"number\" value=\"00002\" />\n            <option name=\"presentableId\" value=\"LOCAL-00002\" />\n            <option name=\"project\" value=\"LOCAL\" />\n            <updated>1745768101204</updated>\n        </task>\n        <task id=\"LOCAL-00003\" summary=\"Add constant.dart\">\n            <option name=\"closed\" value=\"true\" />\n            <created>1745768624512</created>\n            <option name=\"number\" value=\"00003\" />\n            <option name=\"presentableId\" value=\"LOCAL-00003\" />\n            <option name=\"project\" value=\"LOCAL\" />\n            <updated>1745768624512</updated>\n        </task>\n        <task id=\"LOCAL-00004\" summary=\"Add utils.dart\">\n            <option name=\"closed\" value=\"true\" />\n            <created>1745768789564</created>\n            <option name=\"number\" value=\"00004\" />\n            <option name=\"presentableId\" value=\"LOCAL-00004\" />\n            <option name=\"project\" value=\"LOCAL\" />\n            <updated>1745768789564</updated>\n        </task>\n        <task id=\"LOCAL-00005\" summary=\"Add model\">\n            <option name=\"closed\" value=\"true\" />\n            <created>1745771926311</created>\n            <option name=\"number\" value=\"00005\" />\n            <option name=\"presentableId\" value=\"LOCAL-00005\" />\n            <option name=\"project\" value=\"LOCAL\" />\n            <updated>1745771926311</updated>\n        </task>\n        <task id=\"LOCAL-00006\" summary=\"Add source.dart\">\n            <option name=\"closed\" value=\"true\" />\n            <created>1745772029803</created>\n            <option name=\"number\" value=\"00006\" />\n            <option name=\"presentableId\" value=\"LOCAL-00006\" />\n            <option name=\"project\" value=\"LOCAL\" />\n            <updated>1745772029803</updated>\n        </task>\n        <task id=\"LOCAL-00007\" summary=\"Add interface repository\">\n            <option name=\"closed\" value=\"true\" />\n            <created>1745772323846</created>\n            <option name=\"number\" value=\"00007\" />\n            <option name=\"presentableId\" value=\"LOCAL-00007\" />\n            <option name=\"project\" value=\"LOCAL\" />\n            <updated>1745772323846</updated>\n        </task>\n        <task id=\"LOCAL-00008\" summary=\"Add implementation repository\">\n            <option name=\"closed\" value=\"true\" />\n            <created>1745772356304</created>\n            <option name=\"number\" value=\"00008\" />\n            <option name=\"presentableId\" value=\"LOCAL-00008\" />\n            <option name=\"project\" value=\"LOCAL\" />\n            <updated>1745772356304</updated>\n        </task>\n        <task id=\"LOCAL-00009\" summary=\"Add finance_entity.dart\">\n            <option name=\"closed\" value=\"true\" />\n            <created>1745772578457</created>\n            <option name=\"number\" value=\"00009\" />\n            <option name=\"presentableId\" value=\"LOCAL-00009\" />\n            <option name=\"project\" value=\"LOCAL\" />\n            <updated>1745772578457</updated>\n        </task>\n        <task id=\"LOCAL-00010\" summary=\"Add custom widget\">\n            <option name=\"closed\" value=\"true\" />\n            <created>1745772818312</created>\n            <option name=\"number\" value=\"00010\" />\n            <option name=\"presentableId\" value=\"LOCAL-00010\" />\n            <option name=\"project\" value=\"LOCAL\" />\n            <updated>1745772818312</updated>\n        </task>\n        <task id=\"LOCAL-00011\" summary=\"Add view model\">\n            <option name=\"closed\" value=\"true\" />\n            <created>1745773017615</created>\n            <option name=\"number\" value=\"00011\" />\n            <option name=\"presentableId\" value=\"LOCAL-00011\" />\n            <option name=\"project\" value=\"LOCAL\" />\n            <updated>1745773017615</updated>\n        </task>\n        <task id=\"LOCAL-00012\" summary=\"Add routes.dart\">\n            <option name=\"closed\" value=\"true\" />\n            <created>1745773128315</created>\n            <option name=\"number\" value=\"00012\" />\n            <option name=\"presentableId\" value=\"LOCAL-00012\" />\n            <option name=\"project\" value=\"LOCAL\" />\n            <updated>1745773128315</updated>\n        </task>\n        <task id=\"LOCAL-00013\" summary=\"Add colors.dart\">\n            <option name=\"closed\" value=\"true\" />\n            <created>1745774650256</created>\n            <option name=\"number\" value=\"00013\" />\n            <option name=\"presentableId\" value=\"LOCAL-00013\" />\n            <option name=\"project\" value=\"LOCAL\" />\n            <updated>1745774650256</updated>\n        </task>\n        <task id=\"LOCAL-00014\" summary=\"Add base_stateless_widget.darttatless\">\n            <option name=\"closed\" value=\"true\" />\n            <created>1745849602073</created>\n            <option name=\"number\" value=\"00014\" />\n            <option name=\"presentableId\" value=\"LOCAL-00014\" />\n            <option name=\"project\" value=\"LOCAL\" />\n            <updated>1745849602073</updated>\n        </task>\n        <option name=\"localTasksCounter\" value=\"15\" />\n        <servers />\n    </component>\n    <component name=\"Vcs.Log.Tabs.Properties\">\n        <option name=\"TAB_STATES\">\n            <map>\n                <entry key=\"MAIN\">\n                    <value>\n                        <State />\n                    </value>\n                </entry>\n            </map>\n        </option>\n    </component>\n    <component name=\"VcsManagerConfiguration\">\n        <MESSAGE value=\"Add HomeScreen\" />\n        <MESSAGE value=\"Add package\" />\n        <MESSAGE value=\"Add constant.dart\" />\n        <MESSAGE value=\"Add utils.dart\" />\n        <MESSAGE value=\"Add model\" />\n        <MESSAGE value=\"Add source.dart\" />\n        <MESSAGE value=\"Add interface repository\" />\n        <MESSAGE value=\"Add implementation repository\" />\n        <MESSAGE value=\"Add finance_entity.dart\" />\n        <MESSAGE value=\"Add custom widget\" />\n        <MESSAGE value=\"Add view model\" />\n        <MESSAGE value=\"Add routes.dart\" />\n        <MESSAGE value=\"Add colors.dart\" />\n        <MESSAGE value=\"Add theme.dart\" />\n        <MESSAGE value=\"CLean\" />\n        <MESSAGE value=\"Add base_stateless_widget.darttatless\" />\n        <option name=\"LAST_COMMIT_MESSAGE\" value=\"Add base_stateless_widget.darttatless\" />\n    </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 49368156e4383368212408bb1544dc9d97442235)
++++ b/.idea/workspace.xml	(date 1749718856000)
+@@ -1,249 +1,481 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+-    <component name="AndroidLayouts">
+-        <shared>
+-            <config />
+-        </shared>
+-    </component>
+-    <component name="AutoImportSettings">
+-        <option name="autoReloadType" value="NONE" />
+-    </component>
+-    <component name="ChangeListManager">
+-        <list name="Changes" comment="Add base_stateless_widget.darttatless" default="true"
+-            id="13178677-1dff-4855-a748-b263d6799d61">
+-            <change afterDir="false"
+-                afterPath="$PROJECT_DIR$/lib/presentation/view/screens/home.dart" beforeDir="false"
+-                beforePath="$PROJECT_DIR$/lib/presentation/view/screens/home.dart" />
+-        </list>
+-        <option name="SHOW_DIALOG" value="false" />
+-        <option name="HIGHLIGHT_CONFLICTS" value="true" />
+-        <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+-        <option name="LAST_RESOLUTION" value="IGNORE" />
+-    </component>
+-    <component name="ClangdSettings">
+-        <option name="formatViaClangd" value="false" />
+-    </component>
+-    <component name="FileTemplateManagerImpl">
+-        <option name="RECENT_TEMPLATES">
+-            <list>
+-                <option value="Dart File" />
+-            </list>
+-        </option>
+-    </component>
+-    <component name="Git.Settings">
+-        <option name="RECENT_BRANCH_BY_REPOSITORY">
+-            <map>
+-                <entry key="$PROJECT_DIR$" value="develop" />
+-            </map>
+-        </option>
+-        <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+-        <option name="ROOT_SYNC" value="SYNC" />
+-    </component>
+-    <component name="MarkdownSettingsMigration">
+-        <option name="stateVersion" value="1" />
+-    </component>
+-    <component name="ProjectColorInfo">{ &quot;associatedIndex&quot;: 4
+-        }
+-    </component>
+-    <component name="ProjectId" id="2wJdUEwNBQpFaRNqc2vwDUuY4bC" />
+-    <component name="ProjectViewState">
+-        <option name="hideEmptyMiddlePackages" value="true" />
+-        <option name="showLibraryContents" value="true" />
+-    </component>
+-    <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    "RunOnceActivity.OpenProjectViewOnStart": "true",
+-    "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "RunOnceActivity.cidr.known.project.marker": "true",
+-    "cf.first.check.clang-format": "false",
+-    "cidr.known.project.marker": "true",
+-    "dart.analysis.tool.window.visible": "false",
+-    "io.flutter.reload.alreadyRun": "true",
+-    "last_opened_file_path": "/Users/sarayetel/Job/Hex/finance_manager/lib/presentation/base",
+-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
+-    "show.migrate.to.gradle.popup": "false"
++  <component name="AndroidLayouts">
++    <shared>
++      <config />
++    </shared>
++  </component>
++  <component name="AutoImportSettings">
++    <option name="autoReloadType" value="NONE" />
++  </component>
++  <component name="ChangeListManager">
++    <list default="true" id="13178677-1dff-4855-a748-b263d6799d61" name="Changes" comment="Check initial display of category and date in UpdateTransactionScreen">
++      <change beforePath="$PROJECT_DIR$/.dart_tool/dartpad/web_plugin_registrant.dart" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/dartpad/web_plugin_registrant.dart" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.dart_tool/package_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/package_config.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.dart_tool/package_config_subset" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/package_config_subset" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/build/f872507f30e2ff2523f0f1d19160266e.cache.dill.track.dill" beforeDir="false" afterPath="$PROJECT_DIR$/build/f872507f30e2ff2523f0f1d19160266e.cache.dill.track.dill" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/finance_manager.iml" beforeDir="false" afterPath="$PROJECT_DIR$/finance_manager.iml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/macos/Flutter/GeneratedPluginRegistrant.swift" beforeDir="false" afterPath="$PROJECT_DIR$/macos/Flutter/GeneratedPluginRegistrant.swift" afterDir="false" />
++    </list>
++    <option name="SHOW_DIALOG" value="false" />
++    <option name="HIGHLIGHT_CONFLICTS" value="true" />
++    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
++    <option name="LAST_RESOLUTION" value="IGNORE" />
++  </component>
++  <component name="ClangdSettings">
++    <option name="formatViaClangd" value="false" />
++  </component>
++  <component name="FileTemplateManagerImpl">
++    <option name="RECENT_TEMPLATES">
++      <list>
++        <option value="Dart File" />
++      </list>
++    </option>
++  </component>
++  <component name="Git.Merge.Settings">
++    <option name="BRANCH" value="origin/develop" />
++  </component>
++  <component name="Git.Settings">
++    <option name="RECENT_BRANCH_BY_REPOSITORY">
++      <map>
++        <entry key="$PROJECT_DIR$" value="main" />
++      </map>
++    </option>
++    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
++    <option name="ROOT_SYNC" value="SYNC" />
++  </component>
++  <component name="MarkdownSettingsMigration">
++    <option name="stateVersion" value="1" />
++  </component>
++  <component name="ProblemsViewState">
++    <option name="selectedTabId" value="CurrentFile" />
++  </component>
++  <component name="ProjectColorInfo">{ &quot;associatedIndex&quot;: 4
++        }</component>
++  <component name="ProjectId" id="2wJdUEwNBQpFaRNqc2vwDUuY4bC" />
++  <component name="ProjectViewState">
++    <option name="hideEmptyMiddlePackages" value="true" />
++    <option name="showLibraryContents" value="true" />
++  </component>
++  <component name="PropertiesComponent">{
++  &quot;keyToString&quot;: {
++    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
++    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
++    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
++    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
++    &quot;io.flutter.reload.alreadyRun&quot;: &quot;true&quot;,
++    &quot;last_opened_file_path&quot;: &quot;/Users/sarayetel/Job/Hex/finance_manager/lib/presentation/base&quot;,
++    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
++    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
+   }
+-}]]></component>
+-    <component name="RecentsManager">
+-        <key name="CopyFile.RECENT_KEYS">
+-            <recent name="$PROJECT_DIR$/lib/presentation/base" />
+-        </key>
+-        <key name="MoveFile.RECENT_KEYS">
+-            <recent name="$PROJECT_DIR$/lib/data/models" />
+-            <recent name="$PROJECT_DIR$/lib/presentation/view/screens" />
+-        </key>
+-    </component>
+-    <component name="RunManager" selected="Flutter.main.dart">
+-        <configuration name="main.dart" factoryName="Flutter" type="FlutterRunConfigurationType">
+-            <option name="filePath" value="$PROJECT_DIR$/lib/main.dart" />
+-            <method v="2" />
+-        </configuration>
+-        <configuration name="test.dart" factoryName="Flutter" nameIsGenerated="true"
+-            temporary="true" type="FlutterRunConfigurationType">
+-            <option name="filePath" value="$PROJECT_DIR$/lib/test.dart" />
+-            <method v="2" />
+-        </configuration>
+-        <recent_temporary>
+-            <list>
+-                <item itemvalue="Flutter.test.dart" />
+-                <item itemvalue="Flutter.test.dart" />
+-            </list>
+-        </recent_temporary>
+-    </component>
+-    <component name="SpellCheckerSettings" CustomDictionaries="0" DefaultDictionary="application-level"
+-        Folders="0" RuntimeDictionaries="0" UseSingleDictionary="true"
+-        transferred="true" />
+-    <component name="TaskManager">
+-        <task active="true" id="Default" summary="Default task">
+-            <changelist name="Changes" comment="" id="13178677-1dff-4855-a748-b263d6799d61" />
+-            <created>1745763636699</created>
+-            <option name="number" value="Default" />
+-            <option name="presentableId" value="Default" />
+-            <updated>1745763636699</updated>
+-        </task>
+-        <task id="LOCAL-00001" summary="Add HomeScreen">
+-            <option name="closed" value="true" />
+-            <created>1745767771917</created>
+-            <option name="number" value="00001" />
+-            <option name="presentableId" value="LOCAL-00001" />
+-            <option name="project" value="LOCAL" />
+-            <updated>1745767771917</updated>
+-        </task>
+-        <task id="LOCAL-00002" summary="Add package">
+-            <option name="closed" value="true" />
+-            <created>1745768101204</created>
+-            <option name="number" value="00002" />
+-            <option name="presentableId" value="LOCAL-00002" />
+-            <option name="project" value="LOCAL" />
+-            <updated>1745768101204</updated>
+-        </task>
+-        <task id="LOCAL-00003" summary="Add constant.dart">
+-            <option name="closed" value="true" />
+-            <created>1745768624512</created>
+-            <option name="number" value="00003" />
+-            <option name="presentableId" value="LOCAL-00003" />
+-            <option name="project" value="LOCAL" />
+-            <updated>1745768624512</updated>
+-        </task>
+-        <task id="LOCAL-00004" summary="Add utils.dart">
+-            <option name="closed" value="true" />
+-            <created>1745768789564</created>
+-            <option name="number" value="00004" />
+-            <option name="presentableId" value="LOCAL-00004" />
+-            <option name="project" value="LOCAL" />
+-            <updated>1745768789564</updated>
+-        </task>
+-        <task id="LOCAL-00005" summary="Add model">
+-            <option name="closed" value="true" />
+-            <created>1745771926311</created>
+-            <option name="number" value="00005" />
+-            <option name="presentableId" value="LOCAL-00005" />
+-            <option name="project" value="LOCAL" />
+-            <updated>1745771926311</updated>
+-        </task>
+-        <task id="LOCAL-00006" summary="Add source.dart">
+-            <option name="closed" value="true" />
+-            <created>1745772029803</created>
+-            <option name="number" value="00006" />
+-            <option name="presentableId" value="LOCAL-00006" />
+-            <option name="project" value="LOCAL" />
+-            <updated>1745772029803</updated>
+-        </task>
+-        <task id="LOCAL-00007" summary="Add interface repository">
+-            <option name="closed" value="true" />
+-            <created>1745772323846</created>
+-            <option name="number" value="00007" />
+-            <option name="presentableId" value="LOCAL-00007" />
+-            <option name="project" value="LOCAL" />
+-            <updated>1745772323846</updated>
+-        </task>
+-        <task id="LOCAL-00008" summary="Add implementation repository">
+-            <option name="closed" value="true" />
+-            <created>1745772356304</created>
+-            <option name="number" value="00008" />
+-            <option name="presentableId" value="LOCAL-00008" />
+-            <option name="project" value="LOCAL" />
+-            <updated>1745772356304</updated>
+-        </task>
+-        <task id="LOCAL-00009" summary="Add finance_entity.dart">
+-            <option name="closed" value="true" />
+-            <created>1745772578457</created>
+-            <option name="number" value="00009" />
+-            <option name="presentableId" value="LOCAL-00009" />
+-            <option name="project" value="LOCAL" />
+-            <updated>1745772578457</updated>
+-        </task>
+-        <task id="LOCAL-00010" summary="Add custom widget">
+-            <option name="closed" value="true" />
+-            <created>1745772818312</created>
+-            <option name="number" value="00010" />
+-            <option name="presentableId" value="LOCAL-00010" />
+-            <option name="project" value="LOCAL" />
+-            <updated>1745772818312</updated>
+-        </task>
+-        <task id="LOCAL-00011" summary="Add view model">
+-            <option name="closed" value="true" />
+-            <created>1745773017615</created>
+-            <option name="number" value="00011" />
+-            <option name="presentableId" value="LOCAL-00011" />
+-            <option name="project" value="LOCAL" />
+-            <updated>1745773017615</updated>
+-        </task>
+-        <task id="LOCAL-00012" summary="Add routes.dart">
+-            <option name="closed" value="true" />
+-            <created>1745773128315</created>
+-            <option name="number" value="00012" />
+-            <option name="presentableId" value="LOCAL-00012" />
+-            <option name="project" value="LOCAL" />
+-            <updated>1745773128315</updated>
+-        </task>
+-        <task id="LOCAL-00013" summary="Add colors.dart">
+-            <option name="closed" value="true" />
+-            <created>1745774650256</created>
+-            <option name="number" value="00013" />
+-            <option name="presentableId" value="LOCAL-00013" />
+-            <option name="project" value="LOCAL" />
+-            <updated>1745774650256</updated>
+-        </task>
+-        <task id="LOCAL-00014" summary="Add base_stateless_widget.darttatless">
+-            <option name="closed" value="true" />
+-            <created>1745849602073</created>
+-            <option name="number" value="00014" />
+-            <option name="presentableId" value="LOCAL-00014" />
+-            <option name="project" value="LOCAL" />
+-            <updated>1745849602073</updated>
+-        </task>
+-        <option name="localTasksCounter" value="15" />
+-        <servers />
+-    </component>
+-    <component name="Vcs.Log.Tabs.Properties">
+-        <option name="TAB_STATES">
+-            <map>
+-                <entry key="MAIN">
+-                    <value>
+-                        <State />
+-                    </value>
+-                </entry>
+-            </map>
+-        </option>
+-    </component>
+-    <component name="VcsManagerConfiguration">
+-        <MESSAGE value="Add HomeScreen" />
+-        <MESSAGE value="Add package" />
+-        <MESSAGE value="Add constant.dart" />
+-        <MESSAGE value="Add utils.dart" />
+-        <MESSAGE value="Add model" />
+-        <MESSAGE value="Add source.dart" />
+-        <MESSAGE value="Add interface repository" />
+-        <MESSAGE value="Add implementation repository" />
+-        <MESSAGE value="Add finance_entity.dart" />
+-        <MESSAGE value="Add custom widget" />
+-        <MESSAGE value="Add view model" />
+-        <MESSAGE value="Add routes.dart" />
+-        <MESSAGE value="Add colors.dart" />
+-        <MESSAGE value="Add theme.dart" />
+-        <MESSAGE value="CLean" />
+-        <MESSAGE value="Add base_stateless_widget.darttatless" />
+-        <option name="LAST_COMMIT_MESSAGE" value="Add base_stateless_widget.darttatless" />
+-    </component>
++}</component>
++  <component name="RecentsManager">
++    <key name="CopyFile.RECENT_KEYS">
++      <recent name="$PROJECT_DIR$/lib/presentation/base" />
++    </key>
++    <key name="MoveFile.RECENT_KEYS">
++      <recent name="$PROJECT_DIR$/test/presentation/view/screens/transaction/create" />
++      <recent name="$PROJECT_DIR$/test/presentation/view/widgets/appbar" />
++      <recent name="$PROJECT_DIR$/lib/data/models" />
++      <recent name="$PROJECT_DIR$/lib/presentation/view/screens" />
++    </key>
++  </component>
++  <component name="RunManager" selected="Flutter.main.dart">
++    <configuration name="main.dart" type="FlutterRunConfigurationType" factoryName="Flutter">
++      <option name="filePath" value="$PROJECT_DIR$/lib/main.dart" />
++      <method v="2" />
++    </configuration>
++    <configuration name="test.dart" type="FlutterRunConfigurationType" factoryName="Flutter" temporary="true" nameIsGenerated="true">
++      <option name="filePath" value="$PROJECT_DIR$/lib/test.dart" />
++      <method v="2" />
++    </configuration>
++    <recent_temporary>
++      <list>
++        <item itemvalue="Flutter.test.dart" />
++        <item itemvalue="Flutter.test.dart" />
++        <item itemvalue="Flutter.test.dart" />
++        <item itemvalue="Flutter.test.dart" />
++        <item itemvalue="Flutter.test.dart" />
++      </list>
++    </recent_temporary>
++  </component>
++  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
++  <component name="TaskManager">
++    <task active="true" id="Default" summary="Default task">
++      <changelist id="13178677-1dff-4855-a748-b263d6799d61" name="Changes" comment="" />
++      <created>1745763636699</created>
++      <option name="number" value="Default" />
++      <option name="presentableId" value="Default" />
++      <updated>1745763636699</updated>
++    </task>
++    <task id="LOCAL-00001" summary="Add HomeScreen">
++      <option name="closed" value="true" />
++      <created>1745767771917</created>
++      <option name="number" value="00001" />
++      <option name="presentableId" value="LOCAL-00001" />
++      <option name="project" value="LOCAL" />
++      <updated>1745767771917</updated>
++    </task>
++    <task id="LOCAL-00002" summary="Add package">
++      <option name="closed" value="true" />
++      <created>1745768101204</created>
++      <option name="number" value="00002" />
++      <option name="presentableId" value="LOCAL-00002" />
++      <option name="project" value="LOCAL" />
++      <updated>1745768101204</updated>
++    </task>
++    <task id="LOCAL-00003" summary="Add constant.dart">
++      <option name="closed" value="true" />
++      <created>1745768624512</created>
++      <option name="number" value="00003" />
++      <option name="presentableId" value="LOCAL-00003" />
++      <option name="project" value="LOCAL" />
++      <updated>1745768624512</updated>
++    </task>
++    <task id="LOCAL-00004" summary="Add utils.dart">
++      <option name="closed" value="true" />
++      <created>1745768789564</created>
++      <option name="number" value="00004" />
++      <option name="presentableId" value="LOCAL-00004" />
++      <option name="project" value="LOCAL" />
++      <updated>1745768789564</updated>
++    </task>
++    <task id="LOCAL-00005" summary="Add model">
++      <option name="closed" value="true" />
++      <created>1745771926311</created>
++      <option name="number" value="00005" />
++      <option name="presentableId" value="LOCAL-00005" />
++      <option name="project" value="LOCAL" />
++      <updated>1745771926311</updated>
++    </task>
++    <task id="LOCAL-00006" summary="Add source.dart">
++      <option name="closed" value="true" />
++      <created>1745772029803</created>
++      <option name="number" value="00006" />
++      <option name="presentableId" value="LOCAL-00006" />
++      <option name="project" value="LOCAL" />
++      <updated>1745772029803</updated>
++    </task>
++    <task id="LOCAL-00007" summary="Add interface repository">
++      <option name="closed" value="true" />
++      <created>1745772323846</created>
++      <option name="number" value="00007" />
++      <option name="presentableId" value="LOCAL-00007" />
++      <option name="project" value="LOCAL" />
++      <updated>1745772323846</updated>
++    </task>
++    <task id="LOCAL-00008" summary="Add implementation repository">
++      <option name="closed" value="true" />
++      <created>1745772356304</created>
++      <option name="number" value="00008" />
++      <option name="presentableId" value="LOCAL-00008" />
++      <option name="project" value="LOCAL" />
++      <updated>1745772356304</updated>
++    </task>
++    <task id="LOCAL-00009" summary="Add finance_entity.dart">
++      <option name="closed" value="true" />
++      <created>1745772578457</created>
++      <option name="number" value="00009" />
++      <option name="presentableId" value="LOCAL-00009" />
++      <option name="project" value="LOCAL" />
++      <updated>1745772578457</updated>
++    </task>
++    <task id="LOCAL-00010" summary="Add custom widget">
++      <option name="closed" value="true" />
++      <created>1745772818312</created>
++      <option name="number" value="00010" />
++      <option name="presentableId" value="LOCAL-00010" />
++      <option name="project" value="LOCAL" />
++      <updated>1745772818312</updated>
++    </task>
++    <task id="LOCAL-00011" summary="Add view model">
++      <option name="closed" value="true" />
++      <created>1745773017615</created>
++      <option name="number" value="00011" />
++      <option name="presentableId" value="LOCAL-00011" />
++      <option name="project" value="LOCAL" />
++      <updated>1745773017615</updated>
++    </task>
++    <task id="LOCAL-00012" summary="Add routes.dart">
++      <option name="closed" value="true" />
++      <created>1745773128315</created>
++      <option name="number" value="00012" />
++      <option name="presentableId" value="LOCAL-00012" />
++      <option name="project" value="LOCAL" />
++      <updated>1745773128315</updated>
++    </task>
++    <task id="LOCAL-00013" summary="Add colors.dart">
++      <option name="closed" value="true" />
++      <created>1745774650256</created>
++      <option name="number" value="00013" />
++      <option name="presentableId" value="LOCAL-00013" />
++      <option name="project" value="LOCAL" />
++      <updated>1745774650256</updated>
++    </task>
++    <task id="LOCAL-00014" summary="Add base_stateless_widget.darttatless">
++      <option name="closed" value="true" />
++      <created>1745849602073</created>
++      <option name="number" value="00014" />
++      <option name="presentableId" value="LOCAL-00014" />
++      <option name="project" value="LOCAL" />
++      <updated>1745849602073</updated>
++    </task>
++    <task id="LOCAL-00015" summary="Verify each menu item displays its correct icon">
++      <option name="closed" value="true" />
++      <created>1749651594655</created>
++      <option name="number" value="00015" />
++      <option name="presentableId" value="LOCAL-00015" />
++      <option name="project" value="LOCAL" />
++      <updated>1749651594656</updated>
++    </task>
++    <task id="LOCAL-00016" summary="Ensure no menu items are shown when list is empty">
++      <option name="closed" value="true" />
++      <created>1749651767373</created>
++      <option name="number" value="00016" />
++      <option name="presentableId" value="LOCAL-00016" />
++      <option name="project" value="LOCAL" />
++      <updated>1749651767374</updated>
++    </task>
++    <task id="LOCAL-00017" summary="Resolve bug related update transaction">
++      <option name="closed" value="true" />
++      <created>1749654982898</created>
++      <option name="number" value="00017" />
++      <option name="presentableId" value="LOCAL-00017" />
++      <option name="project" value="LOCAL" />
++      <updated>1749654982900</updated>
++    </task>
++    <task id="LOCAL-00018" summary="Update category_entity.dart">
++      <option name="closed" value="true" />
++      <created>1749655056294</created>
++      <option name="number" value="00018" />
++      <option name="presentableId" value="LOCAL-00018" />
++      <option name="project" value="LOCAL" />
++      <updated>1749655056294</updated>
++    </task>
++    <task id="LOCAL-00019" summary="Update category_entity.dart">
++      <option name="closed" value="true" />
++      <created>1749655471280</created>
++      <option name="number" value="00019" />
++      <option name="presentableId" value="LOCAL-00019" />
++      <option name="project" value="LOCAL" />
++      <updated>1749655471282</updated>
++    </task>
++    <task id="LOCAL-00020" summary="Update extension.dart">
++      <option name="closed" value="true" />
++      <created>1749658109534</created>
++      <option name="number" value="00020" />
++      <option name="presentableId" value="LOCAL-00020" />
++      <option name="project" value="LOCAL" />
++      <updated>1749658109534</updated>
++    </task>
++    <task id="LOCAL-00021" summary="Update getCategoryColor">
++      <option name="closed" value="true" />
++      <created>1749658385895</created>
++      <option name="number" value="00021" />
++      <option name="presentableId" value="LOCAL-00021" />
++      <option name="project" value="LOCAL" />
++      <updated>1749658385895</updated>
++    </task>
++    <task id="LOCAL-00022" summary="Update getCategoryIconPath">
++      <option name="closed" value="true" />
++      <created>1749658407095</created>
++      <option name="number" value="00022" />
++      <option name="presentableId" value="LOCAL-00022" />
++      <option name="project" value="LOCAL" />
++      <updated>1749658407096</updated>
++    </task>
++    <task id="LOCAL-00023" summary="Clean code">
++      <option name="closed" value="true" />
++      <created>1749658424583</created>
++      <option name="number" value="00023" />
++      <option name="presentableId" value="LOCAL-00023" />
++      <option name="project" value="LOCAL" />
++      <updated>1749658424583</updated>
++    </task>
++    <task id="LOCAL-00024" summary="Refactor">
++      <option name="closed" value="true" />
++      <created>1749658645864</created>
++      <option name="number" value="00024" />
++      <option name="presentableId" value="LOCAL-00024" />
++      <option name="project" value="LOCAL" />
++      <updated>1749658645864</updated>
++    </task>
++    <task id="LOCAL-00025" summary="Add custom_button_test.dart">
++      <option name="closed" value="true" />
++      <created>1749658657783</created>
++      <option name="number" value="00025" />
++      <option name="presentableId" value="LOCAL-00025" />
++      <option name="project" value="LOCAL" />
++      <updated>1749658657783</updated>
++    </task>
++    <task id="LOCAL-00026" summary="Verify that CustomButton displays correct text">
++      <option name="closed" value="true" />
++      <created>1749658736432</created>
++      <option name="number" value="00026" />
++      <option name="presentableId" value="LOCAL-00026" />
++      <option name="project" value="LOCAL" />
++      <updated>1749658736432</updated>
++    </task>
++    <task id="LOCAL-00027" summary="Ensure CustomButton triggers onPressed callback when tapped">
++      <option name="closed" value="true" />
++      <created>1749658780042</created>
++      <option name="number" value="00027" />
++      <option name="presentableId" value="LOCAL-00027" />
++      <option name="project" value="LOCAL" />
++      <updated>1749658780042</updated>
++    </task>
++    <task id="LOCAL-00028" summary="Validate that CustomButton is disabled when onPressed is null">
++      <option name="closed" value="true" />
++      <created>1749658831799</created>
++      <option name="number" value="00028" />
++      <option name="presentableId" value="LOCAL-00028" />
++      <option name="project" value="LOCAL" />
++      <updated>1749658831800</updated>
++    </task>
++    <task id="LOCAL-00029" summary="Check CustomButton has correct style and border radius">
++      <option name="closed" value="true" />
++      <created>1749658870549</created>
++      <option name="number" value="00029" />
++      <option name="presentableId" value="LOCAL-00029" />
++      <option name="project" value="LOCAL" />
++      <updated>1749658870549</updated>
++    </task>
++    <task id="LOCAL-00030" summary="Add create_transaction_screen_test.dart">
++      <option name="closed" value="true" />
++      <created>1749711627225</created>
++      <option name="number" value="00030" />
++      <option name="presentableId" value="LOCAL-00030" />
++      <option name="project" value="LOCAL" />
++      <updated>1749711627225</updated>
++    </task>
++    <task id="LOCAL-00031" summary="Add mock_cubit.dart">
++      <option name="closed" value="true" />
++      <created>1749711642233</created>
++      <option name="number" value="00031" />
++      <option name="presentableId" value="LOCAL-00031" />
++      <option name="project" value="LOCAL" />
++      <updated>1749711642233</updated>
++    </task>
++    <task id="LOCAL-00032" summary="Ensure CreateTransactionScreen shows correct app bar title and action button text">
++      <option name="closed" value="true" />
++      <created>1749711864238</created>
++      <option name="number" value="00032" />
++      <option name="presentableId" value="LOCAL-00032" />
++      <option name="project" value="LOCAL" />
++      <updated>1749711864239</updated>
++    </task>
++    <task id="LOCAL-00033" summary="Verify createTransaction is called and navigator.pop is triggered on valid form submission">
++      <option name="closed" value="true" />
++      <created>1749712166766</created>
++      <option name="number" value="00033" />
++      <option name="presentableId" value="LOCAL-00033" />
++      <option name="project" value="LOCAL" />
++      <updated>1749712166767</updated>
++    </task>
++    <task id="LOCAL-00034" summary="Ensure Create button is disabled when required fields are empty">
++      <option name="closed" value="true" />
++      <created>1749712242085</created>
++      <option name="number" value="00034" />
++      <option name="presentableId" value="LOCAL-00034" />
++      <option name="project" value="LOCAL" />
++      <updated>1749712242086</updated>
++    </task>
++    <task id="LOCAL-00035" summary="Confirm current date is used as initial value in date picker">
++      <option name="closed" value="true" />
++      <created>1749712326603</created>
++      <option name="number" value="00035" />
++      <option name="presentableId" value="LOCAL-00035" />
++      <option name="project" value="LOCAL" />
++      <updated>1749712326604</updated>
++    </task>
++    <task id="LOCAL-00036" summary="Clean code">
++      <option name="closed" value="true" />
++      <created>1749712612384</created>
++      <option name="number" value="00036" />
++      <option name="presentableId" value="LOCAL-00036" />
++      <option name="project" value="LOCAL" />
++      <updated>1749712612384</updated>
++    </task>
++    <task id="LOCAL-00037" summary="Add update_transaction_screen_test.dart">
++      <option name="closed" value="true" />
++      <created>1749712669801</created>
++      <option name="number" value="00037" />
++      <option name="presentableId" value="LOCAL-00037" />
++      <option name="project" value="LOCAL" />
++      <updated>1749712669801</updated>
++    </task>
++    <task id="LOCAL-00038" summary="Verify UpdateTransactionScreen initializes fields with transaction data">
++      <option name="closed" value="true" />
++      <created>1749712814375</created>
++      <option name="number" value="00038" />
++      <option name="presentableId" value="LOCAL-00038" />
++      <option name="project" value="LOCAL" />
++      <updated>1749712814376</updated>
++    </task>
++    <task id="LOCAL-00039" summary="Ensure updateTransaction is called and screen pops on update">
++      <option name="closed" value="true" />
++      <created>1749712896409</created>
++      <option name="number" value="00039" />
++      <option name="presentableId" value="LOCAL-00039" />
++      <option name="project" value="LOCAL" />
++      <updated>1749712896409</updated>
++    </task>
++    <task id="LOCAL-00040" summary="Check initial display of category and date in UpdateTransactionScreen">
++      <option name="closed" value="true" />
++      <created>1749712961479</created>
++      <option name="number" value="00040" />
++      <option name="presentableId" value="LOCAL-00040" />
++      <option name="project" value="LOCAL" />
++      <updated>1749712961479</updated>
++    </task>
++    <option name="localTasksCounter" value="41" />
++    <servers />
++  </component>
++  <component name="Vcs.Log.Tabs.Properties">
++    <option name="TAB_STATES">
++      <map>
++        <entry key="MAIN">
++          <value>
++            <State />
++          </value>
++        </entry>
++      </map>
++    </option>
++  </component>
++  <component name="VcsManagerConfiguration">
++    <MESSAGE value="Add base_stateless_widget.darttatless" />
++    <MESSAGE value="Verify each menu item displays its correct icon" />
++    <MESSAGE value="Ensure no menu items are shown when list is empty" />
++    <MESSAGE value="Resolve bug related update transaction" />
++    <MESSAGE value="Update category_entity.dart" />
++    <MESSAGE value="Update extension.dart" />
++    <MESSAGE value="Update getCategoryColor" />
++    <MESSAGE value="Update getCategoryIconPath" />
++    <MESSAGE value="Refactor" />
++    <MESSAGE value="Add custom_button_test.dart" />
++    <MESSAGE value="Verify that CustomButton displays correct text" />
++    <MESSAGE value="Ensure CustomButton triggers onPressed callback when tapped" />
++    <MESSAGE value="Validate that CustomButton is disabled when onPressed is null" />
++    <MESSAGE value="Check CustomButton has correct style and border radius" />
++    <MESSAGE value="Add create_transaction_screen_test.dart" />
++    <MESSAGE value="Add mock_cubit.dart" />
++    <MESSAGE value="Ensure CreateTransactionScreen shows correct app bar title and action button text" />
++    <MESSAGE value="Verify createTransaction is called and navigator.pop is triggered on valid form submission" />
++    <MESSAGE value="Ensure Create button is disabled when required fields are empty" />
++    <MESSAGE value="Confirm current date is used as initial value in date picker" />
++    <MESSAGE value="Clean code" />
++    <MESSAGE value="Add update_transaction_screen_test.dart" />
++    <MESSAGE value="Verify UpdateTransactionScreen initializes fields with transaction data" />
++    <MESSAGE value="Ensure updateTransaction is called and screen pops on update" />
++    <MESSAGE value="Check initial display of category and date in UpdateTransactionScreen" />
++    <option name="LAST_COMMIT_MESSAGE" value="Check initial display of category and date in UpdateTransactionScreen" />
++  </component>
+ </project>
+\ No newline at end of file
+Index: .idea/libraries/Flutter_Plugins.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><component name=\"libraryTable\">\n  <library name=\"Flutter Plugins\" type=\"FlutterPluginsLibraryType\">\n    <CLASSES>\n      <root url=\"file://$USER_HOME$/.pub-cache/hosted/pub.dev/path_provider-2.1.5\" />\n      <root url=\"file://$USER_HOME$/.pub-cache/hosted/pub.dev/path_provider_foundation-2.4.1\" />\n      <root url=\"file://$USER_HOME$/.pub-cache/hosted/pub.dev/path_provider_linux-2.2.1\" />\n      <root url=\"file://$USER_HOME$/.pub-cache/hosted/pub.dev/path_provider_android-2.2.17\" />\n      <root url=\"file://$USER_HOME$/.pub-cache/hosted/pub.dev/path_provider_windows-2.3.0\" />\n    </CLASSES>\n    <JAVADOC />\n    <SOURCES />\n  </library>\n</component>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/libraries/Flutter_Plugins.xml b/.idea/libraries/Flutter_Plugins.xml
+--- a/.idea/libraries/Flutter_Plugins.xml	(revision 49368156e4383368212408bb1544dc9d97442235)
++++ b/.idea/libraries/Flutter_Plugins.xml	(date 1749651437369)
+@@ -6,6 +6,12 @@
+       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/path_provider_linux-2.2.1" />
+       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/path_provider_android-2.2.17" />
+       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/path_provider_windows-2.3.0" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/shared_preferences_windows-2.4.1" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/shared_preferences_web-2.4.3" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/shared_preferences_foundation-2.5.4" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/shared_preferences_linux-2.4.1" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/shared_preferences_android-2.4.10" />
++      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/shared_preferences-2.5.3" />
+     </CLASSES>
+     <JAVADOC />
+     <SOURCES />
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"ProjectRootManager\">\n    <output url=\"file://$PROJECT_DIR$/out\" />\n  </component>\n  <component name=\"ProjectType\">\n    <option name=\"id\" value=\"io.flutter\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision 49368156e4383368212408bb1544dc9d97442235)
++++ b/.idea/misc.xml	(date 1749713578409)
+@@ -1,4 +1,3 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="ProjectRootManager">
+     <output url="file://$PROJECT_DIR$/out" />
+Index: macos/Flutter/GeneratedPluginRegistrant.swift
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>//\n//  Generated file. Do not edit.\n//\n\nimport FlutterMacOS\nimport Foundation\n\nimport path_provider_foundation\n\nfunc RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {\n  PathProviderPlugin.register(with: registry.registrar(forPlugin: \"PathProviderPlugin\"))\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/macos/Flutter/GeneratedPluginRegistrant.swift b/macos/Flutter/GeneratedPluginRegistrant.swift
+--- a/macos/Flutter/GeneratedPluginRegistrant.swift	(revision 49368156e4383368212408bb1544dc9d97442235)
++++ b/macos/Flutter/GeneratedPluginRegistrant.swift	(date 1749974145984)
+@@ -6,7 +6,9 @@
+ import Foundation
+ 
+ import path_provider_foundation
++import shared_preferences_foundation
+ 
+ func RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {
+   PathProviderPlugin.register(with: registry.registrar(forPlugin: "PathProviderPlugin"))
++  SharedPreferencesPlugin.register(with: registry.registrar(forPlugin: "SharedPreferencesPlugin"))
+ }
+Index: .dart_tool/dartpad/web_plugin_registrant.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>// Flutter web plugin registrant file.\n//\n// Generated file. Do not edit.\n//\n\n// ignore_for_file: type=lint\n\nvoid registerPlugins() {}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.dart_tool/dartpad/web_plugin_registrant.dart b/.dart_tool/dartpad/web_plugin_registrant.dart
+--- a/.dart_tool/dartpad/web_plugin_registrant.dart	(revision 49368156e4383368212408bb1544dc9d97442235)
++++ b/.dart_tool/dartpad/web_plugin_registrant.dart	(date 1749974145938)
+@@ -3,6 +3,14 @@
+ // Generated file. Do not edit.
+ //
+ 
++// @dart = 2.13
+ // ignore_for_file: type=lint
+ 
+-void registerPlugins() {}
++import 'package:shared_preferences_web/shared_preferences_web.dart';
++import 'package:flutter_web_plugins/flutter_web_plugins.dart';
++
++void registerPlugins([final Registrar? pluginRegistrar]) {
++  final Registrar registrar = pluginRegistrar ?? webPluginRegistrar;
++  SharedPreferencesPlugin.registerWith(registrar);
++  registrar.registerMessageHandler();
++}
