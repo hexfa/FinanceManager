@@ -9,31 +9,29 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="13178677-1dff-4855-a748-b263d6799d61" name="Changes" comment="Update food.svg">
-      <change afterPath="$PROJECT_DIR$/.dart_tool/package_graph.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_5_12_2025_AD,_18_44_[Changes]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_5_12_2025_AD__18_44__Changes_.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_5_6_2025_AD,_20_21_[Changes]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_5_6_2025_AD__20_21__Changes_.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_6_10_2025_AD,_17_34_[Changes]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_6_10_2025_AD__17_34__Changes_.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_6_15_2025_AD,_18_33_[Changes]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_6_18_2025_AD,_10_27_[Changes]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_6_9_2025_AD,_22_01_[Changes]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_6_9_2025_AD,_22_01_[Changes]1/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_6_9_2025_AD__22_01__Changes_.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/1f4d31b5789a081ca3b86bf2f0ea80cd/gen_localizations.stamp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/1f4d31b5789a081ca3b86bf2f0ea80cd/outputs.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/2ff85ecde03694009e96e22d33cadd54/gen_dart_plugin_registrant.stamp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/2ff85ecde03694009e96e22d33cadd54/gen_localizations.stamp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/flutter_assets/assets/icons/income.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/flutter_assets/assets/icons/other.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/flutter_assets/assets/icons/sport.svg" afterDir="false" />
+    <list default="true" id="13178677-1dff-4855-a748-b263d6799d61" name="Changes" comment="Add file">
+      <change afterPath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/App.framework/flutter_assets/assets/icons/sport.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/App.framework/flutter_assets/assets/icons/work.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/App.framework/flutter_assets/vm_snapshot_data" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/Runner.app/Base.lproj/LaunchScreen.storyboardc/UIViewController-01J-lp-oVM.nib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/Runner.app/Base.lproj/Main.storyboardc/UIViewController-BYZ-38-t0r.nib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/Runner.app/Frameworks/App.framework/flutter_assets/assets/icons/sport.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/Runner.app/Frameworks/App.framework/flutter_assets/assets/icons/work.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/Runner.app/Frameworks/App.framework/flutter_assets/vm_snapshot_data" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/path_provider_foundation/path_provider_foundation.framework/Modules/path_provider_foundation.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/path_provider_foundation/path_provider_foundation.framework/Modules/path_provider_foundation.swiftmodule/x86_64-apple-ios-simulator.abi.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/path_provider_foundation/path_provider_foundation.framework/Modules/path_provider_foundation.swiftmodule/x86_64-apple-ios-simulator.swiftdoc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/path_provider_foundation/path_provider_foundation.framework/Modules/path_provider_foundation.swiftmodule/x86_64-apple-ios-simulator.swiftmodule" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/shared_preferences_foundation/shared_preferences_foundation.framework/Modules/shared_preferences_foundation.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/shared_preferences_foundation/shared_preferences_foundation.framework/Modules/shared_preferences_foundation.swiftmodule/x86_64-apple-ios-simulator.abi.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/shared_preferences_foundation/shared_preferences_foundation.framework/Modules/shared_preferences_foundation.swiftmodule/x86_64-apple-ios-simulator.swiftdoc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/shared_preferences_foundation/shared_preferences_foundation.framework/Modules/shared_preferences_foundation.swiftmodule/x86_64-apple-ios-simulator.swiftmodule" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/ios/iphonesimulator/Runner.app/Base.lproj/LaunchScreen.storyboardc/UIViewController-01J-lp-oVM.nib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/ios/iphonesimulator/Runner.app/Base.lproj/Main.storyboardc/UIViewController-BYZ-38-t0r.nib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/ios/iphonesimulator/Runner.app/Frameworks/App.framework/flutter_assets/assets/icons/sport.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/ios/iphonesimulator/Runner.app/Frameworks/App.framework/flutter_assets/assets/icons/work.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/ios/iphonesimulator/Runner.app/Frameworks/App.framework/flutter_assets/vm_snapshot_data" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/flutter_assets/NOTICES" beforeDir="false" afterPath="$PROJECT_DIR$/build/flutter_assets/NOTICES" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Podfile" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Podfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner.xcodeproj/xcshareddata/xcschemes/Runner.xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner.xcodeproj/xcshareddata/xcschemes/Runner.xcscheme" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,246 +129,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1745763636699</updated>
-    </task>
-    <task id="LOCAL-00022" summary="Update getCategoryIconPath">
-      <option name="closed" value="true" />
-      <created>1749658407095</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1749658407096</updated>
-    </task>
-    <task id="LOCAL-00023" summary="Clean code">
-      <option name="closed" value="true" />
-      <created>1749658424583</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1749658424583</updated>
-    </task>
-    <task id="LOCAL-00024" summary="Refactor">
-      <option name="closed" value="true" />
-      <created>1749658645864</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1749658645864</updated>
-    </task>
-    <task id="LOCAL-00025" summary="Add custom_button_test.dart">
-      <option name="closed" value="true" />
-      <created>1749658657783</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1749658657783</updated>
-    </task>
-    <task id="LOCAL-00026" summary="Verify that CustomButton displays correct text">
-      <option name="closed" value="true" />
-      <created>1749658736432</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1749658736432</updated>
-    </task>
-    <task id="LOCAL-00027" summary="Ensure CustomButton triggers onPressed callback when tapped">
-      <option name="closed" value="true" />
-      <created>1749658780042</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1749658780042</updated>
-    </task>
-    <task id="LOCAL-00028" summary="Validate that CustomButton is disabled when onPressed is null">
-      <option name="closed" value="true" />
-      <created>1749658831799</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1749658831800</updated>
-    </task>
-    <task id="LOCAL-00029" summary="Check CustomButton has correct style and border radius">
-      <option name="closed" value="true" />
-      <created>1749658870549</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1749658870549</updated>
-    </task>
-    <task id="LOCAL-00030" summary="Add create_transaction_screen_test.dart">
-      <option name="closed" value="true" />
-      <created>1749711627225</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1749711627225</updated>
-    </task>
-    <task id="LOCAL-00031" summary="Add mock_cubit.dart">
-      <option name="closed" value="true" />
-      <created>1749711642233</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1749711642233</updated>
-    </task>
-    <task id="LOCAL-00032" summary="Ensure CreateTransactionScreen shows correct app bar title and action button text">
-      <option name="closed" value="true" />
-      <created>1749711864238</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1749711864239</updated>
-    </task>
-    <task id="LOCAL-00033" summary="Verify createTransaction is called and navigator.pop is triggered on valid form submission">
-      <option name="closed" value="true" />
-      <created>1749712166766</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1749712166767</updated>
-    </task>
-    <task id="LOCAL-00034" summary="Ensure Create button is disabled when required fields are empty">
-      <option name="closed" value="true" />
-      <created>1749712242085</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1749712242086</updated>
-    </task>
-    <task id="LOCAL-00035" summary="Confirm current date is used as initial value in date picker">
-      <option name="closed" value="true" />
-      <created>1749712326603</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1749712326604</updated>
-    </task>
-    <task id="LOCAL-00036" summary="Clean code">
-      <option name="closed" value="true" />
-      <created>1749712612384</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1749712612384</updated>
-    </task>
-    <task id="LOCAL-00037" summary="Add update_transaction_screen_test.dart">
-      <option name="closed" value="true" />
-      <created>1749712669801</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1749712669801</updated>
-    </task>
-    <task id="LOCAL-00038" summary="Verify UpdateTransactionScreen initializes fields with transaction data">
-      <option name="closed" value="true" />
-      <created>1749712814375</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1749712814376</updated>
-    </task>
-    <task id="LOCAL-00039" summary="Ensure updateTransaction is called and screen pops on update">
-      <option name="closed" value="true" />
-      <created>1749712896409</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1749712896409</updated>
-    </task>
-    <task id="LOCAL-00040" summary="Check initial display of category and date in UpdateTransactionScreen">
-      <option name="closed" value="true" />
-      <created>1749712961479</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1749712961479</updated>
-    </task>
-    <task id="LOCAL-00041" summary="Add app_localizations.dart">
-      <option name="closed" value="true" />
-      <created>1760961409455</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1760961409455</updated>
-    </task>
-    <task id="LOCAL-00042" summary="Add app_localizations_en.dart">
-      <option name="closed" value="true" />
-      <created>1760961620013</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1760961620013</updated>
-    </task>
-    <task id="LOCAL-00043" summary="Add app_localizations_fa.dart">
-      <option name="closed" value="true" />
-      <created>1760961628705</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1760961628705</updated>
-    </task>
-    <task id="LOCAL-00044" summary="Update base_state.dart.dart">
-      <option name="closed" value="true" />
-      <created>1760961653878</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1760961653878</updated>
-    </task>
-    <task id="LOCAL-00045" summary="Update base_stateless_widget.dart">
-      <option name="closed" value="true" />
-      <created>1760961672483</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1760961672485</updated>
-    </task>
-    <task id="LOCAL-00046" summary="Update finance_manager.iml">
-      <option name="closed" value="true" />
-      <created>1760961708119</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1760961708119</updated>
-    </task>
-    <task id="LOCAL-00047" summary="Update Dart_Packages.iml">
-      <option name="closed" value="true" />
-      <created>1760961737674</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
-      <option name="project" value="LOCAL" />
-      <updated>1760961737675</updated>
-    </task>
-    <task id="LOCAL-00048" summary="Update Flutter_Plugins.xml">
-      <option name="closed" value="true" />
-      <created>1760961870310</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1760961870311</updated>
-    </task>
-    <task id="LOCAL-00049" summary="Update flutter-plugins-dependencies">
-      <option name="closed" value="true" />
-      <created>1760962438553</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1760962438554</updated>
-    </task>
-    <task id="LOCAL-00050" summary="Update AssetManifest.bin">
-      <option name="closed" value="true" />
-      <created>1760962453694</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1760962453698</updated>
-    </task>
-    <task id="LOCAL-00051" summary="Update AssetManifest.bin.json">
-      <option name="closed" value="true" />
-      <created>1760962468841</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1760962468842</updated>
     </task>
     <task id="LOCAL-00052" summary="Update AssetManifest.json">
       <option name="closed" value="true" />
@@ -524,7 +282,247 @@
       <option name="project" value="LOCAL" />
       <updated>1761138070649</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="Add file">
+      <option name="closed" value="true" />
+      <created>1762862309307</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1762862309308</updated>
+    </task>
+    <task id="LOCAL-00072" summary="Add file">
+      <option name="closed" value="true" />
+      <created>1762862314165</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1762862314165</updated>
+    </task>
+    <task id="LOCAL-00073" summary="Add file">
+      <option name="closed" value="true" />
+      <created>1762862471964</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1762862471966</updated>
+    </task>
+    <task id="LOCAL-00074" summary="Add file">
+      <option name="closed" value="true" />
+      <created>1762862482932</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1762862482933</updated>
+    </task>
+    <task id="LOCAL-00075" summary="Add file">
+      <option name="closed" value="true" />
+      <created>1762862496175</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1762862496175</updated>
+    </task>
+    <task id="LOCAL-00076" summary="Add file">
+      <option name="closed" value="true" />
+      <created>1762862511075</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1762862511075</updated>
+    </task>
+    <task id="LOCAL-00077" summary="Add file">
+      <option name="closed" value="true" />
+      <created>1762862523431</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1762862523432</updated>
+    </task>
+    <task id="LOCAL-00078" summary="Add file">
+      <option name="closed" value="true" />
+      <created>1762862537516</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1762862537516</updated>
+    </task>
+    <task id="LOCAL-00079" summary="Add file">
+      <option name="closed" value="true" />
+      <created>1762862554104</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1762862554105</updated>
+    </task>
+    <task id="LOCAL-00080" summary="Add file">
+      <option name="closed" value="true" />
+      <created>1762862561105</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1762862561105</updated>
+    </task>
+    <task id="LOCAL-00081" summary="Add file">
+      <option name="closed" value="true" />
+      <created>1762862589955</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1762862589955</updated>
+    </task>
+    <task id="LOCAL-00082" summary="Add file">
+      <option name="closed" value="true" />
+      <created>1762862597431</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1762862597431</updated>
+    </task>
+    <task id="LOCAL-00083" summary="Add file">
+      <option name="closed" value="true" />
+      <created>1762862602723</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1762862602723</updated>
+    </task>
+    <task id="LOCAL-00084" summary="Add file">
+      <option name="closed" value="true" />
+      <created>1762862611643</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1762862611644</updated>
+    </task>
+    <task id="LOCAL-00085" summary="Add file">
+      <option name="closed" value="true" />
+      <created>1762862617592</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1762862617595</updated>
+    </task>
+    <task id="LOCAL-00086" summary="Add file">
+      <option name="closed" value="true" />
+      <created>1762946678556</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1762946678558</updated>
+    </task>
+    <task id="LOCAL-00087" summary="Add file">
+      <option name="closed" value="true" />
+      <created>1762946700872</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1762946700872</updated>
+    </task>
+    <task id="LOCAL-00088" summary="Add file">
+      <option name="closed" value="true" />
+      <created>1762946716399</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1762946716401</updated>
+    </task>
+    <task id="LOCAL-00089" summary="Add file">
+      <option name="closed" value="true" />
+      <created>1762946722705</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1762946722705</updated>
+    </task>
+    <task id="LOCAL-00090" summary="Add file">
+      <option name="closed" value="true" />
+      <created>1762946728617</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1762946728617</updated>
+    </task>
+    <task id="LOCAL-00091" summary="Add file">
+      <option name="closed" value="true" />
+      <created>1762946733837</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1762946733837</updated>
+    </task>
+    <task id="LOCAL-00092" summary="Add file">
+      <option name="closed" value="true" />
+      <created>1762946741769</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1762946741771</updated>
+    </task>
+    <task id="LOCAL-00093" summary="Add file">
+      <option name="closed" value="true" />
+      <created>1762946749745</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1762946749745</updated>
+    </task>
+    <task id="LOCAL-00094" summary="Add file">
+      <option name="closed" value="true" />
+      <created>1762946765072</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1762946765072</updated>
+    </task>
+    <task id="LOCAL-00095" summary="Add file">
+      <option name="closed" value="true" />
+      <created>1762946769524</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1762946769525</updated>
+    </task>
+    <task id="LOCAL-00096" summary="Add file">
+      <option name="closed" value="true" />
+      <created>1762946793132</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1762946793133</updated>
+    </task>
+    <task id="LOCAL-00097" summary="Add file">
+      <option name="closed" value="true" />
+      <created>1762946802537</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1762946802537</updated>
+    </task>
+    <task id="LOCAL-00098" summary="Add file">
+      <option name="closed" value="true" />
+      <created>1762946808288</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1762946808288</updated>
+    </task>
+    <task id="LOCAL-00099" summary="Add file">
+      <option name="closed" value="true" />
+      <created>1762946812932</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1762946812933</updated>
+    </task>
+    <task id="LOCAL-00100" summary="Add file">
+      <option name="closed" value="true" />
+      <created>1762946840222</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1762946840222</updated>
+    </task>
+    <option name="localTasksCounter" value="101" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -561,9 +559,9 @@
     <MESSAGE value="Update contents.xcworkspacedata" />
     <MESSAGE value="Add education.svg" />
     <MESSAGE value="Add expense.svg" />
-    <MESSAGE value="Add file" />
     <MESSAGE value="Update finance_manager.iml" />
     <MESSAGE value="Update food.svg" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update food.svg" />
+    <MESSAGE value="Add file" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add file" />
   </component>
 </project>
