@@ -21,18 +21,27 @@ final RouteObserver<ModalRoute<void>> routeObserver =
     RouteObserver<ModalRoute<void>>();
 
 void main() async {
+
   WidgetsFlutterBinding.ensureInitialized();
+
   await Hive.initFlutter();
+
   Hive.registerAdapter(TransactionTypeAdapter());
+
   Hive.registerAdapter(TransactionAdapter());
+
   Hive.registerAdapter(CategoryAdapter());
+
   Hive.registerAdapter(CategoryEntityAdapter());
+
   await Hive.openBox<TransactionEntity>('transactions');
 
   await setup();
 
   final prefs = await SharedPreferences.getInstance();
+
   final isDarkTheme = prefs.getBool(ConfigurationKey.darkTheme) ?? false;
+
   final currency = prefs.getString(ConfigurationKey.currency) ?? 'USD';
 
   runApp(MyApp(initialThemeIsDark: isDarkTheme, initialCurrency: currency));
