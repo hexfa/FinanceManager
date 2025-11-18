@@ -32,7 +32,6 @@ void main() async {
   final prefs = await SharedPreferences.getInstance();
   final isDarkTheme = prefs.getBool(ConfigurationKey.darkTheme) ?? false;
   final currency = prefs.getString(ConfigurationKey.currency) ?? 'USD';
-
   runApp(MyApp(initialThemeIsDark: isDarkTheme, initialCurrency: currency));
 }
 
