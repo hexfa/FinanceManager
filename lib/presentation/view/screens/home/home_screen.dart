@@ -51,7 +51,6 @@ class _HomeState extends BaseState<HomeScreen> with RouteAware {
   Widget build(BuildContext context) {
 
     List<TransactionChartData> data = [];
-
     List<Transaction> transactions = [];
     double balance = 0, income = 0, expense = 0;
     int transactionLength = 0;
