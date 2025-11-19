@@ -27,7 +27,6 @@ class _HomeState extends BaseState<HomeScreen> with RouteAware {
 
   @override
   void didChangeDependencies() {
-
     super.didChangeDependencies();
     homeBloc = context.read<HomeCubit>();
     homeBloc.loadInitialData();
