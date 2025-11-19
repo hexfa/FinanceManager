@@ -39,7 +39,6 @@ class _HomeState extends BaseState<HomeScreen> with RouteAware {
 
   @override
   void dispose() {
-
     routeObserver.unsubscribe(this);
     homeBloc.close();
     super.dispose();
