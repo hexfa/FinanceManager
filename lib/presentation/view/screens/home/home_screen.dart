@@ -66,7 +66,6 @@ class _HomeState extends BaseState<HomeScreen> with RouteAware {
           transactions = state.transactionList;
 
           income = state.income;
-
           expense = state.expense;
           balance = state.balance;
           transactionLength = state.transactionLength;
