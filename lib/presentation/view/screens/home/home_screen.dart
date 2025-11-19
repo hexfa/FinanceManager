@@ -29,7 +29,6 @@ class _HomeState extends BaseState<HomeScreen> with RouteAware {
   void didChangeDependencies() {
 
     super.didChangeDependencies();
-
     homeBloc = context.read<HomeCubit>();
     homeBloc.loadInitialData();
     routeObserver.subscribe(this, ModalRoute.of(context)!);
