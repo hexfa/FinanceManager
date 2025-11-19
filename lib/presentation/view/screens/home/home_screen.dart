@@ -22,7 +22,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeState extends BaseState<HomeScreen> with RouteAware {
-
   late HomeCubit homeBloc;
 
   @override
