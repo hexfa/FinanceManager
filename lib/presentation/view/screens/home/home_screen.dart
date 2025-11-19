@@ -62,7 +62,6 @@ class _HomeState extends BaseState<HomeScreen> with RouteAware {
       builder: (context, state) {
         if (state is InitialData) {
           data = state.dataList;
-
           transactions = state.transactionList;
           income = state.income;
           expense = state.expense;
