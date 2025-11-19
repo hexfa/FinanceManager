@@ -55,7 +55,6 @@ class _HomeState extends BaseState<HomeScreen> with RouteAware {
     List<Transaction> transactions = [];
 
     double balance = 0, income = 0, expense = 0;
-
     int transactionLength = 0;
 
     return BlocBuilder<HomeCubit, HomeState>(
