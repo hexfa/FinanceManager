@@ -22,12 +22,16 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeState extends BaseState<HomeScreen> with RouteAware {
+
   late HomeCubit homeBloc;
 
   @override
   void didChangeDependencies() {
+
     super.didChangeDependencies();
+
     homeBloc = context.read<HomeCubit>();
+
     homeBloc.loadInitialData();
 
     routeObserver.subscribe(this, ModalRoute.of(context)!);
@@ -35,24 +39,34 @@ class _HomeState extends BaseState<HomeScreen> with RouteAware {
 
   @override
   void dispose() {
+
     routeObserver.unsubscribe(this);
+
     homeBloc.close();
+
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+
     List<TransactionChartData> data = [];
+
     List<Transaction> transactions = [];
+
     double balance = 0, income = 0, expense = 0;
+
     int transactionLength = 0;
 
     return BlocBuilder<HomeCubit, HomeState>(
       builder: (context, state) {
         if (state is InitialData) {
           data = state.dataList;
+
           transactions = state.transactionList;
+
           income = state.income;
+
           expense = state.expense;
           balance = state.balance;
           transactionLength = state.transactionLength;
