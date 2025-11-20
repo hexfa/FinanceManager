@@ -28,7 +28,6 @@ class WalletCard extends BaseStatelessWidget {
         width: double.infinity,
 
         padding: const EdgeInsets.all(16),
-
         decoration: BoxDecoration(
           color: theme(context).colorScheme.primary,
           borderRadius: BorderRadius.circular(12),
