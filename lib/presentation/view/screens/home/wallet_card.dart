@@ -22,22 +22,37 @@ class WalletCard extends BaseStatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
+
       child: Container(
+
         width: double.infinity,
+
         padding: const EdgeInsets.all(16),
+
         decoration: BoxDecoration(
+
           color: theme(context).colorScheme.primary,
+
           borderRadius: BorderRadius.circular(12),
+
           boxShadow: [
+
             BoxShadow(
+
               color: Colors.black.withValues(alpha: 0.2),
+
               blurRadius: 10,
+
               offset: const Offset(0, 4),
+
             ),
           ],
         ),
+
         child: Column(
+
           crossAxisAlignment: CrossAxisAlignment.center,
+
           children: [
             CurrencyLabel(icon: Icons.currency_exchange, balance: balance),
             const SizedBox(height: 8),
