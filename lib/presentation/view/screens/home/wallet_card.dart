@@ -52,7 +52,6 @@ class WalletCard extends BaseStatelessWidget {
         child: Column(
 
           crossAxisAlignment: CrossAxisAlignment.center,
-
           children: [
             CurrencyLabel(icon: Icons.currency_exchange, balance: balance),
             const SizedBox(height: 8),
