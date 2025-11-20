@@ -36,7 +36,6 @@ class WalletCard extends BaseStatelessWidget {
           borderRadius: BorderRadius.circular(12),
 
           boxShadow: [
-
             BoxShadow(
               color: Colors.black.withValues(alpha: 0.2),
               blurRadius: 10,
