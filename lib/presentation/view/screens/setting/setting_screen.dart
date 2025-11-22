@@ -27,7 +27,6 @@ class SettingScreen extends BaseStatelessWidget {
                 Text(
                   localization(context).country,
                   style: theme(context).textTheme.labelMedium?.copyWith(
-
                     color: theme(context).colorScheme.onSurface,
 
                     fontWeight: FontWeight.bold,
