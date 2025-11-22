@@ -21,7 +21,6 @@ class SettingScreen extends BaseStatelessWidget {
         builder: (context, state) {
           return Padding(
             padding: const EdgeInsets.all(16),
-
             child: Column(
 
               crossAxisAlignment: CrossAxisAlignment.start,
