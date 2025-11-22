@@ -15,49 +15,94 @@ class SettingScreen extends BaseStatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
+
       appBar: CustomAppBar(title: localization(context).settings),
+
       body: BlocBuilder<SettingCubit, SettingState>(
+
         builder: (context, state) {
+
           return Padding(
+
             padding: const EdgeInsets.all(16),
+
             child: Column(
+
               crossAxisAlignment: CrossAxisAlignment.start,
+
               children: [
+
                 Text(
+
                   localization(context).country,
+
                   style: theme(context).textTheme.labelMedium?.copyWith(
+
+
                     color: theme(context).colorScheme.onSurface,
+
                     fontWeight: FontWeight.bold,
+
                   ),
+
                 ),
+
                 SizedBox(height: 4),
+
                 CustomDropdown<Currency>(
+
                   items: currencyList,
+
                   value: state.currency,
+
                   onChanged: (value) {
+
                     if (value != null) {
+
                       getBloc<SettingCubit>(context).changeCurrency(value);
+
                     }
+
                   },
+
                   itemLabelBuilder:
+
                       (currency) => '${currency.code} - ${currency.name}',
+
                   iconBuilder: getCurrencyIcon,
+
                 ),
+
                 SizedBox(height: 16),
+
                 CustomSwitch(
+
                   label: localization(context).darkTheme,
+
                   value: state.isDarkTheme,
+
                   onChanged: (value) {
+
                     getBloc<SettingCubit>(context).toggleDarkTheme(value);
+
                   },
+
                 ),
+
                 _buildCreateCategory(context),
+
               ],
+
             ),
+
           );
-        },
+
+          },
+
       ),
+
     );
   }
 
