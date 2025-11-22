@@ -26,7 +26,6 @@ class SettingScreen extends BaseStatelessWidget {
               children: [
                 Text(
                   localization(context).country,
-
                   style: theme(context).textTheme.labelMedium?.copyWith(
 
 
