@@ -17,7 +17,6 @@ class SettingScreen extends BaseStatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(title: localization(context).settings),
-
       body: BlocBuilder<SettingCubit, SettingState>(
 
         builder: (context, state) {
