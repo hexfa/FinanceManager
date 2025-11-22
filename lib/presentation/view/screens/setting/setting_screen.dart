@@ -19,7 +19,6 @@ class SettingScreen extends BaseStatelessWidget {
       appBar: CustomAppBar(title: localization(context).settings),
       body: BlocBuilder<SettingCubit, SettingState>(
         builder: (context, state) {
-
           return Padding(
 
             padding: const EdgeInsets.all(16),
