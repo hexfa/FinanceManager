@@ -24,7 +24,6 @@ class SettingScreen extends BaseStatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-
                 Text(
 
                   localization(context).country,
