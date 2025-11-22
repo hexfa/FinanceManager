@@ -20,7 +20,6 @@ class SettingScreen extends BaseStatelessWidget {
       body: BlocBuilder<SettingCubit, SettingState>(
         builder: (context, state) {
           return Padding(
-
             padding: const EdgeInsets.all(16),
 
             child: Column(
