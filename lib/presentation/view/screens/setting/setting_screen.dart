@@ -30,7 +30,6 @@ class SettingScreen extends BaseStatelessWidget {
                     color: theme(context).colorScheme.onSurface,
                     fontWeight: FontWeight.bold,
                   ),
-
                 ),
 
                 SizedBox(height: 4),
