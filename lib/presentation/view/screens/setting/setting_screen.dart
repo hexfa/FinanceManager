@@ -29,7 +29,6 @@ class SettingScreen extends BaseStatelessWidget {
                   style: theme(context).textTheme.labelMedium?.copyWith(
                     color: theme(context).colorScheme.onSurface,
                     fontWeight: FontWeight.bold,
-
                   ),
 
                 ),
