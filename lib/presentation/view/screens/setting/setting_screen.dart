@@ -41,7 +41,6 @@ class SettingScreen extends BaseStatelessWidget {
                     }
                   },
                   itemLabelBuilder:
-
                       (currency) => '${currency.code} - ${currency.name}',
 
                   iconBuilder: getCurrencyIcon,
