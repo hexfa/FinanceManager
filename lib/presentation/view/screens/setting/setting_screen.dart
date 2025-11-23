@@ -35,7 +35,6 @@ class SettingScreen extends BaseStatelessWidget {
                 CustomDropdown<Currency>(
                   items: currencyList,
                   value: state.currency,
-
                   onChanged: (value) {
 
                     if (value != null) {
