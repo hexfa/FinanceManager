@@ -39,7 +39,6 @@ class SettingScreen extends BaseStatelessWidget {
                     if (value != null) {
                       getBloc<SettingCubit>(context).changeCurrency(value);
                     }
-
                   },
 
                   itemLabelBuilder:
