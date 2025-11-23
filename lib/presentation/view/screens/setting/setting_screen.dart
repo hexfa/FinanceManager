@@ -32,7 +32,6 @@ class SettingScreen extends BaseStatelessWidget {
                   ),
                 ),
                 SizedBox(height: 4),
-
                 CustomDropdown<Currency>(
 
                   items: currencyList,
