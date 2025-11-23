@@ -38,7 +38,6 @@ class SettingScreen extends BaseStatelessWidget {
                   onChanged: (value) {
                     if (value != null) {
                       getBloc<SettingCubit>(context).changeCurrency(value);
-
                     }
 
                   },
