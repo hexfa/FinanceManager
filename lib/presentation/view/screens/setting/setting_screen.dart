@@ -31,7 +31,6 @@ class SettingScreen extends BaseStatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-
                 SizedBox(height: 4),
 
                 CustomDropdown<Currency>(
