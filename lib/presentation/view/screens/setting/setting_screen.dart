@@ -52,7 +52,6 @@ class SettingScreen extends BaseStatelessWidget {
                     getBloc<SettingCubit>(context).toggleDarkTheme(value);
                   },
                 ),
-
                 _buildCreateCategory(context),
 
               ],
