@@ -44,7 +44,6 @@ class SettingScreen extends BaseStatelessWidget {
                       (currency) => '${currency.code} - ${currency.name}',
                   iconBuilder: getCurrencyIcon,
                 ),
-
                 SizedBox(height: 16),
                 CustomSwitch(
 
