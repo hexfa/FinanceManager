@@ -58,7 +58,6 @@ class SettingScreen extends BaseStatelessWidget {
           );
           },
       ),
-
     );
   }
 
