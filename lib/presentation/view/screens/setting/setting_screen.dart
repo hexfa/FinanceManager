@@ -48,7 +48,6 @@ class SettingScreen extends BaseStatelessWidget {
                 CustomSwitch(
                   label: localization(context).darkTheme,
                   value: state.isDarkTheme,
-
                   onChanged: (value) {
 
                     getBloc<SettingCubit>(context).toggleDarkTheme(value);
