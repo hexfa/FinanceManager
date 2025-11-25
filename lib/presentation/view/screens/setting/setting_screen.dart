@@ -54,7 +54,6 @@ class SettingScreen extends BaseStatelessWidget {
                 ),
                 _buildCreateCategory(context),
               ],
-
             ),
 
           );
