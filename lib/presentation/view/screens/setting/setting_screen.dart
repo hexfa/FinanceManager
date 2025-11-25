@@ -46,7 +46,6 @@ class SettingScreen extends BaseStatelessWidget {
                 ),
                 SizedBox(height: 16),
                 CustomSwitch(
-
                   label: localization(context).darkTheme,
 
                   value: state.isDarkTheme,
