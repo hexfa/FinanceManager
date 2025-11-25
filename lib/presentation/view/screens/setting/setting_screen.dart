@@ -50,7 +50,6 @@ class SettingScreen extends BaseStatelessWidget {
                   value: state.isDarkTheme,
                   onChanged: (value) {
                     getBloc<SettingCubit>(context).toggleDarkTheme(value);
-
                   },
 
                 ),
