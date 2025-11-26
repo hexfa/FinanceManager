@@ -33,7 +33,6 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
   void didChangeDependencies() {
     super.didChangeDependencies();
     getBloc<TransactionDetailCubit>().getTransactionById(widget.transactionId);
-
     routeObserver.subscribe(this, ModalRoute.of(context)!);
 
   }
