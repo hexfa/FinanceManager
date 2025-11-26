@@ -37,7 +37,6 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
   }
 
   @override
-
   void dispose() {
 
     routeObserver.unsubscribe(this);
