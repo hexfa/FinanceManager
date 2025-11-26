@@ -23,7 +23,6 @@ class DetailTransactionScreen extends StatefulWidget {
   @override
   State<DetailTransactionScreen> createState() =>
       _DetailTransactionScreenState();
-
 }
 
 class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
