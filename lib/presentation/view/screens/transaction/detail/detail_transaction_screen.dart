@@ -21,7 +21,6 @@ class DetailTransactionScreen extends StatefulWidget {
   const DetailTransactionScreen({super.key, required this.transactionId});
 
   @override
-
   State<DetailTransactionScreen> createState() =>
 
       _DetailTransactionScreenState();
