@@ -27,7 +27,6 @@ class DetailTransactionScreen extends StatefulWidget {
 
 class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
     with RouteAware {
-
   Transaction? transaction;
 
   @override
