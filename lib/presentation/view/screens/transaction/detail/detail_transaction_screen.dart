@@ -30,7 +30,6 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
   Transaction? transaction;
 
   @override
-
   void didChangeDependencies() {
 
     super.didChangeDependencies();
