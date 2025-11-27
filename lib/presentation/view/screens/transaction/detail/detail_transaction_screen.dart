@@ -50,7 +50,6 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
         builder: (context, state) {
           transaction = state.transaction;
           return Padding(
-
             padding: const EdgeInsets.all(16),
 
             child: Column(
