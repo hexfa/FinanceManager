@@ -54,7 +54,6 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-
                 Row(
 
                   mainAxisSize: MainAxisSize.max,
