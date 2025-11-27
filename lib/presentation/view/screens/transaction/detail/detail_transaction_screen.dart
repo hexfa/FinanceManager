@@ -47,7 +47,6 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
     return Scaffold(
       appBar: _appBar(),
       body: BlocBuilder<TransactionDetailCubit, TransactionDetailState>(
-
         builder: (context, state) {
 
           transaction = state.transaction;
