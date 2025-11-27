@@ -44,7 +44,6 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
 
       appBar: _appBar(),
