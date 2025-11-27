@@ -53,7 +53,6 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
             padding: const EdgeInsets.all(16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-
               children: [
 
                 Row(
