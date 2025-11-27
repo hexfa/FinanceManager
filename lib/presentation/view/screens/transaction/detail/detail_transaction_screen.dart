@@ -46,7 +46,6 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _appBar(),
-
       body: BlocBuilder<TransactionDetailCubit, TransactionDetailState>(
 
         builder: (context, state) {
