@@ -73,7 +73,6 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
                         Text(
                           ConvertString.formatDate(
                             transaction?.date ?? DateTime.now(),
-
                           ),
 
                           style: theme.textTheme.labelMedium?.copyWith(
