@@ -57,7 +57,6 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
                 Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
                   children: [
 
                     Column(
