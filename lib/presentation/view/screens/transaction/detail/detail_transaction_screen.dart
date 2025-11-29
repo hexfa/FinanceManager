@@ -60,7 +60,6 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
                   children: [
                     Column(
                       children: [
-
                         //title
                         Text(
 
