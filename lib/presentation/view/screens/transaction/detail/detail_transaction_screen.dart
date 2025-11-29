@@ -63,7 +63,6 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
                         //title
                         Text(
                           transaction?.title ?? '',
-
                           style: theme.textTheme.titleLarge?.copyWith(
 
                             fontWeight: FontWeight.bold,
