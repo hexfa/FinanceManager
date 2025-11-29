@@ -72,7 +72,6 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
                         //date
                         Text(
                           ConvertString.formatDate(
-
                             transaction?.date ?? DateTime.now(),
 
                           ),
