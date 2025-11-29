@@ -71,7 +71,6 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
                         SizedBox(height: 12),
                         //date
                         Text(
-
                           ConvertString.formatDate(
 
                             transaction?.date ?? DateTime.now(),
