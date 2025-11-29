@@ -67,7 +67,6 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
                             fontWeight: FontWeight.bold,
                             color: theme.colorScheme.onSurface,
                           ),
-
                         ),
 
                         SizedBox(height: 12),
