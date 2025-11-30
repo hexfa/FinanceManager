@@ -79,7 +79,6 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
                           ),
                         ),
                       ],
-
                     ),
                     //amount
                     _buildAmount(),
