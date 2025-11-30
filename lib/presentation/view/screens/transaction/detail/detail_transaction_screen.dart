@@ -76,7 +76,6 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
                           ),
                           style: theme.textTheme.labelMedium?.copyWith(
                             color: theme.colorScheme.tertiary,
-
                           ),
 
                         ),
