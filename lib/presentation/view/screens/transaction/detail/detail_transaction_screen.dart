@@ -83,7 +83,6 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
                     //amount
                     _buildAmount(),
                   ],
-
                 ),
 
                 SizedBox(height: 16),
