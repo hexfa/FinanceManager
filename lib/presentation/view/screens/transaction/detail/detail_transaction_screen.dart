@@ -87,7 +87,6 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
                 SizedBox(height: 16),
                 CategoryLabel(
                   category:
-
                       transaction?.category ??
 
                       Category(id: 1, name: localization.other),
