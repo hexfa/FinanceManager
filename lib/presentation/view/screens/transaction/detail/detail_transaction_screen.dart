@@ -88,7 +88,6 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
                 CategoryLabel(
                   category:
                       transaction?.category ??
-
                       Category(id: 1, name: localization.other),
 
                 ),
