@@ -78,7 +78,6 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
                             color: theme.colorScheme.tertiary,
                           ),
                         ),
-
                       ],
 
                     ),
