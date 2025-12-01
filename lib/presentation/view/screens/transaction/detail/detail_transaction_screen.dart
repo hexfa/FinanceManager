@@ -105,7 +105,6 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
     return Container(
       width: double.infinity,
       height: 200,
-
       padding: const EdgeInsets.all(12),
 
       decoration: BoxDecoration(
