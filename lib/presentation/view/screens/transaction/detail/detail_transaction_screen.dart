@@ -99,7 +99,6 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
         },
       ),
     );
-
   }
 
   Container buildDescription() {
