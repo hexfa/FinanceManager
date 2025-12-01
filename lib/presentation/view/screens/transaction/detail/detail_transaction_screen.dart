@@ -94,9 +94,7 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
                 if ((transaction?.description ?? '').isNotEmpty)
                   buildDescription(),
               ],
-
             ),
-
           );
 
         },
