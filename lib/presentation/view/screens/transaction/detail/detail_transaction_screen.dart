@@ -90,7 +90,6 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
                       transaction?.category ??
                       Category(id: 1, name: localization.other),
                 ),
-
                 SizedBox(height: 16),
 
                 if ((transaction?.description ?? '').isNotEmpty)
