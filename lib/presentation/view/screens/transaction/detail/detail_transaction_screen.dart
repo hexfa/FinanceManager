@@ -93,7 +93,6 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
                 SizedBox(height: 16),
                 if ((transaction?.description ?? '').isNotEmpty)
                   buildDescription(),
-
               ],
 
             ),
