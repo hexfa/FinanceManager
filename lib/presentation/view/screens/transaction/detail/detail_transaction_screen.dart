@@ -109,7 +109,6 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
       decoration: BoxDecoration(
         color: theme.colorScheme.surfaceContainer,
         borderRadius: BorderRadius.circular(8),
-
       ),
 
       child: Text(
