@@ -122,7 +122,6 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
   Container _buildAmount() {
     Color amountColor =
         transaction?.type == TransactionType.income
-
             ? incomeColor
 
             : expenseColor;
