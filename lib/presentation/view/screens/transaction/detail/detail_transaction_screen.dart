@@ -119,7 +119,6 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
     );
   }
 
-
   Container _buildAmount() {
 
     Color amountColor =
