@@ -107,126 +107,6 @@
       <option name="presentableId" value="Default" />
       <updated>1745763636699</updated>
     </task>
-    <task id="LOCAL-00192" summary="Clean">
-      <option name="closed" value="true" />
-      <created>1764067746769</created>
-      <option name="number" value="00192" />
-      <option name="presentableId" value="LOCAL-00192" />
-      <option name="project" value="LOCAL" />
-      <updated>1764067746769</updated>
-    </task>
-    <task id="LOCAL-00193" summary="Clean">
-      <option name="closed" value="true" />
-      <created>1764067756134</created>
-      <option name="number" value="00193" />
-      <option name="presentableId" value="LOCAL-00193" />
-      <option name="project" value="LOCAL" />
-      <updated>1764067756135</updated>
-    </task>
-    <task id="LOCAL-00194" summary="Clean">
-      <option name="closed" value="true" />
-      <created>1764067767023</created>
-      <option name="number" value="00194" />
-      <option name="presentableId" value="LOCAL-00194" />
-      <option name="project" value="LOCAL" />
-      <updated>1764067767024</updated>
-    </task>
-    <task id="LOCAL-00195" summary="Test">
-      <option name="closed" value="true" />
-      <created>1764167029819</created>
-      <option name="number" value="00195" />
-      <option name="presentableId" value="LOCAL-00195" />
-      <option name="project" value="LOCAL" />
-      <updated>1764167029822</updated>
-    </task>
-    <task id="LOCAL-00196" summary="Clean code">
-      <option name="closed" value="true" />
-      <created>1764167055341</created>
-      <option name="number" value="00196" />
-      <option name="presentableId" value="LOCAL-00196" />
-      <option name="project" value="LOCAL" />
-      <updated>1764167055342</updated>
-    </task>
-    <task id="LOCAL-00197" summary="Clean code">
-      <option name="closed" value="true" />
-      <created>1764167062327</created>
-      <option name="number" value="00197" />
-      <option name="presentableId" value="LOCAL-00197" />
-      <option name="project" value="LOCAL" />
-      <updated>1764167062328</updated>
-    </task>
-    <task id="LOCAL-00198" summary="Clean code">
-      <option name="closed" value="true" />
-      <created>1764167067750</created>
-      <option name="number" value="00198" />
-      <option name="presentableId" value="LOCAL-00198" />
-      <option name="project" value="LOCAL" />
-      <updated>1764167067753</updated>
-    </task>
-    <task id="LOCAL-00199" summary="Clean code">
-      <option name="closed" value="true" />
-      <created>1764167074781</created>
-      <option name="number" value="00199" />
-      <option name="presentableId" value="LOCAL-00199" />
-      <option name="project" value="LOCAL" />
-      <updated>1764167074781</updated>
-    </task>
-    <task id="LOCAL-00200" summary="Clean code">
-      <option name="closed" value="true" />
-      <created>1764167082830</created>
-      <option name="number" value="00200" />
-      <option name="presentableId" value="LOCAL-00200" />
-      <option name="project" value="LOCAL" />
-      <updated>1764167082831</updated>
-    </task>
-    <task id="LOCAL-00201" summary="Clean code">
-      <option name="closed" value="true" />
-      <created>1764167091495</created>
-      <option name="number" value="00201" />
-      <option name="presentableId" value="LOCAL-00201" />
-      <option name="project" value="LOCAL" />
-      <updated>1764167091495</updated>
-    </task>
-    <task id="LOCAL-00202" summary="Clean code">
-      <option name="closed" value="true" />
-      <created>1764167103567</created>
-      <option name="number" value="00202" />
-      <option name="presentableId" value="LOCAL-00202" />
-      <option name="project" value="LOCAL" />
-      <updated>1764167103567</updated>
-    </task>
-    <task id="LOCAL-00203" summary="Clean code">
-      <option name="closed" value="true" />
-      <created>1764167112662</created>
-      <option name="number" value="00203" />
-      <option name="presentableId" value="LOCAL-00203" />
-      <option name="project" value="LOCAL" />
-      <updated>1764167112663</updated>
-    </task>
-    <task id="LOCAL-00204" summary="Clean code">
-      <option name="closed" value="true" />
-      <created>1764167121874</created>
-      <option name="number" value="00204" />
-      <option name="presentableId" value="LOCAL-00204" />
-      <option name="project" value="LOCAL" />
-      <updated>1764167121874</updated>
-    </task>
-    <task id="LOCAL-00205" summary="Clean code">
-      <option name="closed" value="true" />
-      <created>1764167127412</created>
-      <option name="number" value="00205" />
-      <option name="presentableId" value="LOCAL-00205" />
-      <option name="project" value="LOCAL" />
-      <updated>1764167127412</updated>
-    </task>
-    <task id="LOCAL-00206" summary="Clean code">
-      <option name="closed" value="true" />
-      <created>1764167135073</created>
-      <option name="number" value="00206" />
-      <option name="presentableId" value="LOCAL-00206" />
-      <option name="project" value="LOCAL" />
-      <updated>1764167135073</updated>
-    </task>
     <task id="LOCAL-00207" summary="Clean code">
       <option name="closed" value="true" />
       <created>1764167141043</created>
@@ -499,7 +379,127 @@
       <option name="project" value="LOCAL" />
       <updated>1764434874376</updated>
     </task>
-    <option name="localTasksCounter" value="241" />
+    <task id="LOCAL-00241" summary="Clean code">
+      <option name="closed" value="true" />
+      <created>1764586807441</created>
+      <option name="number" value="00241" />
+      <option name="presentableId" value="LOCAL-00241" />
+      <option name="project" value="LOCAL" />
+      <updated>1764586807452</updated>
+    </task>
+    <task id="LOCAL-00242" summary="Clean code">
+      <option name="closed" value="true" />
+      <created>1764586814920</created>
+      <option name="number" value="00242" />
+      <option name="presentableId" value="LOCAL-00242" />
+      <option name="project" value="LOCAL" />
+      <updated>1764586814922</updated>
+    </task>
+    <task id="LOCAL-00243" summary="Clean code">
+      <option name="closed" value="true" />
+      <created>1764586821020</created>
+      <option name="number" value="00243" />
+      <option name="presentableId" value="LOCAL-00243" />
+      <option name="project" value="LOCAL" />
+      <updated>1764586821020</updated>
+    </task>
+    <task id="LOCAL-00244" summary="Clean code">
+      <option name="closed" value="true" />
+      <created>1764586828458</created>
+      <option name="number" value="00244" />
+      <option name="presentableId" value="LOCAL-00244" />
+      <option name="project" value="LOCAL" />
+      <updated>1764586828458</updated>
+    </task>
+    <task id="LOCAL-00245" summary="Clean code">
+      <option name="closed" value="true" />
+      <created>1764586846637</created>
+      <option name="number" value="00245" />
+      <option name="presentableId" value="LOCAL-00245" />
+      <option name="project" value="LOCAL" />
+      <updated>1764586846638</updated>
+    </task>
+    <task id="LOCAL-00246" summary="Clean code">
+      <option name="closed" value="true" />
+      <created>1764586858695</created>
+      <option name="number" value="00246" />
+      <option name="presentableId" value="LOCAL-00246" />
+      <option name="project" value="LOCAL" />
+      <updated>1764586858698</updated>
+    </task>
+    <task id="LOCAL-00247" summary="Clean code">
+      <option name="closed" value="true" />
+      <created>1764590431481</created>
+      <option name="number" value="00247" />
+      <option name="presentableId" value="LOCAL-00247" />
+      <option name="project" value="LOCAL" />
+      <updated>1764590431482</updated>
+    </task>
+    <task id="LOCAL-00248" summary="Clean code">
+      <option name="closed" value="true" />
+      <created>1764590437368</created>
+      <option name="number" value="00248" />
+      <option name="presentableId" value="LOCAL-00248" />
+      <option name="project" value="LOCAL" />
+      <updated>1764590437369</updated>
+    </task>
+    <task id="LOCAL-00249" summary="Clean code">
+      <option name="closed" value="true" />
+      <created>1764590449531</created>
+      <option name="number" value="00249" />
+      <option name="presentableId" value="LOCAL-00249" />
+      <option name="project" value="LOCAL" />
+      <updated>1764590449531</updated>
+    </task>
+    <task id="LOCAL-00250" summary="Clean code">
+      <option name="closed" value="true" />
+      <created>1764590492062</created>
+      <option name="number" value="00250" />
+      <option name="presentableId" value="LOCAL-00250" />
+      <option name="project" value="LOCAL" />
+      <updated>1764590492063</updated>
+    </task>
+    <task id="LOCAL-00251" summary="Clean code">
+      <option name="closed" value="true" />
+      <created>1764590504702</created>
+      <option name="number" value="00251" />
+      <option name="presentableId" value="LOCAL-00251" />
+      <option name="project" value="LOCAL" />
+      <updated>1764590504702</updated>
+    </task>
+    <task id="LOCAL-00252" summary="Clean code">
+      <option name="closed" value="true" />
+      <created>1764590512742</created>
+      <option name="number" value="00252" />
+      <option name="presentableId" value="LOCAL-00252" />
+      <option name="project" value="LOCAL" />
+      <updated>1764590512742</updated>
+    </task>
+    <task id="LOCAL-00253" summary="Clean code">
+      <option name="closed" value="true" />
+      <created>1764590522698</created>
+      <option name="number" value="00253" />
+      <option name="presentableId" value="LOCAL-00253" />
+      <option name="project" value="LOCAL" />
+      <updated>1764590522699</updated>
+    </task>
+    <task id="LOCAL-00254" summary="Clean code">
+      <option name="closed" value="true" />
+      <created>1764590530468</created>
+      <option name="number" value="00254" />
+      <option name="presentableId" value="LOCAL-00254" />
+      <option name="project" value="LOCAL" />
+      <updated>1764590530468</updated>
+    </task>
+    <task id="LOCAL-00255" summary="Clean code">
+      <option name="closed" value="true" />
+      <created>1764590552481</created>
+      <option name="number" value="00255" />
+      <option name="presentableId" value="LOCAL-00255" />
+      <option name="project" value="LOCAL" />
+      <updated>1764590552481</updated>
+    </task>
+    <option name="localTasksCounter" value="256" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
