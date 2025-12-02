@@ -114,7 +114,6 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
         transaction?.description ?? '',
         style: theme.textTheme.bodyMedium?.copyWith(
           color: theme.colorScheme.onSurface,
-
         ),
 
       ),
