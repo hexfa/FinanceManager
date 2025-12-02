@@ -112,7 +112,6 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
       ),
 
       child: Text(
-
         transaction?.description ?? '',
 
         style: theme.textTheme.bodyMedium?.copyWith(
