@@ -136,7 +136,6 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
           const SizedBox(width: 4),
           Text(
             ConvertString.formatCurrencyFromDouble(transaction?.amount ?? 0),
-
             style: theme.textTheme.titleMedium?.copyWith(
 
               color: amountColor,
