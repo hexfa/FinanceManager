@@ -132,7 +132,6 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
       ),
       child: Row(
         children: [
-
           Icon(Icons.currency_exchange, color: amountColor),
 
           const SizedBox(width: 4),
