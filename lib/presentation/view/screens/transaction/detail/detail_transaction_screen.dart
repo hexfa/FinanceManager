@@ -124,7 +124,6 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
         transaction?.type == TransactionType.income
             ? incomeColor
             : expenseColor;
-
     return Container(
 
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
