@@ -126,7 +126,6 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
             : expenseColor;
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-
       decoration: BoxDecoration(
 
         border: Border.all(color: amountColor, width: 1.5),
