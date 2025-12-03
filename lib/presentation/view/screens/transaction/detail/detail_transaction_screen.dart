@@ -127,7 +127,6 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
-
         border: Border.all(color: amountColor, width: 1.5),
 
         borderRadius: BorderRadius.circular(8),
