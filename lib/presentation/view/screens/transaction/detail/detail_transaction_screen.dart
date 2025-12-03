@@ -135,7 +135,6 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
           Icon(Icons.currency_exchange, color: amountColor),
           const SizedBox(width: 4),
           Text(
-
             ConvertString.formatCurrencyFromDouble(transaction?.amount ?? 0),
 
             style: theme.textTheme.titleMedium?.copyWith(
