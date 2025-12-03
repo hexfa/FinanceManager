@@ -130,7 +130,6 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
         border: Border.all(color: amountColor, width: 1.5),
         borderRadius: BorderRadius.circular(8),
       ),
-
       child: Row(
 
         children: [
