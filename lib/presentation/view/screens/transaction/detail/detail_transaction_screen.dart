@@ -131,7 +131,6 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
         borderRadius: BorderRadius.circular(8),
       ),
       child: Row(
-
         children: [
 
           Icon(Icons.currency_exchange, color: amountColor),
