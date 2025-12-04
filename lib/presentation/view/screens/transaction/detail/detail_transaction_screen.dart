@@ -141,7 +141,6 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
               fontWeight: FontWeight.bold,
             ),
           ),
-
         ],
 
       ),
