@@ -140,7 +140,6 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
               color: amountColor,
               fontWeight: FontWeight.bold,
             ),
-
           ),
 
         ],
