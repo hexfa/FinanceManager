@@ -147,7 +147,6 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
   }
 
   CustomAppBar _appBar() {
-
     return CustomAppBar(
 
       title: localization.detailTransaction,
