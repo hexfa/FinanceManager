@@ -139,7 +139,6 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
             style: theme.textTheme.titleMedium?.copyWith(
               color: amountColor,
               fontWeight: FontWeight.bold,
-
             ),
 
           ),
