@@ -138,7 +138,6 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
             ConvertString.formatCurrencyFromDouble(transaction?.amount ?? 0),
             style: theme.textTheme.titleMedium?.copyWith(
               color: amountColor,
-
               fontWeight: FontWeight.bold,
 
             ),
