@@ -157,7 +157,6 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
               icon: Icons.edit,
               onTap: () async {
                 goTo(RoutePath.updateTransactionRoute, extra: transaction);
-
               },
 
             ),
