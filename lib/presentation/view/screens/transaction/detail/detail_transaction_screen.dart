@@ -158,7 +158,6 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
               onTap: () async {
                 goTo(RoutePath.updateTransactionRoute, extra: transaction);
               },
-
             ),
 
             AppBarMenu(
