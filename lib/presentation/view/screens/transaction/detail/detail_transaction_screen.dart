@@ -167,7 +167,6 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
                   context: context,
                   builder: (context) {
                     return CustomConfirmDialog(
-
                       title: localization.deleteTransaction,
 
                       content:
