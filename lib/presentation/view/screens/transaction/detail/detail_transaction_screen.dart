@@ -160,7 +160,6 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
               },
             ),
             AppBarMenu(
-
               title: localization.delete,
 
               icon: Icons.delete_outline,
