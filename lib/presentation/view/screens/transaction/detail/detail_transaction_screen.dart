@@ -153,7 +153,6 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
         CustomAppBarMenu(
           menuItem: [
             AppBarMenu(
-
               title: localization.update,
 
               icon: Icons.edit,
