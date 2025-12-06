@@ -159,7 +159,6 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
                 goTo(RoutePath.updateTransactionRoute, extra: transaction);
               },
             ),
-
             AppBarMenu(
 
               title: localization.delete,
