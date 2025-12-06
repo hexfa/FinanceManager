@@ -165,7 +165,6 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
               onTap: () {
                 showDialog(
                   context: context,
-
                   builder: (context) {
 
                     return CustomConfirmDialog(
