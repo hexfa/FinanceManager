@@ -155,7 +155,6 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
             AppBarMenu(
               title: localization.update,
               icon: Icons.edit,
-
               onTap: () async {
 
                 goTo(RoutePath.updateTransactionRoute, extra: transaction);
