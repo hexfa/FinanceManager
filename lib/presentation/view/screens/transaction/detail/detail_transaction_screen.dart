@@ -154,7 +154,6 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
           menuItem: [
             AppBarMenu(
               title: localization.update,
-
               icon: Icons.edit,
 
               onTap: () async {
