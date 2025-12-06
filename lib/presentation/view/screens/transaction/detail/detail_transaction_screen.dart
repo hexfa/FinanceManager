@@ -164,7 +164,6 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
               icon: Icons.delete_outline,
               onTap: () {
                 showDialog(
-
                   context: context,
 
                   builder: (context) {
