@@ -163,7 +163,6 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
               title: localization.delete,
               icon: Icons.delete_outline,
               onTap: () {
-
                 showDialog(
 
                   context: context,
