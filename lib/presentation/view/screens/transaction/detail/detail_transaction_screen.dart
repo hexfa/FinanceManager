@@ -176,7 +176,6 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
                             .deleteTransaction(widget.transactionId);
                         navigator.pop();
                       },
-
                     );
 
                   },
