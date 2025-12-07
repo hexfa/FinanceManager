@@ -173,7 +173,6 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
                       confirmText: localization.delete,
                       onConfirm: () async {
                         await getBloc<TransactionDetailCubit>()
-
                             .deleteTransaction(widget.transactionId);
 
                         navigator.pop();
