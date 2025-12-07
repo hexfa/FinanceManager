@@ -175,7 +175,6 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
                         await getBloc<TransactionDetailCubit>()
                             .deleteTransaction(widget.transactionId);
                         navigator.pop();
-
                       },
 
                     );
