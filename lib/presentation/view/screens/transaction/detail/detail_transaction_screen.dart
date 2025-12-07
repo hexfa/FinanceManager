@@ -171,7 +171,6 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
                       content:
                           localization.areYouSureYouWantToDeleteThisTransaction,
                       confirmText: localization.delete,
-
                       onConfirm: () async {
 
                         await getBloc<TransactionDetailCubit>()
