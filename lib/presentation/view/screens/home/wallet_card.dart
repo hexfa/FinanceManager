@@ -12,7 +12,6 @@ class WalletCard extends BaseStatelessWidget {
 
   const WalletCard({
     super.key,
-
     required this.balance,
 
     required this.income,
