@@ -5,7 +5,6 @@ import 'package:finance_manager/presentation/view/widgets/currency_label.dart';
 import 'package:flutter/material.dart';
 
 class WalletCard extends BaseStatelessWidget {
-
   final double balance;
 
   final double income;
