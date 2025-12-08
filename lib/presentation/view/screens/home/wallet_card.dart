@@ -8,7 +8,6 @@ class WalletCard extends BaseStatelessWidget {
   final double balance;
   final double income;
   final double expense;
-
   final String lastUpdate;
 
 
