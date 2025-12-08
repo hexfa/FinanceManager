@@ -184,7 +184,6 @@ class _DetailTransactionScreenState extends BaseState<DetailTransactionScreen>
           ],
         ),
       ],
-
     );
 
   }
