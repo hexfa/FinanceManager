@@ -10,7 +10,6 @@ class WalletCard extends BaseStatelessWidget {
   final double expense;
   final String lastUpdate;
 
-
   const WalletCard({
 
     super.key,
