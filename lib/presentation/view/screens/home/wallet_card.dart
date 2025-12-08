@@ -11,7 +11,6 @@ class WalletCard extends BaseStatelessWidget {
   final String lastUpdate;
 
 
-
   const WalletCard({
 
     super.key,
