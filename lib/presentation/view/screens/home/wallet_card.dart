@@ -15,7 +15,6 @@ class WalletCard extends BaseStatelessWidget {
     required this.balance,
     required this.income,
     required this.expense,
-
     required this.lastUpdate,
 
   });
