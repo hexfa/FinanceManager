@@ -22,7 +22,6 @@ class WalletCard extends BaseStatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
-
       child: Container(
 
         width: double.infinity,
