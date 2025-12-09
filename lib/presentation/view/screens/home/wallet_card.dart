@@ -23,7 +23,6 @@ class WalletCard extends BaseStatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Container(
-
         width: double.infinity,
 
         padding: const EdgeInsets.all(16),
