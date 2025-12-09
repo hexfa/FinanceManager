@@ -19,7 +19,6 @@ class WalletCard extends BaseStatelessWidget {
   });
 
 
-
   @override
 
   Widget build(BuildContext context) {
