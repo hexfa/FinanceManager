@@ -18,7 +18,6 @@ class WalletCard extends BaseStatelessWidget {
     required this.lastUpdate,
   });
 
-
   @override
 
   Widget build(BuildContext context) {
