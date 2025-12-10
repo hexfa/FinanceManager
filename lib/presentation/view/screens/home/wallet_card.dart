@@ -34,7 +34,6 @@ class WalletCard extends BaseStatelessWidget {
               blurRadius: 10,
               offset: const Offset(0, 4),
             ),
-
           ],
 
         ),
