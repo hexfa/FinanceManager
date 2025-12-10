@@ -37,7 +37,6 @@ class WalletCard extends BaseStatelessWidget {
           ],
         ),
 
-
         child: Column(
 
           crossAxisAlignment: CrossAxisAlignment.center,
