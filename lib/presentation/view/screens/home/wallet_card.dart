@@ -35,7 +35,6 @@ class WalletCard extends BaseStatelessWidget {
               offset: const Offset(0, 4),
             ),
           ],
-
         ),
 
 
