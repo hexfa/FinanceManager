@@ -28,7 +28,6 @@ class WalletCard extends BaseStatelessWidget {
         decoration: BoxDecoration(
           color: theme(context).colorScheme.primary,
           borderRadius: BorderRadius.circular(12),
-
           boxShadow: [
 
             BoxShadow(
