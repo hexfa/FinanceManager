@@ -41,7 +41,6 @@ class WalletCard extends BaseStatelessWidget {
           children: [
             CurrencyLabel(icon: Icons.currency_exchange, balance: balance),
             const SizedBox(height: 8),
-
             Text(
 
               '${localization(context).updated} $lastUpdate',
