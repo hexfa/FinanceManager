@@ -46,7 +46,6 @@ class WalletCard extends BaseStatelessWidget {
               style: theme(context).textTheme.labelMedium?.copyWith(
                 color: theme(context).colorScheme.tertiaryContainer,
               ),
-
             ),
 
             const SizedBox(height: 16),
