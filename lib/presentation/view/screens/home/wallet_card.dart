@@ -43,7 +43,6 @@ class WalletCard extends BaseStatelessWidget {
             const SizedBox(height: 8),
             Text(
               '${localization(context).updated} $lastUpdate',
-
               style: theme(context).textTheme.labelMedium?.copyWith(
 
                 color: theme(context).colorScheme.tertiaryContainer,
