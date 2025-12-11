@@ -47,7 +47,6 @@ class WalletCard extends BaseStatelessWidget {
                 color: theme(context).colorScheme.tertiaryContainer,
               ),
             ),
-
             const SizedBox(height: 16),
 
             IncomeExpenseSummary(
