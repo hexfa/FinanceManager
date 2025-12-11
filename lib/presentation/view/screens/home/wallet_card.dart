@@ -45,7 +45,6 @@ class WalletCard extends BaseStatelessWidget {
               '${localization(context).updated} $lastUpdate',
               style: theme(context).textTheme.labelMedium?.copyWith(
                 color: theme(context).colorScheme.tertiaryContainer,
-
               ),
 
             ),
