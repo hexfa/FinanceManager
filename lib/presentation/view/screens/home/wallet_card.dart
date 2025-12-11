@@ -49,7 +49,6 @@ class WalletCard extends BaseStatelessWidget {
             ),
             const SizedBox(height: 16),
             IncomeExpenseSummary(
-
               income: ConvertString.formatCurrencyFromDouble(income),
 
               expense: ConvertString.formatCurrencyFromDouble(expense),
