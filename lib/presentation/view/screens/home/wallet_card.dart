@@ -53,7 +53,6 @@ class WalletCard extends BaseStatelessWidget {
               expense: ConvertString.formatCurrencyFromDouble(expense),
             ),
           ],
-
         ),
 
       ),
