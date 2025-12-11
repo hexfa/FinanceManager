@@ -52,7 +52,6 @@ class WalletCard extends BaseStatelessWidget {
               income: ConvertString.formatCurrencyFromDouble(income),
               expense: ConvertString.formatCurrencyFromDouble(expense),
             ),
-
           ],
 
         ),
