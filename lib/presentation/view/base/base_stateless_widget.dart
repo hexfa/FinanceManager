@@ -11,7 +11,6 @@ abstract class BaseStatelessWidget extends StatelessWidget {
   const BaseStatelessWidget({super.key});
 
   // Theme Data for accessing the current theme
-
   ThemeData theme(BuildContext context) => Theme.of(context);
 
 
