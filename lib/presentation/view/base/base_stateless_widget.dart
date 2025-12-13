@@ -24,7 +24,6 @@ abstract class BaseStatelessWidget extends StatelessWidget {
   NavigatorState navigator(BuildContext context) => Navigator.of(context);
 
   // Access to GoRouter for navigating between pages
-
   GoRouter router(BuildContext context) => GoRouter.of(context);
 
   // Common method to show a SnackBar with a message
