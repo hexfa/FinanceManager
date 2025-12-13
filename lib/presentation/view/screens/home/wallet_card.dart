@@ -57,5 +57,4 @@ class WalletCard extends BaseStatelessWidget {
       ),
     );
   }
-
 }
