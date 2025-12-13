@@ -18,7 +18,6 @@ abstract class BaseStatelessWidget extends StatelessWidget {
 
   // Localization for accessing localized strings
   AppLocalizations localization(BuildContext context) =>
-
       AppLocalizations.of(context)!;
 
   // Access to Navigator for pushing and popping pages
