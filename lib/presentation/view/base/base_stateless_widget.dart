@@ -8,7 +8,6 @@ import 'package:go_router/go_router.dart';
 
 /// BaseStatelessWidget provides common utilities and methods for stateless widgets
 abstract class BaseStatelessWidget extends StatelessWidget {
-
   const BaseStatelessWidget({super.key});
 
 
