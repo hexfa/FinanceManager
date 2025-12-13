@@ -17,7 +17,6 @@ abstract class BaseStatelessWidget extends StatelessWidget {
   MediaQueryData mediaQuery(BuildContext context) => MediaQuery.of(context);
 
   // Localization for accessing localized strings
-
   AppLocalizations localization(BuildContext context) =>
 
       AppLocalizations.of(context)!;
