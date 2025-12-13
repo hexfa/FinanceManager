@@ -21,7 +21,6 @@ abstract class BaseStatelessWidget extends StatelessWidget {
       AppLocalizations.of(context)!;
 
   // Access to Navigator for pushing and popping pages
-
   NavigatorState navigator(BuildContext context) => Navigator.of(context);
 
   // Access to GoRouter for navigating between pages
