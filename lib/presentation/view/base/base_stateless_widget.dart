@@ -13,7 +13,6 @@ abstract class BaseStatelessWidget extends StatelessWidget {
   // Theme Data for accessing the current theme
   ThemeData theme(BuildContext context) => Theme.of(context);
 
-
   // MediaQuery for accessing screen size, orientation, etc.
 
   MediaQueryData mediaQuery(BuildContext context) => MediaQuery.of(context);
