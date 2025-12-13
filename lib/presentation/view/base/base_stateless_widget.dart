@@ -27,7 +27,6 @@ abstract class BaseStatelessWidget extends StatelessWidget {
   GoRouter router(BuildContext context) => GoRouter.of(context);
 
   // Common method to show a SnackBar with a message
-
   void showSnackBar(BuildContext context, String message) {
 
     ScaffoldMessenger.of(
