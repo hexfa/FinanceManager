@@ -31,7 +31,6 @@ abstract class BaseStatelessWidget extends StatelessWidget {
     ScaffoldMessenger.of(
       context,
     ).showSnackBar(SnackBar(content: Text(message)));
-
   }
 
   // Method to handle errors (could be customized based on app requirements)
