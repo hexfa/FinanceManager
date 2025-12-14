@@ -47,7 +47,6 @@ abstract class BaseStatelessWidget extends StatelessWidget {
 
   // Method to check if the app is in dark mode
   bool isDarkMode(BuildContext context) =>
-
       theme(context).brightness == Brightness.dark;
 
   // Method to check if the device is in landscape mode
