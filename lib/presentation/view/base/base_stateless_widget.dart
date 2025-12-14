@@ -46,7 +46,6 @@ abstract class BaseStatelessWidget extends StatelessWidget {
   bool get isAndroid => Platform.isAndroid;
 
   // Method to check if the app is in dark mode
-
   bool isDarkMode(BuildContext context) =>
 
       theme(context).brightness == Brightness.dark;
