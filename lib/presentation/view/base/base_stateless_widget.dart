@@ -40,7 +40,6 @@ abstract class BaseStatelessWidget extends StatelessWidget {
   }
 
   // Method to check if the platform is iOS
-
   bool get isIOS => Platform.isIOS;
 
   // Method to check if the platform is Android
