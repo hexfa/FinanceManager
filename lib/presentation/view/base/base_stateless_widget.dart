@@ -60,7 +60,6 @@ abstract class BaseStatelessWidget extends StatelessWidget {
   double screenHeight(BuildContext context) => mediaQuery(context).size.height;
 
   //Get custom icon from assets
-
   SvgPicture getIcon(String iconPath, {Color? color, double size = 20}) =>
 
       SvgPicture.asset(
