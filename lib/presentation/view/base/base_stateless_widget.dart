@@ -43,7 +43,6 @@ abstract class BaseStatelessWidget extends StatelessWidget {
   bool get isIOS => Platform.isIOS;
 
   // Method to check if the platform is Android
-
   bool get isAndroid => Platform.isAndroid;
 
   // Method to check if the app is in dark mode
