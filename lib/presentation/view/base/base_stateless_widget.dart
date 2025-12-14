@@ -51,7 +51,6 @@ abstract class BaseStatelessWidget extends StatelessWidget {
 
   // Method to check if the device is in landscape mode
   bool isLandscape(BuildContext context) =>
-
       mediaQuery(context).orientation == Orientation.landscape;
 
   // Access to screen width
