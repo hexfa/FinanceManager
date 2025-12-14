@@ -57,7 +57,6 @@ abstract class BaseStatelessWidget extends StatelessWidget {
   double screenWidth(BuildContext context) => mediaQuery(context).size.width;
 
   // Access to screen height
-
   double screenHeight(BuildContext context) => mediaQuery(context).size.height;
 
   //Get custom icon from assets
