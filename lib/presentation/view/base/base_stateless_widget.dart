@@ -54,7 +54,6 @@ abstract class BaseStatelessWidget extends StatelessWidget {
       mediaQuery(context).orientation == Orientation.landscape;
 
   // Access to screen width
-
   double screenWidth(BuildContext context) => mediaQuery(context).size.width;
 
   // Access to screen height
