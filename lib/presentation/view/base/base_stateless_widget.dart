@@ -37,7 +37,6 @@ abstract class BaseStatelessWidget extends StatelessWidget {
   void handleError(BuildContext context, Object error, StackTrace stackTrace) {
     showSnackBar(context, "An error occurred: ${error.toString()}");
     // Log errors or send them to an analytics service here if needed
-
   }
 
   // Method to check if the platform is iOS
