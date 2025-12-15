@@ -64,7 +64,6 @@ abstract class BaseStatelessWidget extends StatelessWidget {
       SvgPicture.asset(
         iconPath,
         width: size,
-
         height: size,
 
         colorFilter:
