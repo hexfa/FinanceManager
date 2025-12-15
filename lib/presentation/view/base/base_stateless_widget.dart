@@ -67,7 +67,6 @@ abstract class BaseStatelessWidget extends StatelessWidget {
         height: size,
         colorFilter:
             color != null ? ColorFilter.mode(color, BlendMode.srcIn) : null,
-
       );
 
   // Get bloc object
