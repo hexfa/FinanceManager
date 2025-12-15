@@ -74,7 +74,6 @@ abstract class BaseStatelessWidget extends StatelessWidget {
     BuildContext context,
       ) {
     return BlocProvider.of<TBloc>(context);
-
   }
 
   void goTo(BuildContext context, String viewPath, {Object? extra}) {
