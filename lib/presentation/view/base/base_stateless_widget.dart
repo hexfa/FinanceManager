@@ -65,7 +65,6 @@ abstract class BaseStatelessWidget extends StatelessWidget {
         iconPath,
         width: size,
         height: size,
-
         colorFilter:
 
 
