@@ -6,7 +6,6 @@ import 'package:finance_manager/presentation/view/widgets/textfield/custom_text_
 import 'package:flutter/material.dart';
 
 class CreateCategoryScreen extends StatefulWidget {
-
   const CreateCategoryScreen({super.key});
 
   @override
