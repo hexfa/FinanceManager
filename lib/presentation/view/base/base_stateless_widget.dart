@@ -79,7 +79,6 @@ abstract class BaseStatelessWidget extends StatelessWidget {
   }
 
   @override
-
   Widget build(BuildContext context);
 
 }
