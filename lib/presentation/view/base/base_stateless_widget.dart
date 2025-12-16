@@ -70,8 +70,7 @@ abstract class BaseStatelessWidget extends StatelessWidget {
       );
 
   // Get bloc object
-  TBloc getBloc<TBloc extends StateStreamableSource<Object?>>(
-    BuildContext context,) {
+  TBloc getBloc<TBloc extends StateStreamableSource<Object?>>(BuildContext context,) {
     return BlocProvider.of<TBloc>(context);
   }
 
