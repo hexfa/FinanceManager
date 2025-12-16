@@ -12,7 +12,6 @@ class CreateCategoryScreen extends StatefulWidget {
 }
 
 class _CreateCategoryScreenState extends BaseState<CreateCategoryScreen> {
-
   late TextEditingController nameController;
 
   @override
