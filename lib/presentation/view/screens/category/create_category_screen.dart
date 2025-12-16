@@ -15,7 +15,6 @@ class _CreateCategoryScreenState extends BaseState<CreateCategoryScreen> {
   late TextEditingController nameController;
 
   @override
-
   void initState() {
 
     super.initState();
