@@ -76,7 +76,6 @@ abstract class BaseStatelessWidget extends StatelessWidget {
 
   void goTo(BuildContext context, String viewPath, {Object? extra}) {
     GoRouter.of(context).push(viewPath, extra: extra);
-
   }
 
   @override
