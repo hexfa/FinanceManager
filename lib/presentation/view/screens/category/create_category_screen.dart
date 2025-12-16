@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 class CreateCategoryScreen extends StatefulWidget {
   const CreateCategoryScreen({super.key});
   @override
-
   State<CreateCategoryScreen> createState() => _CreateCategoryScreenState();
 
 }
