@@ -21,7 +21,6 @@ class _CreateCategoryScreenState extends BaseState<CreateCategoryScreen> {
     // nameController.addListener(() {
     //   getBloc<TransactionCubit>().updateTitle(titleController.text);
     // });
-
   }
 
 
