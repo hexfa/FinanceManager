@@ -24,7 +24,6 @@ class _CreateCategoryScreenState extends BaseState<CreateCategoryScreen> {
   }
 
   @override
-
   Widget build(BuildContext context) {
 
     return Scaffold(
