@@ -18,7 +18,6 @@ class _CreateCategoryScreenState extends BaseState<CreateCategoryScreen> {
   void initState() {
     super.initState();
     nameController = TextEditingController();
-
     // nameController.addListener(() {
     //   getBloc<TransactionCubit>().updateTitle(titleController.text);
     // });
