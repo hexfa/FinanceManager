@@ -30,7 +30,6 @@ class _CreateCategoryScreenState extends BaseState<CreateCategoryScreen> {
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
-
           mainAxisSize: MainAxisSize.max,
 
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
