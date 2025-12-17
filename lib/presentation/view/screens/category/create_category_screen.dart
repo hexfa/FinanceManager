@@ -29,7 +29,6 @@ class _CreateCategoryScreenState extends BaseState<CreateCategoryScreen> {
       appBar: CustomAppBar(title: localization.createCategory),
       body: Padding(
         padding: const EdgeInsets.all(16),
-
         child: Column(
 
           mainAxisSize: MainAxisSize.max,
