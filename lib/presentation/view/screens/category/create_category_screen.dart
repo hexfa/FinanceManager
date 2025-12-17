@@ -34,7 +34,6 @@ class _CreateCategoryScreenState extends BaseState<CreateCategoryScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             CustomTextField(
-
               prefixIcon: Icons.category_outlined,
 
               hint: '${localization.name} ...',
