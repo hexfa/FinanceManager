@@ -27,7 +27,6 @@ class _CreateCategoryScreenState extends BaseState<CreateCategoryScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(title: localization.createCategory),
-
       body: Padding(
 
         padding: const EdgeInsets.all(16),
