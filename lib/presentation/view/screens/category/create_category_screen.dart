@@ -33,7 +33,6 @@ class _CreateCategoryScreenState extends BaseState<CreateCategoryScreen> {
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-
             CustomTextField(
 
               prefixIcon: Icons.category_outlined,
