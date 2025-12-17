@@ -32,7 +32,6 @@ class _CreateCategoryScreenState extends BaseState<CreateCategoryScreen> {
         child: Column(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
           children: [
 
             CustomTextField(
