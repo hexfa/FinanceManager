@@ -42,7 +42,6 @@ class _CreateCategoryScreenState extends BaseState<CreateCategoryScreen> {
               text: localization.create,
               onPressed: () async {
                 final name = nameController.text.trim();
-
                 if (name.isNotEmpty) {
 
                   await getBloc<CategoryCubit>().create(name);
