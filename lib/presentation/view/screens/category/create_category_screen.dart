@@ -41,7 +41,6 @@ class _CreateCategoryScreenState extends BaseState<CreateCategoryScreen> {
             CustomButton(
               text: localization.create,
               onPressed: () async {
-
                 final name = nameController.text.trim();
 
                 if (name.isNotEmpty) {
