@@ -46,7 +46,6 @@ class _CreateCategoryScreenState extends BaseState<CreateCategoryScreen> {
                   await getBloc<CategoryCubit>().create(name);
                   navigator.pop();
                 }
-
               },
 
             ),
