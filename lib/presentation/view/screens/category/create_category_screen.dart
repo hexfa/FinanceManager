@@ -43,7 +43,6 @@ class _CreateCategoryScreenState extends BaseState<CreateCategoryScreen> {
               onPressed: () async {
                 final name = nameController.text.trim();
                 if (name.isNotEmpty) {
-
                   await getBloc<CategoryCubit>().create(name);
 
                   navigator.pop();
