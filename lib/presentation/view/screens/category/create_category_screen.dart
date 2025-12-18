@@ -49,7 +49,6 @@ class _CreateCategoryScreenState extends BaseState<CreateCategoryScreen> {
               },
             ),
           ],
-
         ),
 
       ),
