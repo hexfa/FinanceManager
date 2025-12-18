@@ -36,7 +36,6 @@ class _CreateCategoryScreenState extends BaseState<CreateCategoryScreen> {
             CustomTextField(
               prefixIcon: Icons.category_outlined,
               hint: '${localization.name} ...',
-
               controller: nameController,
 
             ),
