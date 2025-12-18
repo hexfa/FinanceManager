@@ -39,7 +39,6 @@ class _CreateCategoryScreenState extends BaseState<CreateCategoryScreen> {
               controller: nameController,
             ),
             CustomButton(
-
               text: localization.create,
 
               onPressed: () async {
