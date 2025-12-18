@@ -47,7 +47,6 @@ class _CreateCategoryScreenState extends BaseState<CreateCategoryScreen> {
                   navigator.pop();
                 }
               },
-
             ),
 
           ],
