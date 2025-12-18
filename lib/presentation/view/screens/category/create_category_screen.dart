@@ -38,7 +38,6 @@ class _CreateCategoryScreenState extends BaseState<CreateCategoryScreen> {
               hint: '${localization.name} ...',
               controller: nameController,
             ),
-
             CustomButton(
 
               text: localization.create,
