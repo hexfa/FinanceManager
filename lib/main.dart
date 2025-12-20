@@ -24,7 +24,6 @@ void main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(TransactionTypeAdapter());
   Hive.registerAdapter(TransactionAdapter());
-
   Hive.registerAdapter(CategoryAdapter());
 
   Hive.registerAdapter(CategoryEntityAdapter());
