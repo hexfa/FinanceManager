@@ -23,7 +23,6 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   Hive.registerAdapter(TransactionTypeAdapter());
-
   Hive.registerAdapter(TransactionAdapter());
 
   Hive.registerAdapter(CategoryAdapter());
