@@ -17,9 +17,7 @@ import 'domain/entities/adapters/transaction_type_adapter.dart';
 import 'presentation/bloc/setting/setting_cubit.dart';
 import 'presentation/bloc/setting/setting_state.dart';
 
-final RouteObserver<ModalRoute<void>> routeObserver =
-
-    RouteObserver<ModalRoute<void>>();
+final RouteObserver<ModalRoute<void>> routeObserver = RouteObserver<ModalRoute<void>>();
 
 void main() async {
 
