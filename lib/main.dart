@@ -21,7 +21,6 @@ final RouteObserver<ModalRoute<void>> routeObserver = RouteObserver<ModalRoute<v
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
   await Hive.initFlutter();
 
   Hive.registerAdapter(TransactionTypeAdapter());
