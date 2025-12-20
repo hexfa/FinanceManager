@@ -25,7 +25,6 @@ void main() async {
   Hive.registerAdapter(TransactionTypeAdapter());
   Hive.registerAdapter(TransactionAdapter());
   Hive.registerAdapter(CategoryAdapter());
-
   Hive.registerAdapter(CategoryEntityAdapter());
 
   await Hive.openBox<TransactionEntity>('transactions');
