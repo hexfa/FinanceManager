@@ -41,7 +41,6 @@ class MyApp extends BaseStatelessWidget {
     super.key,
     required this.initialThemeIsDark,
     required this.initialCurrency,
-
   });
 
   @override
