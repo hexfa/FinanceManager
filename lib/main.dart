@@ -34,7 +34,6 @@ void main() async {
   runApp(MyApp(initialThemeIsDark: isDarkTheme, initialCurrency: currency));
 }
 
-
 class MyApp extends BaseStatelessWidget {
 
   final bool initialThemeIsDark;
