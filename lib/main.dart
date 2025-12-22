@@ -48,7 +48,6 @@ class MyApp extends BaseStatelessWidget {
     final appRouter = AppRouter();
     return BlocProvider(
       create: (_) => getIt<SettingCubit>(),
-
       child: BlocBuilder<SettingCubit, SettingState>(
 
         builder: (context, state) {
