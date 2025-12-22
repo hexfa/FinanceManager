@@ -38,7 +38,6 @@ class MyApp extends BaseStatelessWidget {
   final bool initialThemeIsDark;
   final String initialCurrency;
   const MyApp({
-
     super.key,
 
     required this.initialThemeIsDark,
