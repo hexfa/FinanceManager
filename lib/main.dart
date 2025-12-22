@@ -44,7 +44,6 @@ class MyApp extends BaseStatelessWidget {
   });
 
   @override
-
   Widget build(BuildContext context) {
 
     final appRouter = AppRouter();
