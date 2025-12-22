@@ -40,7 +40,6 @@ class MyApp extends BaseStatelessWidget {
   const MyApp({
     super.key,
     required this.initialThemeIsDark,
-
     required this.initialCurrency,
 
   });
