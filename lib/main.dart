@@ -51,7 +51,6 @@ class MyApp extends BaseStatelessWidget {
       child: BlocBuilder<SettingCubit, SettingState>(
         builder: (context, state) {
           return MaterialApp.router(
-
             debugShowCheckedModeBanner: false,
 
             theme: lightTheme,
