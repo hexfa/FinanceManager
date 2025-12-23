@@ -52,7 +52,6 @@ class MyApp extends BaseStatelessWidget {
         builder: (context, state) {
           return MaterialApp.router(
             debugShowCheckedModeBanner: false,
-
             theme: lightTheme,
 
             darkTheme: darkTheme,
