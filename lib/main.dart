@@ -50,7 +50,6 @@ class MyApp extends BaseStatelessWidget {
       create: (_) => getIt<SettingCubit>(),
       child: BlocBuilder<SettingCubit, SettingState>(
         builder: (context, state) {
-
           return MaterialApp.router(
 
             debugShowCheckedModeBanner: false,
