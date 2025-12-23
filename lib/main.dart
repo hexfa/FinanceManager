@@ -59,7 +59,6 @@ class MyApp extends BaseStatelessWidget {
               AppLocalizations.delegate,
               GlobalMaterialLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,
-
               GlobalCupertinoLocalizations.delegate,
 
             ],
