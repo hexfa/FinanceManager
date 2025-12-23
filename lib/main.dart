@@ -54,7 +54,6 @@ class MyApp extends BaseStatelessWidget {
             debugShowCheckedModeBanner: false,
             theme: lightTheme,
             darkTheme: darkTheme,
-
             themeMode: state.isDarkTheme ? ThemeMode.dark : ThemeMode.light,
 
             localizationsDelegates: const [
