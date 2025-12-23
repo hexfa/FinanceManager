@@ -53,7 +53,6 @@ class MyApp extends BaseStatelessWidget {
           return MaterialApp.router(
             debugShowCheckedModeBanner: false,
             theme: lightTheme,
-
             darkTheme: darkTheme,
 
             themeMode: state.isDarkTheme ? ThemeMode.dark : ThemeMode.light,
