@@ -55,7 +55,6 @@ class MyApp extends BaseStatelessWidget {
             theme: lightTheme,
             darkTheme: darkTheme,
             themeMode: state.isDarkTheme ? ThemeMode.dark : ThemeMode.light,
-
             localizationsDelegates: const [
 
               AppLocalizations.delegate,
