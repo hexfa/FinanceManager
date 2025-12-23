@@ -61,7 +61,6 @@ class MyApp extends BaseStatelessWidget {
               GlobalWidgetsLocalizations.delegate,
               GlobalCupertinoLocalizations.delegate,
             ],
-
             supportedLocales: const [Locale('en'), Locale('fa')],
 
             routerConfig: appRouter.router,
