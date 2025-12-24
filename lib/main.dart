@@ -64,7 +64,6 @@ class MyApp extends BaseStatelessWidget {
             supportedLocales: const [Locale('en'), Locale('fa')],
             routerConfig: appRouter.router,
           );
-
         },
 
       ),
