@@ -68,7 +68,6 @@ class MyApp extends BaseStatelessWidget {
       ),
     );
   }
-
 }
 
 
