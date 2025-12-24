@@ -65,7 +65,6 @@ class MyApp extends BaseStatelessWidget {
             routerConfig: appRouter.router,
           );
         },
-
       ),
 
     );
