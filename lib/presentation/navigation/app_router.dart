@@ -39,7 +39,6 @@ class AppRouter {
                 create: (_) => getIt<HomeCubit>()..loadInitialData(),
 
                 child: const HomeScreen(),
-
               ),
             ),
       ),
