@@ -18,124 +18,249 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class AppRouter {
+
   late final GoRouter router = GoRouter(
+
     initialLocation: RoutePath.homeRoute,
+
     routes: [
+
       GoRoute(
+
         path: RoutePath.homeRoute,
+
         pageBuilder:
+
             (context, state) => _buildTransitionPage(
+
               key: state.pageKey,
+
               child: BlocProvider(
+
                 create: (_) => getIt<HomeCubit>()..loadInitialData(),
+
                 child: const HomeScreen(),
+
               ),
+
             ),
+
       ),
+
       GoRoute(
+
         path: RoutePath.createTransactionRoute,
+
         pageBuilder:
+
             (context, state) => _buildTransitionPage(
+
               key: state.pageKey,
+
               child: MultiBlocProvider(
+
+
                 providers: [
+
                   BlocProvider(create: (_) => getIt<TransactionCubit>()),
+
                   BlocProvider(create: (_) => getIt<CategoryCubit>()..getAll()),
+
                 ],
+
                 child: const CreateTransactionScreen(),
+
               ),
+
             ),
+
       ),
+
       GoRoute(
+
         path: RoutePath.transactionDetailRoute,
+
         pageBuilder:
+
             (context, state) => _buildTransitionPage(
+
               key: state.pageKey,
+
               child: BlocProvider(
+
                 create:
+
                     (_) =>
+
                         getIt<TransactionDetailCubit>()
+
                           ..getTransactionById(state.extra as int),
+
                 child: DetailTransactionScreen(
+
                   transactionId: state.extra as int,
+
                 ),
+
               ),
+
             ),
+
       ),
+
       GoRoute(
+
         path: RoutePath.updateTransactionRoute,
+
         pageBuilder: (context, state) {
+
           return _buildTransitionPage(
+
             key: state.pageKey,
+
             child: MultiBlocProvider(
+
               providers: [
+
                 BlocProvider(create: (_) => getIt<TransactionCubit>()),
+
                 BlocProvider(create: (_) => getIt<CategoryCubit>()..getAll()),
+
               ],
+
               child: UpdateTransactionScreen(
+
                 transaction: state.extra as Transaction,
+
               ),
+
             ),
+
           );
+
         },
+
       ),
+
       GoRoute(
+
         path: RoutePath.settingRoute,
+
         pageBuilder: (context, state) {
+
           return _buildTransitionPage(
+
             key: state.pageKey,
+
             child: SettingScreen(),
+
           );
+
         },
+
       ),
+
       GoRoute(
+
         path: RoutePath.transactionListRoute,
+
         pageBuilder: (context, state) {
+
           return _buildTransitionPage(
+
             key: state.pageKey,
+
             child: BlocProvider(
+
               create: (_) => getIt<TransactionListCubit>()..loadInitialData(),
+
               child: TransactionListScreen(),
+
             ),
+
           );
+
         },
+
       ),
+
       GoRoute(
+
         path: RoutePath.createCategoryRoute,
+
         pageBuilder: (context, state) {
+
           return _buildTransitionPage(
+
             key: state.pageKey,
+
             child: BlocProvider(
+
               create: (_) => getIt<CategoryCubit>(),
+
               child: CreateCategoryScreen(),
+
             ),
+
           );
+
         },
+
       ),
+
     ],
+
     errorBuilder:
+
         (context, state) =>
+
             const Scaffold(body: Center(child: Text('404 - Page not found'))),
+
   );
 
+
+
   CustomTransitionPage _buildTransitionPage({
+
     required LocalKey key,
+
     required Widget child,
+
   }) {
+
     return CustomTransitionPage(
+
       key: key,
+
       child: child,
+
+
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
+
         const begin = Offset(1.0, 0.0);
+
         const end = Offset.zero;
+
         const curve = Curves.ease;
 
+
+
         var tween = Tween(
+
           begin: begin,
+
           end: end,
+
         ).chain(CurveTween(curve: curve));
+
         return SlideTransition(position: animation.drive(tween), child: child);
+
       },
+
+
     );
+
   }
+
+
 }
