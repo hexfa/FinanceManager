@@ -29,7 +29,6 @@ class AppRouter {
         path: RoutePath.homeRoute,
 
         pageBuilder:
-
             (context, state) => _buildTransitionPage(
               key: state.pageKey,
               child: BlocProvider(
