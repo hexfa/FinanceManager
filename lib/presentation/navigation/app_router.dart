@@ -23,7 +23,6 @@ class AppRouter {
     initialLocation: RoutePath.homeRoute,
 
     routes: [
-
       GoRoute(
         path: RoutePath.homeRoute,
         pageBuilder:
