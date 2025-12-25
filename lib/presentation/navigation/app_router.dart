@@ -37,7 +37,6 @@ class AppRouter {
               child: BlocProvider(
 
                 create: (_) => getIt<HomeCubit>()..loadInitialData(),
-
                 child: const HomeScreen(),
               ),
             ),
