@@ -33,7 +33,6 @@ class AppRouter {
             (context, state) => _buildTransitionPage(
 
               key: state.pageKey,
-
               child: BlocProvider(
                 create: (_) => getIt<HomeCubit>()..loadInitialData(),
                 child: const HomeScreen(),
