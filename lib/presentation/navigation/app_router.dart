@@ -21,7 +21,6 @@ class AppRouter {
   late final GoRouter router = GoRouter(
 
     initialLocation: RoutePath.homeRoute,
-
     routes: [
       GoRoute(
         path: RoutePath.homeRoute,
