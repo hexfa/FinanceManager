@@ -41,7 +41,6 @@ class AppRouter {
                 child: const HomeScreen(),
 
               ),
-
             ),
       ),
 
