@@ -25,7 +25,6 @@ class AppRouter {
     routes: [
 
       GoRoute(
-
         path: RoutePath.homeRoute,
         pageBuilder:
             (context, state) => _buildTransitionPage(
