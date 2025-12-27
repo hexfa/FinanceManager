@@ -33,7 +33,6 @@ class AppRouter {
             ),
       ),
       GoRoute(
-
         path: RoutePath.createTransactionRoute,
 
         pageBuilder:
