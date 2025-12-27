@@ -45,7 +45,6 @@ class AppRouter {
                 child: const CreateTransactionScreen(),
               ),
             ),
-
       ),
 
       GoRoute(
