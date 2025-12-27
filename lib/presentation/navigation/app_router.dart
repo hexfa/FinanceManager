@@ -36,7 +36,6 @@ class AppRouter {
         path: RoutePath.createTransactionRoute,
         pageBuilder:
             (context, state) => _buildTransitionPage(
-
               key: state.pageKey,
 
               child: MultiBlocProvider(
