@@ -42,7 +42,6 @@ class AppRouter {
                   BlocProvider(create: (_) => getIt<TransactionCubit>()),
                   BlocProvider(create: (_) => getIt<CategoryCubit>()..getAll()),
                 ],
-
                 child: const CreateTransactionScreen(),
 
               ),
