@@ -50,7 +50,6 @@ class AppRouter {
         path: RoutePath.transactionDetailRoute,
         pageBuilder:
             (context, state) => _buildTransitionPage(
-
               key: state.pageKey,
 
               child: BlocProvider(
