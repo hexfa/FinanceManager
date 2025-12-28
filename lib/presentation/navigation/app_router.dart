@@ -54,7 +54,6 @@ class AppRouter {
               child: BlocProvider(
                 create:
                     (_) =>
-
                         getIt<TransactionDetailCubit>()
 
                           ..getTransactionById(state.extra as int),
