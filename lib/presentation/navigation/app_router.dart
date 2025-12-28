@@ -49,7 +49,6 @@ class AppRouter {
       GoRoute(
         path: RoutePath.transactionDetailRoute,
         pageBuilder:
-
             (context, state) => _buildTransitionPage(
 
               key: state.pageKey,
