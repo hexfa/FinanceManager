@@ -46,7 +46,6 @@ class AppRouter {
               ),
             ),
       ),
-
       GoRoute(
 
         path: RoutePath.transactionDetailRoute,
