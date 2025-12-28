@@ -53,7 +53,6 @@ class AppRouter {
               key: state.pageKey,
               child: BlocProvider(
                 create: (_) => getIt<TransactionDetailCubit>()
-
                           ..getTransactionById(state.extra as int),
 
                 child: DetailTransactionScreen(
