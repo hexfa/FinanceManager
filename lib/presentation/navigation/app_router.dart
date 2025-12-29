@@ -63,7 +63,6 @@ class AppRouter {
         path: RoutePath.updateTransactionRoute,
         pageBuilder: (context, state) {
           return _buildTransitionPage(
-
             key: state.pageKey,
 
             child: MultiBlocProvider(
