@@ -59,7 +59,6 @@ class AppRouter {
               ),
             ),
       ),
-
       GoRoute(
 
         path: RoutePath.updateTransactionRoute,
