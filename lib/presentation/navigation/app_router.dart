@@ -66,7 +66,6 @@ class AppRouter {
             key: state.pageKey,
             child: MultiBlocProvider(
               providers: [
-
                 BlocProvider(create: (_) => getIt<TransactionCubit>()),
 
                 BlocProvider(create: (_) => getIt<CategoryCubit>()..getAll()),
