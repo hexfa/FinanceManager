@@ -60,7 +60,6 @@ class AppRouter {
             ),
       ),
       GoRoute(
-
         path: RoutePath.updateTransactionRoute,
 
         pageBuilder: (context, state) {
