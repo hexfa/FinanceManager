@@ -64,7 +64,6 @@ class AppRouter {
         pageBuilder: (context, state) {
           return _buildTransitionPage(
             key: state.pageKey,
-
             child: MultiBlocProvider(
 
               providers: [
