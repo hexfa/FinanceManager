@@ -68,7 +68,6 @@ class AppRouter {
               providers: [
                 BlocProvider(create: (_) => getIt<TransactionCubit>()),
                 BlocProvider(create: (_) => getIt<CategoryCubit>()..getAll()),
-
               ],
 
               child: UpdateTransactionScreen(
