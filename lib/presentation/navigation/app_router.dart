@@ -56,7 +56,6 @@ class AppRouter {
                 child: DetailTransactionScreen(
                   transactionId: state.extra as int,
                 ),
-
               ),
 
             ),
