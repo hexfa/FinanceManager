@@ -70,7 +70,6 @@ class AppRouter {
                 BlocProvider(create: (_) => getIt<CategoryCubit>()..getAll()),
               ],
               child: UpdateTransactionScreen(
-
                 transaction: state.extra as Transaction,
 
               ),
