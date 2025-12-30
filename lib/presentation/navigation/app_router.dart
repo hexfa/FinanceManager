@@ -82,7 +82,6 @@ class AppRouter {
           return _buildTransitionPage(
             key: state.pageKey,
             child: SettingScreen(),
-
           );
 
         },
