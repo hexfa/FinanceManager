@@ -86,7 +86,6 @@ class AppRouter {
         },
       ),
       GoRoute(
-
         path: RoutePath.transactionListRoute,
 
         pageBuilder: (context, state) {
