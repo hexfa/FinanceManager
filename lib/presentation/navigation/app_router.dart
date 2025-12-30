@@ -76,7 +76,6 @@ class AppRouter {
           );
         },
       ),
-
       GoRoute(
 
         path: RoutePath.settingRoute,
