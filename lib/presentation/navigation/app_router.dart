@@ -72,9 +72,7 @@ class AppRouter {
               child: UpdateTransactionScreen(
                 transaction: state.extra as Transaction,
               ),
-
             ),
-
           );
 
         },
