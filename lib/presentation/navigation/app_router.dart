@@ -83,7 +83,6 @@ class AppRouter {
             key: state.pageKey,
             child: SettingScreen(),
           );
-
         },
 
       ),
