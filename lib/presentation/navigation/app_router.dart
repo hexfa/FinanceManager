@@ -77,7 +77,6 @@ class AppRouter {
         },
       ),
       GoRoute(
-
         path: RoutePath.settingRoute,
 
         pageBuilder: (context, state) {
