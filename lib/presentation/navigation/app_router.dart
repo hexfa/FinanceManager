@@ -85,7 +85,6 @@ class AppRouter {
           );
         },
       ),
-
       GoRoute(
 
         path: RoutePath.transactionListRoute,
