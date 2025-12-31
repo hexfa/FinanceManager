@@ -95,7 +95,6 @@ class AppRouter {
               child: TransactionListScreen(),
             ),
           );
-
         },
 
       ),
