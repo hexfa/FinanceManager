@@ -97,7 +97,6 @@ class AppRouter {
           );
         },
       ),
-
       GoRoute(
 
         path: RoutePath.createCategoryRoute,
