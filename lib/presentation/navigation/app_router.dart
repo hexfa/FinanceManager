@@ -96,7 +96,6 @@ class AppRouter {
             ),
           );
         },
-
       ),
 
       GoRoute(
