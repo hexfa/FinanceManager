@@ -100,7 +100,6 @@ class AppRouter {
       GoRoute(
         path: RoutePath.createCategoryRoute,
         pageBuilder: (context, state) {
-
           return _buildTransitionPage(
 
             key: state.pageKey,
