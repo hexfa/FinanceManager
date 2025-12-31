@@ -94,7 +94,6 @@ class AppRouter {
               create: (_) => getIt<TransactionListCubit>()..loadInitialData(),
               child: TransactionListScreen(),
             ),
-
           );
 
         },
