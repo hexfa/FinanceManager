@@ -92,7 +92,6 @@ class AppRouter {
             key: state.pageKey,
             child: BlocProvider(
               create: (_) => getIt<TransactionListCubit>()..loadInitialData(),
-
               child: TransactionListScreen(),
 
             ),
