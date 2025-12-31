@@ -93,7 +93,6 @@ class AppRouter {
             child: BlocProvider(
               create: (_) => getIt<TransactionListCubit>()..loadInitialData(),
               child: TransactionListScreen(),
-
             ),
 
           );
