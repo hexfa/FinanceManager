@@ -98,7 +98,6 @@ class AppRouter {
         },
       ),
       GoRoute(
-
         path: RoutePath.createCategoryRoute,
 
         pageBuilder: (context, state) {
