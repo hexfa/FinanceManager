@@ -106,7 +106,6 @@ class AppRouter {
               create: (_) => getIt<CategoryCubit>(),
               child: CreateCategoryScreen(),
             ),
-
           );
 
         },
