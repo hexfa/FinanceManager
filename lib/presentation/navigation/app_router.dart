@@ -109,7 +109,6 @@ class AppRouter {
           );
         },
       ),
-
     ],
 
     errorBuilder:
