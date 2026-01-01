@@ -109,8 +109,7 @@ class AppRouter {
           );
         },
       ),
-    ],
-    errorBuilder:
+    ], errorBuilder:
 
         (context, state) =>
 
