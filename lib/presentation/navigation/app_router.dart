@@ -113,7 +113,6 @@ class AppRouter {
         (context, state) =>
             const Scaffold(body: Center(child: Text('404 - Page not found'))),
   );
-
   CustomTransitionPage _buildTransitionPage({
 
     required LocalKey key,
