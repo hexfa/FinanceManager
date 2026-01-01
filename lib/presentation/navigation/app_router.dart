@@ -104,7 +104,6 @@ class AppRouter {
             key: state.pageKey,
             child: BlocProvider(
               create: (_) => getIt<CategoryCubit>(),
-
               child: CreateCategoryScreen(),
 
             ),
