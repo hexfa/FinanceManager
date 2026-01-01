@@ -107,7 +107,6 @@ class AppRouter {
               child: CreateCategoryScreen(),
             ),
           );
-
         },
 
       ),
