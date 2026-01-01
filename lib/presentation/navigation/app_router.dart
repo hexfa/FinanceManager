@@ -102,7 +102,6 @@ class AppRouter {
         pageBuilder: (context, state) {
           return _buildTransitionPage(
             key: state.pageKey,
-
             child: BlocProvider(
 
               create: (_) => getIt<CategoryCubit>(),
