@@ -110,7 +110,6 @@ class AppRouter {
         },
       ),
     ],
-
     errorBuilder:
 
         (context, state) =>
