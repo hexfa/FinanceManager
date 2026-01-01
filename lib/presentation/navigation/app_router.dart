@@ -110,7 +110,6 @@ class AppRouter {
         },
       ),
     ], errorBuilder:
-
         (context, state) =>
 
             const Scaffold(body: Center(child: Text('404 - Page not found'))),
