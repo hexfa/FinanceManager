@@ -105,7 +105,6 @@ class AppRouter {
             child: BlocProvider(
               create: (_) => getIt<CategoryCubit>(),
               child: CreateCategoryScreen(),
-
             ),
 
           );
