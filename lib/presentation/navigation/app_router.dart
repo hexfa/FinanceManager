@@ -115,7 +115,6 @@ class AppRouter {
   );
   CustomTransitionPage _buildTransitionPage({
     required LocalKey key,
-
     required Widget child,
 
   }) {
