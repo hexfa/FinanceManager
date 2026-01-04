@@ -123,7 +123,6 @@ class AppRouter {
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         const begin = Offset(1.0, 0.0);
         const end = Offset.zero;
-
         const curve = Curves.ease;
 
 
