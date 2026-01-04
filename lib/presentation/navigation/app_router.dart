@@ -119,7 +119,6 @@ class AppRouter {
   }) {
     return CustomTransitionPage(
       key: key,
-
       child: child,
 
 
