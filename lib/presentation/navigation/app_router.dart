@@ -120,7 +120,6 @@ class AppRouter {
     return CustomTransitionPage(
       key: key,
       child: child,
-
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
 
         const begin = Offset(1.0, 0.0);
