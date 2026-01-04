@@ -125,7 +125,6 @@ class AppRouter {
         const end = Offset.zero;
         const curve = Curves.ease;
 
-
         var tween = Tween(
 
           begin: begin,
