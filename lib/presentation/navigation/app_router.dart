@@ -117,7 +117,6 @@ class AppRouter {
     required LocalKey key,
     required Widget child,
   }) {
-
     return CustomTransitionPage(
 
       key: key,
