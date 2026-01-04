@@ -118,7 +118,6 @@ class AppRouter {
     required Widget child,
   }) {
     return CustomTransitionPage(
-
       key: key,
 
       child: child,
