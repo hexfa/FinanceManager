@@ -131,7 +131,6 @@ class AppRouter {
         return SlideTransition(position: animation.drive(tween), child: child);
       },
     );
-
   }
 
 
