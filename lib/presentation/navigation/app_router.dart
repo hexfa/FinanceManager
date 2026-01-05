@@ -52,7 +52,10 @@ class AppRouter {
             (context, state) => _buildTransitionPage(
               key: state.pageKey,
               child: BlocProvider(
-                create: (_) => getIt<TransactionDetailCubit>()..getTransactionById(state.extra as int),
+                create:
+                    (_) =>
+                        getIt<TransactionDetailCubit>()
+                          ..getTransactionById(state.extra as int),
                 child: DetailTransactionScreen(
                   transactionId: state.extra as int,
                 ),
@@ -109,7 +112,8 @@ class AppRouter {
           );
         },
       ),
-    ], errorBuilder:
+    ],
+    errorBuilder:
         (context, state) =>
             const Scaffold(body: Center(child: Text('404 - Page not found'))),
   );
