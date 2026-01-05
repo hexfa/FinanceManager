@@ -126,7 +126,6 @@ class AppRouter {
         const curve = Curves.ease;
         var tween = Tween(
           begin: begin,
-
           end: end,
 
         ).chain(CurveTween(curve: curve));
