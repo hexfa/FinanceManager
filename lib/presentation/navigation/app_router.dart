@@ -130,7 +130,6 @@ class AppRouter {
         ).chain(CurveTween(curve: curve));
         return SlideTransition(position: animation.drive(tween), child: child);
       },
-
     );
 
   }
