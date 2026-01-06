@@ -10,7 +10,6 @@ import 'package:go_router/go_router.dart';
 abstract class BaseState<T extends StatefulWidget> extends State<T> {
 
   // Theme Data for accessing the current theme
-
   late GoRouter router;
 
   // Method to initialize app-wide dependencies (like network requests, etc.)
