@@ -19,7 +19,6 @@ abstract class BaseState<T extends StatefulWidget> extends State<T> {
     router = GoRouter.of(context);
   }
 
-
   ThemeData get theme => Theme.of(context);
 
 
