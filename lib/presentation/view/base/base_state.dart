@@ -17,7 +17,6 @@ abstract class BaseState<T extends StatefulWidget> extends State<T> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     router = GoRouter.of(context);
-
   }
 
 
