@@ -15,7 +15,6 @@ abstract class BaseState<T extends StatefulWidget> extends State<T> {
   // Method to initialize app-wide dependencies (like network requests, etc.)
   @override
   void didChangeDependencies() {
-
     super.didChangeDependencies();
 
     router = GoRouter.of(context);
