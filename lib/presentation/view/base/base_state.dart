@@ -13,7 +13,6 @@ abstract class BaseState<T extends StatefulWidget> extends State<T> {
   late GoRouter router;
 
   // Method to initialize app-wide dependencies (like network requests, etc.)
-
   @override
 
   void didChangeDependencies() {
