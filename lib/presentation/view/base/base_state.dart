@@ -6,7 +6,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 /// BaseState is a reusable class that provides common functionality
-
 /// for other widgets in the app by extending StatefulWidget.
 
 abstract class BaseState<T extends StatefulWidget> extends State<T> {
