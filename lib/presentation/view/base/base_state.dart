@@ -24,7 +24,6 @@ abstract class BaseState<T extends StatefulWidget> extends State<T> {
   MediaQueryData get mediaQuery => MediaQuery.of(context);
 
 
-
   // Localization for accessing localized strings
 
   AppLocalizations get localization => AppLocalizations.of(context)!;
