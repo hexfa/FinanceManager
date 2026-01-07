@@ -26,7 +26,6 @@ abstract class BaseState<T extends StatefulWidget> extends State<T> {
   // Localization for accessing localized strings
   AppLocalizations get localization => AppLocalizations.of(context)!;
 
-
   // Access to Navigator for pushing and popping pages
 
   NavigatorState get navigator => Navigator.of(context);
