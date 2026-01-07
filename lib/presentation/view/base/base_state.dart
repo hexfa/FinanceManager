@@ -30,7 +30,6 @@ abstract class BaseState<T extends StatefulWidget> extends State<T> {
   // Access to Navigator for pushing and popping pages
   NavigatorState get navigator => Navigator.of(context);
 
-
   // Common method to show a SnackBar with a message
 
   void showSnackBar(String message) {
