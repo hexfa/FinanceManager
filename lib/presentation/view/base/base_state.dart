@@ -34,7 +34,6 @@ abstract class BaseState<T extends StatefulWidget> extends State<T> {
   void showSnackBar(String message) {
     ScaffoldMessenger.of(
       context,
-
     ).showSnackBar(SnackBar(content: Text(message)));
 
   }
