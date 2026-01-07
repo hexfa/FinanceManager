@@ -20,6 +20,7 @@ abstract class BaseState<T extends StatefulWidget> extends State<T> {
   }
 
   ThemeData get theme => Theme.of(context);
+
   // MediaQuery for accessing screen size, orientation, etc.
   MediaQueryData get mediaQuery => MediaQuery.of(context);
 
