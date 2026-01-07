@@ -32,7 +32,6 @@ abstract class BaseState<T extends StatefulWidget> extends State<T> {
 
 
 
-
   // Common method to show a SnackBar with a message
 
   void showSnackBar(String message) {
