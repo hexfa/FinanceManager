@@ -31,7 +31,6 @@ abstract class BaseState<T extends StatefulWidget> extends State<T> {
   NavigatorState get navigator => Navigator.of(context);
 
   // Common method to show a SnackBar with a message
-
   void showSnackBar(String message) {
 
     ScaffoldMessenger.of(
