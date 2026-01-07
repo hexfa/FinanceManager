@@ -37,7 +37,6 @@ abstract class BaseState<T extends StatefulWidget> extends State<T> {
     ).showSnackBar(SnackBar(content: Text(message)));
   }
 
-
   // Common method to handle errors (could be customized based on app requirements)
 
 
