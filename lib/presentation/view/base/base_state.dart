@@ -49,7 +49,6 @@ abstract class BaseState<T extends StatefulWidget> extends State<T> {
   // Method to check if the platform is Android
   bool get isAndroid => Platform.isAndroid;
 
-
   // Method to check if the app is in dark mode
   bool get isDarkMode => theme.brightness == Brightness.dark;
 
