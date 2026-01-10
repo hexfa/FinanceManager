@@ -41,7 +41,6 @@ abstract class BaseState<T extends StatefulWidget> extends State<T> {
   void handleError(Object error, StackTrace stackTrace) {
     showSnackBar("An error occurred: ${error.toString()}");
     // You can log errors or send them to an analytics service here
-
   }
 
 
