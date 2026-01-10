@@ -46,7 +46,6 @@ abstract class BaseState<T extends StatefulWidget> extends State<T> {
   // Method to check if the platform is iOS
   bool get isIOS => Platform.isIOS;
 
-
   // Method to check if the platform is Android
 
   bool get isAndroid => Platform.isAndroid;
