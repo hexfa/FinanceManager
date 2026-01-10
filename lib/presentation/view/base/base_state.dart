@@ -43,7 +43,6 @@ abstract class BaseState<T extends StatefulWidget> extends State<T> {
     // You can log errors or send them to an analytics service here
   }
 
-
   // Method to check if the platform is iOS
 
   bool get isIOS => Platform.isIOS;
