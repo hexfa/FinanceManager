@@ -53,7 +53,6 @@ abstract class BaseState<T extends StatefulWidget> extends State<T> {
   bool get isDarkMode => theme.brightness == Brightness.dark;
 
 
-
   // Method to check if the device is in landscape mode
 
   bool get isLandscape => mediaQuery.orientation == Orientation.landscape;
