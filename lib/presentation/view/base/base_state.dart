@@ -71,7 +71,6 @@ abstract class BaseState<T extends StatefulWidget> extends State<T> {
   //           ? ColorFilter.mode(
   //         color,
   //         BlendMode.srcIn,
-
   //       )
 
   //           : null,
