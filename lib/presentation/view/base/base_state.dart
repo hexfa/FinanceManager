@@ -80,7 +80,6 @@ abstract class BaseState<T extends StatefulWidget> extends State<T> {
   //     BlocProvider.of<TBloc>(context);
 
 
-
   TBloc getBloc<TBloc extends StateStreamableSource<Object?>>() {
 
     return BlocProvider.of<TBloc>(context);
