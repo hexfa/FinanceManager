@@ -72,7 +72,6 @@ abstract class BaseState<T extends StatefulWidget> extends State<T> {
   //         color,
   //         BlendMode.srcIn,
   //       )
-
   //           : null,
 
   //     );
