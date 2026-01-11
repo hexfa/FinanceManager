@@ -58,7 +58,6 @@ abstract class BaseState<T extends StatefulWidget> extends State<T> {
   // Access to screen width
   double get screenWidth => mediaQuery.size.width;
 
-
   // Access to screen height
 
   double get screenHeight => mediaQuery.size.height;
