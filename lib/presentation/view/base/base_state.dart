@@ -66,7 +66,6 @@ abstract class BaseState<T extends StatefulWidget> extends State<T> {
   //     SvgPicture.asset(
   //       iconPath,
   //       width: size,
-
   //       height: size,
 
   //       colorFilter: color != null
