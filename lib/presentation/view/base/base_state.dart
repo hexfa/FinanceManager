@@ -54,7 +54,6 @@ abstract class BaseState<T extends StatefulWidget> extends State<T> {
 
 
   // Method to check if the device is in landscape mode
-
   bool get isLandscape => mediaQuery.orientation == Orientation.landscape;
 
 
