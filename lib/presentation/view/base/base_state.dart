@@ -56,7 +56,6 @@ abstract class BaseState<T extends StatefulWidget> extends State<T> {
   bool get isLandscape => mediaQuery.orientation == Orientation.landscape;
 
   // Access to screen width
-
   double get screenWidth => mediaQuery.size.width;
 
 
