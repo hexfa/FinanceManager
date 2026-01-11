@@ -75,7 +75,6 @@ abstract class BaseState<T extends StatefulWidget> extends State<T> {
   //           : null,
   //     );
 
-
   // Get bloc object
 
   // TBloc getBloc<TBloc extends Bloc>(BuildContext context) =>
