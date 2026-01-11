@@ -61,7 +61,6 @@ abstract class BaseState<T extends StatefulWidget> extends State<T> {
   // Access to screen height
   double get screenHeight => mediaQuery.size.height;
 
-
   // Get custom icon from assets
 
   // SvgPicture getIcon(String iconPath, {Color? color, double size = 20}) =>
