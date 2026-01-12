@@ -9,7 +9,6 @@ class CustomPieChart extends BaseStatelessWidget {
   const CustomPieChart({super.key, required this.data});
 
   @override
-
   Widget build(BuildContext context) {
 
     return SizedBox(
