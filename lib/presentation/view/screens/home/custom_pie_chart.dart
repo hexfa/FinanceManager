@@ -16,8 +16,7 @@ class CustomPieChart extends BaseStatelessWidget {
         PieChartData(
           sections:
           data.map(
-
-                    (data) => PieChartSectionData(
+                (data) => PieChartSectionData(
 
                       color: data.color,
 
