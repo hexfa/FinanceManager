@@ -84,7 +84,6 @@ abstract class BaseState<T extends StatefulWidget> extends State<T> {
   }
 
   void goTo(String viewPath, {Object? extra}) {
-
     router.push(viewPath, extra: extra);
 
   }
