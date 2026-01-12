@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 class CustomPieChart extends BaseStatelessWidget {
   final List<TransactionChartData> data;
 
-
   const CustomPieChart({super.key, required this.data});
 
 
