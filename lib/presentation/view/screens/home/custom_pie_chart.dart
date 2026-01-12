@@ -15,8 +15,7 @@ class CustomPieChart extends BaseStatelessWidget {
       child: PieChart(
         PieChartData(
           sections:
-          data
-                  .map(
+          data.map(
 
                     (data) => PieChartSectionData(
 
