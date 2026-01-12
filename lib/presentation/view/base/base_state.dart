@@ -8,7 +8,6 @@ import 'package:go_router/go_router.dart';
 /// BaseState is a reusable class that provides common functionality
 /// for other widgets in the app by extending StatefulWidget.
 abstract class BaseState<T extends StatefulWidget> extends State<T> {
-
   // Theme Data for accessing the current theme
   late GoRouter router;
 
