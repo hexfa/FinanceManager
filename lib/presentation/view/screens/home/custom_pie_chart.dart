@@ -4,7 +4,6 @@ import 'package:finance_manager/presentation/view/base/base_stateless_widget.dar
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
-
 class CustomPieChart extends BaseStatelessWidget {
 
   final List<TransactionChartData> data;
