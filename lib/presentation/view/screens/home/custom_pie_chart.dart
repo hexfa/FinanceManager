@@ -14,7 +14,6 @@ class CustomPieChart extends BaseStatelessWidget {
       height: 200,
       child: PieChart(
         PieChartData(
-
           sections:
 
               data
