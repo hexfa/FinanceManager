@@ -91,5 +91,4 @@ abstract class BaseState<T extends StatefulWidget> extends State<T> {
   Widget build(BuildContext context) {
     return Container(); // This should be overridden in subclasses
   }
-
 }
