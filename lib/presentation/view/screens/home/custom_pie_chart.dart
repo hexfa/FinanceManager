@@ -12,7 +12,6 @@ class CustomPieChart extends BaseStatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 200,
-
       child: PieChart(
 
         PieChartData(
