@@ -1,7 +1,6 @@
 import 'package:finance_manager/core/utils/convert_string.dart';
 import 'package:finance_manager/data/models/transaction_chart_data.dart';
 import 'package:finance_manager/presentation/view/base/base_stateless_widget.dart';
-
 import 'package:fl_chart/fl_chart.dart';
 
 import 'package:flutter/material.dart';
