@@ -23,7 +23,6 @@ class CustomPieChart extends BaseStatelessWidget {
                       titleStyle: theme(context).textTheme.labelSmall?.copyWith(
                         color: theme(context).colorScheme.surface,
                       ),
-
                     ),
 
                   )
