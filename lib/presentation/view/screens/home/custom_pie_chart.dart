@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 class CustomPieChart extends BaseStatelessWidget {
   final List<TransactionChartData> data;
+
   const CustomPieChart({super.key, required this.data});
 
   @override
@@ -15,7 +16,9 @@ class CustomPieChart extends BaseStatelessWidget {
       child: PieChart(
         PieChartData(
           sections:
-          data.map((data) => PieChartSectionData(
+              data
+                  .map(
+                    (data) => PieChartSectionData(
                       color: data.color,
                       value: ConvertString.roundToTwoDecimals(data.percentage),
                       title:
@@ -25,7 +28,7 @@ class CustomPieChart extends BaseStatelessWidget {
                       ),
                     ),
                   )
-              .toList(),
+                  .toList(),
           sectionsSpace: 2,
           centerSpaceRadius: 40,
         ),
