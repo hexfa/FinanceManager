@@ -27,7 +27,7 @@ class CustomSwitch extends BaseStatelessWidget {
         Switch(
           value: value,
           onChanged: onChanged,
-          activeColor:
+          activeThumbColor:
               value
                   ? theme(context).colorScheme.primary
                   : theme(context).colorScheme.tertiary,
