@@ -25,7 +25,6 @@ class CustomPieChart extends BaseStatelessWidget {
                       ),
                     ),
                   )
-
                   .toList(),
 
           sectionsSpace: 2,
