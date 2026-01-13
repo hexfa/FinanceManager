@@ -18,7 +18,6 @@ class CustomPieChart extends BaseStatelessWidget {
           data.map((data) => PieChartSectionData(
                       color: data.color,
                       value: ConvertString.roundToTwoDecimals(data.percentage),
-
                       title:
 
                           '${data.title}\n${ConvertString.formatCurrencyFromDouble(data.percentage)}%',
