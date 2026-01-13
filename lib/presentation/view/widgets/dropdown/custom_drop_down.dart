@@ -32,7 +32,7 @@ class CustomDropdown<T> extends BaseStatelessWidget {
             : null;
 
     return DropdownButtonFormField<T>(
-      value: value,
+      initialValue: value,
       items:
           items.map((item) {
             final itemLabel = itemLabelBuilder?.call(item) ?? item.toString();
