@@ -1,5 +1,5 @@
 import 'package:finance_manager/core/utils/transaction_type.dart';
-import 'package:finance_manager/data/models/category.dart';
+
 import 'package:finance_manager/data/models/transaction.dart';
 import 'package:finance_manager/presentation/bloc/home/home_state.dart';
 import 'package:finance_manager/presentation/navigation/route_path.dart';
