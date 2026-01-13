@@ -17,7 +17,6 @@ class CustomPieChart extends BaseStatelessWidget {
           sections:
           data.map(
                 (data) => PieChartSectionData(
-
                       color: data.color,
 
                       value: ConvertString.roundToTwoDecimals(data.percentage),
