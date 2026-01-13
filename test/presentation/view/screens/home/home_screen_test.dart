@@ -11,24 +11,24 @@ import '../../../../helpers/mock_go_router.dart';
 
 void main() {
   testWidgets('should display WalletCard with correct data', (tester) async {
-    final mockState = InitialData(
-      [],
-      [
-        Transaction(
-          id: 1,
-          title: 'Coffee',
-          description: 'des',
-          amount: 5.0,
-          type: TransactionType.expense,
-          category: Category(id: 1, name: 'education'),
-          date: DateTime.parse('2025-06-07T15:18:17'),
-        ),
-      ],
-      100.0,
-      50.0,
-      50.0,
-      1,
-    );
+    // final mockState = InitialData(
+    //   [],
+    //   [
+    //     Transaction(
+    //       id: 1,
+    //       title: 'Coffee',
+    //       description: 'des',
+    //       amount: 5.0,
+    //       type: TransactionType.expense,
+    //       category: Category(id: 1, name: 'education'),
+    //       date: DateTime.parse('2025-06-07T15:18:17'),
+    //     ),
+    //   ],
+    //   100.0,
+    //   50.0,
+    //   50.0,
+    //   1,
+    // );
 
     // await tester.pumpWidget(
     //   MaterialApp(
