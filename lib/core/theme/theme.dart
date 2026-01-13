@@ -46,7 +46,7 @@ final ThemeData lightTheme = ThemeData(
 final ThemeData darkTheme = ThemeData(
   scaffoldBackgroundColor: darkBackgroundColor,
   appBarTheme: const AppBarTheme(
-    color: darkCard,
+    backgroundColor: darkCard,
     foregroundColor: darkOnPrimaryColor,
     elevation: 0.5,
   ),
