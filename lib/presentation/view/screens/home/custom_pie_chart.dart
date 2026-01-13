@@ -24,7 +24,6 @@ class CustomPieChart extends BaseStatelessWidget {
                         color: theme(context).colorScheme.surface,
                       ),
                     ),
-
                   )
 
                   .toList(),
