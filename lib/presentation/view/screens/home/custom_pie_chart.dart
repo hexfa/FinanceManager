@@ -20,7 +20,6 @@ class CustomPieChart extends BaseStatelessWidget {
                       value: ConvertString.roundToTwoDecimals(data.percentage),
                       title:
                           '${data.title}\n${ConvertString.formatCurrencyFromDouble(data.percentage)}%',
-
                       titleStyle: theme(context).textTheme.labelSmall?.copyWith(
 
                         color: theme(context).colorScheme.surface,
