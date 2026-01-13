@@ -1,4 +1,3 @@
-
 import 'package:finance_manager/presentation/navigation/route_path.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -75,24 +74,27 @@ void main() {
   });
 
   testWidgets(
-      'should navigate to create transaction screen on + button press', (
-      tester) async {
-    final mockRouter = MockGoRouter();
+    'should navigate to create transaction screen on + button press',
+    (tester) async {
+      final mockRouter = MockGoRouter();
 
-    // await tester.pumpWidget(
-    //   MaterialApp.router(
-    //     routerDelegate: mockRouter.routerDelegate,
-    //     routeInformationParser: mockRouter.routeInformationParser,
-    //   ),
-    // );
+      // await tester.pumpWidget(
+      //   MaterialApp.router(
+      //     routerDelegate: mockRouter.routerDelegate,
+      //     routeInformationParser: mockRouter.routeInformationParser,
+      //   ),
+      // );
 
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pumpAndSettle();
+      await tester.tap(find.byIcon(Icons.add));
+      await tester.pumpAndSettle();
 
-    verify(() => mockRouter.push(RoutePath.createTransactionRoute)).called(1);
-  });
+      verify(() => mockRouter.push(RoutePath.createTransactionRoute)).called(1);
+    },
+  );
 
-  testWidgets('should navigate to setting screen from app bar menu', (tester) async {
+  testWidgets('should navigate to setting screen from app bar menu', (
+    tester,
+  ) async {
     final mockRouter = MockGoRouter();
 
     // await tester.pumpWidget(
