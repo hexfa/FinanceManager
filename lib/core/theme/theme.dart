@@ -6,7 +6,7 @@ final ThemeData lightTheme = ThemeData(
   useMaterial3: true,
   scaffoldBackgroundColor: backgroundColor,
   appBarTheme: const AppBarTheme(
-    color: card,
+    backgroundColor: card,
     foregroundColor: onPrimaryColor,
     elevation: 0,
   ),
