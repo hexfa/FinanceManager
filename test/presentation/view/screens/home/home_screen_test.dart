@@ -1,5 +1,4 @@
 
-import 'package:finance_manager/data/models/transaction.dart';
 import 'package:finance_manager/presentation/bloc/home/home_state.dart';
 import 'package:finance_manager/presentation/navigation/route_path.dart';
 import 'package:flutter/material.dart';
