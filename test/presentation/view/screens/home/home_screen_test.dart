@@ -1,4 +1,3 @@
-import 'package:finance_manager/core/utils/transaction_type.dart';
 
 import 'package:finance_manager/data/models/transaction.dart';
 import 'package:finance_manager/presentation/bloc/home/home_state.dart';
