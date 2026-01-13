@@ -31,7 +31,6 @@ class CustomPieChart extends BaseStatelessWidget {
         ),
       ),
     );
-
   }
 
 }
