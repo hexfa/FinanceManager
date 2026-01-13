@@ -29,7 +29,6 @@ class CustomPieChart extends BaseStatelessWidget {
           sectionsSpace: 2,
           centerSpaceRadius: 40,
         ),
-
       ),
 
     );
