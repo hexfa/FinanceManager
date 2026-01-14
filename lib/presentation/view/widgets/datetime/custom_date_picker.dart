@@ -3,7 +3,6 @@ import 'package:finance_manager/presentation/view/widgets/app_decoration.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-
 class DateTimePickerContainer extends StatefulWidget {
 
   final ValueChanged<DateTime> onDateTimeSelected;
