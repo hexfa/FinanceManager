@@ -1,7 +1,6 @@
 import 'package:finance_manager/presentation/view/base/base_state.dart';
 import 'package:finance_manager/presentation/view/widgets/app_decoration.dart';
 import 'package:flutter/material.dart';
-
 import 'package:intl/intl.dart';
 
 
