@@ -28,7 +28,6 @@ class _DateTimePickerContainerState extends BaseState<DateTimePickerContainer> {
 
   Future<void> _pickDateTime(BuildContext context) async {
     final now = DateTime.now();
-
     final date = await showDatePicker(
 
       context: context,
