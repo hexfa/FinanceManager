@@ -8,7 +8,6 @@ class DateTimePickerContainer extends StatefulWidget {
   final DateTime? initialDateTime;
   const DateTimePickerContainer({
     super.key,
-
     required this.onDateTimeSelected,
 
     this.initialDateTime,
