@@ -35,7 +35,6 @@ class _DateTimePickerContainerState extends BaseState<DateTimePickerContainer> {
       lastDate: DateTime(2100),
       builder: (context, child) {
         return Theme(
-
           data: theme.copyWith(
 
             dialogTheme: DialogThemeData(backgroundColor: theme.colorScheme.surfaceContainer),
