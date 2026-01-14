@@ -30,7 +30,6 @@ class _DateTimePickerContainerState extends BaseState<DateTimePickerContainer> {
     final now = DateTime.now();
 
 
-
     final date = await showDatePicker(
 
       context: context,
