@@ -31,7 +31,6 @@ class _DateTimePickerContainerState extends BaseState<DateTimePickerContainer> {
     final date = await showDatePicker(
       context: context,
       initialDate: selectedDateTime ?? now,
-
       firstDate: DateTime(2000),
 
       lastDate: DateTime(2100),
