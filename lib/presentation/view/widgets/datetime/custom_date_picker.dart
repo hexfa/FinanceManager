@@ -38,7 +38,6 @@ class _DateTimePickerContainerState extends BaseState<DateTimePickerContainer> {
           data: theme.copyWith(
             dialogTheme: DialogThemeData(backgroundColor: theme.colorScheme.surfaceContainer),
           ),
-
           child: child!,
 
         );
