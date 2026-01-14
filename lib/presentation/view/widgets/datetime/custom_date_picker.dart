@@ -32,7 +32,6 @@ class _DateTimePickerContainerState extends BaseState<DateTimePickerContainer> {
       context: context,
       initialDate: selectedDateTime ?? now,
       firstDate: DateTime(2000),
-
       lastDate: DateTime(2100),
 
       builder: (context, child) {
