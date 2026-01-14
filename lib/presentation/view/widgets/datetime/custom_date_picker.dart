@@ -23,7 +23,6 @@ class _DateTimePickerContainerState extends BaseState<DateTimePickerContainer> {
   @override
   void initState() {
     super.initState();
-
     selectedDateTime = widget.initialDateTime;
 
   }
