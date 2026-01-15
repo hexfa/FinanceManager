@@ -97,5 +97,4 @@ class CustomDropdown<T> extends BaseStatelessWidget {
     );
 
   }
-
 }
