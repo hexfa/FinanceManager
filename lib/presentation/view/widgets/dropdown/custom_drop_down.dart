@@ -36,7 +36,6 @@ class CustomDropdown<T> extends BaseStatelessWidget {
     this.itemLabelBuilder,
 
     this.iconBuilder,
-
     this.hint,
   });
   @override
