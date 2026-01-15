@@ -34,7 +34,6 @@ class CustomDropdown<T> extends BaseStatelessWidget {
     this.value,
 
     this.itemLabelBuilder,
-
     this.iconBuilder,
     this.hint,
   });
