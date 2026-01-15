@@ -24,7 +24,6 @@ class CustomDropdown<T> extends BaseStatelessWidget {
 
 
   const CustomDropdown({
-
     super.key,
     required this.items,
     required this.onChanged,
