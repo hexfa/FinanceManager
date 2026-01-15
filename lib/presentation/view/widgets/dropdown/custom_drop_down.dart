@@ -62,7 +62,6 @@ class CustomDropdown<T> extends BaseStatelessWidget {
             )
 
             : null;
-
     return DropdownButtonFormField<T>(
       initialValue: value,
       items:
