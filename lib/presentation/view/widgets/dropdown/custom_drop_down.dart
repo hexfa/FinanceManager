@@ -66,7 +66,6 @@ class CustomDropdown<T> extends BaseStatelessWidget {
 
 
     return DropdownButtonFormField<T>(
-
       initialValue: value,
       items:
       items.map((item) {
