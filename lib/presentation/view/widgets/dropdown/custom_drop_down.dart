@@ -83,7 +83,6 @@ class CustomDropdown<T> extends BaseStatelessWidget {
       onChanged: onChanged,
 
       decoration: customInputDecoration(
-
         context: context,
         prefixIcon: dynamicIcon,
         hint: hint,
