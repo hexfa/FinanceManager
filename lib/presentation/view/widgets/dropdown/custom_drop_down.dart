@@ -40,7 +40,6 @@ class CustomDropdown<T> extends BaseStatelessWidget {
     this.hint,
 
   });
-
   @override
   Widget build(BuildContext context) {
     final Widget? dynamicIcon =
