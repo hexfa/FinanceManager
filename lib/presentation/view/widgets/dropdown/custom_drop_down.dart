@@ -77,7 +77,6 @@ class CustomDropdown<T> extends BaseStatelessWidget {
             final itemLabel = itemLabelBuilder?.call(item) ?? item.toString();
 
             return DropdownMenuItem<T>(value: item, child: Text(itemLabel));
-
           }).toList(),
       onChanged: onChanged,
       decoration: customInputDecoration(
