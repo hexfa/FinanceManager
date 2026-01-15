@@ -58,8 +58,7 @@ class CustomDropdown<T> extends BaseStatelessWidget {
               color: theme(context).colorScheme.onSurface,
 
               // size: 20,
-
-            ) : null;
+        ) : null;
     return DropdownButtonFormField<T>(
       initialValue: value,
       items:
