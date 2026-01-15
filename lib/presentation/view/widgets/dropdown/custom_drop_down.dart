@@ -54,7 +54,6 @@ class CustomDropdown<T> extends BaseStatelessWidget {
             ? Icon(
 
               iconBuilder!(value as T),
-
               color: theme(context).colorScheme.onSurface,
           // size: 20,
         ) : null;
