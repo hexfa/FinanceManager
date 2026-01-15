@@ -28,7 +28,6 @@ class CustomDropdown<T> extends BaseStatelessWidget {
     super.key,
 
     required this.items,
-
     required this.onChanged,
     this.value,
     this.itemLabelBuilder,
