@@ -48,7 +48,6 @@ class CustomDropdown<T> extends BaseStatelessWidget {
   Widget build(BuildContext context) {
 
     final Widget? dynamicIcon =
-
         (value != null && iconBuilder != null)
             ? Icon(
           iconBuilder!(value as T),
