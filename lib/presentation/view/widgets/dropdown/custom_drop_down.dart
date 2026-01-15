@@ -87,7 +87,6 @@ class CustomDropdown<T> extends BaseStatelessWidget {
         context: context,
 
         prefixIcon: dynamicIcon,
-
         hint: hint,
       ),
       icon: const Icon(Icons.arrow_drop_down),
