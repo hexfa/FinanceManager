@@ -50,7 +50,6 @@ class CustomDropdown<T> extends BaseStatelessWidget {
     final Widget? dynamicIcon =
 
         (value != null && iconBuilder != null)
-
             ? Icon(
           iconBuilder!(value as T),
               color: theme(context).colorScheme.onSurface,
