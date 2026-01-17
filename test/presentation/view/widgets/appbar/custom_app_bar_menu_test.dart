@@ -7,7 +7,6 @@ import '../../../../helpers/build_testable_widget.dart';
 void main() {
 
   testWidgets('verify more_vert icon is displayed in CustomAppBarMenu', (
-
     tester,
 
   ) async {
