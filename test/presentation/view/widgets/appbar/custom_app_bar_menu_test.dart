@@ -21,7 +21,6 @@ void main() {
     final menuItems = [
       AppBarMenu(title: 'Item 1', icon: Icons.edit, onTap: () {}),
       AppBarMenu(title: 'Item 2', icon: Icons.delete, onTap: () {}),
-
     ];
 
 
