@@ -5,7 +5,6 @@ import 'package:finance_manager/presentation/view/widgets/app_decoration.dart';
 
 import 'package:finance_manager/presentation/view/base/base_stateless_widget.dart';
 
-
 class CustomDropdown<T> extends BaseStatelessWidget {
   final List<T> items;
   final T? value;
