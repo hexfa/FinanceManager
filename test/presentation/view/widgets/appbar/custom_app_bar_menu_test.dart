@@ -13,7 +13,6 @@ void main() {
       buildTestableWidget(CustomAppBarMenu(menuItem: [])),
     );
 
-
     expect(find.byIcon(Icons.more_vert), findsOneWidget);
 
   });
