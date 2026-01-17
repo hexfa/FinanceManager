@@ -17,7 +17,6 @@ void main() {
 
   testWidgets('Verify menu items appear when clicking on menu icon', (
     tester,
-
       ) async {
 
     final menuItems = [
