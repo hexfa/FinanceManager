@@ -15,7 +15,6 @@ void main() {
     expect(find.byIcon(Icons.more_vert), findsOneWidget);
   });
 
-
   testWidgets('Verify menu items appear when clicking on menu icon', (
 
     tester,
