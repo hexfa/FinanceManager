@@ -12,7 +12,6 @@ class CustomDropdown<T> extends BaseStatelessWidget {
   final List<T> items;
 
   final T? value;
-
   final ValueChanged<T?> onChanged;
   final String Function(T)? itemLabelBuilder;
   final IconData Function(T)? iconBuilder;
