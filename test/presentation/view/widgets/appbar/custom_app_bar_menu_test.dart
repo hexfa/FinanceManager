@@ -23,7 +23,6 @@ void main() {
       AppBarMenu(title: 'Item 2', icon: Icons.delete, onTap: () {}),
     ];
     await tester.pumpWidget(
-
       buildTestableWidget(CustomAppBarMenu(menuItem: menuItems)),
 
     );
