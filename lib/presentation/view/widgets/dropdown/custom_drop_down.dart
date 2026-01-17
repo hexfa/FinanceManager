@@ -8,7 +8,6 @@ import 'package:finance_manager/presentation/view/base/base_stateless_widget.dar
 
 
 class CustomDropdown<T> extends BaseStatelessWidget {
-
   final List<T> items;
   final T? value;
   final ValueChanged<T?> onChanged;
