@@ -8,7 +8,6 @@ void main() {
 
   testWidgets('verify more_vert icon is displayed in CustomAppBarMenu', (
     tester,
-
   ) async {
 
     await tester.pumpWidget(
