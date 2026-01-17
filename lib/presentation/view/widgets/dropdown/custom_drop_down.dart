@@ -18,7 +18,6 @@ class CustomDropdown<T> extends BaseStatelessWidget {
   final String Function(T)? itemLabelBuilder;
 
   final IconData Function(T)? iconBuilder;
-
   final String? hint;
   const CustomDropdown({
     super.key,
