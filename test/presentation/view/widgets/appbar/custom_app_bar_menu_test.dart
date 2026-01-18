@@ -38,7 +38,6 @@ void main() {
     final menuItems = [
       AppBarMenu(
         title: 'Do Action',
-
         icon: Icons.done,
 
         onTap: () {
