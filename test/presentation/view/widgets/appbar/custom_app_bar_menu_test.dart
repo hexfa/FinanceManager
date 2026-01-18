@@ -48,7 +48,6 @@ void main() {
       buildTestableWidget(CustomAppBarMenu(menuItem: menuItems)),
     );
     await tester.tap(find.byIcon(Icons.more_vert));
-
     await tester.pumpAndSettle();
 
 
