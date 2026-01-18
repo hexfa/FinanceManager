@@ -52,7 +52,6 @@ void main() {
     await tester.tap(find.text('Do Action'));
     await tester.pump();
 
-
     expect(tapped, isTrue);
 
   });
