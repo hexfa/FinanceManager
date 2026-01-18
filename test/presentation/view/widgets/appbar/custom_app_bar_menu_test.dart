@@ -42,7 +42,6 @@ void main() {
         onTap: () {
           tapped = true;
         },
-
       ),
 
     ];
