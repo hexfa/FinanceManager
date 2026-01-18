@@ -44,7 +44,6 @@ void main() {
         },
       ),
     ];
-
     await tester.pumpWidget(
 
       buildTestableWidget(CustomAppBarMenu(menuItem: menuItems)),
