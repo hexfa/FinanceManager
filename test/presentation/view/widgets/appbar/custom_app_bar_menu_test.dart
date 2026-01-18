@@ -51,7 +51,6 @@ void main() {
     await tester.pumpAndSettle();
 
 
-
     await tester.tap(find.text('Do Action'));
 
     await tester.pump();
