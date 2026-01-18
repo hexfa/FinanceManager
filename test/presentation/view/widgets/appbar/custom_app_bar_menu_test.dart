@@ -28,7 +28,6 @@ void main() {
     await tester.tap(find.byIcon(Icons.more_vert));
     await tester.pumpAndSettle();
     expect(find.text('Item 1'), findsOneWidget);
-
     expect(find.text('Item 2'), findsOneWidget);
 
   });
