@@ -31,7 +31,6 @@ void main() {
     expect(find.text('Item 2'), findsOneWidget);
   });
 
-
   testWidgets('ensure onTap is triggered when menu item is selected', (
 
     tester,
