@@ -36,7 +36,6 @@ void main() {
       ) async {
     bool tapped = false;
 
-
     final menuItems = [
 
       AppBarMenu(
