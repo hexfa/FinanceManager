@@ -5,7 +5,6 @@ import 'package:flutter_test/flutter_test.dart';
 import '../../../../helpers/build_testable_widget.dart';
 
 void main() {
-
   testWidgets('verify more_vert icon is displayed in CustomAppBarMenu', (
     tester,
   ) async {
@@ -17,7 +16,7 @@ void main() {
 
   testWidgets('Verify menu items appear when clicking on menu icon', (
     tester,
-      ) async {
+  ) async {
     final menuItems = [
       AppBarMenu(title: 'Item 1', icon: Icons.edit, onTap: () {}),
       AppBarMenu(title: 'Item 2', icon: Icons.delete, onTap: () {}),
@@ -33,7 +32,7 @@ void main() {
 
   testWidgets('ensure onTap is triggered when menu item is selected', (
     tester,
-      ) async {
+  ) async {
     bool tapped = false;
     final menuItems = [
       AppBarMenu(
