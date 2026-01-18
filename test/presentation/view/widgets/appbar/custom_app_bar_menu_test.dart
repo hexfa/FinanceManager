@@ -40,7 +40,6 @@ void main() {
         title: 'Do Action',
         icon: Icons.done,
         onTap: () {
-
           tapped = true;
 
         },
