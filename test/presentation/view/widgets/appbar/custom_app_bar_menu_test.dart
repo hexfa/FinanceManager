@@ -37,7 +37,6 @@ void main() {
     bool tapped = false;
     final menuItems = [
       AppBarMenu(
-
         title: 'Do Action',
 
         icon: Icons.done,
