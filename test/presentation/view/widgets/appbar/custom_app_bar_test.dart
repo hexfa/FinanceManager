@@ -28,7 +28,6 @@ void main() {
   testWidgets('render actions when provided in CustomAppBar', (tester) async {
     const actionIcon = Icon(Icons.settings);
 
-
     await tester.pumpWidget(
 
       MaterialApp(
