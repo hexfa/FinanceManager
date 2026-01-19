@@ -17,7 +17,6 @@ void main() {
       ) async {
     const leadingIcon = Icon(Icons.menu);
 
-
     await tester.pumpWidget(
 
       MaterialApp(
