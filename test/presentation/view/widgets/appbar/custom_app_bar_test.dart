@@ -2,7 +2,6 @@ import 'package:finance_manager/presentation/view/widgets/appbar/custom_app_bar.
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-
 void main() {
 
 
