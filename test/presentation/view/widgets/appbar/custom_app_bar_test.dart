@@ -25,7 +25,6 @@ void main() {
     );
 
 
-
     expect(find.byIcon(Icons.menu), findsOneWidget);
 
   });
