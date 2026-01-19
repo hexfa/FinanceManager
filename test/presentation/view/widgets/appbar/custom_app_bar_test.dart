@@ -10,7 +10,6 @@ void main() {
       MaterialApp(home: Scaffold(appBar: CustomAppBar(title: 'Test Title'))),
     );
     expect(find.text('Test Title'), findsOneWidget);
-
   });
 
 
