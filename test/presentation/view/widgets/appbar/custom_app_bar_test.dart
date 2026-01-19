@@ -1,50 +1,100 @@
+
 import 'package:finance_manager/presentation/view/widgets/appbar/custom_app_bar.dart';
+
 import 'package:flutter/material.dart';
+
 import 'package:flutter_test/flutter_test.dart';
 
+
 void main() {
+
+
   testWidgets('verify title is rendered correctly in CustomAppBar', (
+
     tester,
+
   ) async {
+
     await tester.pumpWidget(
+
       MaterialApp(home: Scaffold(appBar: CustomAppBar(title: 'Test Title'))),
+
     );
+
+
 
     expect(find.text('Test Title'), findsOneWidget);
+
   });
+
+
 
   testWidgets('ensure leading widget appears when provided in CustomAppBar', (
+
     tester,
-  ) async {
+
+      ) async {
+
     const leadingIcon = Icon(Icons.menu);
 
+
+
     await tester.pumpWidget(
+
       MaterialApp(
+
         home: Scaffold(
+
           appBar: CustomAppBar(title: 'Test', leading: leadingIcon),
+
         ),
+
       ),
+
     );
+
+
 
     expect(find.byIcon(Icons.menu), findsOneWidget);
+
   });
+
+
 
   testWidgets('render actions when provided in CustomAppBar', (tester) async {
+
     const actionIcon = Icon(Icons.settings);
 
+
+
     await tester.pumpWidget(
+
       MaterialApp(
+
         home: Scaffold(
+
           appBar: CustomAppBar(title: 'Test', actions: [actionIcon]),
+
         ),
+
       ),
+
     );
 
+
+
     expect(find.byIcon(Icons.settings), findsOneWidget);
+
   });
 
+
+
   test('preferredSize equals kToolbarHeight when bottom is null', () {
+
     const appBar = CustomAppBar(title: 'Test');
+
     expect(appBar.preferredSize, const Size.fromHeight(kToolbarHeight));
+
   });
+
 }
