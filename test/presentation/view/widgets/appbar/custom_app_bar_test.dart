@@ -21,7 +21,6 @@ void main() {
         home: Scaffold(
           appBar: CustomAppBar(title: 'Test', leading: leadingIcon),
         ),
-
       ),
 
     );
