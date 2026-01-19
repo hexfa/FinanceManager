@@ -20,7 +20,6 @@ void main() {
       MaterialApp(
         home: Scaffold(
           appBar: CustomAppBar(title: 'Test', leading: leadingIcon),
-
         ),
 
       ),
