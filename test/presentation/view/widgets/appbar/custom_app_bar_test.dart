@@ -14,7 +14,6 @@ void main() {
 
   testWidgets('ensure leading widget appears when provided in CustomAppBar', (
     tester,
-
       ) async {
 
     const leadingIcon = Icon(Icons.menu);
