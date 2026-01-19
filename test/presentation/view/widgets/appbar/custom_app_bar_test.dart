@@ -9,7 +9,6 @@ void main() {
     await tester.pumpWidget(
       MaterialApp(home: Scaffold(appBar: CustomAppBar(title: 'Test Title'))),
     );
-
     expect(find.text('Test Title'), findsOneWidget);
 
   });
