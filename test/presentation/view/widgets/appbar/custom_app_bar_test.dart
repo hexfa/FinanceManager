@@ -31,7 +31,6 @@ void main() {
       MaterialApp(
         home: Scaffold(
           appBar: CustomAppBar(title: 'Test', actions: [actionIcon]),
-
         ),
 
       ),
