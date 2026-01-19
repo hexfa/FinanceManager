@@ -26,7 +26,6 @@ void main() {
     expect(find.byIcon(Icons.menu), findsOneWidget);
   });
   testWidgets('render actions when provided in CustomAppBar', (tester) async {
-
     const actionIcon = Icon(Icons.settings);
 
 
