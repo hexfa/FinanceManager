@@ -7,7 +7,6 @@ void main() {
     tester,
   ) async {
     await tester.pumpWidget(
-
       MaterialApp(home: Scaffold(appBar: CustomAppBar(title: 'Test Title'))),
 
     );
