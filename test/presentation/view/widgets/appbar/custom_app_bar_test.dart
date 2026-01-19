@@ -12,7 +12,6 @@ void main() {
     expect(find.text('Test Title'), findsOneWidget);
   });
 
-
   testWidgets('ensure leading widget appears when provided in CustomAppBar', (
 
     tester,
