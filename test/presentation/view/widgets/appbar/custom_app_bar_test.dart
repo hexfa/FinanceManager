@@ -6,7 +6,6 @@ void main() {
   testWidgets('verify title is rendered correctly in CustomAppBar', (
     tester,
   ) async {
-
     await tester.pumpWidget(
 
       MaterialApp(home: Scaffold(appBar: CustomAppBar(title: 'Test Title'))),
