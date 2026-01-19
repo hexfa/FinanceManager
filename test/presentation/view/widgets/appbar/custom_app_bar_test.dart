@@ -18,7 +18,6 @@ void main() {
     const leadingIcon = Icon(Icons.menu);
     await tester.pumpWidget(
       MaterialApp(
-
         home: Scaffold(
 
           appBar: CustomAppBar(title: 'Test', leading: leadingIcon),
