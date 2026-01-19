@@ -22,7 +22,6 @@ void main() {
           appBar: CustomAppBar(title: 'Test', leading: leadingIcon),
         ),
       ),
-
     );
 
 
