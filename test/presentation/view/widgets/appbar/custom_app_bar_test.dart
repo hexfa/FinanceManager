@@ -40,5 +40,4 @@ void main() {
     const appBar = CustomAppBar(title: 'Test');
     expect(appBar.preferredSize, const Size.fromHeight(kToolbarHeight));
   });
-
 }
