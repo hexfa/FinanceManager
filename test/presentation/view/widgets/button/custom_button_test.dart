@@ -10,7 +10,6 @@ void main() {
         home: Scaffold(body: CustomButton(text: 'Save', onPressed: () {})),
       ),
     );
-
     expect(find.text('Save'), findsOneWidget);
 
   });
