@@ -5,7 +5,6 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
 
   testWidgets('should display the correct text', (tester) async {
-
     await tester.pumpWidget(
 
       MaterialApp(
