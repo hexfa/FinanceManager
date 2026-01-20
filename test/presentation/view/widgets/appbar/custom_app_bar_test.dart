@@ -32,7 +32,6 @@ void main() {
         home: Scaffold(
           appBar: CustomAppBar(title: 'Test', actions: [actionIcon]),
         ),
-
       ),
 
     );
