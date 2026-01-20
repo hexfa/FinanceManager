@@ -14,7 +14,7 @@ void main() {
 
   testWidgets('ensure leading widget appears when provided in CustomAppBar', (
     tester,
-      ) async {
+  ) async {
     const leadingIcon = Icon(Icons.menu);
     await tester.pumpWidget(
       MaterialApp(
