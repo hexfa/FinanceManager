@@ -15,7 +15,6 @@ void main() {
   testWidgets('should call onPressed when tapped', (tester) async {
     var wasPressed = false;
     await tester.pumpWidget(
-
       MaterialApp(
 
         home: Scaffold(
