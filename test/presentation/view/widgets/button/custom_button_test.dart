@@ -20,7 +20,6 @@ void main() {
           body: CustomButton(
             text: 'Click me',
             onPressed: () {
-
               wasPressed = true;
 
             },
