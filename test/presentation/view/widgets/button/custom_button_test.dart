@@ -6,7 +6,6 @@ void main() {
 
   testWidgets('should display the correct text', (tester) async {
     await tester.pumpWidget(
-
       MaterialApp(
 
         home: Scaffold(body: CustomButton(text: 'Save', onPressed: () {})),
