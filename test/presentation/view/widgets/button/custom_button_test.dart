@@ -18,7 +18,6 @@ void main() {
       MaterialApp(
         home: Scaffold(
           body: CustomButton(
-
             text: 'Click me',
 
             onPressed: () {
