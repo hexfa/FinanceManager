@@ -21,7 +21,6 @@ void main() {
             text: 'Click me',
             onPressed: () {
               wasPressed = true;
-
             },
 
           ),
