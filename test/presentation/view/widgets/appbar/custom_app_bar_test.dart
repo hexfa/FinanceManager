@@ -37,7 +37,6 @@ void main() {
     expect(find.byIcon(Icons.settings), findsOneWidget);
   });
   test('preferredSize equals kToolbarHeight when bottom is null', () {
-
     const appBar = CustomAppBar(title: 'Test');
 
     expect(appBar.preferredSize, const Size.fromHeight(kToolbarHeight));
