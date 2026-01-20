@@ -39,7 +39,6 @@ void main() {
   test('preferredSize equals kToolbarHeight when bottom is null', () {
     const appBar = CustomAppBar(title: 'Test');
     expect(appBar.preferredSize, const Size.fromHeight(kToolbarHeight));
-
   });
 
 }
