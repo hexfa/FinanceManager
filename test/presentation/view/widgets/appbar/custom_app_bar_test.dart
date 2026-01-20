@@ -34,7 +34,6 @@ void main() {
         ),
       ),
     );
-
     expect(find.byIcon(Icons.settings), findsOneWidget);
 
   });
