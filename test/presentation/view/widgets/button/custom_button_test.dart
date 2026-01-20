@@ -19,7 +19,6 @@ void main() {
         home: Scaffold(
           body: CustomButton(
             text: 'Click me',
-
             onPressed: () {
 
               wasPressed = true;
