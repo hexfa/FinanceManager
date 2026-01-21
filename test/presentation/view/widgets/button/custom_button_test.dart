@@ -40,7 +40,6 @@ void main() {
     expect(button.onPressed, isNull);
   });
   testWidgets('should have correct style', (tester) async {
-
     await tester.pumpWidget(
 
       MaterialApp(
