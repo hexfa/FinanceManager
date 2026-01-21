@@ -44,7 +44,6 @@ void main() {
       MaterialApp(
         home: Scaffold(body: CustomButton(text: 'Styled', onPressed: () {})),
       ),
-
     );
 
 
