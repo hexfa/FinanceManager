@@ -22,7 +22,6 @@ void main() {
             onPressed: () {
               wasPressed = true;
             },
-
           ),
 
         ),
