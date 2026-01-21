@@ -39,7 +39,6 @@ void main() {
     final ElevatedButton button = tester.widget(find.byType(ElevatedButton));
     expect(button.onPressed, isNull);
   });
-
   testWidgets('should have correct style', (tester) async {
 
     await tester.pumpWidget(
