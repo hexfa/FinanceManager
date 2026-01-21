@@ -36,7 +36,6 @@ void main() {
         home: Scaffold(body: CustomButton(text: 'Disabled', onPressed: null)),
       ),
     );
-
     final ElevatedButton button = tester.widget(find.byType(ElevatedButton));
 
     expect(button.onPressed, isNull);
