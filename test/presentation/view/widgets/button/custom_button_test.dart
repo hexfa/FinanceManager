@@ -45,7 +45,6 @@ void main() {
         home: Scaffold(body: CustomButton(text: 'Styled', onPressed: () {})),
       ),
     );
-
     final button = tester.widget<ElevatedButton>(find.byType(ElevatedButton));
 
     final shape = button.style?.shape?.resolve({}) as RoundedRectangleBorder;
