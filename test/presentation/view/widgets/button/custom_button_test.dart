@@ -43,7 +43,6 @@ void main() {
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(body: CustomButton(text: 'Styled', onPressed: () {})),
-
       ),
 
     );
