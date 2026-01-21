@@ -30,7 +30,6 @@ void main() {
     await tester.pump();
     expect(wasPressed, isTrue);
   });
-
   testWidgets('should be disabled when onPressed is null', (tester) async {
     await tester.pumpWidget(
       MaterialApp(
