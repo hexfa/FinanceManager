@@ -42,7 +42,6 @@ void main() {
   testWidgets('should have correct style', (tester) async {
     await tester.pumpWidget(
       MaterialApp(
-
         home: Scaffold(body: CustomButton(text: 'Styled', onPressed: () {})),
 
       ),
