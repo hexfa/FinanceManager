@@ -48,7 +48,6 @@ void main() {
     final button = tester.widget<ElevatedButton>(find.byType(ElevatedButton));
     final shape = button.style?.shape?.resolve({}) as RoundedRectangleBorder;
     expect(shape.borderRadius, BorderRadius.circular(8));
-
   });
 
 }
