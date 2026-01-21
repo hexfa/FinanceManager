@@ -35,7 +35,6 @@ void main() {
       MaterialApp(
         home: Scaffold(body: CustomButton(text: 'Disabled', onPressed: null)),
       ),
-
     );
 
 
