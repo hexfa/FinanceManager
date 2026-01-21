@@ -49,7 +49,6 @@ void main() {
     final shape = button.style?.shape?.resolve({}) as RoundedRectangleBorder;
 
 
-
     expect(shape.borderRadius, BorderRadius.circular(8));
 
   });
