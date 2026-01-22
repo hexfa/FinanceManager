@@ -20,7 +20,6 @@ void main() {
     await tester.pumpWidget(
       MaterialApp(
         home: CustomTypeSelector(
-
           selectedType: TransactionType.expense,
 
           onChanged: (_) {},
