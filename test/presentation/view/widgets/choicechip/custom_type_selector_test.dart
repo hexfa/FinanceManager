@@ -1,5 +1,4 @@
 import 'package:finance_manager/core/utils/transaction_type.dart';
-
 import 'package:finance_manager/presentation/view/widgets/choicechip/custom_type_selector.dart';
 
 import 'package:flutter/material.dart';
