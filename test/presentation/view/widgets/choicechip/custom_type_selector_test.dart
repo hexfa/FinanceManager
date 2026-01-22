@@ -15,7 +15,6 @@ void main() {
     );
 
 
-
     expect(find.text('income'), findsOneWidget);
 
     expect(find.text('expense'), findsOneWidget);
