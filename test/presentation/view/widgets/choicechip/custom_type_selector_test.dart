@@ -30,7 +30,6 @@ void main() {
     );
 
 
-
     expect(selectedChip.selected, isTrue);
 
   });
