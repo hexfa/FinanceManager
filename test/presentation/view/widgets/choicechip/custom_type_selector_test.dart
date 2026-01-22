@@ -11,7 +11,6 @@ void main() {
           selectedType: TransactionType.income,
           onChanged: (_) {},
         ),
-
       ),
 
     );
