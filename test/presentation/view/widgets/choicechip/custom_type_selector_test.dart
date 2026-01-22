@@ -19,7 +19,6 @@ void main() {
   testWidgets('highlights selected type', (tester) async {
     await tester.pumpWidget(
       MaterialApp(
-
         home: CustomTypeSelector(
 
           selectedType: TransactionType.expense,
