@@ -10,7 +10,6 @@ void main() {
         home: CustomTypeSelector(
           selectedType: TransactionType.income,
           onChanged: (_) {},
-
         ),
 
       ),
