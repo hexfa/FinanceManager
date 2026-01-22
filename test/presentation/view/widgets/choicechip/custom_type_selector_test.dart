@@ -25,7 +25,6 @@ void main() {
         ),
       ),
     );
-
     final selectedChip = tester.widget<ChoiceChip>(
 
       find.widgetWithText(ChoiceChip, 'expense'),
