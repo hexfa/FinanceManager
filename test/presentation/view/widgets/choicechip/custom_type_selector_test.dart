@@ -17,7 +17,6 @@ void main() {
     expect(find.text('expense'), findsOneWidget);
   });
 
-
   testWidgets('highlights selected type', (tester) async {
 
     await tester.pumpWidget(
