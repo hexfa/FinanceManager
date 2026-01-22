@@ -29,7 +29,6 @@ void main() {
       find.widgetWithText(ChoiceChip, 'expense'),
     );
     expect(selectedChip.selected, isTrue);
-
   });
 
 
