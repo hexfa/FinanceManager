@@ -9,7 +9,6 @@ void main() {
       MaterialApp(
         home: CustomTypeSelector(
           selectedType: TransactionType.income,
-
           onChanged: (_) {},
 
         ),
