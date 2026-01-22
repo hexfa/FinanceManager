@@ -6,7 +6,6 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   testWidgets('displays both income and expense chips', (tester) async {
     await tester.pumpWidget(
-
       MaterialApp(
 
         home: CustomTypeSelector(
