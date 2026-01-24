@@ -37,7 +37,6 @@ void main() {
         home: CustomTypeSelector(
           selectedType: null,
           onChanged: (value) => selected = value,
-
         ),
 
       ),
