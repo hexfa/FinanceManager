@@ -32,7 +32,6 @@ void main() {
   });
   testWidgets('calls onChanged when a chip is tapped', (tester) async {
     TransactionType? selected;
-
     await tester.pumpWidget(
 
       MaterialApp(
