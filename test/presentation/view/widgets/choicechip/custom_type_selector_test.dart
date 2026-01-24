@@ -36,7 +36,6 @@ void main() {
       MaterialApp(
         home: CustomTypeSelector(
           selectedType: null,
-
           onChanged: (value) => selected = value,
 
         ),
