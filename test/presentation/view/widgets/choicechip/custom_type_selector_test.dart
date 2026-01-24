@@ -35,7 +35,6 @@ void main() {
     await tester.pumpWidget(
       MaterialApp(
         home: CustomTypeSelector(
-
           selectedType: null,
 
           onChanged: (value) => selected = value,
