@@ -38,7 +38,6 @@ void main() {
           selectedType: null,
           onChanged: (value) => selected = value,
         ),
-
       ),
 
     );
