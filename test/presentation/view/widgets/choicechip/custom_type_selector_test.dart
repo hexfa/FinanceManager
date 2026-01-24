@@ -34,7 +34,6 @@ void main() {
     TransactionType? selected;
     await tester.pumpWidget(
       MaterialApp(
-
         home: CustomTypeSelector(
 
           selectedType: null,
