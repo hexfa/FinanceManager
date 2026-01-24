@@ -30,7 +30,6 @@ void main() {
     );
     expect(selectedChip.selected, isTrue);
   });
-
   testWidgets('calls onChanged when a chip is tapped', (tester) async {
 
     TransactionType? selected;
