@@ -52,7 +52,6 @@ void main() {
           selectedType: TransactionType.expense,
           onChanged: (_) {},
         ),
-
       ),
 
     );
