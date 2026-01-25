@@ -44,7 +44,6 @@ void main() {
     expect(selected, TransactionType.income);
 
 
-
     await tester.tap(find.text('expense'));
 
     expect(selected, TransactionType.expense);
