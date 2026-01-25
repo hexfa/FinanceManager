@@ -50,7 +50,6 @@ void main() {
       MaterialApp(
         home: CustomTypeSelector(
           selectedType: TransactionType.expense,
-
           onChanged: (_) {},
 
         ),
