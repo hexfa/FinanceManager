@@ -47,7 +47,6 @@ void main() {
   });
   testWidgets('displays correct icons for income and expense', (tester) async {
     await tester.pumpWidget(
-
       MaterialApp(
 
         home: CustomTypeSelector(
