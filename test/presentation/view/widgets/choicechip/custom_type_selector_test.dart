@@ -42,7 +42,6 @@ void main() {
     );
     await tester.tap(find.text('income'));
     expect(selected, TransactionType.income);
-
     await tester.tap(find.text('expense'));
 
     expect(selected, TransactionType.expense);
