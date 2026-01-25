@@ -46,7 +46,6 @@ void main() {
     expect(selected, TransactionType.expense);
   });
 
-
   testWidgets('displays correct icons for income and expense', (tester) async {
 
     await tester.pumpWidget(
