@@ -45,7 +45,6 @@ void main() {
     await tester.tap(find.text('expense'));
     expect(selected, TransactionType.expense);
   });
-
   testWidgets('displays correct icons for income and expense', (tester) async {
 
     await tester.pumpWidget(
