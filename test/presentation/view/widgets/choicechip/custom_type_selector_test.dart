@@ -51,7 +51,6 @@ void main() {
         home: CustomTypeSelector(
           selectedType: TransactionType.expense,
           onChanged: (_) {},
-
         ),
 
       ),
