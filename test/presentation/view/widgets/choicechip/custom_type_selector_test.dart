@@ -60,7 +60,6 @@ void main() {
     expect(expenseIcon, findsOneWidget);
   });
 
-
   testWidgets('sets avatar color based on transaction type', (tester) async {
 
     await tester.pumpWidget(
