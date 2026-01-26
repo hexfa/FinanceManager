@@ -54,7 +54,6 @@ void main() {
         ),
       ),
     );
-
     final incomeIcon = find.byIcon(Icons.arrow_downward);
 
     final expenseIcon = find.byIcon(Icons.arrow_upward);
