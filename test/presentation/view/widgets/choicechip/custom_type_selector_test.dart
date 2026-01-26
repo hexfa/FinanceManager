@@ -58,7 +58,6 @@ void main() {
     final expenseIcon = find.byIcon(Icons.arrow_upward);
     expect(incomeIcon, findsOneWidget);
     expect(expenseIcon, findsOneWidget);
-
   });
 
 
