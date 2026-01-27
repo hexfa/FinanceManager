@@ -65,7 +65,6 @@ void main() {
         home: Builder(
           builder:
               (context) =>
-
                   CustomTypeSelector(selectedType: null, onChanged: (_) {}),
 
         ),
