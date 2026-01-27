@@ -70,7 +70,6 @@ void main() {
       ),
     );
 
-
     final incomeIcon = tester.widget<Icon>(find.byIcon(Icons.arrow_downward));
 
     final expenseIcon = tester.widget<Icon>(find.byIcon(Icons.arrow_upward));
