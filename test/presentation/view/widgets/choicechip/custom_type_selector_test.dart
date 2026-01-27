@@ -66,7 +66,6 @@ void main() {
           builder:
               (context) =>
                   CustomTypeSelector(selectedType: null, onChanged: (_) {}),
-
         ),
 
       ),
