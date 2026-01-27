@@ -72,7 +72,6 @@ void main() {
     final incomeIcon = tester.widget<Icon>(find.byIcon(Icons.arrow_downward));
     final expenseIcon = tester.widget<Icon>(find.byIcon(Icons.arrow_upward));
 
-
     expect(incomeIcon.color, ThemeData().colorScheme.surfaceDim);
 
     expect(expenseIcon.color, ThemeData().colorScheme.error);
