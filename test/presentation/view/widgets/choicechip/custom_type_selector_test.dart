@@ -68,7 +68,6 @@ void main() {
                   CustomTypeSelector(selectedType: null, onChanged: (_) {}),
         ),
       ),
-
     );
 
 
