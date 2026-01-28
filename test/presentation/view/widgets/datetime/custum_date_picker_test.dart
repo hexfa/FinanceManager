@@ -2,7 +2,6 @@ import 'package:finance_manager/presentation/view/widgets/datetime/custom_date_p
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 void main() {
-
   testWidgets('displays current datetime if no initial value is provided', (
 
     tester,
