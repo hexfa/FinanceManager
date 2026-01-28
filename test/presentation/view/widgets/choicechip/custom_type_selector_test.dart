@@ -74,5 +74,4 @@ void main() {
     expect(incomeIcon.color, ThemeData().colorScheme.surfaceDim);
     expect(expenseIcon.color, ThemeData().colorScheme.error);
   });
-
 }
