@@ -6,7 +6,6 @@ void main() {
     tester,
   ) async {
     await tester.pumpWidget(
-
       MaterialApp(home: DateTimePickerContainer(onDateTimeSelected: (_) {})),
 
     );
