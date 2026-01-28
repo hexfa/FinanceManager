@@ -5,7 +5,6 @@ void main() {
   testWidgets('displays current datetime if no initial value is provided', (
     tester,
   ) async {
-
     await tester.pumpWidget(
 
       MaterialApp(home: DateTimePickerContainer(onDateTimeSelected: (_) {})),
