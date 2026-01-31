@@ -8,7 +8,6 @@ void main() {
     await tester.pumpWidget(
       MaterialApp(home: DateTimePickerContainer(onDateTimeSelected: (_) {})),
     );
-
     final now = DateTime.now();
 
     expect(find.textContaining('${now.year}'), findsOneWidget);
