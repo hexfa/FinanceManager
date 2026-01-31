@@ -15,7 +15,6 @@ void main() {
     final initial = DateTime(2023, 1, 1, 10, 30);
     await tester.pumpWidget(
       MaterialApp(
-
         home: DateTimePickerContainer(
 
           initialDateTime: initial,
