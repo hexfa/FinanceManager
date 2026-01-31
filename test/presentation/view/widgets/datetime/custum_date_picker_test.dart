@@ -11,7 +11,6 @@ void main() {
     final now = DateTime.now();
     expect(find.textContaining('${now.year}'), findsOneWidget);
   });
-
   testWidgets('displays initial datetime if provided', (tester) async {
 
     final initial = DateTime(2023, 1, 1, 10, 30);
