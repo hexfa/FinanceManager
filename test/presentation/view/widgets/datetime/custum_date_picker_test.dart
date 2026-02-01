@@ -24,7 +24,6 @@ void main() {
     expect(find.text('2023/01/01 – 10:30'), findsOneWidget);
   });
 
-
   testWidgets('contains calendar and dropdown icons', (tester) async {
 
     await tester.pumpWidget(
