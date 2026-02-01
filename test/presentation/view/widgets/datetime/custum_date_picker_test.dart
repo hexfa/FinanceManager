@@ -17,7 +17,6 @@ void main() {
       MaterialApp(
         home: DateTimePickerContainer(
           initialDateTime: initial,
-
           onDateTimeSelected: (_) {},
 
         ),
