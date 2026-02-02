@@ -31,7 +31,6 @@ void main() {
     expect(find.byIcon(Icons.arrow_drop_down), findsOneWidget);
   });
 
-
   testWidgets('uses theme text style for datetime text', (tester) async {
 
     await tester.pumpWidget(
