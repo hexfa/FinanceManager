@@ -27,7 +27,6 @@ void main() {
     await tester.pumpWidget(
       MaterialApp(home: DateTimePickerContainer(onDateTimeSelected: (_) {})),
     );
-
     expect(find.byIcon(Icons.calendar_today), findsOneWidget);
 
     expect(find.byIcon(Icons.arrow_drop_down), findsOneWidget);
