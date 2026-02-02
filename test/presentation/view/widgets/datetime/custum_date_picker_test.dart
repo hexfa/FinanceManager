@@ -36,7 +36,6 @@ void main() {
     );
 
 
-
     final textWidget = tester.widget<Text>(find.byType(Text).first);
 
     expect(textWidget.style, isNotNull);
