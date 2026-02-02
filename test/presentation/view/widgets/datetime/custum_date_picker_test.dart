@@ -26,7 +26,6 @@ void main() {
   testWidgets('contains calendar and dropdown icons', (tester) async {
     await tester.pumpWidget(
       MaterialApp(home: DateTimePickerContainer(onDateTimeSelected: (_) {})),
-
     );
 
 
