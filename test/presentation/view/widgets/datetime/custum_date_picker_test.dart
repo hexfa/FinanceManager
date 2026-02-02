@@ -32,7 +32,6 @@ void main() {
   });
   testWidgets('uses theme text style for datetime text', (tester) async {
     await tester.pumpWidget(
-
       MaterialApp(home: DateTimePickerContainer(onDateTimeSelected: (_) {})),
 
     );
