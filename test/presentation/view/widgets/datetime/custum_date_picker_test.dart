@@ -43,7 +43,6 @@ void main() {
     );
     expect(find.byType(Row), findsOneWidget);
     expect(find.byType(Expanded), findsOneWidget);
-
   });
 
 
