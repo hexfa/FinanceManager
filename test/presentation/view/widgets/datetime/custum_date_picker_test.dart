@@ -37,7 +37,6 @@ void main() {
     final textWidget = tester.widget<Text>(find.byType(Text).first);
     expect(textWidget.style, isNotNull);
   });
-
   testWidgets('renders layout with Row and Expanded text', (tester) async {
 
     await tester.pumpWidget(
