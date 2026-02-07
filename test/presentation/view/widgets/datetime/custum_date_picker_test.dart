@@ -35,7 +35,6 @@ void main() {
       MaterialApp(home: DateTimePickerContainer(onDateTimeSelected: (_) {})),
     );
 
-
     final textWidget = tester.widget<Text>(find.byType(Text).first);
 
     expect(textWidget.style, isNotNull);
