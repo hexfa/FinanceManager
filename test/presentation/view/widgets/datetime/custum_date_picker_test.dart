@@ -41,7 +41,6 @@ void main() {
     await tester.pumpWidget(
       MaterialApp(home: DateTimePickerContainer(onDateTimeSelected: (_) {})),
     );
-
     expect(find.byType(Row), findsOneWidget);
 
     expect(find.byType(Expanded), findsOneWidget);
