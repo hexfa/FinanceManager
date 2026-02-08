@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-
   testWidgets('displays title and content text correctly', (tester) async {
 
     await tester.pumpWidget(
