@@ -16,7 +16,6 @@ void main() {
                       (_) => CustomConfirmDialog(
                         title: 'Delete Item',
                         content: 'Are you sure?',
-
                         onConfirm: () {},
 
                       ),
