@@ -18,7 +18,6 @@ void main() {
                         content: 'Are you sure?',
                         onConfirm: () {},
                       ),
-
                 );
 
               },
