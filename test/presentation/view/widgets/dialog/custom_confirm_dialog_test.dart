@@ -14,7 +14,6 @@ void main() {
                   context: context,
                   builder:
                       (_) => CustomConfirmDialog(
-
                         title: 'Delete Item',
 
                         content: 'Are you sure?',
