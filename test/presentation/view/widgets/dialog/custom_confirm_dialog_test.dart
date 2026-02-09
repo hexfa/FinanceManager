@@ -19,7 +19,6 @@ void main() {
                         onConfirm: () {},
                       ),
                 );
-
               },
 
               child: const Text('Show Dialog'),
