@@ -17,7 +17,6 @@ void main() {
                         title: 'Delete Item',
                         content: 'Are you sure?',
                         onConfirm: () {},
-
                       ),
 
                 );
