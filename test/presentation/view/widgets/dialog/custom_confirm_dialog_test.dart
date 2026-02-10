@@ -34,7 +34,6 @@ void main() {
   testWidgets('calls onConfirm when confirm button is pressed', (tester) async {
     bool confirmed = false;
 
-
     await tester.pumpWidget(
 
       MaterialApp(
