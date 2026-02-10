@@ -31,7 +31,6 @@ void main() {
     expect(find.text('Delete Item'), findsOneWidget);
     expect(find.text('Are you sure?'), findsOneWidget);
   });
-
   testWidgets('calls onConfirm when confirm button is pressed', (tester) async {
 
     bool confirmed = false;
