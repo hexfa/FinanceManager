@@ -27,7 +27,6 @@ void main() {
       ),
     );
     await tester.tap(find.text('Show Dialog'));
-
     await tester.pumpAndSettle();
 
 
