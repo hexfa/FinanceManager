@@ -29,7 +29,6 @@ void main() {
     await tester.tap(find.text('Show Dialog'));
     await tester.pumpAndSettle();
 
-
     expect(find.text('Delete Item'), findsOneWidget);
 
     expect(find.text('Are you sure?'), findsOneWidget);
