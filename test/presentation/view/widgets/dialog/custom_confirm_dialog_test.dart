@@ -32,7 +32,6 @@ void main() {
     expect(find.text('Are you sure?'), findsOneWidget);
   });
   testWidgets('calls onConfirm when confirm button is pressed', (tester) async {
-
     bool confirmed = false;
 
 
