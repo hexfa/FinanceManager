@@ -42,7 +42,6 @@ void main() {
                 showDialog(
                   context: context,
                   builder:
-
                       (_) => CustomConfirmDialog(
 
                         title: 'Confirm',
