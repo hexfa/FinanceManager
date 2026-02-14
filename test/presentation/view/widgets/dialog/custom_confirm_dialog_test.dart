@@ -44,7 +44,6 @@ void main() {
                   builder:
                       (_) => CustomConfirmDialog(
                         title: 'Confirm',
-
                         content: 'Sure?',
 
                         onConfirm: () {
