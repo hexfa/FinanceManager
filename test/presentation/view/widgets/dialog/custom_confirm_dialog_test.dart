@@ -43,7 +43,6 @@ void main() {
                   context: context,
                   builder:
                       (_) => CustomConfirmDialog(
-
                         title: 'Confirm',
 
                         content: 'Sure?',
