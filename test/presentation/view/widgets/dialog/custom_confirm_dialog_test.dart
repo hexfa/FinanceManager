@@ -47,7 +47,6 @@ void main() {
                         content: 'Sure?',
                         onConfirm: () {
 
-
                           confirmed = true;
 
                         },
