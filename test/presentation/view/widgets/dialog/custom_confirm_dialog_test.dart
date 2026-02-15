@@ -34,57 +34,29 @@ void main() {
   testWidgets('calls onConfirm when confirm button is pressed', (tester) async {
     bool confirmed = false;
     await tester.pumpWidget(
-
       MaterialApp(
-
         home: Builder(
-
           builder: (context) {
-
             return ElevatedButton(
-
               onPressed: () {
-
                 showDialog(
-
                   context: context,
-
                   builder:
-
                       (_) => CustomConfirmDialog(
-
                         title: 'Confirm',
-
                         content: 'Sure?',
-
                         onConfirm: () {
-
-
                           confirmed = true;
-
                         },
-
                       ),
-
                 );
-
-
               },
-
               child: const Text('Open'),
-
             );
-
           },
-
         ),
-
       ),
-
-
     );
-
-
 
     await tester.tap(find.text('Open'));
 
