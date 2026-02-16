@@ -62,7 +62,6 @@ void main() {
     await tester.tap(find.text('OK'));
     await tester.pumpAndSettle();
     expect(confirmed, isTrue);
-
   });
 
 }
