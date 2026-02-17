@@ -14,7 +14,6 @@ void main() {
       expect('XYZ'.toCurrency().code, 'USD');
       expect('XYZ'.toCurrency().name, 'US Dollar');
     });
-
   });
 
 
