@@ -10,7 +10,6 @@ void main() {
       expect('JPY'.toCurrency().name, 'Japanese Yen');
     });
 
-
     test('returns USD Currency for unknown code', () {
 
       expect('XYZ'.toCurrency().code, 'USD');
