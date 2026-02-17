@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-
   group('CurrencyCodeExtension', () {
 
     test('returns correct Currency for valid code', () {
