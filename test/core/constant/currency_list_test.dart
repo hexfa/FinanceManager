@@ -12,7 +12,6 @@ void main() {
 
     test('returns USD Currency for unknown code', () {
       expect('XYZ'.toCurrency().code, 'USD');
-
       expect('XYZ'.toCurrency().name, 'US Dollar');
 
     });
