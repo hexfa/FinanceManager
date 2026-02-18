@@ -19,7 +19,6 @@ void main() {
     test('returns correct icon for known currencies', () {
       expect(
 
-
         getCurrencyIcon(Currency(code: 'USD', name: 'US Dollar')),
 
         Icons.attach_money,
