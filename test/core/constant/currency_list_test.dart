@@ -22,7 +22,6 @@ void main() {
         Icons.attach_money,
       );
       expect(getCurrencyIcon(Currency(code: 'EUR', name: 'Euro')), Icons.euro);
-
       expect(
 
         getCurrencyIcon(Currency(code: 'GBP', name: 'British Pound')),
