@@ -26,7 +26,6 @@ void main() {
         getCurrencyIcon(Currency(code: 'GBP', name: 'British Pound')),
         Icons.currency_pound,
       );
-
       expect(
 
         getCurrencyIcon(Currency(code: 'JPY', name: 'Japanese Yen')),
