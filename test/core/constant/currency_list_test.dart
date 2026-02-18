@@ -17,7 +17,6 @@ void main() {
   });
   group('getCurrencyIcon', () {
     test('returns correct icon for known currencies', () {
-
       expect(
 
 
