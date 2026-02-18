@@ -21,7 +21,6 @@ void main() {
         getCurrencyIcon(Currency(code: 'USD', name: 'US Dollar')),
         Icons.attach_money,
       );
-
       expect(getCurrencyIcon(Currency(code: 'EUR', name: 'Euro')), Icons.euro);
 
       expect(
