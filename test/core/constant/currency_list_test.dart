@@ -15,7 +15,6 @@ void main() {
       expect('XYZ'.toCurrency().name, 'US Dollar');
     });
   });
-
   group('getCurrencyIcon', () {
 
     test('returns correct icon for known currencies', () {
