@@ -35,7 +35,6 @@ void main() {
         Icons.money,
       );
       expect(
-
         getCurrencyIcon(Currency(code: 'CAD', name: 'Canadian Dollar')),
 
         Icons.currency_exchange,
