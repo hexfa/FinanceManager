@@ -32,7 +32,6 @@ void main() {
       );
       expect(
         getCurrencyIcon(Currency(code: 'CHF', name: 'Swiss Franc')),
-
         Icons.money,
 
       );
