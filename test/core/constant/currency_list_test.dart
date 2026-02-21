@@ -30,7 +30,6 @@ void main() {
         getCurrencyIcon(Currency(code: 'JPY', name: 'Japanese Yen')),
         Icons.currency_yen,
       );
-
       expect(
 
         getCurrencyIcon(Currency(code: 'CHF', name: 'Swiss Franc')),
