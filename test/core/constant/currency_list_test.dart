@@ -29,7 +29,6 @@ void main() {
       expect(
         getCurrencyIcon(Currency(code: 'JPY', name: 'Japanese Yen')),
         Icons.currency_yen,
-
       );
 
 
