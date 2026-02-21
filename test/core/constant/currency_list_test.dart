@@ -39,7 +39,6 @@ void main() {
         Icons.currency_exchange,
       );
       expect(
-
         getCurrencyIcon(Currency(code: 'AUD', name: 'Australian Dollar')),
 
         Icons.public,
