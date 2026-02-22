@@ -52,7 +52,6 @@ void main() {
       );
       expect(
         getCurrencyIcon(Currency(code: 'SEK', name: 'Swedish Krona')),
-
         Icons.payments,
 
       );
