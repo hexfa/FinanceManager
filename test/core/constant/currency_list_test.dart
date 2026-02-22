@@ -49,7 +49,6 @@ void main() {
       expect(
         getCurrencyIcon(Currency(code: 'CNY', name: 'Chinese Yuan')),
         Icons.account_balance_wallet,
-
       );
 
       expect(
