@@ -50,7 +50,6 @@ void main() {
         getCurrencyIcon(Currency(code: 'CNY', name: 'Chinese Yuan')),
         Icons.account_balance_wallet,
       );
-
       expect(
 
         getCurrencyIcon(Currency(code: 'SEK', name: 'Swedish Krona')),
