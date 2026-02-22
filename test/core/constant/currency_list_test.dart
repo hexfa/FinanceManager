@@ -43,7 +43,6 @@ void main() {
         Icons.public,
       );
       expect(
-
         getCurrencyIcon(Currency(code: 'NZD', name: 'New Zealand Dollar')),
 
         Icons.south_america,
