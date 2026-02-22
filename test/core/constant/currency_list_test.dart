@@ -40,7 +40,6 @@ void main() {
       );
       expect(
         getCurrencyIcon(Currency(code: 'AUD', name: 'Australian Dollar')),
-
         Icons.public,
 
       );
