@@ -42,7 +42,6 @@ void main() {
         getCurrencyIcon(Currency(code: 'AUD', name: 'Australian Dollar')),
         Icons.public,
       );
-
       expect(
 
         getCurrencyIcon(Currency(code: 'NZD', name: 'New Zealand Dollar')),
