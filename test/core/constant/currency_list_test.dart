@@ -51,7 +51,6 @@ void main() {
         Icons.account_balance_wallet,
       );
       expect(
-
         getCurrencyIcon(Currency(code: 'SEK', name: 'Swedish Krona')),
 
         Icons.payments,
