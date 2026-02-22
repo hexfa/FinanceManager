@@ -46,7 +46,6 @@ void main() {
         getCurrencyIcon(Currency(code: 'NZD', name: 'New Zealand Dollar')),
         Icons.south_america,
       );
-
       expect(
 
         getCurrencyIcon(Currency(code: 'CNY', name: 'Chinese Yuan')),
