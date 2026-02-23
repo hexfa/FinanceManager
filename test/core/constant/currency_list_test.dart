@@ -59,7 +59,6 @@ void main() {
         Icons.currency_rupee,
       );
       expect(
-
         getCurrencyIcon(Currency(code: 'RUB', name: 'Russian Ruble')),
 
         Icons.currency_ruble,
