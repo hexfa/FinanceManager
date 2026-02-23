@@ -67,7 +67,6 @@ void main() {
         Icons.forest,
       );
       expect(
-
         getCurrencyIcon(Currency(code: 'ZAR', name: 'South African Rand')),
 
         Icons.savings,
