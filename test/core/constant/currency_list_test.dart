@@ -63,7 +63,6 @@ void main() {
         Icons.currency_ruble,
       );
       expect(
-
         getCurrencyIcon(Currency(code: 'BRL', name: 'Brazilian Real')),
 
         Icons.forest,
