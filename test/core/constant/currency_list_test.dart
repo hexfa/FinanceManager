@@ -55,7 +55,6 @@ void main() {
         Icons.payments,
       );
       expect(
-
         getCurrencyIcon(Currency(code: 'INR', name: 'Indian Rupee')),
 
         Icons.currency_rupee,
