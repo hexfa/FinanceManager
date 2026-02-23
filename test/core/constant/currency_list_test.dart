@@ -66,7 +66,6 @@ void main() {
         getCurrencyIcon(Currency(code: 'BRL', name: 'Brazilian Real')),
         Icons.forest,
       );
-
       expect(
 
         getCurrencyIcon(Currency(code: 'ZAR', name: 'South African Rand')),
