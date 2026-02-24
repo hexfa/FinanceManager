@@ -77,7 +77,6 @@ void main() {
       expect(
         getCurrencyIcon(Currency(code: 'SGD', name: 'Singapore Dollar')),
         Icons.location_city,
-
       );
 
       expect(
