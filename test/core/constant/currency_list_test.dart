@@ -78,7 +78,6 @@ void main() {
         getCurrencyIcon(Currency(code: 'SGD', name: 'Singapore Dollar')),
         Icons.location_city,
       );
-
       expect(
 
         getCurrencyIcon(Currency(code: 'HKD', name: 'Hong Kong Dollar')),
