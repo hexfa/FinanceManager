@@ -71,7 +71,6 @@ void main() {
         Icons.savings,
       );
       expect(
-
         getCurrencyIcon(Currency(code: 'MXN', name: 'Mexican Peso')),
 
 
