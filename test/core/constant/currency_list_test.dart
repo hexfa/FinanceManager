@@ -80,7 +80,6 @@ void main() {
       );
       expect(
         getCurrencyIcon(Currency(code: 'HKD', name: 'Hong Kong Dollar')),
-
         Icons.location_city,
 
       );
