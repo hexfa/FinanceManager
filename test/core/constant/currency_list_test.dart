@@ -74,7 +74,6 @@ void main() {
         getCurrencyIcon(Currency(code: 'MXN', name: 'Mexican Peso')),
         Icons.attach_money,
       );
-
       expect(
 
         getCurrencyIcon(Currency(code: 'SGD', name: 'Singapore Dollar')),
