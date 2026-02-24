@@ -70,7 +70,6 @@ void main() {
         getCurrencyIcon(Currency(code: 'ZAR', name: 'South African Rand')),
         Icons.savings,
       );
-
       expect(
 
         getCurrencyIcon(Currency(code: 'MXN', name: 'Mexican Peso')),
