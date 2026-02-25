@@ -95,7 +95,6 @@ void main() {
         Icons.oil_barrel,
       );
       expect(
-
         getCurrencyIcon(Currency(code: 'EGP', name: 'Egyptian Pound')),
 
         Icons.account_balance,
