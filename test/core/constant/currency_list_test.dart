@@ -88,7 +88,6 @@ void main() {
       );
       expect(
         getCurrencyIcon(Currency(code: 'SAR', name: 'Saudi Riyal')),
-
         Icons.oil_barrel,
 
       );
