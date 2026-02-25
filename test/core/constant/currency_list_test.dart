@@ -90,7 +90,6 @@ void main() {
         getCurrencyIcon(Currency(code: 'SAR', name: 'Saudi Riyal')),
         Icons.oil_barrel,
       );
-
       expect(
 
         getCurrencyIcon(Currency(code: 'AED', name: 'UAE Dirham')),
