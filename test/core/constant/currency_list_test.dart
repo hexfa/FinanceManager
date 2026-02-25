@@ -84,7 +84,6 @@ void main() {
       );
       expect(
         getCurrencyIcon(Currency(code: 'TRY', name: 'Turkish Lira')),
-
         Icons.currency_lira,
 
       );
