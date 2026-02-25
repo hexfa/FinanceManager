@@ -93,7 +93,6 @@ void main() {
       expect(
         getCurrencyIcon(Currency(code: 'AED', name: 'UAE Dirham')),
         Icons.oil_barrel,
-
       );
 
       expect(
