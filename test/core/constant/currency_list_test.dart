@@ -106,7 +106,6 @@ void main() {
         getCurrencyIcon(Currency(code: 'PLN', name: 'Polish Zloty')),
         Icons.account_balance_wallet_outlined,
       );
-
       expect(
 
         getCurrencyIcon(Currency(code: 'MYR', name: 'Malaysian Ringgit')),
