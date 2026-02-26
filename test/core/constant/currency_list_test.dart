@@ -107,7 +107,6 @@ void main() {
         Icons.account_balance_wallet_outlined,
       );
       expect(
-
         getCurrencyIcon(Currency(code: 'MYR', name: 'Malaysian Ringgit')),
 
         Icons.money_rounded,
