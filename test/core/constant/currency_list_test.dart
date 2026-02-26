@@ -103,7 +103,6 @@ void main() {
         Icons.card_giftcard,
       );
       expect(
-
         getCurrencyIcon(Currency(code: 'PLN', name: 'Polish Zloty')),
 
         Icons.account_balance_wallet_outlined,
