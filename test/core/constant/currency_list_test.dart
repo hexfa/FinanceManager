@@ -98,7 +98,6 @@ void main() {
         getCurrencyIcon(Currency(code: 'EGP', name: 'Egyptian Pound')),
         Icons.account_balance,
       );
-
       expect(
 
         getCurrencyIcon(Currency(code: 'THB', name: 'Thai Baht')),
