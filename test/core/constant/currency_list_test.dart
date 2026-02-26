@@ -101,7 +101,6 @@ void main() {
       expect(
         getCurrencyIcon(Currency(code: 'THB', name: 'Thai Baht')),
         Icons.card_giftcard,
-
       );
 
       expect(
