@@ -117,7 +117,6 @@ void main() {
         Icons.attach_money,
       );
     });
-
   });
 
 }
