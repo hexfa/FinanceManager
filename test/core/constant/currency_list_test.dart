@@ -115,7 +115,6 @@ void main() {
       expect(
         getCurrencyIcon(Currency(code: 'XYZ', name: 'Unknown')),
 
-
         Icons.attach_money,
 
       );
