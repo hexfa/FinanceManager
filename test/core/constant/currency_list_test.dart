@@ -114,7 +114,6 @@ void main() {
     test('returns default icon for unknown currency', () {
       expect(
         getCurrencyIcon(Currency(code: 'XYZ', name: 'Unknown')),
-
         Icons.attach_money,
 
       );
