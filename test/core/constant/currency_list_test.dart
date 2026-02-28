@@ -116,7 +116,6 @@ void main() {
         getCurrencyIcon(Currency(code: 'XYZ', name: 'Unknown')),
         Icons.attach_money,
       );
-
     });
 
   });
