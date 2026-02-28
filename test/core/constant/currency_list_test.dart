@@ -3,7 +3,7 @@ import 'package:finance_manager/data/models/currency.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-//test
+//Test
 void main() {
   group('CurrencyCodeExtension', () {
     test('returns correct Currency for valid code', () {
