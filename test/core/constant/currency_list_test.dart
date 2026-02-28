@@ -111,7 +111,6 @@ void main() {
         Icons.money_rounded,
       );
     });
-
     test('returns default icon for unknown currency', () {
 
       expect(
