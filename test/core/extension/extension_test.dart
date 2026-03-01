@@ -4,7 +4,6 @@ import 'package:finance_manager/data/models/category.dart';
 import 'package:finance_manager/data/models/transaction.dart';
 import 'package:finance_manager/domain/entities/transaction_entity.dart';
 import 'package:flutter_test/flutter_test.dart';
-
 void main() {
 
   test('TransactionEntity toModel returns correct Transaction', () {
