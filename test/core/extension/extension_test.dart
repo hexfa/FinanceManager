@@ -7,7 +7,6 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   test('TransactionEntity toModel returns correct Transaction', () {
     final entity = TransactionEntity(
-
       title: 'Lunch',
 
       description: 'Lunch Description',
