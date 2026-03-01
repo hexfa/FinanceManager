@@ -8,7 +8,6 @@ void main() {
   test('TransactionEntity toModel returns correct Transaction', () {
     final entity = TransactionEntity(
       title: 'Lunch',
-
       description: 'Lunch Description',
 
       amount: 50.0,
