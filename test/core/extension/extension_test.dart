@@ -2,7 +2,6 @@ import 'package:finance_manager/core/extension/extension.dart';
 import 'package:finance_manager/core/utils/transaction_type.dart';
 import 'package:finance_manager/data/models/category.dart';
 import 'package:finance_manager/data/models/transaction.dart';
-
 import 'package:finance_manager/domain/entities/transaction_entity.dart';
 
 import 'package:flutter_test/flutter_test.dart';
