@@ -10,7 +10,6 @@ void main() {
       title: 'Lunch',
       description: 'Lunch Description',
       amount: 50.0,
-
       type: TransactionType.expense,
 
       category: Category(id: 1, name: 'name'),
