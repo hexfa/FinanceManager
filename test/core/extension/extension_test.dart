@@ -18,7 +18,6 @@ void main() {
 
 
 
-
     expect(model.title, entity.title);
 
     expect(model.amount, entity.amount);
