@@ -11,7 +11,6 @@ void main() {
       description: 'Lunch Description',
       amount: 50.0,
       type: TransactionType.expense,
-
       category: Category(id: 1, name: 'name'),
 
       date: DateTime(2024, 1, 1),
