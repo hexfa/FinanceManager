@@ -16,7 +16,6 @@ void main() {
     );
 
 
-
     final model = entity.toModel();
 
 
