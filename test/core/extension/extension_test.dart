@@ -9,7 +9,6 @@ void main() {
     final entity = TransactionEntity(
       title: 'Lunch',
       description: 'Lunch Description',
-
       amount: 50.0,
 
       type: TransactionType.expense,
