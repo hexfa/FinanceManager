@@ -17,7 +17,6 @@ void main() {
     final model = entity.toModel();
     expect(model.title, entity.title);
     expect(model.amount, entity.amount);
-
     expect(model.type, entity.type);
 
     expect(model.category, entity.category);
