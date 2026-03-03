@@ -20,7 +20,6 @@ void main() {
     expect(model.type, entity.type);
     expect(model.category, entity.category);
     expect(model.date, entity.date);
-
   });
 
 
