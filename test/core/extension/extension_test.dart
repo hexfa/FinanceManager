@@ -24,7 +24,6 @@ void main() {
   test('Transaction toEntity returns correct TransactionEntity', () {
     final model = Transaction(
       id: 1,
-
       title: 'Lunch',
 
       description: 'Lunch Description',
