@@ -31,7 +31,6 @@ void main() {
       category: Category(id: 1, name: 'name'),
       date: DateTime(2024, 1, 1),
     );
-
     final entity = model.toEntity();
 
 
