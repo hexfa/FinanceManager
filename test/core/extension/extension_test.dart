@@ -26,7 +26,6 @@ void main() {
       id: 1,
       title: 'Lunch',
       description: 'Lunch Description',
-
       amount: 50.0,
 
       type: TransactionType.expense,
