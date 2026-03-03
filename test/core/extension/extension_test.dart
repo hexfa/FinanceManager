@@ -35,7 +35,6 @@ void main() {
     expect(entity.title, model.title);
     expect(entity.amount, model.amount);
     expect(entity.type, model.type);
-
     expect(entity.category, model.category);
 
     expect(entity.date, model.date);
