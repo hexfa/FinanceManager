@@ -22,7 +22,6 @@ void main() {
     expect(model.date, entity.date);
   });
   test('Transaction toEntity returns correct TransactionEntity', () {
-
     final model = Transaction(
 
       id: 1,
