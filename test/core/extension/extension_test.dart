@@ -32,7 +32,6 @@ void main() {
       date: DateTime(2024, 1, 1),
     );
     final entity = model.toEntity();
-
     expect(entity.title, model.title);
 
     expect(entity.amount, model.amount);
