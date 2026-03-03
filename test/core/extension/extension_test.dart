@@ -21,7 +21,6 @@ void main() {
     expect(model.category, entity.category);
     expect(model.date, entity.date);
   });
-
   test('Transaction toEntity returns correct TransactionEntity', () {
 
     final model = Transaction(
