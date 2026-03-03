@@ -38,6 +38,5 @@ void main() {
     expect(entity.category, model.category);
     expect(entity.date, model.date);
   });
-
 }
 
