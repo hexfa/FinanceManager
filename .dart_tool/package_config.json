@@ -417,9 +417,9 @@
     },
     {
       "name": "meta",
-      "rootUri": "file:///Users/sarayetel/.pub-cache/hosted/pub.dev/meta-1.16.0",
+      "rootUri": "file:///Users/sarayetel/.pub-cache/hosted/pub.dev/meta-1.17.0",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "3.5"
     },
     {
       "name": "mime",
@@ -669,7 +669,7 @@
     },
     {
       "name": "test_api",
-      "rootUri": "file:///Users/sarayetel/.pub-cache/hosted/pub.dev/test_api-0.7.6",
+      "rootUri": "file:///Users/sarayetel/.pub-cache/hosted/pub.dev/test_api-0.7.7",
       "packageUri": "lib/",
       "languageVersion": "3.5"
     },
@@ -777,8 +777,8 @@
     }
   ],
   "generator": "pub",
-  "generatorVersion": "3.9.2",
+  "generatorVersion": "3.10.3",
   "flutterRoot": "file:///Users/sarayetel/User/development/flutter",
-  "flutterVersion": "3.35.6",
+  "flutterVersion": "3.38.4",
   "pubCache": "file:///Users/sarayetel/.pub-cache"
 }
