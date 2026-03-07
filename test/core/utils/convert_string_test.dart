@@ -10,7 +10,6 @@ void main() {
     });
     test('formatCurrencyFromString formats numeric strings correctly', () {
       expect(ConvertString.formatCurrencyFromString('1000'), '1,000');
-
       expect(ConvertString.formatCurrencyFromString('1000000'), '1,000,000');
 
       expect(ConvertString.formatCurrencyFromString(''), '');
