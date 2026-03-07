@@ -12,7 +12,6 @@ void main() {
       expect(ConvertString.formatCurrencyFromString('1000'), '1,000');
       expect(ConvertString.formatCurrencyFromString('1000000'), '1,000,000');
       expect(ConvertString.formatCurrencyFromString(''), '');
-
       expect(ConvertString.formatCurrencyFromString('abc'), '0');
 
       expect(
