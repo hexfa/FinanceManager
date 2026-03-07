@@ -9,7 +9,6 @@ void main() {
       expect(result, '2024/05/15');
     });
 
-
     test('formatCurrencyFromString formats numeric strings correctly', () {
 
       expect(ConvertString.formatCurrencyFromString('1000'), '1,000');
