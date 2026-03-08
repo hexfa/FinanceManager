@@ -14,7 +14,6 @@ void main() {
       expect(ConvertString.formatCurrencyFromString(''), '');
       expect(ConvertString.formatCurrencyFromString('abc'), '0');
       expect(
-
         ConvertString.formatCurrencyFromString('1,234'),
 
         '1,234',
