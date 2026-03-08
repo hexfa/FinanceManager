@@ -18,7 +18,6 @@ void main() {
         '1,234',
       ); // already formatted
     });
-
     test('formatCurrencyFromDouble formats double values with commas', () {
 
 
