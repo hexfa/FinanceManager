@@ -24,7 +24,6 @@ void main() {
         ConvertString.formatCurrencyFromDouble(1234567.89),
         '1,234,568',
       ); // rounded
-
       expect(ConvertString.formatCurrencyFromDouble(0), '0');
 
     });
