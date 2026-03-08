@@ -42,7 +42,6 @@ void main() {
       expect(ConvertString.toDouble('-1,000'), -1000.0);
     });
     test('toDouble parses float with comma', () {
-
       expect(ConvertString.toDouble('1,234.56'), 1234.56);
 
     });
