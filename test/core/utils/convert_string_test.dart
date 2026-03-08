@@ -37,7 +37,6 @@ void main() {
     });
     test('formatCurrencyFromDouble handles negative values', () {
       expect(ConvertString.formatCurrencyFromDouble(-1234567.89), '-1,234,568');
-
     });
 
 
