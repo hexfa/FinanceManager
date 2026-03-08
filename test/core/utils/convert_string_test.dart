@@ -31,7 +31,6 @@ void main() {
       expect(ConvertString.toDouble('123456.78'), 123456.78);
       expect(ConvertString.toDouble(''), 0.0);
       expect(ConvertString.toDouble('abc'), 0.0);
-
     });
 
 
