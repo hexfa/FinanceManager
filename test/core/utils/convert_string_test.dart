@@ -19,7 +19,6 @@ void main() {
       ); // already formatted
     });
     test('formatCurrencyFromDouble formats double values with commas', () {
-
       expect(ConvertString.formatCurrencyFromDouble(1000), '1,000');
 
       expect(
