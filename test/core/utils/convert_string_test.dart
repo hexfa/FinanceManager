@@ -28,7 +28,6 @@ void main() {
     });
 
 
-
     test('toDouble parses numeric strings with commas to double', () {
 
       expect(ConvertString.toDouble('1,000'), 1000.0);
