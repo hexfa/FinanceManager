@@ -32,7 +32,6 @@ void main() {
       expect(ConvertString.toDouble(''), 0.0);
       expect(ConvertString.toDouble('abc'), 0.0);
     });
-
     test('formatCurrencyFromString handles negative values', () {
 
       expect(ConvertString.formatCurrencyFromString('-1000'), '-1,000');
