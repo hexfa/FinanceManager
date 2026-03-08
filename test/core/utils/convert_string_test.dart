@@ -40,7 +40,6 @@ void main() {
     });
 
 
-
     test('toDouble handles negative numbers with commas', () {
 
       expect(ConvertString.toDouble('-1,000'), -1000.0);
