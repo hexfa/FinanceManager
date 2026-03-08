@@ -20,7 +20,6 @@ void main() {
     });
 
 
-
     test('formatCurrencyFromDouble formats double values with commas', () {
 
 
