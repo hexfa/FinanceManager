@@ -43,7 +43,6 @@ void main() {
     });
 
 
-
     test('toDouble parses float with comma', () {
 
       expect(ConvertString.toDouble('1,234.56'), 1234.56);
