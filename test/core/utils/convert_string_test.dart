@@ -16,7 +16,6 @@ void main() {
       expect(
         ConvertString.formatCurrencyFromString('1,234'),
         '1,234',
-
       ); // already formatted
 
     });
