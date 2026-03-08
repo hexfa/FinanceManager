@@ -34,7 +34,6 @@ void main() {
     });
 
 
-
     test('formatCurrencyFromString handles negative values', () {
 
       expect(ConvertString.formatCurrencyFromString('-1000'), '-1,000');
