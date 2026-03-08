@@ -17,7 +17,6 @@ void main() {
         ConvertString.formatCurrencyFromString('1,234'),
         '1,234',
       ); // already formatted
-
     });
 
 
