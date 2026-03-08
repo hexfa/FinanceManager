@@ -22,7 +22,6 @@ void main() {
       expect(ConvertString.formatCurrencyFromDouble(1000), '1,000');
       expect(
         ConvertString.formatCurrencyFromDouble(1234567.89),
-
         '1,234,568',
 
       ); // rounded
