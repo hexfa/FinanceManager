@@ -12,7 +12,6 @@ void main() {
           description: 'Description Test',
           amount: 100,
           category: Category(id: 1, name: 'business'),
-
           date: DateTime.now(),
 
           type: TransactionType.income,
