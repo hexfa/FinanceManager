@@ -22,7 +22,6 @@ void main() {
   );
 
 
-
   test(
 
     'TransactionMapper converts Transaction model list to entity list correctly',
