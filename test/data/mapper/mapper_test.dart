@@ -16,7 +16,6 @@ void main() {
           type: TransactionType.income,
         ),
       ];
-
       final models = TransactionMapper.toModelList(entities);
 
 
