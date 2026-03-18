@@ -5,8 +5,7 @@ import 'package:finance_manager/domain/entities/transaction_entity.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:finance_manager/core/utils/transaction_type.dart';
 void main() {
-  test(
-    'TransactionMapper converts TransactionEntity list to model list correctly',
+  test('TransactionMapper converts TransactionEntity list to model list correctly',
     () {
 
 
