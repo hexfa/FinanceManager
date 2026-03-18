@@ -8,7 +8,6 @@ void main() {
   test('TransactionMapper converts TransactionEntity list to model list correctly',
     () {
 
-
       final entities = [
 
         TransactionEntity(
