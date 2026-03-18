@@ -1,5 +1,4 @@
 import 'package:finance_manager/data/mapper/transaction_mapper.dart';
-
 import 'package:finance_manager/data/models/category.dart';
 
 import 'package:finance_manager/data/models/transaction.dart';
