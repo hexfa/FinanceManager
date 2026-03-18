@@ -9,7 +9,6 @@ void main() {
       final entities = [
         TransactionEntity(
           title: 'Test',
-
           description: 'Description Test',
 
           amount: 100,
