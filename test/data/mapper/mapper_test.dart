@@ -25,7 +25,6 @@ void main() {
       final models = [
         Transaction(
           id: 1,
-
           title: 'Test',
 
           description: 'Description Test',
