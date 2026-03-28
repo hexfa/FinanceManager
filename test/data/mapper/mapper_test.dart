@@ -24,7 +24,6 @@ void main() {
     'TransactionMapper converts Transaction model list to entity list correctly', () {
       final models = [
         Transaction(
-
           id: 1,
 
           title: 'Test',
