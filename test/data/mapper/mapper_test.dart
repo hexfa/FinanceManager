@@ -32,7 +32,6 @@ void main() {
           date: DateTime.now(),
           type: TransactionType.income,
         ),
-
       ];
 
 
