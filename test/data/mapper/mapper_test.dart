@@ -20,7 +20,6 @@ void main() {
       expect(models.length, entities.length);
       expect(models.first.title, entities.first.title);},
   );
-
   test(
 
     'TransactionMapper converts Transaction model list to entity list correctly',
