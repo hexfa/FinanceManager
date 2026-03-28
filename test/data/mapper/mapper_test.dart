@@ -27,7 +27,6 @@ void main() {
           id: 1,
           title: 'Test',
           description: 'Description Test',
-
           amount: 100,
 
           category: Category(id: 1, name: 'business'),
