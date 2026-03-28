@@ -31,7 +31,6 @@ void main() {
           category: Category(id: 1, name: 'business'),
           date: DateTime.now(),
           type: TransactionType.income,
-
         ),
 
       ];
