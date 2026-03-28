@@ -21,8 +21,7 @@ void main() {
       expect(models.first.title, entities.first.title);},
   );
   test(
-    'TransactionMapper converts Transaction model list to entity list correctly',
-    () {
+    'TransactionMapper converts Transaction model list to entity list correctly', () {
       final models = [
         Transaction(
 
