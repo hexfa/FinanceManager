@@ -38,5 +38,4 @@ void main() {
       expect(entities.first.title, models.first.title);
       },
   );
-
 }
