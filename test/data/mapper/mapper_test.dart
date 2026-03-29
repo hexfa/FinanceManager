@@ -34,7 +34,6 @@ void main() {
         ),
       ];
 
-
       final entities = TransactionMapper.toEntityList(models);
 
 
