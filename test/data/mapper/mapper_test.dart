@@ -4,8 +4,11 @@ import 'package:finance_manager/data/models/transaction.dart';
 import 'package:finance_manager/domain/entities/transaction_entity.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:finance_manager/core/utils/transaction_type.dart';
+
 void main() {
-  test('TransactionMapper converts TransactionEntity list to model list correctly', () {
+  test(
+    'TransactionMapper converts TransactionEntity list to model list correctly',
+    () {
       final entities = [
         TransactionEntity(
           title: 'Test',
@@ -18,10 +21,12 @@ void main() {
       ];
       final models = TransactionMapper.toModelList(entities);
       expect(models.length, entities.length);
-      expect(models.first.title, entities.first.title);},
+      expect(models.first.title, entities.first.title);
+    },
   );
   test(
-    'TransactionMapper converts Transaction model list to entity list correctly', () {
+    'TransactionMapper converts Transaction model list to entity list correctly',
+    () {
       final models = [
         Transaction(
           id: 1,
@@ -36,6 +41,6 @@ void main() {
       final entities = TransactionMapper.toEntityList(models);
       expect(entities.length, models.length);
       expect(entities.first.title, models.first.title);
-      },
+    },
   );
 }
