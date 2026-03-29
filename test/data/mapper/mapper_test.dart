@@ -35,7 +35,6 @@ void main() {
       ];
       final entities = TransactionMapper.toEntityList(models);
 
-
       expect(entities.length, models.length);
 
       expect(entities.first.title, models.first.title);
