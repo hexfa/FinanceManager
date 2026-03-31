@@ -7,7 +7,6 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'setting_repository_imp_test.mocks.dart';
 
-
 @GenerateMocks([ShareprefDataSource, CurrencyService])
 
 void main() {
