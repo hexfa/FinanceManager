@@ -9,60 +9,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="13178677-1dff-4855-a748-b263d6799d61" name="Changes" comment="Remove cache">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/flutter_assets/assets/icons/sport.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/flutter_assets/assets/icons/work.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/App.framework/flutter_assets/assets/icons/sport.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/App.framework/flutter_assets/assets/icons/work.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/App.framework/flutter_assets/shaders/stretch_effect.frag" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/App.framework/flutter_assets/vm_snapshot_data" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/Runner.app/Base.lproj/LaunchScreen.storyboardc/UIViewController-01J-lp-oVM.nib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/Runner.app/Base.lproj/Main.storyboardc/UIViewController-BYZ-38-t0r.nib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/Runner.app/Frameworks/App.framework/flutter_assets/assets/icons/sport.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/Runner.app/Frameworks/App.framework/flutter_assets/assets/icons/work.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/Runner.app/Frameworks/App.framework/flutter_assets/shaders/stretch_effect.frag" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/Runner.app/Frameworks/App.framework/flutter_assets/vm_snapshot_data" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/Runner.app/Frameworks/Flutter.framework/PrivacyInfo.xcprivacy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/Runner.app/Frameworks/shared_preferences_foundation.framework/shared_preferences_foundation" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/Runner.app/Frameworks/shared_preferences_foundation.framework/shared_preferences_foundation_privacy.bundle/PrivacyInfo.xcprivacy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/Runner.app/Runner" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/Runner.app/Runner.debug.dylib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/path_provider_foundation/path_provider_foundation.framework/Modules/path_provider_foundation.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/path_provider_foundation/path_provider_foundation.framework/Modules/path_provider_foundation.swiftmodule/x86_64-apple-ios-simulator.abi.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/path_provider_foundation/path_provider_foundation.framework/Modules/path_provider_foundation.swiftmodule/x86_64-apple-ios-simulator.swiftdoc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/path_provider_foundation/path_provider_foundation.framework/Modules/path_provider_foundation.swiftmodule/x86_64-apple-ios-simulator.swiftmodule" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/shared_preferences_foundation/shared_preferences_foundation.framework/Headers/shared_preferences_foundation-Swift.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/shared_preferences_foundation/shared_preferences_foundation.framework/Headers/shared_preferences_foundation-umbrella.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/shared_preferences_foundation/shared_preferences_foundation.framework/Modules/shared_preferences_foundation.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/shared_preferences_foundation/shared_preferences_foundation.framework/Modules/shared_preferences_foundation.swiftmodule/x86_64-apple-ios-simulator.abi.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/shared_preferences_foundation/shared_preferences_foundation.framework/Modules/shared_preferences_foundation.swiftmodule/x86_64-apple-ios-simulator.swiftdoc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/shared_preferences_foundation/shared_preferences_foundation.framework/Modules/shared_preferences_foundation.swiftmodule/x86_64-apple-ios-simulator.swiftmodule" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/shared_preferences_foundation/shared_preferences_foundation.framework/shared_preferences_foundation" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/shared_preferences_foundation/shared_preferences_foundation.framework/shared_preferences_foundation_privacy.bundle/PrivacyInfo.xcprivacy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/shared_preferences_foundation/shared_preferences_foundation_privacy.bundle/PrivacyInfo.xcprivacy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/ios/XCBuildData/PIFCache/project/PROJECT@v11_mod=547145b052cbbe501235061224aada8f_hash=bfdfe7dc352907fc980b868725387e98plugins=1OJSG6M1FOV3XYQCBH7Z29RZ0FPR9XDE1-json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/ios/XCBuildData/PIFCache/target/TARGET@v11_hash=06203fb602ad6805fcd0cbd900ba2c9b-json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/ios/XCBuildData/PIFCache/target/TARGET@v11_hash=063dffa2c3bc601d46f66cb078b17899-json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/ios/XCBuildData/PIFCache/target/TARGET@v11_hash=06865a5fe36a89da2b95cc3fbb5368a7-json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/ios/XCBuildData/PIFCache/target/TARGET@v11_hash=632a81124d7569f21d83664b8f579a73-json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/ios/XCBuildData/PIFCache/target/TARGET@v11_hash=8258474891af44dec85f2efbfcafe838-json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/ios/XCBuildData/PIFCache/target/TARGET@v11_hash=852993ecd54a7748933f2b41f089b479-json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/ios/XCBuildData/PIFCache/target/TARGET@v11_hash=f9f9fc8ea2e749ab6e83f27d1c75e1ac-json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/ios/XCBuildData/PIFCache/workspace/WORKSPACE@v11_hash=(null)_subobjects=0a2cf8fb6e0a6c934cf2378fd602bc08-json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/ios/iphonesimulator/Runner.app/Base.lproj/LaunchScreen.storyboardc/UIViewController-01J-lp-oVM.nib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/ios/iphonesimulator/Runner.app/Base.lproj/Main.storyboardc/UIViewController-BYZ-38-t0r.nib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/ios/iphonesimulator/Runner.app/Frameworks/App.framework/flutter_assets/assets/icons/sport.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/ios/iphonesimulator/Runner.app/Frameworks/App.framework/flutter_assets/assets/icons/work.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/ios/iphonesimulator/Runner.app/Frameworks/App.framework/flutter_assets/shaders/stretch_effect.frag" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/ios/iphonesimulator/Runner.app/Frameworks/App.framework/flutter_assets/vm_snapshot_data" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/ios/iphonesimulator/Runner.app/Frameworks/Flutter.framework/PrivacyInfo.xcprivacy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/ios/iphonesimulator/Runner.app/Frameworks/path_provider_foundation.framework/path_provider_foundation_privacy.bundle/PrivacyInfo.xcprivacy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/ios/iphonesimulator/Runner.app/Frameworks/shared_preferences_foundation.framework/shared_preferences_foundation" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/ios/iphonesimulator/Runner.app/Frameworks/shared_preferences_foundation.framework/shared_preferences_foundation_privacy.bundle/PrivacyInfo.xcprivacy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/ios/iphonesimulator/Runner.app/Runner" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/ios/iphonesimulator/Runner.app/Runner.debug.dylib" beforeDir="false" />
-    </list>
+    <list default="true" id="13178677-1dff-4855-a748-b263d6799d61" name="Changes" comment="Clean code" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -173,399 +120,399 @@
       <option name="presentableId" value="Default" />
       <updated>1745763636699</updated>
     </task>
-    <task id="LOCAL-00782" summary="Remove cache">
+    <task id="LOCAL-00902" summary="Clean code">
       <option name="closed" value="true" />
-      <created>1773594531124</created>
-      <option name="number" value="00782" />
-      <option name="presentableId" value="LOCAL-00782" />
+      <created>1773872152211</created>
+      <option name="number" value="00902" />
+      <option name="presentableId" value="LOCAL-00902" />
       <option name="project" value="LOCAL" />
-      <updated>1773594531124</updated>
+      <updated>1773872152211</updated>
     </task>
-    <task id="LOCAL-00783" summary="Remove cache">
+    <task id="LOCAL-00903" summary="Clean code">
       <option name="closed" value="true" />
-      <created>1773594534041</created>
-      <option name="number" value="00783" />
-      <option name="presentableId" value="LOCAL-00783" />
+      <created>1773872157375</created>
+      <option name="number" value="00903" />
+      <option name="presentableId" value="LOCAL-00903" />
       <option name="project" value="LOCAL" />
-      <updated>1773594534041</updated>
+      <updated>1773872157376</updated>
     </task>
-    <task id="LOCAL-00784" summary="Remove cache">
+    <task id="LOCAL-00904" summary="Clean code">
       <option name="closed" value="true" />
-      <created>1773594543219</created>
-      <option name="number" value="00784" />
-      <option name="presentableId" value="LOCAL-00784" />
+      <created>1773872162975</created>
+      <option name="number" value="00904" />
+      <option name="presentableId" value="LOCAL-00904" />
       <option name="project" value="LOCAL" />
-      <updated>1773594543220</updated>
+      <updated>1773872162975</updated>
     </task>
-    <task id="LOCAL-00785" summary="Remove cache">
+    <task id="LOCAL-00905" summary="Clean code">
       <option name="closed" value="true" />
-      <created>1773594546158</created>
-      <option name="number" value="00785" />
-      <option name="presentableId" value="LOCAL-00785" />
+      <created>1773872168602</created>
+      <option name="number" value="00905" />
+      <option name="presentableId" value="LOCAL-00905" />
       <option name="project" value="LOCAL" />
-      <updated>1773594546158</updated>
+      <updated>1773872168602</updated>
     </task>
-    <task id="LOCAL-00786" summary="Remove cache">
+    <task id="LOCAL-00906" summary="Clean code">
       <option name="closed" value="true" />
-      <created>1773666451995</created>
-      <option name="number" value="00786" />
-      <option name="presentableId" value="LOCAL-00786" />
+      <created>1773872173167</created>
+      <option name="number" value="00906" />
+      <option name="presentableId" value="LOCAL-00906" />
       <option name="project" value="LOCAL" />
-      <updated>1773666451996</updated>
+      <updated>1773872173167</updated>
     </task>
-    <task id="LOCAL-00787" summary="Remove cache">
+    <task id="LOCAL-00907" summary="Clean code">
       <option name="closed" value="true" />
-      <created>1773666459419</created>
-      <option name="number" value="00787" />
-      <option name="presentableId" value="LOCAL-00787" />
+      <created>1773872178455</created>
+      <option name="number" value="00907" />
+      <option name="presentableId" value="LOCAL-00907" />
       <option name="project" value="LOCAL" />
-      <updated>1773666459420</updated>
+      <updated>1773872178455</updated>
     </task>
-    <task id="LOCAL-00788" summary="Remove cache">
+    <task id="LOCAL-00908" summary="Clean code">
       <option name="closed" value="true" />
-      <created>1773666465614</created>
-      <option name="number" value="00788" />
-      <option name="presentableId" value="LOCAL-00788" />
+      <created>1773872182444</created>
+      <option name="number" value="00908" />
+      <option name="presentableId" value="LOCAL-00908" />
       <option name="project" value="LOCAL" />
-      <updated>1773666465614</updated>
+      <updated>1773872182444</updated>
     </task>
-    <task id="LOCAL-00789" summary="Remove cache">
+    <task id="LOCAL-00909" summary="Clean code">
       <option name="closed" value="true" />
-      <created>1773666472556</created>
-      <option name="number" value="00789" />
-      <option name="presentableId" value="LOCAL-00789" />
+      <created>1773872186144</created>
+      <option name="number" value="00909" />
+      <option name="presentableId" value="LOCAL-00909" />
       <option name="project" value="LOCAL" />
-      <updated>1773666472556</updated>
+      <updated>1773872186144</updated>
     </task>
-    <task id="LOCAL-00790" summary="Remove cache">
+    <task id="LOCAL-00910" summary="Clean code">
       <option name="closed" value="true" />
-      <created>1773666479892</created>
-      <option name="number" value="00790" />
-      <option name="presentableId" value="LOCAL-00790" />
+      <created>1773872190444</created>
+      <option name="number" value="00910" />
+      <option name="presentableId" value="LOCAL-00910" />
       <option name="project" value="LOCAL" />
-      <updated>1773666479893</updated>
+      <updated>1773872190444</updated>
     </task>
-    <task id="LOCAL-00791" summary="Remove cache">
+    <task id="LOCAL-00911" summary="Clean code">
       <option name="closed" value="true" />
-      <created>1773666495133</created>
-      <option name="number" value="00791" />
-      <option name="presentableId" value="LOCAL-00791" />
+      <created>1773872195832</created>
+      <option name="number" value="00911" />
+      <option name="presentableId" value="LOCAL-00911" />
       <option name="project" value="LOCAL" />
-      <updated>1773666495134</updated>
+      <updated>1773872195832</updated>
     </task>
-    <task id="LOCAL-00792" summary="Remove cache">
+    <task id="LOCAL-00912" summary="Clean code">
       <option name="closed" value="true" />
-      <created>1773666500407</created>
-      <option name="number" value="00792" />
-      <option name="presentableId" value="LOCAL-00792" />
+      <created>1773872203391</created>
+      <option name="number" value="00912" />
+      <option name="presentableId" value="LOCAL-00912" />
       <option name="project" value="LOCAL" />
-      <updated>1773666500407</updated>
+      <updated>1773872203392</updated>
     </task>
-    <task id="LOCAL-00793" summary="Remove cache">
+    <task id="LOCAL-00913" summary="Clean code">
       <option name="closed" value="true" />
-      <created>1773666506584</created>
-      <option name="number" value="00793" />
-      <option name="presentableId" value="LOCAL-00793" />
+      <created>1773872207857</created>
+      <option name="number" value="00913" />
+      <option name="presentableId" value="LOCAL-00913" />
       <option name="project" value="LOCAL" />
-      <updated>1773666506586</updated>
+      <updated>1773872207857</updated>
     </task>
-    <task id="LOCAL-00794" summary="Remove cache">
+    <task id="LOCAL-00914" summary="Clean code">
       <option name="closed" value="true" />
-      <created>1773666510661</created>
-      <option name="number" value="00794" />
-      <option name="presentableId" value="LOCAL-00794" />
+      <created>1773872212440</created>
+      <option name="number" value="00914" />
+      <option name="presentableId" value="LOCAL-00914" />
       <option name="project" value="LOCAL" />
-      <updated>1773666510661</updated>
+      <updated>1773872212441</updated>
     </task>
-    <task id="LOCAL-00795" summary="Remove cache">
+    <task id="LOCAL-00915" summary="Clean code">
       <option name="closed" value="true" />
-      <created>1773666519394</created>
-      <option name="number" value="00795" />
-      <option name="presentableId" value="LOCAL-00795" />
+      <created>1773872217389</created>
+      <option name="number" value="00915" />
+      <option name="presentableId" value="LOCAL-00915" />
       <option name="project" value="LOCAL" />
-      <updated>1773666519394</updated>
+      <updated>1773872217390</updated>
     </task>
-    <task id="LOCAL-00796" summary="Remove cache">
+    <task id="LOCAL-00916" summary="Clean code">
       <option name="closed" value="true" />
-      <created>1773666536799</created>
-      <option name="number" value="00796" />
-      <option name="presentableId" value="LOCAL-00796" />
+      <created>1773872222203</created>
+      <option name="number" value="00916" />
+      <option name="presentableId" value="LOCAL-00916" />
       <option name="project" value="LOCAL" />
-      <updated>1773666536799</updated>
+      <updated>1773872222204</updated>
     </task>
-    <task id="LOCAL-00797" summary="Remove cache">
+    <task id="LOCAL-00917" summary="Clean code">
       <option name="closed" value="true" />
-      <created>1773666548826</created>
-      <option name="number" value="00797" />
-      <option name="presentableId" value="LOCAL-00797" />
+      <created>1773872227962</created>
+      <option name="number" value="00917" />
+      <option name="presentableId" value="LOCAL-00917" />
       <option name="project" value="LOCAL" />
-      <updated>1773666548826</updated>
+      <updated>1773872227962</updated>
     </task>
-    <task id="LOCAL-00798" summary="Remove cache">
+    <task id="LOCAL-00918" summary="Clean code">
       <option name="closed" value="true" />
-      <created>1773666555156</created>
-      <option name="number" value="00798" />
-      <option name="presentableId" value="LOCAL-00798" />
+      <created>1773872232469</created>
+      <option name="number" value="00918" />
+      <option name="presentableId" value="LOCAL-00918" />
       <option name="project" value="LOCAL" />
-      <updated>1773666555156</updated>
+      <updated>1773872232469</updated>
     </task>
-    <task id="LOCAL-00799" summary="Remove cache">
+    <task id="LOCAL-00919" summary="Clean code">
       <option name="closed" value="true" />
-      <created>1773666561768</created>
-      <option name="number" value="00799" />
-      <option name="presentableId" value="LOCAL-00799" />
+      <created>1773872237985</created>
+      <option name="number" value="00919" />
+      <option name="presentableId" value="LOCAL-00919" />
       <option name="project" value="LOCAL" />
-      <updated>1773666561768</updated>
+      <updated>1773872237985</updated>
     </task>
-    <task id="LOCAL-00800" summary="Remove cache">
+    <task id="LOCAL-00920" summary="Clean code">
       <option name="closed" value="true" />
-      <created>1773666570955</created>
-      <option name="number" value="00800" />
-      <option name="presentableId" value="LOCAL-00800" />
+      <created>1773872243019</created>
+      <option name="number" value="00920" />
+      <option name="presentableId" value="LOCAL-00920" />
       <option name="project" value="LOCAL" />
-      <updated>1773666570955</updated>
+      <updated>1773872243019</updated>
     </task>
-    <task id="LOCAL-00801" summary="Remove cache">
+    <task id="LOCAL-00921" summary="Clean code">
       <option name="closed" value="true" />
-      <created>1773666585377</created>
-      <option name="number" value="00801" />
-      <option name="presentableId" value="LOCAL-00801" />
+      <created>1774706607735</created>
+      <option name="number" value="00921" />
+      <option name="presentableId" value="LOCAL-00921" />
       <option name="project" value="LOCAL" />
-      <updated>1773666585379</updated>
+      <updated>1774706607736</updated>
     </task>
-    <task id="LOCAL-00802" summary="Remove cache">
+    <task id="LOCAL-00922" summary="Clean code">
       <option name="closed" value="true" />
-      <created>1773666593467</created>
-      <option name="number" value="00802" />
-      <option name="presentableId" value="LOCAL-00802" />
+      <created>1774706614018</created>
+      <option name="number" value="00922" />
+      <option name="presentableId" value="LOCAL-00922" />
       <option name="project" value="LOCAL" />
-      <updated>1773666593467</updated>
+      <updated>1774706614018</updated>
     </task>
-    <task id="LOCAL-00803" summary="Remove cache">
+    <task id="LOCAL-00923" summary="Clean code">
       <option name="closed" value="true" />
-      <created>1773666597746</created>
-      <option name="number" value="00803" />
-      <option name="presentableId" value="LOCAL-00803" />
+      <created>1774706620496</created>
+      <option name="number" value="00923" />
+      <option name="presentableId" value="LOCAL-00923" />
       <option name="project" value="LOCAL" />
-      <updated>1773666597746</updated>
+      <updated>1774706620496</updated>
     </task>
-    <task id="LOCAL-00804" summary="Remove cache">
+    <task id="LOCAL-00924" summary="Clean code">
       <option name="closed" value="true" />
-      <created>1773666601801</created>
-      <option name="number" value="00804" />
-      <option name="presentableId" value="LOCAL-00804" />
+      <created>1774706625433</created>
+      <option name="number" value="00924" />
+      <option name="presentableId" value="LOCAL-00924" />
       <option name="project" value="LOCAL" />
-      <updated>1773666601801</updated>
+      <updated>1774706625433</updated>
     </task>
-    <task id="LOCAL-00805" summary="Remove cache">
+    <task id="LOCAL-00925" summary="Clean code">
       <option name="closed" value="true" />
-      <created>1773666607454</created>
-      <option name="number" value="00805" />
-      <option name="presentableId" value="LOCAL-00805" />
+      <created>1774706633016</created>
+      <option name="number" value="00925" />
+      <option name="presentableId" value="LOCAL-00925" />
       <option name="project" value="LOCAL" />
-      <updated>1773666607455</updated>
+      <updated>1774706633016</updated>
     </task>
-    <task id="LOCAL-00806" summary="Remove cache">
+    <task id="LOCAL-00926" summary="Clean code">
       <option name="closed" value="true" />
-      <created>1773666612571</created>
-      <option name="number" value="00806" />
-      <option name="presentableId" value="LOCAL-00806" />
+      <created>1774706640654</created>
+      <option name="number" value="00926" />
+      <option name="presentableId" value="LOCAL-00926" />
       <option name="project" value="LOCAL" />
-      <updated>1773666612571</updated>
+      <updated>1774706640654</updated>
     </task>
-    <task id="LOCAL-00807" summary="Remove cache">
+    <task id="LOCAL-00927" summary="Clean code">
       <option name="closed" value="true" />
-      <created>1773666617970</created>
-      <option name="number" value="00807" />
-      <option name="presentableId" value="LOCAL-00807" />
+      <created>1774706645123</created>
+      <option name="number" value="00927" />
+      <option name="presentableId" value="LOCAL-00927" />
       <option name="project" value="LOCAL" />
-      <updated>1773666617970</updated>
+      <updated>1774706645123</updated>
     </task>
-    <task id="LOCAL-00808" summary="Remove cache">
+    <task id="LOCAL-00928" summary="Clean code">
       <option name="closed" value="true" />
-      <created>1773666622364</created>
-      <option name="number" value="00808" />
-      <option name="presentableId" value="LOCAL-00808" />
+      <created>1774706649543</created>
+      <option name="number" value="00928" />
+      <option name="presentableId" value="LOCAL-00928" />
       <option name="project" value="LOCAL" />
-      <updated>1773666622364</updated>
+      <updated>1774706649543</updated>
     </task>
-    <task id="LOCAL-00809" summary="Remove cache">
+    <task id="LOCAL-00929" summary="Clean code">
       <option name="closed" value="true" />
-      <created>1773666626889</created>
-      <option name="number" value="00809" />
-      <option name="presentableId" value="LOCAL-00809" />
+      <created>1774706654084</created>
+      <option name="number" value="00929" />
+      <option name="presentableId" value="LOCAL-00929" />
       <option name="project" value="LOCAL" />
-      <updated>1773666626889</updated>
+      <updated>1774706654085</updated>
     </task>
-    <task id="LOCAL-00810" summary="Remove cache">
+    <task id="LOCAL-00930" summary="Clean code">
       <option name="closed" value="true" />
-      <created>1773666635102</created>
-      <option name="number" value="00810" />
-      <option name="presentableId" value="LOCAL-00810" />
+      <created>1774706659230</created>
+      <option name="number" value="00930" />
+      <option name="presentableId" value="LOCAL-00930" />
       <option name="project" value="LOCAL" />
-      <updated>1773666635102</updated>
+      <updated>1774706659231</updated>
     </task>
-    <task id="LOCAL-00811" summary="Remove cache">
+    <task id="LOCAL-00931" summary="Clean code">
       <option name="closed" value="true" />
-      <created>1773666639781</created>
-      <option name="number" value="00811" />
-      <option name="presentableId" value="LOCAL-00811" />
+      <created>1774706664301</created>
+      <option name="number" value="00931" />
+      <option name="presentableId" value="LOCAL-00931" />
       <option name="project" value="LOCAL" />
-      <updated>1773666639781</updated>
+      <updated>1774706664302</updated>
     </task>
-    <task id="LOCAL-00812" summary="Remove cache">
+    <task id="LOCAL-00932" summary="Clean code">
       <option name="closed" value="true" />
-      <created>1773666644959</created>
-      <option name="number" value="00812" />
-      <option name="presentableId" value="LOCAL-00812" />
+      <created>1774706670349</created>
+      <option name="number" value="00932" />
+      <option name="presentableId" value="LOCAL-00932" />
       <option name="project" value="LOCAL" />
-      <updated>1773666644959</updated>
+      <updated>1774706670350</updated>
     </task>
-    <task id="LOCAL-00813" summary="Remove cache">
+    <task id="LOCAL-00933" summary="Clean code">
       <option name="closed" value="true" />
-      <created>1773666652072</created>
-      <option name="number" value="00813" />
-      <option name="presentableId" value="LOCAL-00813" />
+      <created>1774706675145</created>
+      <option name="number" value="00933" />
+      <option name="presentableId" value="LOCAL-00933" />
       <option name="project" value="LOCAL" />
-      <updated>1773666652072</updated>
+      <updated>1774706675146</updated>
     </task>
-    <task id="LOCAL-00814" summary="Remove cache">
+    <task id="LOCAL-00934" summary="Clean code">
       <option name="closed" value="true" />
-      <created>1773666665339</created>
-      <option name="number" value="00814" />
-      <option name="presentableId" value="LOCAL-00814" />
+      <created>1774706679475</created>
+      <option name="number" value="00934" />
+      <option name="presentableId" value="LOCAL-00934" />
       <option name="project" value="LOCAL" />
-      <updated>1773666665339</updated>
+      <updated>1774706679475</updated>
     </task>
-    <task id="LOCAL-00815" summary="Remove cache">
+    <task id="LOCAL-00935" summary="Clean code">
       <option name="closed" value="true" />
-      <created>1773666674626</created>
-      <option name="number" value="00815" />
-      <option name="presentableId" value="LOCAL-00815" />
+      <created>1774706685435</created>
+      <option name="number" value="00935" />
+      <option name="presentableId" value="LOCAL-00935" />
       <option name="project" value="LOCAL" />
-      <updated>1773666674627</updated>
+      <updated>1774706685435</updated>
     </task>
-    <task id="LOCAL-00816" summary="Remove cache">
+    <task id="LOCAL-00936" summary="Clean code">
       <option name="closed" value="true" />
-      <created>1773666686839</created>
-      <option name="number" value="00816" />
-      <option name="presentableId" value="LOCAL-00816" />
+      <created>1774767962176</created>
+      <option name="number" value="00936" />
+      <option name="presentableId" value="LOCAL-00936" />
       <option name="project" value="LOCAL" />
-      <updated>1773666686840</updated>
+      <updated>1774767962177</updated>
     </task>
-    <task id="LOCAL-00817" summary="Remove cache">
+    <task id="LOCAL-00937" summary="Clean code">
       <option name="closed" value="true" />
-      <created>1773666696825</created>
-      <option name="number" value="00817" />
-      <option name="presentableId" value="LOCAL-00817" />
+      <created>1774767967432</created>
+      <option name="number" value="00937" />
+      <option name="presentableId" value="LOCAL-00937" />
       <option name="project" value="LOCAL" />
-      <updated>1773666696825</updated>
+      <updated>1774767967432</updated>
     </task>
-    <task id="LOCAL-00818" summary="Remove cache">
+    <task id="LOCAL-00938" summary="Clean code">
       <option name="closed" value="true" />
-      <created>1773666702423</created>
-      <option name="number" value="00818" />
-      <option name="presentableId" value="LOCAL-00818" />
+      <created>1774767975499</created>
+      <option name="number" value="00938" />
+      <option name="presentableId" value="LOCAL-00938" />
       <option name="project" value="LOCAL" />
-      <updated>1773666702425</updated>
+      <updated>1774767975499</updated>
     </task>
-    <task id="LOCAL-00819" summary="Remove cache">
+    <task id="LOCAL-00939" summary="Clean code">
       <option name="closed" value="true" />
-      <created>1773666710653</created>
-      <option name="number" value="00819" />
-      <option name="presentableId" value="LOCAL-00819" />
+      <created>1774767981881</created>
+      <option name="number" value="00939" />
+      <option name="presentableId" value="LOCAL-00939" />
       <option name="project" value="LOCAL" />
-      <updated>1773666710653</updated>
+      <updated>1774767981881</updated>
     </task>
-    <task id="LOCAL-00820" summary="Remove cache">
+    <task id="LOCAL-00940" summary="Clean code">
       <option name="closed" value="true" />
-      <created>1773666750885</created>
-      <option name="number" value="00820" />
-      <option name="presentableId" value="LOCAL-00820" />
+      <created>1774767999439</created>
+      <option name="number" value="00940" />
+      <option name="presentableId" value="LOCAL-00940" />
       <option name="project" value="LOCAL" />
-      <updated>1773666750885</updated>
+      <updated>1774767999439</updated>
     </task>
-    <task id="LOCAL-00821" summary="Remove cache">
+    <task id="LOCAL-00941" summary="Clean code">
       <option name="closed" value="true" />
-      <created>1773666761762</created>
-      <option name="number" value="00821" />
-      <option name="presentableId" value="LOCAL-00821" />
+      <created>1774768007757</created>
+      <option name="number" value="00941" />
+      <option name="presentableId" value="LOCAL-00941" />
       <option name="project" value="LOCAL" />
-      <updated>1773666761764</updated>
+      <updated>1774768007758</updated>
     </task>
-    <task id="LOCAL-00822" summary="Remove cache">
+    <task id="LOCAL-00942" summary="Clean code">
       <option name="closed" value="true" />
-      <created>1773666770468</created>
-      <option name="number" value="00822" />
-      <option name="presentableId" value="LOCAL-00822" />
+      <created>1774768012206</created>
+      <option name="number" value="00942" />
+      <option name="presentableId" value="LOCAL-00942" />
       <option name="project" value="LOCAL" />
-      <updated>1773666770468</updated>
+      <updated>1774768012206</updated>
     </task>
-    <task id="LOCAL-00823" summary="Remove cache">
+    <task id="LOCAL-00943" summary="Clean code">
       <option name="closed" value="true" />
-      <created>1773666774827</created>
-      <option name="number" value="00823" />
-      <option name="presentableId" value="LOCAL-00823" />
+      <created>1774768016506</created>
+      <option name="number" value="00943" />
+      <option name="presentableId" value="LOCAL-00943" />
       <option name="project" value="LOCAL" />
-      <updated>1773666774828</updated>
+      <updated>1774768016506</updated>
     </task>
-    <task id="LOCAL-00824" summary="Remove cache">
+    <task id="LOCAL-00944" summary="Clean code">
       <option name="closed" value="true" />
-      <created>1773666778370</created>
-      <option name="number" value="00824" />
-      <option name="presentableId" value="LOCAL-00824" />
+      <created>1774768020694</created>
+      <option name="number" value="00944" />
+      <option name="presentableId" value="LOCAL-00944" />
       <option name="project" value="LOCAL" />
-      <updated>1773666778370</updated>
+      <updated>1774768020694</updated>
     </task>
-    <task id="LOCAL-00825" summary="Remove cache">
+    <task id="LOCAL-00945" summary="Clean code">
       <option name="closed" value="true" />
-      <created>1773666783969</created>
-      <option name="number" value="00825" />
-      <option name="presentableId" value="LOCAL-00825" />
+      <created>1774768025826</created>
+      <option name="number" value="00945" />
+      <option name="presentableId" value="LOCAL-00945" />
       <option name="project" value="LOCAL" />
-      <updated>1773666783971</updated>
+      <updated>1774768025826</updated>
     </task>
-    <task id="LOCAL-00826" summary="Remove cache">
+    <task id="LOCAL-00946" summary="Clean code">
       <option name="closed" value="true" />
-      <created>1773666788701</created>
-      <option name="number" value="00826" />
-      <option name="presentableId" value="LOCAL-00826" />
+      <created>1774768033130</created>
+      <option name="number" value="00946" />
+      <option name="presentableId" value="LOCAL-00946" />
       <option name="project" value="LOCAL" />
-      <updated>1773666788701</updated>
+      <updated>1774768033132</updated>
     </task>
-    <task id="LOCAL-00827" summary="Remove cache">
+    <task id="LOCAL-00947" summary="Clean code">
       <option name="closed" value="true" />
-      <created>1773666792597</created>
-      <option name="number" value="00827" />
-      <option name="presentableId" value="LOCAL-00827" />
+      <created>1774768040320</created>
+      <option name="number" value="00947" />
+      <option name="presentableId" value="LOCAL-00947" />
       <option name="project" value="LOCAL" />
-      <updated>1773666792597</updated>
+      <updated>1774768040320</updated>
     </task>
-    <task id="LOCAL-00828" summary="Remove cache">
+    <task id="LOCAL-00948" summary="Clean code">
       <option name="closed" value="true" />
-      <created>1773666795950</created>
-      <option name="number" value="00828" />
-      <option name="presentableId" value="LOCAL-00828" />
+      <created>1774768067468</created>
+      <option name="number" value="00948" />
+      <option name="presentableId" value="LOCAL-00948" />
       <option name="project" value="LOCAL" />
-      <updated>1773666795950</updated>
+      <updated>1774768067469</updated>
     </task>
-    <task id="LOCAL-00829" summary="Remove cache">
+    <task id="LOCAL-00949" summary="Clean code">
       <option name="closed" value="true" />
-      <created>1773666800554</created>
-      <option name="number" value="00829" />
-      <option name="presentableId" value="LOCAL-00829" />
+      <created>1774768074007</created>
+      <option name="number" value="00949" />
+      <option name="presentableId" value="LOCAL-00949" />
       <option name="project" value="LOCAL" />
-      <updated>1773666800554</updated>
+      <updated>1774768074007</updated>
     </task>
-    <task id="LOCAL-00830" summary="Remove cache">
+    <task id="LOCAL-00950" summary="Clean code">
       <option name="closed" value="true" />
-      <created>1773666845629</created>
-      <option name="number" value="00830" />
-      <option name="presentableId" value="LOCAL-00830" />
+      <created>1774768081335</created>
+      <option name="number" value="00950" />
+      <option name="presentableId" value="LOCAL-00950" />
       <option name="project" value="LOCAL" />
-      <updated>1773666845634</updated>
+      <updated>1774768081335</updated>
     </task>
-    <option name="localTasksCounter" value="831" />
+    <option name="localTasksCounter" value="951" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -600,11 +547,11 @@
     <MESSAGE value="Update food.svg" />
     <MESSAGE value="Add file" />
     <MESSAGE value="Clean" />
-    <MESSAGE value="Test" />
     <MESSAGE value="Testing" />
     <MESSAGE value="Cleaning" />
-    <MESSAGE value="Clean code" />
     <MESSAGE value="Remove cache" />
-    <option name="LAST_COMMIT_MESSAGE" value="Remove cache" />
+    <MESSAGE value="Test" />
+    <MESSAGE value="Clean code" />
+    <option name="LAST_COMMIT_MESSAGE" value="Clean code" />
   </component>
 </project>
