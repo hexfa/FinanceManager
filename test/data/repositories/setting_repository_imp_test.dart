@@ -14,7 +14,6 @@ void main() {
   setUp(() {
     mockDataSource = MockShareprefDataSource();
     repository = SettingRepositoryImpl(mockDataSource);
-
   });
 
 
