@@ -17,7 +17,6 @@ void main() {
   });
 
 
-
   test('getCurrency returns USD as default if not set', () {
 
     when(mockDataSource.getString(ConfigurationKey.currency)).thenReturn(null);
