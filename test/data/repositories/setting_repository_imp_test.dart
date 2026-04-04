@@ -19,7 +19,6 @@ void main() {
     when(mockDataSource.getString(ConfigurationKey.currency)).thenReturn(null);
 
 
-
     final result = repository.getCurrency();
 
 
