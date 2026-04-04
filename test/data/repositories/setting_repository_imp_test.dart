@@ -13,7 +13,6 @@ void main() {
   late SettingRepositoryImpl repository;
 
 
-
   setUp(() {
 
     mockDataSource = MockShareprefDataSource();
