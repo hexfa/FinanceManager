@@ -10,7 +10,6 @@ import 'setting_repository_imp_test.mocks.dart';
 @GenerateMocks([ShareprefDataSource, CurrencyService])
 void main() {
   late MockShareprefDataSource mockDataSource;
-
   late SettingRepositoryImpl repository;
 
 
