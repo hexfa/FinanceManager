@@ -20,7 +20,6 @@ void main() {
     final result = repository.getCurrency();
     expect(result, 'USD');
   });
-
   test('getCurrency returns saved value if present', () {
 
     when(mockDataSource.getString(ConfigurationKey.currency)).thenReturn('EUR');
