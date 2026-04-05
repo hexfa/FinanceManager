@@ -25,7 +25,6 @@ void main() {
     final result = repository.getCurrency();
 
 
-
     expect(result, 'EUR');
 
   });
