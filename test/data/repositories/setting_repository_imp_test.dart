@@ -24,7 +24,6 @@ void main() {
     when(mockDataSource.getString(ConfigurationKey.currency)).thenReturn('EUR');
     final result = repository.getCurrency();
 
-
     expect(result, 'EUR');
 
   });
