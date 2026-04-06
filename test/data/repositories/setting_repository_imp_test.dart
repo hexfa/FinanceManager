@@ -25,7 +25,6 @@ void main() {
     final result = repository.getCurrency();
     expect(result, 'EUR');
   });
-
   test(
 
     'setCurrency stores the currency and notifies the CurrencyService',
