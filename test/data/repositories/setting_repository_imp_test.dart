@@ -27,7 +27,6 @@ void main() {
   });
 
 
-
   test(
 
     'setCurrency stores the currency and notifies the CurrencyService',
