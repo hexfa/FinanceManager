@@ -26,7 +26,6 @@ void main() {
     expect(result, 'EUR');
   });
 
-
   test(
 
     'setCurrency stores the currency and notifies the CurrencyService',
