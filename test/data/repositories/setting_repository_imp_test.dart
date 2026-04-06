@@ -28,7 +28,6 @@ void main() {
   test(
     'setCurrency stores the currency and notifies the CurrencyService',
     () async {
-
       const currency = 'JPY';
 
       when(
