@@ -29,7 +29,6 @@ void main() {
     'setCurrency stores the currency and notifies the CurrencyService',
     () async {
       const currency = 'JPY';
-
       when(
 
         mockDataSource.setString(ConfigurationKey.currency, currency),
