@@ -34,7 +34,6 @@ void main() {
       verify(
 
 
-
         mockDataSource.setString(ConfigurationKey.currency, currency),
 
       ).called(1);
