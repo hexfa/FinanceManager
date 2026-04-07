@@ -33,7 +33,6 @@ void main() {
       await repository.setCurrency(currency);
       verify(
 
-
         mockDataSource.setString(ConfigurationKey.currency, currency),
 
       ).called(1);
