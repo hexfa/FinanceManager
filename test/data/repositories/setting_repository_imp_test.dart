@@ -31,7 +31,6 @@ void main() {
       const currency = 'JPY';
       when(mockDataSource.setString(ConfigurationKey.currency, currency),).thenAnswer((_) async => {});
       await repository.setCurrency(currency);
-
       verify(
 
 
