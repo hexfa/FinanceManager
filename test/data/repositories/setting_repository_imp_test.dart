@@ -45,7 +45,6 @@ void main() {
     const isDark = true;
 
 
-
     when(
 
       mockDataSource.setBool(ConfigurationKey.darkTheme, isDark),
