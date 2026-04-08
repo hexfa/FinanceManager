@@ -42,7 +42,6 @@ void main() {
     expect(result, false);
   });
   test('setDarkTheme stores the theme preference', () async {
-
     const isDark = true;
 
 
