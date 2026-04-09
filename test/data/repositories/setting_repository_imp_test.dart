@@ -52,7 +52,6 @@ void main() {
     ).called(1);
   });
   test('isDarkTheme returns saved value when set', () {
-
     when(mockDataSource.getBool(ConfigurationKey.darkTheme)).thenReturn(true);
 
 
