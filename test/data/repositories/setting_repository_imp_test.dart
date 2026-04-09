@@ -48,7 +48,6 @@ void main() {
     ).thenAnswer((_) async => {});
     await repository.setDarkTheme(isDark);
 
-
     verify(
 
       mockDataSource.setBool(ConfigurationKey.darkTheme, isDark),
