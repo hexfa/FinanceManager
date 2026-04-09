@@ -50,7 +50,6 @@ void main() {
     verify(
       mockDataSource.setBool(ConfigurationKey.darkTheme, isDark),
     ).called(1);
-
   });
 
 
