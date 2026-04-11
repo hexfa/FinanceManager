@@ -55,7 +55,6 @@ void main() {
     when(mockDataSource.getBool(ConfigurationKey.darkTheme)).thenReturn(true);
     final result = repository.isDarkTheme();
     expect(result, true);
-
   });
 
 }
