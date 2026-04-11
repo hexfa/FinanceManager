@@ -56,7 +56,6 @@ void main() {
     final result = repository.isDarkTheme();
 
 
-
     expect(result, true);
 
   });
