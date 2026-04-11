@@ -11,6 +11,7 @@ import 'setting_repository_imp_test.mocks.dart';
 void main() {
   late MockShareprefDataSource mockDataSource;
   late SettingRepositoryImpl repository;
+
   setUp(() {
     mockDataSource = MockShareprefDataSource();
     repository = SettingRepositoryImpl(mockDataSource);
