@@ -26,124 +26,250 @@ import 'package:shared_preferences/shared_preferences.dart' as _i2;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
+
 class _FakeSharedPreferences_0 extends _i1.SmartFake
+
     implements _i2.SharedPreferences {
+
   _FakeSharedPreferences_0(
+
     Object parent,
+
     Invocation parentInvocation,
+
   ) : super(
+
           parent,
+
           parentInvocation,
+
         );
+
 }
+
+
 
 /// A class which mocks [ShareprefDataSource].
+
 ///
+
 /// See the documentation for Mockito's code generation for more information.
+
 class MockShareprefDataSource extends _i1.Mock
+
     implements _i3.ShareprefDataSource {
+
   MockShareprefDataSource() {
+
     _i1.throwOnMissingStub(this);
+
   }
 
+
+
   @override
+
   _i2.SharedPreferences get prefs => (super.noSuchMethod(
+
         Invocation.getter(#prefs),
+
         returnValue: _FakeSharedPreferences_0(
+
           this,
+
           Invocation.getter(#prefs),
+
         ),
+
       ) as _i2.SharedPreferences);
 
+
+
   @override
+
   String? getString(String? key) => (super.noSuchMethod(Invocation.method(
+
         #getString,
+
         [key],
+
       )) as String?);
 
-  @override
-  _i4.Future<void> setString(
-    String? key,
-    String? value,
-  ) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #setString,
-          [
-            key,
-            value,
-          ],
-        ),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
+
 
   @override
+
+  _i4.Future<void> setString(
+
+    String? key,
+
+    String? value,
+
+      ) =>
+
+      (super.noSuchMethod(
+
+        Invocation.method(
+
+          #setString,
+
+          [
+
+            key,
+
+            value,
+
+          ],
+
+        ),
+
+        returnValue: _i4.Future<void>.value(),
+
+        returnValueForMissingStub: _i4.Future<void>.value(),
+
+      ) as _i4.Future<void>);
+
+
+
+  @override
+
   bool? getBool(String? key) => (super.noSuchMethod(Invocation.method(
+
         #getBool,
+
         [key],
+
+
       )) as bool?);
 
+
+
   @override
+
   _i4.Future<void> setBool(
+
     String? key,
+
     bool? value,
-  ) =>
+
+      ) =>
+
+
+
       (super.noSuchMethod(
+
         Invocation.method(
+
           #setBool,
+
           [
+
             key,
+
             value,
+
           ],
+
         ),
+
         returnValue: _i4.Future<void>.value(),
+
         returnValueForMissingStub: _i4.Future<void>.value(),
+
       ) as _i4.Future<void>);
 }
+
+
+
 
 /// A class which mocks [CurrencyService].
+
 ///
+
 /// See the documentation for Mockito's code generation for more information.
+
 class MockCurrencyService extends _i1.Mock implements _i5.CurrencyService {
+
   MockCurrencyService() {
+
     _i1.throwOnMissingStub(this);
+
   }
 
+
+
   @override
+
   String get currencyCode => (super.noSuchMethod(
+
         Invocation.getter(#currencyCode),
+
         returnValue: _i6.dummyValue<String>(
+
           this,
+
           Invocation.getter(#currencyCode),
+
         ),
+
       ) as String);
 
+
+
   @override
+
   set currencyCode(String? _currencyCode) => super.noSuchMethod(
+
         Invocation.setter(
+
           #currencyCode,
+
           _currencyCode,
+
         ),
+
         returnValueForMissingStub: null,
+
       );
 
+
+
   @override
+
   void loadCurrency() => super.noSuchMethod(
+
         Invocation.method(
+
           #loadCurrency,
+
           [],
+
         ),
+
         returnValueForMissingStub: null,
+
       );
 
+
+
   @override
+
   _i4.Future<void> notifyCurrencyChanged() => (super.noSuchMethod(
+
         Invocation.method(
+
           #notifyCurrencyChanged,
+
           [],
+
         ),
+
         returnValue: _i4.Future<void>.value(),
+
         returnValueForMissingStub: _i4.Future<void>.value(),
+
       ) as _i4.Future<void>);
+
 }
+
+
