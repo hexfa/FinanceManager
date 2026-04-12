@@ -26,7 +26,6 @@ import 'package:shared_preferences/shared_preferences.dart' as _i2;
 
 
 class _FakeSharedPreferences_0 extends _i1.SmartFake
-
     implements _i2.SharedPreferences {
 
   _FakeSharedPreferences_0(
