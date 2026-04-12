@@ -29,7 +29,6 @@ class _FakeSharedPreferences_0 extends _i1.SmartFake
     implements _i2.SharedPreferences {
   _FakeSharedPreferences_0(
     Object parent,
-
     Invocation parentInvocation,
 
   ) : super(
