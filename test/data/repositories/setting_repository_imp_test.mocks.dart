@@ -34,7 +34,6 @@ class _FakeSharedPreferences_0 extends _i1.SmartFake
           parentInvocation,
         );
 }
-
 /// A class which mocks [ShareprefDataSource].
 
 ///
