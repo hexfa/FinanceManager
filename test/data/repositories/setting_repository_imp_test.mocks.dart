@@ -39,7 +39,6 @@ class _FakeSharedPreferences_0 extends _i1.SmartFake
 /// See the documentation for Mockito's code generation for more information.
 class MockShareprefDataSource extends _i1.Mock
     implements _i3.ShareprefDataSource {
-
   MockShareprefDataSource() {
 
     _i1.throwOnMissingStub(this);
