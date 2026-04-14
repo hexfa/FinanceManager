@@ -46,7 +46,6 @@ class MockShareprefDataSource extends _i1.Mock
   _i2.SharedPreferences get prefs => (super.noSuchMethod(
         Invocation.getter(#prefs),
         returnValue: _FakeSharedPreferences_0(
-
           this,
 
           Invocation.getter(#prefs),
