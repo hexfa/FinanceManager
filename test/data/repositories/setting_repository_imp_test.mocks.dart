@@ -40,7 +40,6 @@ class _FakeSharedPreferences_0 extends _i1.SmartFake
 class MockShareprefDataSource extends _i1.Mock
     implements _i3.ShareprefDataSource {
   MockShareprefDataSource() {
-
     _i1.throwOnMissingStub(this);
 
   }
