@@ -47,7 +47,6 @@ class MockShareprefDataSource extends _i1.Mock
         Invocation.getter(#prefs),
         returnValue: _FakeSharedPreferences_0(
           this,
-
           Invocation.getter(#prefs),
 
         ),
