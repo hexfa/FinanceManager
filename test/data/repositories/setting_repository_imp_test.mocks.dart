@@ -49,7 +49,6 @@ class MockShareprefDataSource extends _i1.Mock
           this,
           Invocation.getter(#prefs),
         ),
-
       ) as _i2.SharedPreferences);
 
 
