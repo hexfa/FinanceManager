@@ -48,7 +48,6 @@ class MockShareprefDataSource extends _i1.Mock
         returnValue: _FakeSharedPreferences_0(
           this,
           Invocation.getter(#prefs),
-
         ),
 
       ) as _i2.SharedPreferences);
