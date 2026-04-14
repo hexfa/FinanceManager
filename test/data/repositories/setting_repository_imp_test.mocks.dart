@@ -43,7 +43,6 @@ class MockShareprefDataSource extends _i1.Mock
     _i1.throwOnMissingStub(this);
   }
 
-
   @override
 
   _i2.SharedPreferences get prefs => (super.noSuchMethod(
