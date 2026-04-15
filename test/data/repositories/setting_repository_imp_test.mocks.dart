@@ -52,7 +52,6 @@ class MockShareprefDataSource extends _i1.Mock
       ) as _i2.SharedPreferences);
 
 
-
   @override
 
   String? getString(String? key) => (super.noSuchMethod(Invocation.method(
