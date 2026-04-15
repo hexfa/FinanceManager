@@ -59,7 +59,6 @@ class MockShareprefDataSource extends _i1.Mock
   _i4.Future<void> setString(
     String? key,
     String? value,
-
       ) =>
 
       (super.noSuchMethod(
