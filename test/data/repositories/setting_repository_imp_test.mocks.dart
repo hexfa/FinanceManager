@@ -55,7 +55,6 @@ class MockShareprefDataSource extends _i1.Mock
         #getString,
         [key],
       )) as String?);
-
   @override
 
   _i4.Future<void> setString(
