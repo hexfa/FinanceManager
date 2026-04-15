@@ -53,7 +53,6 @@ class MockShareprefDataSource extends _i1.Mock
   @override
   String? getString(String? key) => (super.noSuchMethod(Invocation.method(
         #getString,
-
         [key],
 
       )) as String?);
