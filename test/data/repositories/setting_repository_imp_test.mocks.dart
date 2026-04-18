@@ -64,7 +64,6 @@ class MockShareprefDataSource extends _i1.Mock
         Invocation.method(
           #setString, [key,
             value,
-
           ],
 
         ),
