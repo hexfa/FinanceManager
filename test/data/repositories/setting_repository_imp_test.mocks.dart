@@ -81,7 +81,6 @@ class MockShareprefDataSource extends _i1.Mock
           #setBool, [
             key,
             value,
-
           ],
 
         ),
