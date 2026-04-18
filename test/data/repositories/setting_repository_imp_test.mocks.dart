@@ -80,7 +80,6 @@ class MockShareprefDataSource extends _i1.Mock
         Invocation.method(
           #setBool, [
             key,
-
             value,
 
           ],
