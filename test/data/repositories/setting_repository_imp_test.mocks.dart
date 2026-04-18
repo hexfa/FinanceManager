@@ -70,7 +70,6 @@ class MockShareprefDataSource extends _i1.Mock
   @override
   bool? getBool(String? key) => (super.noSuchMethod(Invocation.method(
         #getBool,
-
         [key],
 
 
