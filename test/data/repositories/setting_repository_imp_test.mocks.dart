@@ -73,7 +73,6 @@ class MockShareprefDataSource extends _i1.Mock
         [key],
       )) as bool?);
 
-
   @override
 
   _i4.Future<void> setBool(
