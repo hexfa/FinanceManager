@@ -78,8 +78,7 @@ class MockShareprefDataSource extends _i1.Mock
     bool? value,) =>
       (super.noSuchMethod(
         Invocation.method(
-          #setBool,
-          [
+          #setBool, [
 
             key,
 
