@@ -72,7 +72,6 @@ class MockShareprefDataSource extends _i1.Mock
         #getBool,
         [key],
 
-
       )) as bool?);
 
 
