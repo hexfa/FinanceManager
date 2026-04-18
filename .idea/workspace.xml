@@ -9,9 +9,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="13178677-1dff-4855-a748-b263d6799d61" name="Changes" comment="Cleaning">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="13178677-1dff-4855-a748-b263d6799d61" name="Changes" comment="Cleaning" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -121,22 +119,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1745763636699</updated>
-    </task>
-    <task id="LOCAL-01058" summary="Clean code">
-      <option name="closed" value="true" />
-      <created>1775923956650</created>
-      <option name="number" value="01058" />
-      <option name="presentableId" value="LOCAL-01058" />
-      <option name="project" value="LOCAL" />
-      <updated>1775923956650</updated>
-    </task>
-    <task id="LOCAL-01059" summary="Clean code">
-      <option name="closed" value="true" />
-      <created>1775923963285</created>
-      <option name="number" value="01059" />
-      <option name="presentableId" value="LOCAL-01059" />
-      <option name="project" value="LOCAL" />
-      <updated>1775923963285</updated>
     </task>
     <task id="LOCAL-01060" summary="Clean code">
       <option name="closed" value="true" />
@@ -514,7 +496,23 @@
       <option name="project" value="LOCAL" />
       <updated>1776261008711</updated>
     </task>
-    <option name="localTasksCounter" value="1107" />
+    <task id="LOCAL-01107" summary="Cleaning">
+      <option name="closed" value="true" />
+      <created>1776511530316</created>
+      <option name="number" value="01107" />
+      <option name="presentableId" value="LOCAL-01107" />
+      <option name="project" value="LOCAL" />
+      <updated>1776511530317</updated>
+    </task>
+    <task id="LOCAL-01108" summary="Cleaning">
+      <option name="closed" value="true" />
+      <created>1776511548837</created>
+      <option name="number" value="01108" />
+      <option name="presentableId" value="LOCAL-01108" />
+      <option name="project" value="LOCAL" />
+      <updated>1776511548839</updated>
+    </task>
+    <option name="localTasksCounter" value="1109" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
