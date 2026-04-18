@@ -62,7 +62,6 @@ class MockShareprefDataSource extends _i1.Mock
       ) =>
       (super.noSuchMethod(
         Invocation.method(
-
           #setString,
 
           [
