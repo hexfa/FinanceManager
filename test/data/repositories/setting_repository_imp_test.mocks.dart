@@ -65,7 +65,6 @@ class MockShareprefDataSource extends _i1.Mock
           #setString, [key,
             value,
           ],
-
         ),
 
         returnValue: _i4.Future<void>.value(),
