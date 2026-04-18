@@ -76,7 +76,6 @@ class MockShareprefDataSource extends _i1.Mock
   _i4.Future<void> setBool(
     String? key,
     bool? value,
-
       ) =>
 
 
