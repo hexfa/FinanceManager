@@ -89,7 +89,6 @@ class MockShareprefDataSource extends _i1.Mock
 }
 
 
-
 /// A class which mocks [CurrencyService].
 
 ///
