@@ -88,7 +88,6 @@ class MockShareprefDataSource extends _i1.Mock
       ) as _i4.Future<void>);
 }
 /// A class which mocks [CurrencyService].
-///
 /// See the documentation for Mockito's code generation for more information.
 
 class MockCurrencyService extends _i1.Mock implements _i5.CurrencyService {
