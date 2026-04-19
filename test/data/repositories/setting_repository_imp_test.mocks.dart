@@ -87,7 +87,6 @@ class MockShareprefDataSource extends _i1.Mock
         returnValueForMissingStub: _i4.Future<void>.value(),
       ) as _i4.Future<void>);
 }
-
 /// A class which mocks [CurrencyService].
 
 ///
