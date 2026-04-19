@@ -90,7 +90,6 @@ class MockShareprefDataSource extends _i1.Mock
 /// A class which mocks [CurrencyService].
 /// See the documentation for Mockito's code generation for more information.
 class MockCurrencyService extends _i1.Mock implements _i5.CurrencyService {
-
   MockCurrencyService() {
 
     _i1.throwOnMissingStub(this);
