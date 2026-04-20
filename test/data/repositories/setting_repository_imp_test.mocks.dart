@@ -94,7 +94,6 @@ class MockCurrencyService extends _i1.Mock implements _i5.CurrencyService {
     _i1.throwOnMissingStub(this);
   }
   @override
-
   String get currencyCode => (super.noSuchMethod(
 
         Invocation.getter(#currencyCode),
