@@ -101,7 +101,6 @@ class MockCurrencyService extends _i1.Mock implements _i5.CurrencyService {
           Invocation.getter(#currencyCode),
         ),
       ) as String);
-
   @override
 
   set currencyCode(String? _currencyCode) => super.noSuchMethod(
