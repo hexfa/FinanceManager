@@ -92,7 +92,6 @@ class MockShareprefDataSource extends _i1.Mock
 class MockCurrencyService extends _i1.Mock implements _i5.CurrencyService {
   MockCurrencyService() {
     _i1.throwOnMissingStub(this);
-
   }
 
 
