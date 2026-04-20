@@ -97,7 +97,6 @@ class MockCurrencyService extends _i1.Mock implements _i5.CurrencyService {
   String get currencyCode => (super.noSuchMethod(
         Invocation.getter(#currencyCode),
         returnValue: _i6.dummyValue<String>(
-
           this,
 
           Invocation.getter(#currencyCode),
