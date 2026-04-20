@@ -110,7 +110,6 @@ class MockCurrencyService extends _i1.Mock implements _i5.CurrencyService {
         returnValueForMissingStub: null,
       );
   @override
-
   void loadCurrency() => super.noSuchMethod(
 
         Invocation.method(
