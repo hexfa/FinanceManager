@@ -114,7 +114,6 @@ class MockCurrencyService extends _i1.Mock implements _i5.CurrencyService {
         Invocation.method(
           #loadCurrency,
           [],
-
         ),
 
         returnValueForMissingStub: null,
