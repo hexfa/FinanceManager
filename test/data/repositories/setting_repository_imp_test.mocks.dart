@@ -99,7 +99,6 @@ class MockCurrencyService extends _i1.Mock implements _i5.CurrencyService {
         returnValue: _i6.dummyValue<String>(
           this,
           Invocation.getter(#currencyCode),
-
         ),
 
       ) as String);
