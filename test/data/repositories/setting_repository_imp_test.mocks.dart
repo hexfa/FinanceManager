@@ -116,7 +116,6 @@ class MockCurrencyService extends _i1.Mock implements _i5.CurrencyService {
           [],
         ),
         returnValueForMissingStub: null,
-
       );
 
 
