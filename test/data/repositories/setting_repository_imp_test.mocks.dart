@@ -122,7 +122,6 @@ class MockCurrencyService extends _i1.Mock implements _i5.CurrencyService {
         Invocation.method(
           #notifyCurrencyChanged,
           [],
-
         ),
 
         returnValue: _i4.Future<void>.value(),
