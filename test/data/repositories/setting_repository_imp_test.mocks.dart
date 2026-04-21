@@ -117,7 +117,6 @@ class MockCurrencyService extends _i1.Mock implements _i5.CurrencyService {
         ),
         returnValueForMissingStub: null,
       );
-
   @override
 
   _i4.Future<void> notifyCurrencyChanged() => (super.noSuchMethod(
