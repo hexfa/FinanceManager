@@ -120,7 +120,6 @@ class MockCurrencyService extends _i1.Mock implements _i5.CurrencyService {
   @override
   _i4.Future<void> notifyCurrencyChanged() => (super.noSuchMethod(
         Invocation.method(
-
           #notifyCurrencyChanged,
 
           [],
