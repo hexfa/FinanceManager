@@ -7,7 +7,6 @@ import 'package:mockito/mockito.dart';
 import 'package:finance_manager/data/datasource/db_data_source.dart';
 import 'package:finance_manager/data/models/transaction.dart';
 
-
 class MockDBDataSource extends Mock implements DBDataSource {}
 
 
