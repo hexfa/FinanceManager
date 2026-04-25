@@ -16,7 +16,6 @@ void main() {
     title: "Test Transaction",
     description: "Description",
     amount: 100.0,
-
     type: TransactionType.income,
 
     category: Category(id: 1, name: 'sport'),
