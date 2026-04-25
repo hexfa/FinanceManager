@@ -15,7 +15,6 @@ void main() {
     id: 1,
     title: "Test Transaction",
     description: "Description",
-
     amount: 100.0,
 
     type: TransactionType.income,
