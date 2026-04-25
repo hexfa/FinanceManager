@@ -12,7 +12,6 @@ void main() {
   late MockDBDataSource mockDataSource;
   late TransactionRepositoryImpl repository;
 
-
   final testTransaction = Transaction(
 
     id: 1,
