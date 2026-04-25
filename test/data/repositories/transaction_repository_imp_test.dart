@@ -13,7 +13,6 @@ void main() {
   late TransactionRepositoryImpl repository;
   final testTransaction = Transaction(
     id: 1,
-
     title: "Test Transaction",
 
     description: "Description",
