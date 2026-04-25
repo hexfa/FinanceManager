@@ -14,7 +14,6 @@ void main() {
   final testTransaction = Transaction(
     id: 1,
     title: "Test Transaction",
-
     description: "Description",
 
     amount: 100.0,
