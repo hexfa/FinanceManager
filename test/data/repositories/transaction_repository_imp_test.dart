@@ -9,7 +9,6 @@ import 'package:finance_manager/data/models/transaction.dart';
 class MockDBDataSource extends Mock implements DBDataSource {}
 
 void main() {
-
   late MockDBDataSource mockDataSource;
 
   late TransactionRepositoryImpl repository;
