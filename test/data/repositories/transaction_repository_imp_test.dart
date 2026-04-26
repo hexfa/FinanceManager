@@ -25,7 +25,6 @@ void main() {
   setUp(() {
     mockDataSource = MockDBDataSource();
     repository = TransactionRepositoryImpl(mockDataSource);
-
   });
 
 
