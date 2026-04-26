@@ -21,7 +21,6 @@ void main() {
     date: DateTime(2023, 1, 1),
   );
 
-
   final testTransactionEntity = testTransaction.toEntity();
 
 
