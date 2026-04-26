@@ -24,7 +24,6 @@ void main() {
   final testTransactionEntity = testTransaction.toEntity();
   setUp(() {
     mockDataSource = MockDBDataSource();
-
     repository = TransactionRepositoryImpl(mockDataSource);
 
   });
