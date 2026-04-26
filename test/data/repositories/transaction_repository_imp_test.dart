@@ -19,7 +19,6 @@ void main() {
     type: TransactionType.income,
     category: Category(id: 1, name: 'sport'),
     date: DateTime(2023, 1, 1),
-
   );
 
 
