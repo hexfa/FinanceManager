@@ -26,7 +26,6 @@ void main() {
     mockDataSource = MockDBDataSource();
     repository = TransactionRepositoryImpl(mockDataSource);
   });
-
   group('TransactionRepositoryImpl Tests', () {
     test('getAllTransactions returns list of transactions', () async {
 
