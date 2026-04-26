@@ -22,7 +22,6 @@ void main() {
   );
 
 
-
   final testTransactionEntity = testTransaction.toEntity();
 
 
