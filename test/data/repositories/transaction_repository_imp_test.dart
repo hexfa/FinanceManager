@@ -31,7 +31,6 @@ void main() {
       // Arrange
       when(
         mockDataSource.getAll(),
-
       ).thenAnswer((_) async => [testTransactionEntity]);
 
 
