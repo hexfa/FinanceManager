@@ -30,7 +30,6 @@ void main() {
     test('getAllTransactions returns list of transactions', () async {
       // Arrange
       when(
-
         mockDataSource.getAll(),
 
       ).thenAnswer((_) async => [testTransactionEntity]);
