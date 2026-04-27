@@ -29,7 +29,6 @@ void main() {
   group('TransactionRepositoryImpl Tests', () {
     test('getAllTransactions returns list of transactions', () async {
       // Arrange
-
       when(
 
         mockDataSource.getAll(),
