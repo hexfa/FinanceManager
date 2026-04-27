@@ -34,7 +34,6 @@ void main() {
       ).thenAnswer((_) async => [testTransactionEntity]);
 
 
-
       // Act
 
       final result = await repository.getAllTransactions();
