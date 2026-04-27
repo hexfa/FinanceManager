@@ -38,7 +38,6 @@ void main() {
       expect(result, isA<List<Transaction>>());
       expect(result.length, 1);
       expect(result[0].id, testTransaction.id);
-
       verify(mockDataSource.getAll()).called(1);
 
     });
