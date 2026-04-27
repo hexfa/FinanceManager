@@ -35,7 +35,6 @@ void main() {
       // Act
       final result = await repository.getAllTransactions();
       // Assert
-
       expect(result, isA<List<Transaction>>());
 
       expect(result.length, 1);
