@@ -32,7 +32,6 @@ void main() {
       when(
         mockDataSource.getAll(),
       ).thenAnswer((_) async => [testTransactionEntity]);
-
       // Act
 
       final result = await repository.getAllTransactions();
