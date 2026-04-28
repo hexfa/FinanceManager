@@ -40,7 +40,6 @@ void main() {
       expect(result[0].id, testTransaction.id);
       verify(mockDataSource.getAll()).called(1);
     });
-
     test(
 
       'createTransaction calls dataSource.create with correct entity',
