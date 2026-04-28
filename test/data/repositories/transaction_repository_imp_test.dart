@@ -41,7 +41,6 @@ void main() {
       verify(mockDataSource.getAll()).called(1);
     });
     test(
-
       'createTransaction calls dataSource.create with correct entity',
 
       () async {
