@@ -45,7 +45,6 @@ void main() {
       () async {
         // Act
         await repository.createTransaction(transaction: testTransaction);
-
         // Assert
 
         verify(mockDataSource.create(testTransactionEntity)).called(1);
