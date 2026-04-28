@@ -43,7 +43,6 @@ void main() {
     test(
       'createTransaction calls dataSource.create with correct entity',
       () async {
-
         // Act
 
         await repository.createTransaction(transaction: testTransaction);
