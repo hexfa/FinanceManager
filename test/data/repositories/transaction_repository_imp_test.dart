@@ -39,7 +39,6 @@ void main() {
       expect(result.length, 1);
       expect(result[0].id, testTransaction.id);
       verify(mockDataSource.getAll()).called(1);
-
     });
 
 
