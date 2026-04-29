@@ -56,7 +56,6 @@ void main() {
         await repository.updateTransaction(transaction: testTransaction);
         // Assert
         verify(
-
           mockDataSource.update(testTransaction.id!, testTransactionEntity),
 
         ).called(1);
