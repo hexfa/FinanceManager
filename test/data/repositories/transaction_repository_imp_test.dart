@@ -52,7 +52,6 @@ void main() {
     test(
       'updateTransaction calls dataSource.update with correct id and entity',
       () async {
-
         // Act
 
         await repository.updateTransaction(transaction: testTransaction);
