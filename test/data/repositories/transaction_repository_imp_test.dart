@@ -49,7 +49,6 @@ void main() {
         verify(mockDataSource.create(testTransactionEntity)).called(1);
         },
     );
-
     test(
 
       'updateTransaction calls dataSource.update with correct id and entity',
