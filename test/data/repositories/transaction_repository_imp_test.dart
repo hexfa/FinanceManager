@@ -54,7 +54,6 @@ void main() {
       () async {
         // Act
         await repository.updateTransaction(transaction: testTransaction);
-
         // Assert
 
         verify(
