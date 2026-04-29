@@ -57,7 +57,6 @@ void main() {
         // Assert
         verify(
 
-
           mockDataSource.update(testTransaction.id!, testTransactionEntity),
 
         ).called(1);
