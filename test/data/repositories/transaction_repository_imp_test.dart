@@ -65,7 +65,6 @@ void main() {
       await repository.deleteTransaction(testTransaction.id!);
       // Assert
       verify(mockDataSource.delete(testTransaction.id!)).called(1);
-
     });
 
 
