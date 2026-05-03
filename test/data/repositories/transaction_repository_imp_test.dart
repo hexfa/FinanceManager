@@ -76,7 +76,6 @@ void main() {
       // Assert
       expect(result, isNotNull);
       expect(result!.id, testTransaction.id);
-
       verify(mockDataSource.getById(testTransaction.id!)).called(1);
 
     });
