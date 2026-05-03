@@ -68,7 +68,6 @@ void main() {
     });
     test('getTransactionById returns transaction when found', () async {
       // Arrange
-
       when(
 
         mockDataSource.getById(testTransaction.id!),
