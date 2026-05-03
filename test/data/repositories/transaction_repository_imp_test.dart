@@ -70,7 +70,6 @@ void main() {
       // Arrange
       when(
         mockDataSource.getById(testTransaction.id!),
-
       ).thenAnswer((_) async => testTransactionEntity);
 
 
