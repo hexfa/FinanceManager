@@ -73,7 +73,6 @@ void main() {
       ).thenAnswer((_) async => testTransactionEntity);
 
 
-
       // Act
 
       final result = await repository.getTransactionById(testTransaction.id!);
