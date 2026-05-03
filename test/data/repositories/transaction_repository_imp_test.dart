@@ -75,7 +75,6 @@ void main() {
       final result = await repository.getTransactionById(testTransaction.id!);
       // Assert
       expect(result, isNotNull);
-
       expect(result!.id, testTransaction.id);
 
       verify(mockDataSource.getById(testTransaction.id!)).called(1);
