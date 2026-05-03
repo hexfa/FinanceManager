@@ -67,7 +67,6 @@ void main() {
       verify(mockDataSource.delete(testTransaction.id!)).called(1);
     });
     test('getTransactionById returns transaction when found', () async {
-
       // Arrange
 
       when(
