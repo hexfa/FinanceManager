@@ -88,7 +88,6 @@ void main() {
     final result = await repository.getTransactionById(testTransaction.id!);
 
 
-
     // Assert
 
     expect(result, isNull);
