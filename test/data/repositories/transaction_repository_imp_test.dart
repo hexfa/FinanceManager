@@ -79,7 +79,6 @@ void main() {
       verify(mockDataSource.getById(testTransaction.id!)).called(1);
     });
   });
-
   test('getTransactionById returns null when not found', () async {
 
     // Arrange
