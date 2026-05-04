@@ -78,7 +78,6 @@ void main() {
       expect(result!.id, testTransaction.id);
       verify(mockDataSource.getById(testTransaction.id!)).called(1);
     });
-
   });
 
 
