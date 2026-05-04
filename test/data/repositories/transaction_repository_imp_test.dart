@@ -82,7 +82,6 @@ void main() {
   test('getTransactionById returns null when not found', () async {
     // Arrange
     when(
-
       mockDataSource.getById(testTransaction.id!),
 
     ).thenAnswer((_) async => null);
