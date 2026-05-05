@@ -6,6 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:finance_manager/data/datasource/db_data_source.dart';
 import 'package:finance_manager/data/models/transaction.dart';
+
 class MockDBDataSource extends Mock implements DBDataSource {}
 
 void main() {
@@ -47,7 +48,7 @@ void main() {
         await repository.createTransaction(transaction: testTransaction);
         // Assert
         verify(mockDataSource.create(testTransactionEntity)).called(1);
-        },
+      },
     );
     test(
       'updateTransaction calls dataSource.update with correct id and entity',
@@ -58,7 +59,7 @@ void main() {
         verify(
           mockDataSource.update(testTransaction.id!, testTransactionEntity),
         ).called(1);
-        },
+      },
     );
     test('deleteTransaction calls dataSource.delete with correct id', () async {
       // Act
