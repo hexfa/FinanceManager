@@ -61,6 +61,7 @@ void main() {
         ).called(1);
       },
     );
+
     test('deleteTransaction calls dataSource.delete with correct id', () async {
       // Act
       await repository.deleteTransaction(testTransaction.id!);
