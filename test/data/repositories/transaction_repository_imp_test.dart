@@ -87,7 +87,6 @@ void main() {
     // Act
     final result = await repository.getTransactionById(testTransaction.id!);
     // Assert
-
     expect(result, isNull);
 
     verify(mockDataSource.getById(testTransaction.id!)).called(1);
