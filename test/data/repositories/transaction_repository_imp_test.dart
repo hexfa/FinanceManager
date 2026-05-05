@@ -21,7 +21,6 @@ void main() {
     category: Category(id: 1, name: 'sport'),
     date: DateTime(2023, 1, 1),
   );
-
   final testTransactionEntity = testTransaction.toEntity();
   setUp(() {
     mockDataSource = MockDBDataSource();
