@@ -6,7 +6,6 @@ import 'setting_cubit_fake.dart';
 Widget buildTestableWidget(
   Widget widget, {
   SettingCubit? settingCubit,
-
   NavigatorObserver? navigatorObserver,
 
     }) {
