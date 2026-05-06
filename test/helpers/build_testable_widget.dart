@@ -4,7 +4,6 @@ import 'package:finance_manager/presentation/bloc/setting/setting_cubit.dart';
 import 'setting_cubit_fake.dart';
 
 Widget buildTestableWidget(
-
   Widget widget, {
 
   SettingCubit? settingCubit,
