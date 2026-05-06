@@ -7,7 +7,6 @@ Widget buildTestableWidget(
   Widget widget, {
   SettingCubit? settingCubit,
   NavigatorObserver? navigatorObserver,
-
     }) {
 
   final cubit = settingCubit ?? SettingCubitFake();
