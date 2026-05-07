@@ -12,7 +12,6 @@ Widget buildTestableWidget(
   return MaterialApp(
     home: BlocProvider<SettingCubit>.value(value: cubit, child: widget),
     navigatorObservers: [if (navigatorObserver != null) navigatorObserver],
-
   );
 
 }
