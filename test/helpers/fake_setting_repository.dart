@@ -2,7 +2,6 @@ import 'package:finance_manager/domain/repositories/setting_repository.dart';
 
 class FakeSettingRepository implements SettingRepository {
   String _currencyCode;
-
   bool _darkTheme;
 
 
