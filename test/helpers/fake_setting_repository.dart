@@ -12,7 +12,6 @@ class FakeSettingRepository implements SettingRepository {
   bool? lastSetDarkTheme;
 
 
-
   @override
 
   String getCurrency() => _currencyCode;
