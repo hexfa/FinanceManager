@@ -9,7 +9,6 @@ class FakeSettingRepository implements SettingRepository {
   }) : _currencyCode = initialCurrencyCode,
        _darkTheme = initialDarkTheme;
   String? lastSetCurrencyCode;
-
   bool? lastSetDarkTheme;
 
 
