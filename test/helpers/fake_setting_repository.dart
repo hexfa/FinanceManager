@@ -21,7 +21,6 @@ class FakeSettingRepository implements SettingRepository {
   }
 
 
-
   @override
 
   Future<void> setDarkTheme(bool value) async {
