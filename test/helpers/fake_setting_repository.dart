@@ -15,7 +15,6 @@ class FakeSettingRepository implements SettingRepository {
   @override
   bool isDarkTheme() => _darkTheme;
   @override
-
   Future<void> setCurrency(String code) async {
 
     lastSetCurrencyCode = code;
