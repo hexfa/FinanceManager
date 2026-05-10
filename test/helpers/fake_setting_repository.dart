@@ -23,7 +23,6 @@ class FakeSettingRepository implements SettingRepository {
   Future<void> setDarkTheme(bool value) async {
     lastSetDarkTheme = value;
     _darkTheme = value;
-
   }
 
 }
