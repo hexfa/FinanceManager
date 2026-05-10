@@ -17,7 +17,6 @@ class FakeSettingRepository implements SettingRepository {
   @override
   Future<void> setCurrency(String code) async {
     lastSetCurrencyCode = code;
-
     _currencyCode = code;
 
   }
