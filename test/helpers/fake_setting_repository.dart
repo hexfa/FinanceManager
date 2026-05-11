@@ -24,6 +24,5 @@ class FakeSettingRepository implements SettingRepository {
     lastSetDarkTheme = value;
     _darkTheme = value;
   }
-
 }
 
